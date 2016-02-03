@@ -4,7 +4,7 @@
     <eAnnotations xmi:id="_jI9AIMaAEeWWzPvKbv_oqg" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_jI9AIcaAEeWWzPvKbv_oqg" source="codegen">
         <details xmi:id="_jI9AIsaAEeWWzPvKbv_oqg" key="codegenDirectory" value="/GREVES/src"/>
-        <details xmi:id="_kew8gMaAEeWWzPvKbv_oqg" key="AssociatedSourceCode" value="/GREVES/src/demothreading/TerminusException.java;4078478319/1;/GREVES/src/demothreading/Line.java;50434132/1;/GREVES/src/demothreading/LineBuilder.java;875084771/1;/GREVES/src/demothreading/SimulationDashboard.java;85371608/1;/GREVES/src/demothreading/SimulationGUI.java;3785844266/1;/GREVES/src/demothreading/Canton.java;2953351364/1;/GREVES/src/demothreading/Train.java;2231989589/1;/GREVES/src/ucp/greves/model/TerminusException.java;1887351126/1;/GREVES/src/ucp/greves/model/Line.java;4121855133/1;/GREVES/src/ucp/greves/model/LineBuilder.java;1223453786/1;/GREVES/src/ucp/greves/model/Canton.java;207135943/1;/GREVES/src/ucp/greves/model/Train.java;677594891/1;/GREVES/src/ucp/greves/model/RailWay.java;2559175968/1;/GREVES/src/ucp/greves/model/Terminus.java;2511094166/1;/GREVES/src/ucp/greves/model/RailWaySwitch.java;1440338710/1;/GREVES/src/ucp/greves/model/RoadMap.java;2719156847/1;"/>
+        <details xmi:id="_kew8gMaAEeWWzPvKbv_oqg" key="AssociatedSourceCode" value="/GREVES/src/demothreading/TerminusException.java;4078478319/1;/GREVES/src/demothreading/Line.java;50434132/1;/GREVES/src/demothreading/LineBuilder.java;875084771/1;/GREVES/src/demothreading/SimulationDashboard.java;85371608/1;/GREVES/src/demothreading/SimulationGUI.java;3785844266/1;/GREVES/src/demothreading/Canton.java;2953351364/1;/GREVES/src/demothreading/Train.java;2231989589/1;/GREVES/src/ucp/greves/model/TerminusException.java;1887351126/1;/GREVES/src/ucp/greves/model/Line.java;4121855133/1;/GREVES/src/ucp/greves/model/LineBuilder.java;1223453786/1;/GREVES/src/ucp/greves/model/Canton.java;207135943/1;/GREVES/src/ucp/greves/model/Train.java;2234124932/1;/GREVES/src/ucp/greves/model/RailWay.java;2559175968/1;/GREVES/src/ucp/greves/model/Terminus.java;2511094166/1;/GREVES/src/ucp/greves/model/RailWaySwitch.java;1440338710/1;/GREVES/src/ucp/greves/model/RoadMap.java;2719156847/1;/GREVES/src/ucp/greves/controller/GodModeController.java;2833717158/1;/GREVES/src/ucp/greves/view/SimulationDashboard.java;2064555597/1;/GREVES/src/ucp/greves/view/SimulationGUI.java;3515572447/1;"/>
       </contents>
       <contents xmi:type="ecore:EAnnotation" xmi:id="_TllRYMp8EeWdTsA_Y8Qgtg" source="preferences">
         <contents xmi:type="ecore:EAnnotation" xmi:id="_TllRYcp8EeWdTsA_Y8Qgtg" source="com.yattasolutions.codegen.reverse">
@@ -872,7 +872,7 @@
               </ownedParameter>
             </ownedOperation>
           </packagedElement>
-          <packagedElement xmi:type="uml:Class" xmi:id="_S6vBMMeVEeWAD59NPxRyVQ" name="Train" visibility="package">
+          <packagedElement xmi:type="uml:Class" xmi:id="_S6vBMMeVEeWAD59NPxRyVQ" name="Train" visibility="public">
             <ownedAttribute xmi:id="_S73poMeVEeWAD59NPxRyVQ" name="position" visibility="public">
               <eAnnotations xmi:id="_S73poseVEeWAD59NPxRyVQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
                 <details xmi:id="_S74QsMeVEeWAD59NPxRyVQ" key="volatile"/>
@@ -1082,6 +1082,167 @@
           <packagedElement xmi:type="uml:Association" xmi:id="_zokv8MqAEeWdTsA_Y8Qgtg" name="" memberEnd="_zolXAMqAEeWdTsA_Y8Qgtg _zol-EsqAEeWdTsA_Y8Qgtg"/>
           <packagedElement xmi:type="uml:Interface" xmi:id="_w9pogMqFEeWdTsA_Y8Qgtg" name="Callable"/>
         </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_xnscUMqLEeW4vIm9LdWEJA" name="controller">
+          <packagedElement xmi:type="uml:Class" xmi:id="_yZHSMMqLEeW4vIm9LdWEJA" name="GodModeController"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_SIIBoMqMEeW4vIm9LdWEJA" name="view">
+          <packagedElement xmi:type="uml:Class" xmi:id="_Ly-LgMqOEeWUZJC4yL52HQ" name="SimulationDashboard">
+            <ownedComment xmi:id="_L1GScMqOEeWUZJC4yL52HQ">
+              <body>@author tliu@u-cergy.fr</body>
+            </ownedComment>
+            <generalization xmi:id="_L0yJYMqOEeWUZJC4yL52HQ" general="_jeRI0MaAEeWWzPvKbv_oqg"/>
+            <ownedAttribute xmi:id="_L043EMqOEeWUZJC4yL52HQ" name="line" type="_S6ZqAMeVEeWAD59NPxRyVQ" association="_L1IHoMqOEeWUZJC4yL52HQ"/>
+            <ownedAttribute xmi:id="_L06FMMqOEeWUZJC4yL52HQ" name="trains" type="_S6vBMMeVEeWAD59NPxRyVQ" isOrdered="true" association="_L1MZEMqOEeWUZJC4yL52HQ">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_L06FMcqOEeWUZJC4yL52HQ" value="*"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_L06sQMqOEeWUZJC4yL52HQ" value="new ArrayList&lt;Train>()"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_L07TUMqOEeWUZJC4yL52HQ" name="START_X" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_L07TUcqOEeWUZJC4yL52HQ" value="20"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_L076YMqOEeWUZJC4yL52HQ" name="START_Y" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_L076YcqOEeWUZJC4yL52HQ" value="150"/>
+            </ownedAttribute>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_L1DPIMqOEeWUZJC4yL52HQ" name="SimulationDashboard" specification="_LzMN8MqOEeWUZJC4yL52HQ">
+              <ownedParameter xmi:id="_L1DPIcqOEeWUZJC4yL52HQ" type="_Ly-LgMqOEeWUZJC4yL52HQ" direction="return"/>
+              <language>java</language>
+              <body>LineBuilder lineBuilder = new LineBuilder();&#xD;
+		lineBuilder.buildLine(900, 300);&#xD;
+		line = lineBuilder.getBuiltLine();&#xD;
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_L1D2MMqOEeWUZJC4yL52HQ" name="addTrain" specification="_L0ufAMqOEeWUZJC4yL52HQ">
+              <ownedParameter xmi:id="_L1D2McqOEeWUZJC4yL52HQ" name="train" type="_S6vBMMeVEeWAD59NPxRyVQ"/>
+              <language>java</language>
+              <body>trains.add(train);&#xD;
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_L1EdQMqOEeWUZJC4yL52HQ" name="paintComponent" specification="_L0vGEMqOEeWUZJC4yL52HQ">
+              <ownedParameter xmi:id="_L1EdQcqOEeWUZJC4yL52HQ" name="g" type="_jeGJsMaAEeWWzPvKbv_oqg"/>
+              <language>java</language>
+              <body>super.paintComponent(g);&#xD;
+		Graphics2D g2 = (Graphics2D) g;&#xD;
+		printLine(g2);&#xD;
+//		printTrains(g2);&#xD;
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_L1EdQsqOEeWUZJC4yL52HQ" name="printLine" specification="_L0w7QsqOEeWUZJC4yL52HQ">
+              <ownedParameter xmi:id="_L1EdQ8qOEeWUZJC4yL52HQ" name="g2" type="_jeIl8MaAEeWWzPvKbv_oqg"/>
+              <language>java</language>
+              <body>//		g2.setColor(Color.BLUE);&#xD;
+//		g2.setStroke(new BasicStroke(8));&#xD;
+//		g2.drawLine(START_X, START_Y, START_X + line.getTotalLenght(), START_Y);&#xD;
+//		for (Canton canton : line.getCantons()) {&#xD;
+//&#xD;
+//			int startPoint = canton.getStartPoint();&#xD;
+//			g2.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 25));&#xD;
+//			g2.drawString(&quot;Canton &quot; + canton.getId(), startPoint + 100, START_Y + 30);&#xD;
+//			g2.drawLine(START_X + startPoint, START_Y - 10, START_X + startPoint, START_Y + 10);&#xD;
+//			int endPoint = canton.getEndPoint();&#xD;
+//			g2.drawLine(START_X + endPoint, START_Y - 10, START_X + endPoint, START_Y + 10);&#xD;
+//		}&#xD;
+//	}&#xD;
+//&#xD;
+//	private void printTrains(Graphics2D g2) {&#xD;
+//		g2.setColor(Color.RED);&#xD;
+//		g2.setStroke(new BasicStroke(6));&#xD;
+//		for (Train train : trains) {&#xD;
+//			g2.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 20));&#xD;
+//			g2.drawString(&quot;Train&quot;, START_X + train.getPosition(), START_Y - 25);&#xD;
+//			g2.drawLine(START_X + train.getPosition(), START_Y - 5, START_X + train.getPosition(), START_Y + 5);&#xD;
+//		}&#xD;
+	</body>
+            </ownedBehavior>
+            <ownedOperation xmi:id="_LzMN8MqOEeWUZJC4yL52HQ" name="SimulationDashboard" method="_L1DPIMqOEeWUZJC4yL52HQ">
+              <eAnnotations xmi:id="_LzM1AMqOEeWUZJC4yL52HQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                <details xmi:id="_LzM1AcqOEeWUZJC4yL52HQ" key="create"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_LzNcEMqOEeWUZJC4yL52HQ" type="_Ly-LgMqOEeWUZJC4yL52HQ" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_L0ufAMqOEeWUZJC4yL52HQ" name="addTrain" method="_L1D2MMqOEeWUZJC4yL52HQ">
+              <ownedParameter xmi:id="_L0ufAcqOEeWUZJC4yL52HQ" name="train" type="_S6vBMMeVEeWAD59NPxRyVQ"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_L0vGEMqOEeWUZJC4yL52HQ" name="paintComponent" visibility="protected" method="_L1EdQMqOEeWUZJC4yL52HQ">
+              <ownedParameter xmi:id="_L0vGEcqOEeWUZJC4yL52HQ" name="g" type="_jeGJsMaAEeWWzPvKbv_oqg"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_L0w7QsqOEeWUZJC4yL52HQ" name="printLine" visibility="private" method="_L1EdQsqOEeWUZJC4yL52HQ">
+              <ownedParameter xmi:id="_L0w7Q8qOEeWUZJC4yL52HQ" name="g2" type="_jeIl8MaAEeWWzPvKbv_oqg"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_LzZCQMqOEeWUZJC4yL52HQ" name="SimulationGUI">
+            <ownedComment xmi:id="_L1JVwMqOEeWUZJC4yL52HQ">
+              <body>@author tliu@u-cergy.fr</body>
+            </ownedComment>
+            <generalization xmi:id="_L01MsMqOEeWUZJC4yL52HQ" general="_je6CAMaAEeWWzPvKbv_oqg"/>
+            <ownedAttribute xmi:id="_L09IgMqOEeWUZJC4yL52HQ" name="TRAIN_SPEED_VARIATION" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_L09IgcqOEeWUZJC4yL52HQ" value="3"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_L09vkMqOEeWUZJC4yL52HQ" name="TRAIN_BASIC_SPEED" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_L09vkcqOEeWUZJC4yL52HQ" value="2"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_L0-WoMqOEeWUZJC4yL52HQ" name="dashboard" visibility="private" type="_Ly-LgMqOEeWUZJC4yL52HQ" association="_L1OOQMqOEeWUZJC4yL52HQ">
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_L0-WocqOEeWUZJC4yL52HQ" value="new SimulationDashboard()"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_L0-9scqOEeWUZJC4yL52HQ" name="currentTime" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_L0_kwMqOEeWUZJC4yL52HQ" value="0"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_L1AL0cqOEeWUZJC4yL52HQ" name="SIMULATION_DURATION" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_L1Ay4MqOEeWUZJC4yL52HQ" value="1000"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_L1Ay4cqOEeWUZJC4yL52HQ" name="TIME_UNIT" isLeaf="true" isStatic="true" isReadOnly="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_L1BZ8MqOEeWUZJC4yL52HQ" value="50"/>
+            </ownedAttribute>
+            <interfaceRealization xmi:id="_L0z-kMqOEeWUZJC4yL52HQ" client="_LzZCQMqOEeWUZJC4yL52HQ" supplier="_jgO3sMaAEeWWzPvKbv_oqg" contract="_jgO3sMaAEeWWzPvKbv_oqg"/>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_L1FEUMqOEeWUZJC4yL52HQ" name="SimulationGUI" specification="_LzbegMqOEeWUZJC4yL52HQ">
+              <ownedParameter xmi:id="_L1FEUcqOEeWUZJC4yL52HQ" type="_LzZCQMqOEeWUZJC4yL52HQ" direction="return"/>
+              <language>java</language>
+              <body>super(&quot;Train simulation&quot;);&#xD;
+		getContentPane().add(dashboard);&#xD;
+		setSize(1000, 300);&#xD;
+		setVisible(true);&#xD;
+	</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_L1FrYMqOEeWUZJC4yL52HQ" name="main" specification="_LzcsoMqOEeWUZJC4yL52HQ">
+              <ownedParameter xmi:id="_L1FrYcqOEeWUZJC4yL52HQ" name="args">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_L1FrYsqOEeWUZJC4yL52HQ" value="*"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>SimulationGUI simulationGUI = new SimulationGUI();&#xD;
+		Thread simulationThread = new Thread(simulationGUI);&#xD;
+		simulationThread.start();&#xD;
+	</body>
+            </ownedBehavior>
+            <ownedOperation xmi:id="_LzbegMqOEeWUZJC4yL52HQ" name="SimulationGUI" method="_L1FEUMqOEeWUZJC4yL52HQ">
+              <eAnnotations xmi:id="_LzbegcqOEeWUZJC4yL52HQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                <details xmi:id="_LzbegsqOEeWUZJC4yL52HQ" key="create"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_LzcFkMqOEeWUZJC4yL52HQ" type="_LzZCQMqOEeWUZJC4yL52HQ" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_LzcsoMqOEeWUZJC4yL52HQ" name="main" isStatic="true" method="_L1FrYMqOEeWUZJC4yL52HQ">
+              <ownedParameter xmi:id="_LzcsocqOEeWUZJC4yL52HQ" name="args">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LzdTsMqOEeWUZJC4yL52HQ" value="*"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Lzd6wMqOEeWUZJC4yL52HQ" name="run"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_L1IHoMqOEeWUZJC4yL52HQ" name="" memberEnd="_L043EMqOEeWUZJC4yL52HQ _L1IHocqOEeWUZJC4yL52HQ">
+            <ownedEnd xmi:id="_L1IHocqOEeWUZJC4yL52HQ" name="" type="_Ly-LgMqOEeWUZJC4yL52HQ" association="_L1IHoMqOEeWUZJC4yL52HQ"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_L1MZEMqOEeWUZJC4yL52HQ" name="" memberEnd="_L1MZEcqOEeWUZJC4yL52HQ _L06FMMqOEeWUZJC4yL52HQ">
+            <ownedEnd xmi:id="_L1MZEcqOEeWUZJC4yL52HQ" name="" type="_Ly-LgMqOEeWUZJC4yL52HQ" association="_L1MZEMqOEeWUZJC4yL52HQ"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_L1OOQMqOEeWUZJC4yL52HQ" name="" memberEnd="_L1OOQcqOEeWUZJC4yL52HQ _L0-WoMqOEeWUZJC4yL52HQ">
+            <ownedEnd xmi:id="_L1OOQcqOEeWUZJC4yL52HQ" name="" type="_LzZCQMqOEeWUZJC4yL52HQ" association="_L1OOQMqOEeWUZJC4yL52HQ"/>
+          </packagedElement>
+        </packagedElement>
       </packagedElement>
     </packagedElement>
     <profileApplication xmi:id="_jINZQMaAEeWWzPvKbv_oqg">
@@ -1251,4 +1412,16 @@
   <UMLLabProfile:LegacyStyledElement xmi:id="_UkRuQMp8EeWdTsA_Y8Qgtg" base_Element="_S6kCEMeVEeWAD59NPxRyVQ"/>
   <UMLLabProfile:Reference xmi:id="_KNhHEMqCEeWdTsA_Y8Qgtg" base_Element="_KNf48MqCEeWdTsA_Y8Qgtg"/>
   <UMLLabProfile:Reference xmi:id="_w9pogcqFEeWdTsA_Y8Qgtg" base_Element="_w9pogMqFEeWdTsA_Y8Qgtg"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_Lzfv8MqOEeWUZJC4yL52HQ" base_Element="_Lzd6wMqOEeWUZJC4yL52HQ"/>
+  <UMLLabProfile:Annotations xmi:id="_LziMMMqOEeWUZJC4yL52HQ" base_Element="_Lzd6wMqOEeWUZJC4yL52HQ">
+    <annotations xmi:id="_LziMMcqOEeWUZJC4yL52HQ" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_L0wUMMqOEeWUZJC4yL52HQ" base_Element="_L0vGEMqOEeWUZJC4yL52HQ"/>
+  <UMLLabProfile:Annotations xmi:id="_L0w7QMqOEeWUZJC4yL52HQ" base_Element="_L0vGEMqOEeWUZJC4yL52HQ">
+    <annotations xmi:id="_L0w7QcqOEeWUZJC4yL52HQ" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_L0-9sMqOEeWUZJC4yL52HQ" base_Element="_L0-WoMqOEeWUZJC4yL52HQ"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_L1AL0MqOEeWUZJC4yL52HQ" base_Element="_L0-9scqOEeWUZJC4yL52HQ"/>
+  <UMLLabProfile:Reference xmi:id="_L1NnMMqOEeWUZJC4yL52HQ" base_Element="_L1MZEMqOEeWUZJC4yL52HQ"/>
+  <UMLLabProfile:Reference xmi:id="_L1PcYMqOEeWUZJC4yL52HQ" base_Element="_L1OOQMqOEeWUZJC4yL52HQ"/>
 </xmi:XMI>

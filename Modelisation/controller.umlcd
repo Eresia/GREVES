@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_rgfioMqNEeW4vIm9LdWEJA">
+  <modelElement href="GREVES.uml#_xnscUMqLEeW4vIm9LdWEJA"/>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_rpJvYMqNEeW4vIm9LdWEJA" name="GodModeController">
+    <modelElement href="GREVES.uml#_yZHSMMqLEeW4vIm9LdWEJA"/>
+    <visualProperties xmi:id="_rpJvYcqNEeW4vIm9LdWEJA" position="50.0,50.0"/>
+    <visibility xmi:id="_rpJvYsqNEeW4vIm9LdWEJA" label="+"/>
+  </nodes>
+</com.yattasolutions.uml.diagrams.classifier:ClassDiagram>
