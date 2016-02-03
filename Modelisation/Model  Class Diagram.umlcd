@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.yattasolutions.diagrams="http://ns.yatta-solutions.com/umllab/diagrams/1.1.0" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_vhZHAMaBEeWWzPvKbv_oqg">
+  <modelElement href="GREVES.uml#_qf3cEMdsEeWWzPvKbv_oqg"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_TAdOsMeVEeWAD59NPxRyVQ" targetItem="_TAfq8MeVEeWAD59NPxRyVQ" sourceItem="_TAcAkMeVEeWAD59NPxRyVQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_TAlxkceVEeWAD59NPxRyVQ" targetItem="_TA3eYMeVEeWAD59NPxRyVQ" sourceItem="_TAlxkMeVEeWAD59NPxRyVQ"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_TBX0sMeVEeWAD59NPxRyVQ" sourceAnchor="64.0,77.0" targetAnchor="105.0,0.0" target="_TA3eYMeVEeWAD59NPxRyVQ" source="_TBeiYMeVEeWAD59NPxRyVQ">
+    <modelElement href="GREVES.uml#_S8HhQceVEeWAD59NPxRyVQ"/>
+    <stereotypes xmi:id="_TBaQ8ceVEeWAD59NPxRyVQ" name="Reference">
+      <modelElement href="GREVES.uml#_S8IIUMeVEeWAD59NPxRyVQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_TBZp4MeVEeWAD59NPxRyVQ" text="">
+      <visualProperties xmi:id="_TKlbEMeVEeWAD59NPxRyVQ" position="2.0,-2.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_TBZp4ceVEeWAD59NPxRyVQ" aggregationKind="NONE" name="">
+      <modelElement href="GREVES.uml#_S8HhQseVEeWAD59NPxRyVQ"/>
+      <visualProperties xmi:id="_TKkM8MeVEeWAD59NPxRyVQ" position="2.0,28.0"/>
+      <visibility xmi:id="_TBcGIMeVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TBbfEMeVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_TBaQ8MeVEeWAD59NPxRyVQ" aggregationKind="NONE" name="line" navigable="true">
+      <modelElement href="GREVES.uml#_S7z_QMeVEeWAD59NPxRyVQ"/>
+      <visualProperties xmi:id="_TKlbEceVEeWAD59NPxRyVQ" position="-36.0,-77.0"/>
+      <stereotypes xmi:id="_M7xqQMenEeWKIuy2wF4RQg" name="LegacyStyledElement">
+        <modelElement href="GREVES.uml#_S70mUMeVEeWAD59NPxRyVQ"/>
+      </stereotypes>
+      <visibility xmi:id="_TBcGIseVEeWAD59NPxRyVQ" label="-"/>
+      <cardinality xmi:id="_TBcGIceVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_TBZC0ceVEeWAD59NPxRyVQ" targetItem="_TBeiYMeVEeWAD59NPxRyVQ" sourceItem="_TBZC0MeVEeWAD59NPxRyVQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_TB71YceVEeWAD59NPxRyVQ" targetItem="_TCDKIMeVEeWAD59NPxRyVQ" sourceItem="_TB71YMeVEeWAD59NPxRyVQ"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_TCBU8MeVEeWAD59NPxRyVQ" sourceAnchor="0.0,59.0" targetAnchor="385.0,91.0" target="_TCnK0MeVEeWAD59NPxRyVQ" source="_TCDKIMeVEeWAD59NPxRyVQ">
+    <modelElement href="GREVES.uml#_S8Ed8MeVEeWAD59NPxRyVQ"/>
+    <nameVisual xmi:id="_TCBU8ceVEeWAD59NPxRyVQ" text="">
+      <visualProperties xmi:id="_TKoeYMeVEeWAD59NPxRyVQ" position="3.0,-21.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_TCBU8seVEeWAD59NPxRyVQ" aggregationKind="NONE" name="currentCanton" navigable="true">
+      <modelElement href="GREVES.uml#_S77UAceVEeWAD59NPxRyVQ"/>
+      <visualProperties xmi:id="_TKnQQMeVEeWAD59NPxRyVQ" position="-60.0,-90.0"/>
+      <visibility xmi:id="_TCBU88eVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCBU9MeVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_TCBU9ceVEeWAD59NPxRyVQ" aggregationKind="NONE" name="">
+      <modelElement href="GREVES.uml#_S8Ed8ceVEeWAD59NPxRyVQ"/>
+      <visualProperties xmi:id="_TKoeYceVEeWAD59NPxRyVQ" position="39.0,2.0"/>
+      <visibility xmi:id="_TCBU9seVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCBU98eVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_TCCjEMeVEeWAD59NPxRyVQ" sourceAnchor="0.0,111.0" targetAnchor="385.0,143.0" target="_TCnK0MeVEeWAD59NPxRyVQ" source="_TCDKIMeVEeWAD59NPxRyVQ">
+    <modelElement href="GREVES.uml#_S8IvYMeVEeWAD59NPxRyVQ"/>
+    <stereotypes xmi:id="_TCCjEceVEeWAD59NPxRyVQ" name="Reference">
+      <modelElement href="GREVES.uml#_S8JWcMeVEeWAD59NPxRyVQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_TCCjEseVEeWAD59NPxRyVQ" text="">
+      <visualProperties xmi:id="_TKq6oMeVEeWAD59NPxRyVQ" position="-15.0,2.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_TCCjE8eVEeWAD59NPxRyVQ" aggregationKind="NONE" name="">
+      <modelElement href="GREVES.uml#_S8IvYceVEeWAD59NPxRyVQ"/>
+      <visualProperties xmi:id="_TKpsgMeVEeWAD59NPxRyVQ" position="-44.0,-51.0"/>
+      <visibility xmi:id="_TCCjFMeVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCCjFceVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_TCCjFseVEeWAD59NPxRyVQ" aggregationKind="NONE" name="occupyingTrain" navigable="true">
+      <modelElement href="GREVES.uml#_S710cceVEeWAD59NPxRyVQ"/>
+      <visualProperties xmi:id="_TKrhsMeVEeWAD59NPxRyVQ" position="-38.0,41.0"/>
+      <stereotypes xmi:id="_M70GgMenEeWKIuy2wF4RQg" name="LegacyStyledElement">
+        <modelElement href="GREVES.uml#_S72bgMeVEeWAD59NPxRyVQ"/>
+      </stereotypes>
+      <visibility xmi:id="_TCCjF8eVEeWAD59NPxRyVQ" label="-"/>
+      <cardinality xmi:id="_TCCjGMeVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:GeneralizationVisual" xmi:id="_kCkHAMekEeWAD59NPxRyVQ" sourceAnchor="61.0,0.0" targetAnchor="0.0,19.0" subClass="_TAfq8MeVEeWAD59NPxRyVQ">
+    <modelElement href="GREVES.uml#_S7mj4MeVEeWAD59NPxRyVQ"/>
+    <visualProperties xmi:id="_kClVJMekEeWAD59NPxRyVQ" position="698.0,619.0" visible="false"/>
+    <bendpoints xmi:id="_f58zwcqBEeWdTsA_Y8Qgtg" sourceX="3" sourceY="-94" targetX="-217" targetY="2"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_UnQJwcp8EeWdTsA_Y8Qgtg" targetItem="_V5IoYMp8EeWdTsA_Y8Qgtg" sourceItem="_UnQJwMp8EeWdTsA_Y8Qgtg"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:GeneralizationVisual" xmi:id="_D8ws8Mp9EeWdTsA_Y8Qgtg" sourceAnchor="107.0,0.0" targetAnchor="174.0,224.0" superClass="_TCDKIMeVEeWAD59NPxRyVQ" subClass="__rzOEMp8EeWdTsA_Y8Qgtg">
+    <modelElement href="GREVES.uml#_D8ve0Mp9EeWdTsA_Y8Qgtg"/>
+    <visualProperties xmi:id="_D8ws8cp9EeWdTsA_Y8Qgtg"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_t32O0Mp9EeWdTsA_Y8Qgtg" sourceAnchor="31.0,57.0" targetAnchor="133.0,50.0" target="_UCIuIMeVEeWAD59NPxRyVQ">
+    <modelElement href="GREVES.uml#_t3tr8Mp9EeWdTsA_Y8Qgtg"/>
+    <visualProperties xmi:id="_t32O0cp9EeWdTsA_Y8Qgtg" position="1196.0,541.0"/>
+    <bendpoints xmi:id="_FXfToMp_EeWdTsA_Y8Qgtg" sourceY="183" targetX="594"/>
+    <nameVisual xmi:id="_t32O0sp9EeWdTsA_Y8Qgtg" text="Switch">
+      <visualProperties xmi:id="_t7W10Mp9EeWdTsA_Y8Qgtg" position="-301.0,-21.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_t32O08p9EeWdTsA_Y8Qgtg" aggregationKind="NONE" name="">
+      <modelElement href="GREVES.uml#_t3uTAMp9EeWdTsA_Y8Qgtg"/>
+      <visualProperties xmi:id="_t7WOwMp9EeWdTsA_Y8Qgtg" position="2.0,34.0"/>
+      <visibility xmi:id="_t32O1Mp9EeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_t32O1cp9EeWdTsA_Y8Qgtg" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_t32O1sp9EeWdTsA_Y8Qgtg" aggregationKind="NONE" name="railWayAvailable" navigable="true">
+      <modelElement href="GREVES.uml#_t3xWUMp9EeWdTsA_Y8Qgtg"/>
+      <visualProperties xmi:id="_t7W10cp9EeWdTsA_Y8Qgtg" position="82.0,2.0"/>
+      <visibility xmi:id="_t32O18p9EeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_t32O2Mp9EeWdTsA_Y8Qgtg" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_FTrKoMp_EeWdTsA_Y8Qgtg" sourceAnchor="217.0,100.0" targetAnchor="0.0,15.0" target="_UCIuIMeVEeWAD59NPxRyVQ" source="_TA3eYMeVEeWAD59NPxRyVQ">
+    <modelElement href="GREVES.uml#_FTouYMp_EeWdTsA_Y8Qgtg"/>
+    <visualProperties xmi:id="_FTrKocp_EeWdTsA_Y8Qgtg"/>
+    <nameVisual xmi:id="_FTrKosp_EeWdTsA_Y8Qgtg" text="">
+      <visualProperties xmi:id="_FXghwMp_EeWdTsA_Y8Qgtg" position="-10.4736842105263,-21.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_FTrKo8p_EeWdTsA_Y8Qgtg" aggregationKind="NONE" name="">
+      <modelElement href="GREVES.uml#_FTouYcp_EeWdTsA_Y8Qgtg"/>
+      <visualProperties xmi:id="_FXfTosp_EeWdTsA_Y8Qgtg" position="13.399999999999977,2.0"/>
+      <visibility xmi:id="_FTrKpMp_EeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_FTrKpcp_EeWdTsA_Y8Qgtg" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_FTrKpsp_EeWdTsA_Y8Qgtg" aggregationKind="SHARED" name="railWay" navigable="true">
+      <modelElement href="GREVES.uml#_FTpVcsp_EeWdTsA_Y8Qgtg"/>
+      <visualProperties xmi:id="_FXghwcp_EeWdTsA_Y8Qgtg" position="-93.0,2.0"/>
+      <visibility xmi:id="_FTrKp8p_EeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_FTrKqMp_EeWdTsA_Y8Qgtg" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="__zC-MMp_EeWdTsA_Y8Qgtg" sourceAnchor="0.0,28.0" targetAnchor="293.0,56.0" target="_UCIuIMeVEeWAD59NPxRyVQ" source="__rzOEMp8EeWdTsA_Y8Qgtg">
+    <modelElement href="GREVES.uml#__y-swMp_EeWdTsA_Y8Qgtg"/>
+    <visualProperties xmi:id="__zC-Mcp_EeWdTsA_Y8Qgtg"/>
+    <nameVisual xmi:id="__zC-Msp_EeWdTsA_Y8Qgtg" text="">
+      <visualProperties xmi:id="__2tWMMp_EeWdTsA_Y8Qgtg" position="-5.5,2.500000000000057"/>
+    </nameVisual>
+    <sourceRole xmi:id="__zC-M8p_EeWdTsA_Y8Qgtg" aggregationKind="NONE" name="terminus" navigable="true">
+      <modelElement href="GREVES.uml#__y_T0Mp_EeWdTsA_Y8Qgtg"/>
+      <visualProperties xmi:id="__2svIMp_EeWdTsA_Y8Qgtg" position="-111.40000000000009,-50.5"/>
+      <visibility xmi:id="__zC-NMp_EeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="__zC-Ncp_EeWdTsA_Y8Qgtg" label="0..1" max="1"/>
+    </sourceRole>
+    <targetRole xmi:id="__zC-Nsp_EeWdTsA_Y8Qgtg" aggregationKind="SHARED" name="railWayAvailable" navigable="true">
+      <modelElement href="GREVES.uml#__y_64cp_EeWdTsA_Y8Qgtg"/>
+      <visualProperties xmi:id="__2tWMcp_EeWdTsA_Y8Qgtg" position="64.0,-50.5"/>
+      <visibility xmi:id="__zC-N8p_EeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="__zC-OMp_EeWdTsA_Y8Qgtg" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_HGtZEMqAEeWdTsA_Y8Qgtg" sourceAnchor="293.0,100.0" targetAnchor="188.0,57.0" target="__rzOEMp8EeWdTsA_Y8Qgtg" source="_UCIuIMeVEeWAD59NPxRyVQ">
+    <modelElement href="GREVES.uml#_HGpusMqAEeWdTsA_Y8Qgtg"/>
+    <visualProperties xmi:id="_HGtZEcqAEeWdTsA_Y8Qgtg"/>
+    <bendpoints xmi:id="_m-ueEMqBEeWdTsA_Y8Qgtg" sourceX="486" targetY="15"/>
+    <nameVisual xmi:id="_HGtZEsqAEeWdTsA_Y8Qgtg" text="">
+      <visualProperties xmi:id="_HJoxQMqAEeWdTsA_Y8Qgtg" position="-41.09375,2.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_HGtZE8qAEeWdTsA_Y8Qgtg" aggregationKind="NONE" name="railWay" navigable="true">
+      <modelElement href="GREVES.uml#_HGqVwMqAEeWdTsA_Y8Qgtg"/>
+      <visualProperties xmi:id="_HJoKMMqAEeWdTsA_Y8Qgtg" position="48.611111111111086,2.0"/>
+      <visibility xmi:id="_HGtZFMqAEeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_HGtZFcqAEeWdTsA_Y8Qgtg" label="0..1" max="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_HGtZFsqAEeWdTsA_Y8Qgtg" aggregationKind="NONE" name="nextTerminus" navigable="true">
+      <modelElement href="GREVES.uml#_HGqVw8qAEeWdTsA_Y8Qgtg"/>
+      <visualProperties xmi:id="_HJoxQcqAEeWdTsA_Y8Qgtg" position="-222.66666666666674,17.0"/>
+      <visibility xmi:id="_HGtZF8qAEeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_HGtZGMqAEeWdTsA_Y8Qgtg" label="0..1" max="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_zoq2kMqAEeWdTsA_Y8Qgtg" sourceAnchor="68.0,15.0" targetAnchor="0.0,183.0" target="_TCnK0MeVEeWAD59NPxRyVQ" source="_kA860MqAEeWdTsA_Y8Qgtg">
+    <modelElement href="GREVES.uml#_zokv8MqAEeWdTsA_Y8Qgtg"/>
+    <visualProperties xmi:id="_zoq2kcqAEeWdTsA_Y8Qgtg"/>
+    <nameVisual xmi:id="_zoq2ksqAEeWdTsA_Y8Qgtg" text="">
+      <visualProperties xmi:id="_zulRUMqAEeWdTsA_Y8Qgtg" position="-15.0,-21.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_zoq2k8qAEeWdTsA_Y8Qgtg" aggregationKind="NONE" name="roadMap" navigable="true">
+      <modelElement href="GREVES.uml#_zolXAMqAEeWdTsA_Y8Qgtg"/>
+      <visualProperties xmi:id="_zukqQMqAEeWdTsA_Y8Qgtg" position="22.0,2.0"/>
+      <visibility xmi:id="_zoq2lMqAEeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_zoq2lcqAEeWdTsA_Y8Qgtg" label="0..1" max="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_zoq2lsqAEeWdTsA_Y8Qgtg" aggregationKind="NONE" name="train" navigable="true">
+      <modelElement href="GREVES.uml#_zol-EsqAEeWdTsA_Y8Qgtg"/>
+      <visualProperties xmi:id="_zulRUcqAEeWdTsA_Y8Qgtg" position="-64.0,-51.0"/>
+      <visibility xmi:id="_zoq2l8qAEeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_zoq2mMqAEeWdTsA_Y8Qgtg" label="0..1" max="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_fvID0MqBEeWdTsA_Y8Qgtg">
+    <modelElement href="GREVES.uml#_jjj4gMaAEeWWzPvKbv_oqg"/>
+    <visualProperties xmi:id="_fvID0cqBEeWdTsA_Y8Qgtg" position="1196.0,541.0"/>
+    <nameVisual xmi:id="_fvID0sqBEeWdTsA_Y8Qgtg" text=""/>
+    <sourceRole xmi:id="_fvID08qBEeWdTsA_Y8Qgtg" aggregationKind="NONE" name="line" navigable="true">
+      <modelElement href="GREVES.uml#_jhL58MaAEeWWzPvKbv_oqg"/>
+      <visibility xmi:id="_fvID1MqBEeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_fvID1cqBEeWdTsA_Y8Qgtg" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_fvID1sqBEeWdTsA_Y8Qgtg" aggregationKind="NONE" name="">
+      <modelElement href="GREVES.uml#_jjkfkMaAEeWWzPvKbv_oqg"/>
+      <visibility xmi:id="_fvID18qBEeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_fvID2MqBEeWdTsA_Y8Qgtg" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_TAcAkMeVEeWAD59NPxRyVQ" sourceConnectionVisual="_TAdOsMeVEeWAD59NPxRyVQ" text="@author tliu@u-cergy.fr" item="_TAfq8MeVEeWAD59NPxRyVQ">
+    <modelElement href="GREVES.uml#_S8DP0MeVEeWAD59NPxRyVQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_TAlxkMeVEeWAD59NPxRyVQ" sourceConnectionVisual="_TAlxkceVEeWAD59NPxRyVQ" text="@author tliu@u-cergy.fr" item="_TA3eYMeVEeWAD59NPxRyVQ">
+    <modelElement href="GREVES.uml#_S8DP0ceVEeWAD59NPxRyVQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_TBZC0MeVEeWAD59NPxRyVQ" sourceConnectionVisual="_TBZC0ceVEeWAD59NPxRyVQ" text="@author tliu@u-cergy.fr" item="_TBeiYMeVEeWAD59NPxRyVQ">
+    <modelElement href="GREVES.uml#_S8DP0seVEeWAD59NPxRyVQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_TB71YMeVEeWAD59NPxRyVQ" sourceConnectionVisual="_TB71YceVEeWAD59NPxRyVQ" text="@author tliu@u-cergy.fr" item="_TCDKIMeVEeWAD59NPxRyVQ">
+    <modelElement href="GREVES.uml#_S8D24MeVEeWAD59NPxRyVQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_UnQJwMp8EeWdTsA_Y8Qgtg" sourceConnectionVisual="_UnQJwcp8EeWdTsA_Y8Qgtg" text="&lt;pre>&#xD;&#xA;    *           1..*     1..1&#xD;&#xA;    * Voie ------------------------- Line&#xD;&#xA;    *           voie        &amp;lt;       &#xD;&#xA;    * &lt;/pre>" item="_V5IoYMp8EeWdTsA_Y8Qgtg">
+    <modelElement href="GREVES.uml#_UkkCIMp8EeWdTsA_Y8Qgtg"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_TA3eYMeVEeWAD59NPxRyVQ" comments="_TAlxkMeVEeWAD59NPxRyVQ" targetConnectionVisual="_TAlxkceVEeWAD59NPxRyVQ" name="Line" associationsIn="_TBX0sMeVEeWAD59NPxRyVQ" associationsOut="_FTrKoMp_EeWdTsA_Y8Qgtg">
+    <modelElement href="GREVES.uml#_S6ZqAMeVEeWAD59NPxRyVQ"/>
+    <visualProperties xmi:id="_TA3eYceVEeWAD59NPxRyVQ" position="63.0,295.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_TA3eYseVEeWAD59NPxRyVQ" label="+"/>
+    <attributes xmi:id="_TA3eY8eVEeWAD59NPxRyVQ" name="totalLenght">
+      <modelElement href="GREVES.uml#_S7yKEMeVEeWAD59NPxRyVQ"/>
+      <visibility xmi:id="_TA3eZMeVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TA3eZceVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <type xmi:id="_TA3eZseVEeWAD59NPxRyVQ" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_TA3eZ8eVEeWAD59NPxRyVQ" defaultValue="0" name="usedLength">
+      <modelElement href="GREVES.uml#_S7yxIMeVEeWAD59NPxRyVQ"/>
+      <visibility xmi:id="_TA3eaMeVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TA3eaceVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <type xmi:id="_TA3easeVEeWAD59NPxRyVQ" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_FTs_0Mp_EeWdTsA_Y8Qgtg" name="railWay">
+      <modelElement href="GREVES.uml#_FTpVcsp_EeWdTsA_Y8Qgtg"/>
+      <visibility xmi:id="_FTs_0cp_EeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_FTs_0sp_EeWdTsA_Y8Qgtg" label="*" max="-1"/>
+      <type xmi:id="_FTs_08p_EeWdTsA_Y8Qgtg" name="RailWay">
+        <modelElement href="GREVES.uml#_UCG48MeVEeWAD59NPxRyVQ"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_TA4FcMeVEeWAD59NPxRyVQ" name="Line">
+      <modelElement href="GREVES.uml#_S6a4IMeVEeWAD59NPxRyVQ"/>
+      <keywords xmi:id="_TA4FcceVEeWAD59NPxRyVQ" keyword="create"/>
+      <visibility xmi:id="_TA4FcseVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TA4Fc8eVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_TA4FdMeVEeWAD59NPxRyVQ">
+        <modelElement href="GREVES.uml#_S6cGQMeVEeWAD59NPxRyVQ"/>
+        <type xmi:id="_TA4FdceVEeWAD59NPxRyVQ" name="Line">
+          <modelElement href="GREVES.uml#_S6ZqAMeVEeWAD59NPxRyVQ"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_TA4FdseVEeWAD59NPxRyVQ" name="totalLenght">
+        <modelElement href="GREVES.uml#_S6bfMMeVEeWAD59NPxRyVQ"/>
+        <cardinality xmi:id="_TA4Fd8eVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+        <type xmi:id="_TA4FeMeVEeWAD59NPxRyVQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_TA4FgseVEeWAD59NPxRyVQ" name="isFull">
+      <modelElement href="GREVES.uml#_S6fJkMeVEeWAD59NPxRyVQ"/>
+      <visibility xmi:id="_TA4Fg8eVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TA4FhMeVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_TA4FhceVEeWAD59NPxRyVQ">
+        <modelElement href="GREVES.uml#_S6fJkceVEeWAD59NPxRyVQ"/>
+        <type xmi:id="_TA4FhseVEeWAD59NPxRyVQ" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_TBeiYMeVEeWAD59NPxRyVQ" comments="_TBZC0MeVEeWAD59NPxRyVQ" targetConnectionVisual="_TBZC0ceVEeWAD59NPxRyVQ" name="LineBuilder" associationsOut="_TBX0sMeVEeWAD59NPxRyVQ">
+    <modelElement href="GREVES.uml#_S6iz8MeVEeWAD59NPxRyVQ"/>
+    <visualProperties xmi:id="_TBeiYceVEeWAD59NPxRyVQ" position="104.0,59.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_TBeiYseVEeWAD59NPxRyVQ" label="+"/>
+    <attributes xmi:id="_TBeiY8eVEeWAD59NPxRyVQ" name="line">
+      <modelElement href="GREVES.uml#_S7z_QMeVEeWAD59NPxRyVQ"/>
+      <stereotypes xmi:id="_M8c_sMenEeWKIuy2wF4RQg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_M8fb8MenEeWKIuy2wF4RQg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_M8rpMMenEeWKIuy2wF4RQg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S0ADcMp8EeWdTsA_Y8Qgtg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S0CfsMp8EeWdTsA_Y8Qgtg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S0MQsMp8EeWdTsA_Y8Qgtg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_0nYdYMqHEeWkv_dScrtfQw" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_0nbgsMqHEeWkv_dScrtfQw" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_0nqKMMqHEeWkv_dScrtfQw" name="LegacyStyledElement"/>
+      <visibility xmi:id="_TBeiZceVEeWAD59NPxRyVQ" label="-"/>
+      <cardinality xmi:id="_TBeiZseVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <type xmi:id="_TBeiZ8eVEeWAD59NPxRyVQ" name="Line">
+        <modelElement href="GREVES.uml#_S6ZqAMeVEeWAD59NPxRyVQ"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_TBeiaMeVEeWAD59NPxRyVQ" name="buildLine">
+      <modelElement href="GREVES.uml#_S6kCEMeVEeWAD59NPxRyVQ"/>
+      <stereotypes xmi:id="_UlEYcMp8EeWdTsA_Y8Qgtg" name="LegacyStyledElement">
+        <modelElement href="GREVES.uml#_UkRuQMp8EeWdTsA_Y8Qgtg"/>
+      </stereotypes>
+      <visibility xmi:id="_TBeiaceVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TBeiaseVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_TBeia8eVEeWAD59NPxRyVQ" name="totalLength">
+        <modelElement href="GREVES.uml#_S6kCEceVEeWAD59NPxRyVQ"/>
+        <cardinality xmi:id="_TBeibMeVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+        <type xmi:id="_TBeibceVEeWAD59NPxRyVQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_TBeibseVEeWAD59NPxRyVQ" name="cantonLength">
+        <modelElement href="GREVES.uml#_S6kpIMeVEeWAD59NPxRyVQ"/>
+        <cardinality xmi:id="_TBeib8eVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+        <type xmi:id="_TBeicMeVEeWAD59NPxRyVQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_TBeicceVEeWAD59NPxRyVQ" name="getBuiltLine">
+      <modelElement href="GREVES.uml#_S6kpIceVEeWAD59NPxRyVQ"/>
+      <visibility xmi:id="_TBeicseVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TBeic8eVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_TBeidMeVEeWAD59NPxRyVQ">
+        <modelElement href="GREVES.uml#_S7pAIMeVEeWAD59NPxRyVQ"/>
+        <type xmi:id="_TBeidceVEeWAD59NPxRyVQ" name="Line">
+          <modelElement href="GREVES.uml#_S6ZqAMeVEeWAD59NPxRyVQ"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_TCDKIMeVEeWAD59NPxRyVQ" comments="_TB71YMeVEeWAD59NPxRyVQ" targetConnectionVisual="_TB71YceVEeWAD59NPxRyVQ" name="Canton" associationsOut="_TCBU8MeVEeWAD59NPxRyVQ _TCCjEMeVEeWAD59NPxRyVQ" subclassedBy="_D8ws8Mp9EeWdTsA_Y8Qgtg">
+    <modelElement href="GREVES.uml#_S6meUMeVEeWAD59NPxRyVQ"/>
+    <visualProperties xmi:id="_TCDKIceVEeWAD59NPxRyVQ" position="1006.0,117.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_TCDKIseVEeWAD59NPxRyVQ" label="+"/>
+    <attributes xmi:id="_TCDKI8eVEeWAD59NPxRyVQ" name="id">
+      <modelElement href="GREVES.uml#_S71NYMeVEeWAD59NPxRyVQ"/>
+      <visibility xmi:id="_TCDKJMeVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCDKJceVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <type xmi:id="_TCDKJseVEeWAD59NPxRyVQ" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_TCDKJ8eVEeWAD59NPxRyVQ" name="startPoint">
+      <modelElement href="GREVES.uml#_S71NYceVEeWAD59NPxRyVQ"/>
+      <visibility xmi:id="_TCDKKMeVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCDKKceVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <type xmi:id="_TCDKKseVEeWAD59NPxRyVQ" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_TCDKK8eVEeWAD59NPxRyVQ" name="length">
+      <modelElement href="GREVES.uml#_S710cMeVEeWAD59NPxRyVQ"/>
+      <visibility xmi:id="_TCDKLMeVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCDKLceVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <type xmi:id="_TCDKLseVEeWAD59NPxRyVQ" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_TCDKL8eVEeWAD59NPxRyVQ" defaultValue="null" name="occupyingTrain">
+      <modelElement href="GREVES.uml#_S710cceVEeWAD59NPxRyVQ"/>
+      <stereotypes xmi:id="_M8ifQMenEeWKIuy2wF4RQg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_M8jtYMenEeWKIuy2wF4RQg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_M8whsMenEeWKIuy2wF4RQg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S0E78Mp8EeWdTsA_Y8Qgtg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S0GxIMp8EeWdTsA_Y8Qgtg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_S0RJMMp8EeWdTsA_Y8Qgtg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_0ngZMMqHEeWkv_dScrtfQw" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_0niOYMqHEeWkv_dScrtfQw" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_0nsmcMqHEeWkv_dScrtfQw" name="LegacyStyledElement"/>
+      <visibility xmi:id="_TCDKMceVEeWAD59NPxRyVQ" label="-"/>
+      <cardinality xmi:id="_TCDKMseVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <type xmi:id="_TCDKM8eVEeWAD59NPxRyVQ" name="Train">
+        <modelElement href="GREVES.uml#_S6vBMMeVEeWAD59NPxRyVQ"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_TCDKNMeVEeWAD59NPxRyVQ" name="Canton">
+      <modelElement href="GREVES.uml#_S6nscMeVEeWAD59NPxRyVQ"/>
+      <keywords xmi:id="_TCDKNceVEeWAD59NPxRyVQ" keyword="create"/>
+      <visibility xmi:id="_TCDKNseVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCDKN8eVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_TCDKOMeVEeWAD59NPxRyVQ">
+        <modelElement href="GREVES.uml#_S6oTgseVEeWAD59NPxRyVQ"/>
+        <type xmi:id="_TCDKOceVEeWAD59NPxRyVQ" name="Canton">
+          <modelElement href="GREVES.uml#_S6meUMeVEeWAD59NPxRyVQ"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_TCDKOseVEeWAD59NPxRyVQ" name="id">
+        <modelElement href="GREVES.uml#_S6nscceVEeWAD59NPxRyVQ"/>
+        <cardinality xmi:id="_TCDKO8eVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+        <type xmi:id="_TCDKPMeVEeWAD59NPxRyVQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_TCDKPceVEeWAD59NPxRyVQ" name="length">
+        <modelElement href="GREVES.uml#_S6nscseVEeWAD59NPxRyVQ"/>
+        <cardinality xmi:id="_TCDKPseVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+        <type xmi:id="_TCDKP8eVEeWAD59NPxRyVQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_TCDKQMeVEeWAD59NPxRyVQ" name="startPoint">
+        <modelElement href="GREVES.uml#_S6nsc8eVEeWAD59NPxRyVQ"/>
+        <cardinality xmi:id="_TCDKQceVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+        <type xmi:id="_TCDKQseVEeWAD59NPxRyVQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_TCDKSMeVEeWAD59NPxRyVQ" name="exit">
+      <modelElement href="GREVES.uml#_S6phoMeVEeWAD59NPxRyVQ"/>
+      <keywords xmi:id="_TCDKSceVEeWAD59NPxRyVQ" keyword="synchronized"/>
+      <visibility xmi:id="_TCDKSseVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCDKS8eVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+    </operations>
+    <operations xmi:id="_TCDKTMeVEeWAD59NPxRyVQ" name="isFree">
+      <modelElement href="GREVES.uml#_S6pho8eVEeWAD59NPxRyVQ"/>
+      <visibility xmi:id="_TCDKTceVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCDKTseVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_TCDKT8eVEeWAD59NPxRyVQ">
+        <modelElement href="GREVES.uml#_S6qIsMeVEeWAD59NPxRyVQ"/>
+        <type xmi:id="_TCDKUMeVEeWAD59NPxRyVQ" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_TCDKUceVEeWAD59NPxRyVQ" name="toString">
+      <modelElement href="GREVES.uml#_S6qIsceVEeWAD59NPxRyVQ"/>
+      <stereotypes xmi:id="_TCDKUseVEeWAD59NPxRyVQ" name="LegacyStyledElement">
+        <modelElement href="GREVES.uml#_S6rW0MeVEeWAD59NPxRyVQ"/>
+      </stereotypes>
+      <stereotypes xmi:id="_TCDKU8eVEeWAD59NPxRyVQ" name="Annotations">
+        <modelElement href="GREVES.uml#_S6sk8MeVEeWAD59NPxRyVQ"/>
+      </stereotypes>
+      <visibility xmi:id="_TCDKVMeVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCDKVceVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_TCDKVseVEeWAD59NPxRyVQ">
+        <modelElement href="GREVES.uml#_S6qvwMeVEeWAD59NPxRyVQ"/>
+        <type xmi:id="_TCDKV8eVEeWAD59NPxRyVQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_TCDKWMeVEeWAD59NPxRyVQ" name="enter">
+      <modelElement href="GREVES.uml#_S7q1UMeVEeWAD59NPxRyVQ"/>
+      <keywords xmi:id="_TCDKWceVEeWAD59NPxRyVQ" keyword="synchronized"/>
+      <visibility xmi:id="_TCDKWseVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCDKW8eVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_TCDKXMeVEeWAD59NPxRyVQ" name="train">
+        <modelElement href="GREVES.uml#_S7q1UceVEeWAD59NPxRyVQ"/>
+        <cardinality xmi:id="_TCDKXceVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+        <type xmi:id="_TCDKXseVEeWAD59NPxRyVQ" name="Train">
+          <modelElement href="GREVES.uml#_S6vBMMeVEeWAD59NPxRyVQ"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_V5IoYMp8EeWdTsA_Y8Qgtg" comments="_UnQJwMp8EeWdTsA_Y8Qgtg" targetConnectionVisual="_UnQJwcp8EeWdTsA_Y8Qgtg" name="getEndPoint">
+      <modelElement href="GREVES.uml#_S6o6kMeVEeWAD59NPxRyVQ"/>
+      <visibility xmi:id="_V5IoYcp8EeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_V5IoYsp8EeWdTsA_Y8Qgtg" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_V5IoY8p8EeWdTsA_Y8Qgtg">
+        <modelElement href="GREVES.uml#_S6o6kceVEeWAD59NPxRyVQ"/>
+        <type xmi:id="_V5IoZMp8EeWdTsA_Y8Qgtg" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_TCnK0MeVEeWAD59NPxRyVQ" name="Train" associationsIn="_TCBU8MeVEeWAD59NPxRyVQ _TCCjEMeVEeWAD59NPxRyVQ _zoq2kMqAEeWdTsA_Y8Qgtg">
+    <modelElement href="GREVES.uml#_S6vBMMeVEeWAD59NPxRyVQ"/>
+    <visualProperties xmi:id="_TCnK0ceVEeWAD59NPxRyVQ" position="557.0,85.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_TCnK0seVEeWAD59NPxRyVQ" label="~"/>
+    <attributes xmi:id="_TCnK08eVEeWAD59NPxRyVQ" defaultValue="0" name="position">
+      <modelElement href="GREVES.uml#_S73poMeVEeWAD59NPxRyVQ"/>
+      <stereotypes xmi:id="_TCnK1MeVEeWAD59NPxRyVQ" name="LegacyStyledElement">
+        <modelElement href="GREVES.uml#_S73poceVEeWAD59NPxRyVQ"/>
+      </stereotypes>
+      <visibility xmi:id="_TCnK1ceVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCnK1seVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <type xmi:id="_TCnK18eVEeWAD59NPxRyVQ" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_TCnK3ceVEeWAD59NPxRyVQ" name="currentCanton">
+      <modelElement href="GREVES.uml#_S77UAceVEeWAD59NPxRyVQ"/>
+      <visibility xmi:id="_TCnK3seVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCnK38eVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <type xmi:id="_TCnK4MeVEeWAD59NPxRyVQ" name="Canton">
+        <modelElement href="GREVES.uml#_S6meUMeVEeWAD59NPxRyVQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_TCnK4ceVEeWAD59NPxRyVQ" name="speed">
+      <modelElement href="GREVES.uml#_S777EMeVEeWAD59NPxRyVQ"/>
+      <stereotypes xmi:id="_TCnK4seVEeWAD59NPxRyVQ" name="LegacyStyledElement">
+        <modelElement href="GREVES.uml#_S777EceVEeWAD59NPxRyVQ"/>
+      </stereotypes>
+      <visibility xmi:id="_TCnK48eVEeWAD59NPxRyVQ" label="-"/>
+      <cardinality xmi:id="_TCnK5MeVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <type xmi:id="_TCnK5ceVEeWAD59NPxRyVQ" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_TCnK5seVEeWAD59NPxRyVQ" defaultValue="false" name="hasArrived">
+      <modelElement href="GREVES.uml#_S777EseVEeWAD59NPxRyVQ"/>
+      <stereotypes xmi:id="_TCnK58eVEeWAD59NPxRyVQ" name="LegacyStyledElement">
+        <modelElement href="GREVES.uml#_S78iIceVEeWAD59NPxRyVQ"/>
+      </stereotypes>
+      <visibility xmi:id="_TCnK6MeVEeWAD59NPxRyVQ" label="-"/>
+      <cardinality xmi:id="_TCnK6ceVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <type xmi:id="_TCnK6seVEeWAD59NPxRyVQ" name="boolean">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_zosrwMqAEeWdTsA_Y8Qgtg" name="roadMap">
+      <modelElement href="GREVES.uml#_zolXAMqAEeWdTsA_Y8Qgtg"/>
+      <visibility xmi:id="_zosrwcqAEeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_zosrwsqAEeWdTsA_Y8Qgtg" label="0..1" max="1"/>
+      <type xmi:id="_zosrw8qAEeWdTsA_Y8Qgtg" name="RoadMap">
+        <modelElement href="GREVES.uml#_kA8TwMqAEeWdTsA_Y8Qgtg"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_6AbC0MqAEeWdTsA_Y8Qgtg" name="trainID">
+      <modelElement href="GREVES.uml#_6AZ0sMqAEeWdTsA_Y8Qgtg"/>
+      <visibility xmi:id="_6AbC0cqAEeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_6AbC0sqAEeWdTsA_Y8Qgtg" label="1" max="1" min="1"/>
+      <type xmi:id="_CWc5oMqBEeWdTsA_Y8Qgtg" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_TCnK68eVEeWAD59NPxRyVQ" name="run">
+      <modelElement href="GREVES.uml#_S6xdcMeVEeWAD59NPxRyVQ"/>
+      <stereotypes xmi:id="_TCnK7MeVEeWAD59NPxRyVQ" name="LegacyStyledElement">
+        <modelElement href="GREVES.uml#_S6xdcceVEeWAD59NPxRyVQ"/>
+      </stereotypes>
+      <stereotypes xmi:id="_TCnK7ceVEeWAD59NPxRyVQ" name="Annotations">
+        <modelElement href="GREVES.uml#_S6yEgMeVEeWAD59NPxRyVQ"/>
+      </stereotypes>
+      <visibility xmi:id="_TCnK7seVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCnK78eVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+    </operations>
+    <operations xmi:id="_TCnK8MeVEeWAD59NPxRyVQ" name="toString">
+      <modelElement href="GREVES.uml#_S6yEgseVEeWAD59NPxRyVQ"/>
+      <stereotypes xmi:id="_TCnK8ceVEeWAD59NPxRyVQ" name="LegacyStyledElement">
+        <modelElement href="GREVES.uml#_S6yrkceVEeWAD59NPxRyVQ"/>
+      </stereotypes>
+      <stereotypes xmi:id="_TCnK8seVEeWAD59NPxRyVQ" name="Annotations">
+        <modelElement href="GREVES.uml#_S6zSoMeVEeWAD59NPxRyVQ"/>
+      </stereotypes>
+      <visibility xmi:id="_TCnK88eVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCnK9MeVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_TCnK9ceVEeWAD59NPxRyVQ">
+        <modelElement href="GREVES.uml#_S6yrkMeVEeWAD59NPxRyVQ"/>
+        <type xmi:id="_TCnK9seVEeWAD59NPxRyVQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_TCnK98eVEeWAD59NPxRyVQ" name="updatePosition">
+      <modelElement href="GREVES.uml#_S6zSoseVEeWAD59NPxRyVQ"/>
+      <visibility xmi:id="_TCnK-MeVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCnK-ceVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+    </operations>
+    <operations xmi:id="_TCnK-seVEeWAD59NPxRyVQ" name="Train">
+      <modelElement href="GREVES.uml#_S7tRkMeVEeWAD59NPxRyVQ"/>
+      <keywords xmi:id="_TCnK-8eVEeWAD59NPxRyVQ" keyword="create"/>
+      <visibility xmi:id="_TCnx4MeVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_TCnx4ceVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_TCnx4seVEeWAD59NPxRyVQ">
+        <modelElement href="GREVES.uml#_S7t4o8eVEeWAD59NPxRyVQ"/>
+        <type xmi:id="_TCnx48eVEeWAD59NPxRyVQ" name="Train">
+          <modelElement href="GREVES.uml#_S6vBMMeVEeWAD59NPxRyVQ"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_TCnx58eVEeWAD59NPxRyVQ" name="startCanton">
+        <modelElement href="GREVES.uml#_S7tRkseVEeWAD59NPxRyVQ"/>
+        <cardinality xmi:id="_TCnx6MeVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+        <type xmi:id="_TCnx6ceVEeWAD59NPxRyVQ" name="Canton">
+          <modelElement href="GREVES.uml#_S6meUMeVEeWAD59NPxRyVQ"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_AnlHkMqCEeWdTsA_Y8Qgtg" name="map">
+        <modelElement href="GREVES.uml#_Amm3MMqCEeWdTsA_Y8Qgtg"/>
+        <cardinality xmi:id="_AnlHkcqCEeWdTsA_Y8Qgtg" label="1" max="1" min="1"/>
+        <type xmi:id="_AnlHksqCEeWdTsA_Y8Qgtg" name="RoadMap">
+          <modelElement href="GREVES.uml#_kA8TwMqAEeWdTsA_Y8Qgtg"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_TCnx6seVEeWAD59NPxRyVQ" name="speed">
+        <modelElement href="GREVES.uml#_S7t4oMeVEeWAD59NPxRyVQ"/>
+        <cardinality xmi:id="_TCnx68eVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+        <type xmi:id="_TCnx7MeVEeWAD59NPxRyVQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_kA860MqAEeWdTsA_Y8Qgtg" name="RoadMap" associationsOut="_zoq2kMqAEeWdTsA_Y8Qgtg">
+    <modelElement href="GREVES.uml#_kA8TwMqAEeWdTsA_Y8Qgtg"/>
+    <visualProperties xmi:id="_kA860cqAEeWdTsA_Y8Qgtg" position="358.0,253.0" size="68.0,25.0"/>
+    <visibility xmi:id="_kA860sqAEeWdTsA_Y8Qgtg" label="+"/>
+    <attributes xmi:id="_zoug8MqAEeWdTsA_Y8Qgtg" name="train">
+      <modelElement href="GREVES.uml#_zol-EsqAEeWdTsA_Y8Qgtg"/>
+      <visibility xmi:id="_zoug8cqAEeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_zoug8sqAEeWdTsA_Y8Qgtg" label="0..1" max="1"/>
+      <type xmi:id="_zoug88qAEeWdTsA_Y8Qgtg" name="Train">
+        <modelElement href="GREVES.uml#_S6vBMMeVEeWAD59NPxRyVQ"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_TAfq8MeVEeWAD59NPxRyVQ" comments="_TAcAkMeVEeWAD59NPxRyVQ" targetConnectionVisual="_TAdOsMeVEeWAD59NPxRyVQ" name="TerminusException" generalizations="_kCkHAMekEeWAD59NPxRyVQ">
+    <modelElement href="GREVES.uml#_S6XNwMeVEeWAD59NPxRyVQ"/>
+    <visualProperties xmi:id="_TAfq8ceVEeWAD59NPxRyVQ" position="1316.0,518.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_TAfq8seVEeWAD59NPxRyVQ" label="+"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_UWwaMMp9EeWdTsA_Y8Qgtg" name="RailWaySwitch">
+    <modelElement href="GREVES.uml#_UWvzIMp9EeWdTsA_Y8Qgtg"/>
+    <visualProperties xmi:id="_UWwaMcp9EeWdTsA_Y8Qgtg" position="1140.0,540.0" size="67.0,-1.0"/>
+    <visibility xmi:id="_UWwaMsp9EeWdTsA_Y8Qgtg" label="+"/>
+    <attributes xmi:id="_t35SIMp9EeWdTsA_Y8Qgtg" name="railWayAvailable">
+      <modelElement href="GREVES.uml#_t3xWUMp9EeWdTsA_Y8Qgtg"/>
+      <visibility xmi:id="_t35SIcp9EeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_t35SIsp9EeWdTsA_Y8Qgtg" label="*" max="-1"/>
+      <type xmi:id="_t35SI8p9EeWdTsA_Y8Qgtg" name="RailWay">
+        <modelElement href="GREVES.uml#_UCG48MeVEeWAD59NPxRyVQ"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="__rzOEMp8EeWdTsA_Y8Qgtg" name="Terminus" associationsIn="_HGtZEMqAEeWdTsA_Y8Qgtg" associationsOut="__zC-MMp_EeWdTsA_Y8Qgtg" generalizations="_D8ws8Mp9EeWdTsA_Y8Qgtg">
+    <modelElement href="GREVES.uml#__rxY4Mp8EeWdTsA_Y8Qgtg"/>
+    <visualProperties xmi:id="__rzOEcp8EeWdTsA_Y8Qgtg" position="1073.0,408.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="__rzOEsp8EeWdTsA_Y8Qgtg" label="+"/>
+    <attributes xmi:id="__zGBgMp_EeWdTsA_Y8Qgtg" name="railWayAvailable">
+      <modelElement href="GREVES.uml#__y_64cp_EeWdTsA_Y8Qgtg"/>
+      <visibility xmi:id="__zGBgcp_EeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="__zGBgsp_EeWdTsA_Y8Qgtg" label="*" max="-1"/>
+      <type xmi:id="__zGBg8p_EeWdTsA_Y8Qgtg" name="RailWay">
+        <modelElement href="GREVES.uml#_UCG48MeVEeWAD59NPxRyVQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_HGunMMqAEeWdTsA_Y8Qgtg" name="railWay">
+      <modelElement href="GREVES.uml#_HGqVwMqAEeWdTsA_Y8Qgtg"/>
+      <visibility xmi:id="_HGunMcqAEeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_HGunMsqAEeWdTsA_Y8Qgtg" label="0..1" max="1"/>
+      <type xmi:id="_HGunM8qAEeWdTsA_Y8Qgtg" name="RailWay">
+        <modelElement href="GREVES.uml#_UCG48MeVEeWAD59NPxRyVQ"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_6s48sMp_EeWdTsA_Y8Qgtg" name="Terminus">
+      <modelElement href="GREVES.uml#_6s1SUMp_EeWdTsA_Y8Qgtg"/>
+      <keywords xmi:id="_6s48scp_EeWdTsA_Y8Qgtg" keyword="create"/>
+      <visibility xmi:id="_6s48ssp_EeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_6s48s8p_EeWdTsA_Y8Qgtg" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_6s48tMp_EeWdTsA_Y8Qgtg">
+        <modelElement href="GREVES.uml#_6s2gcMp_EeWdTsA_Y8Qgtg"/>
+        <type xmi:id="_6s48tcp_EeWdTsA_Y8Qgtg" name="Terminus">
+          <modelElement href="GREVES.uml#__rxY4Mp8EeWdTsA_Y8Qgtg"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_6s48tsp_EeWdTsA_Y8Qgtg" name="id">
+        <modelElement href="GREVES.uml#_6s15YMp_EeWdTsA_Y8Qgtg"/>
+        <cardinality xmi:id="_6s48t8p_EeWdTsA_Y8Qgtg" label="1" max="1" min="1"/>
+        <type xmi:id="_6s48uMp_EeWdTsA_Y8Qgtg" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_6s48ucp_EeWdTsA_Y8Qgtg" name="length">
+        <modelElement href="GREVES.uml#_6s15Ycp_EeWdTsA_Y8Qgtg"/>
+        <cardinality xmi:id="_6s48usp_EeWdTsA_Y8Qgtg" label="1" max="1" min="1"/>
+        <type xmi:id="_6s48u8p_EeWdTsA_Y8Qgtg" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_6s48vMp_EeWdTsA_Y8Qgtg" name="startPoint">
+        <modelElement href="GREVES.uml#_6s15Ysp_EeWdTsA_Y8Qgtg"/>
+        <cardinality xmi:id="_6s48vcp_EeWdTsA_Y8Qgtg" label="1" max="1" min="1"/>
+        <type xmi:id="_6s48vsp_EeWdTsA_Y8Qgtg" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_UCIuIMeVEeWAD59NPxRyVQ" name="RailWay" associationsIn="_FTrKoMp_EeWdTsA_Y8Qgtg __zC-MMp_EeWdTsA_Y8Qgtg _t32O0Mp9EeWdTsA_Y8Qgtg" associationsOut="_HGtZEMqAEeWdTsA_Y8Qgtg">
+    <modelElement href="GREVES.uml#_UCG48MeVEeWAD59NPxRyVQ"/>
+    <visualProperties xmi:id="_UCIuIceVEeWAD59NPxRyVQ" position="482.0,380.0" size="293.0,179.0"/>
+    <visibility xmi:id="_UCIuIseVEeWAD59NPxRyVQ" label="+"/>
+    <attributes xmi:id="__zEMUMp_EeWdTsA_Y8Qgtg" name="terminus">
+      <modelElement href="GREVES.uml#__y_T0Mp_EeWdTsA_Y8Qgtg"/>
+      <visibility xmi:id="__zEMUcp_EeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="__zEMUsp_EeWdTsA_Y8Qgtg" label="0..1" max="1"/>
+      <type xmi:id="__zEMU8p_EeWdTsA_Y8Qgtg" name="Terminus">
+        <modelElement href="GREVES.uml#__rxY4Mp8EeWdTsA_Y8Qgtg"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_HGv1UMqAEeWdTsA_Y8Qgtg" name="nextTerminus">
+      <modelElement href="GREVES.uml#_HGqVw8qAEeWdTsA_Y8Qgtg"/>
+      <visibility xmi:id="_HGv1UcqAEeWdTsA_Y8Qgtg" label="+"/>
+      <cardinality xmi:id="_HGv1UsqAEeWdTsA_Y8Qgtg" label="0..1" max="1"/>
+      <type xmi:id="_HGv1U8qAEeWdTsA_Y8Qgtg" name="Terminus">
+        <modelElement href="GREVES.uml#__rxY4Mp8EeWdTsA_Y8Qgtg"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_a9joIMeVEeWAD59NPxRyVQ" name="addCanton">
+      <modelElement href="GREVES.uml#_S6ctUMeVEeWAD59NPxRyVQ"/>
+      <visibility xmi:id="_a9joIceVEeWAD59NPxRyVQ" label="+"/>
+      <cardinality xmi:id="_a9joIseVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_a9joI8eVEeWAD59NPxRyVQ" name="id">
+        <modelElement href="GREVES.uml#_S6dUYMeVEeWAD59NPxRyVQ"/>
+        <cardinality xmi:id="_a9joJMeVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+        <type xmi:id="_a9joJceVEeWAD59NPxRyVQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_a9joJseVEeWAD59NPxRyVQ" name="cantonLength">
+        <modelElement href="GREVES.uml#_S6eigMeVEeWAD59NPxRyVQ"/>
+        <cardinality xmi:id="_a9joJ8eVEeWAD59NPxRyVQ" label="1" max="1" min="1"/>
+        <type xmi:id="_a9joKMeVEeWAD59NPxRyVQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+</com.yattasolutions.uml.diagrams.classifier:ClassDiagram>
