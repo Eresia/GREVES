@@ -1,20 +1,7 @@
 package ucp.greves.model;
 
-/**
- * @author tliu@u-cergy.fr
- */
 public class Canton {
-/**
-   * <pre>
-    *     *           1..*     1..1
-    *     * Voie ------------------------- Line
-    *     *           voie        &lt;       
-    *     * </pre>
-    */
-   public int getEndPoint() {
-   return startPoint + length;
-         	}
-   
+
 	private int id;
 	private int startPoint;
 	private int length;
@@ -24,6 +11,10 @@ public class Canton {
 		this.id = id;
 		this.length = length;
 		this.startPoint = startPoint;
+	}
+
+	public int getEndPoint() {
+		return startPoint + length;
 	}
 
 	public int getLength() {
