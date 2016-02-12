@@ -26,7 +26,7 @@ public class RailWay {
 	}
 
 
-	public int getLenght(){
+	public int getLength(){
 		return this.getFirstCanton().getStartPoint();
 	}
 

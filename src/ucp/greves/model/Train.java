@@ -2,58 +2,17 @@ package ucp.greves.model;
 
 import java.lang.Runnable;
 
-public class Train implements Runnable{
-/**
-    * <pre>
-    *           0..1     0..1
-    * Train ------------------------- RoadMap
-    *           train        &lt;       roadMap
-    * </pre>
-    */
-   private RoadMap roadMap;
-   
-   public void setRoadMap(RoadMap value) {
-      this.roadMap = value;
-   }
-   
-   public RoadMap getRoadMap() {
-      return this.roadMap;
-   }
-
+public class Train implements Runnable {
 	private int trainID;
-	
-	/**
-	 * Distance per time unit.
-	 */
-	
-	/**
-	 * Distance per time unit.
-	 */
-   
-   public void setTrainID(int value) {
-      this.trainID = value;
-   }
-   
-   public int getTrainID() {
-      return this.trainID;
-   }
-   
-	private volatile int position = 0;
-	private Canton currentCanton;
+	private RoadMap roadMap;
+	private Canton currCanton;
 
-	private int trainID;
+	public int getTrainID() {
+		return this.trainID;
+	}
 	
-	/**
-	 * Distance per time unit.
-	 */
-	private int speed;
-	private boolean hasArrived = false;
-
-	public Train( Canton startCanton,RoadMap map , int speed) {
-		this.roadMap = map;
-		currentCanton = startCanton;
-		currentCanton.enter(this);
-		this.speed = speed;
+	public void setTrainID(int value) {
+		this.trainID = value;
 	}
 
 	public RoadMap getRoadMap() {
@@ -63,10 +22,19 @@ public class Train implements Runnable{
 	public void setRoadMap(RoadMap value) {
 		this.roadMap = value;
 	}
-   
-   public int getTrainID() {
-      return this.trainID;
-   }
+
+	private volatile int position = 0;
+	private Canton currentCanton;
+
+	private int speed;
+	private boolean hasArrived = false;
+
+	public Train(Canton startCanton, RoadMap map, int speed) {
+		this.trainID = Registry.register_train(this);
+		currentCanton = startCanton;
+		currentCanton.enter(this);
+		this.speed = speed;
+	}
 
 	public int getPosition() {
 		return position;
@@ -88,17 +56,18 @@ public class Train implements Runnable{
 	public void run() {
 		while (!hasArrived) {
 			try {
-				sleep(SimulationGUI.TIME_UNIT);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				System.err.println(e.getMessage());
 			}
+			
 			if (position + speed >= currentCanton.getEndPoint()) {
 				try {
-					Canton nextCanton = line.getCantonByPosition(position + speed);
+					Canton nextCanton = currCanton.getNextCanton();
 					nextCanton.enter(this);
 				} catch (TerminusException e) {
 					hasArrived = true;
-					position = line.getTotalLenght();
+					//position = line.getTotalLenght();
 				}
 			} else {
 				updatePosition();
