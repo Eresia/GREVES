@@ -16,7 +16,7 @@ import java.util.HashMap;
 		 return ConfigurationEnvironment.instance;
 	 }
 	 
-	  public ConfigurationEnvironmentElement getProperty(String property){
+	  public synchronized ConfigurationEnvironmentElement getProperty(String property){
 		 if( !configurationAttribute.containsKey(property) ){
 			  /// TODO ajouter une exeption porperty not found throw new 
 		 return null;
@@ -24,7 +24,7 @@ import java.util.HashMap;
 			 return  configurationAttribute.get(property);
 		 }
 	 }
-	  public void setProperty(String property, Object value){
+	  public synchronized void setProperty(String property, Object value){
 			 if( !configurationAttribute.containsKey(property) ){
 				 configurationAttribute.put(property, new ConfigurationEnvironmentElement(value));
 			 }else{

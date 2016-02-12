@@ -1,12 +1,26 @@
 package ucp.greves.model;
 
 public class LineBuilder {
-	private Line line;
-
-	public void buildLine(int totalLength, int cantonLength) {
+	
+	static public Line buildLine(ConfigurationEnvironment conf) {
+	
+		if(conf.getProperty("BUILD_CONFIGURATION") == null){
+			return LineBuilderSimple.BuildLine();
+			
+		}else{
+			String build_configuration = (String) conf.getProperty("BUILD_CONFIGURATION").getValue();
+			switch(build_configuration){
+			
+//			case "XML"{
+//				  
+//			}
+			default : 
+				return LineBuilderSimple.BuildLine();
+			
+			}
+		}
+	
 	}
 
-	public Line getBuiltLine() {
-		return line;
-	}
+	
 }

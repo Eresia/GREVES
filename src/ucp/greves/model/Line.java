@@ -1,36 +1,38 @@
 package ucp.greves.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Line {
 
-	private int totalLenght;
-	private int usedLength = 0;
+	private HashMap<Integer ,RailWay> railWay;
 
-	private Set<RailWay> railWay;
-
-	public Line(int totalLenght) {
-		this.totalLenght = totalLenght;
+	public Line() {
+		this.railWay = new HashMap<Integer, RailWay>();
 	}
 
-	public Set<RailWay> getRailWay() {
-		if (this.railWay == null) {
-			this.railWay = new HashSet<RailWay>();
-		}
+	public HashMap<Integer, RailWay> getRailWay() {
+
 		return this.railWay;
 	}
 
-	public boolean isFull() {
-		return usedLength == totalLenght;
-	}
 
 	public int getTotalLenght() {
-		return totalLenght;
+		int lenght = 0;
+		for(Integer rkey : railWay.keySet()){
+			lenght += railWay.get(rkey).getLenght();
+		}
+		return lenght;
+	}
+	
+	public void addRailWay( RailWay r ){
+		if(! this.railWay.containsKey(r.getId())){
+			this.railWay.put(r.getId(), r);
+		}
+		
 	}
 
-	public int getUsedLength() {
-		return usedLength;
-	}
 
 }

@@ -1,4 +1,5 @@
 package ucp.greves.view;
+import demothreading.Train;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

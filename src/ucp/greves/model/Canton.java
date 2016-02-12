@@ -1,35 +1,37 @@
 package ucp.greves.model;
 
+
+
 public class Canton {
 
-	private int id;
-	private int startPoint;
-	private int length;
-	private Train occupyingTrain = null;
-
-	public Canton(int id, int length, int startPoint) {
-		this.id = id;
+	protected int id;
+	protected int length;
+	protected Train occupyingTrain = null;
+	private Canton nextCanton;
+	public Canton(Canton nextCanton , int length) {
+		this.id = Registry.register_canton(this);
 		this.length = length;
-		this.startPoint = startPoint;
+		this.nextCanton = nextCanton;
 	}
-
-	public int getEndPoint() {
-		return startPoint + length;
+	public Canton getNextCanton() throws TerminusException{
+		return nextCanton;
+	}
+	public int getStartPoint() {
+		return nextCanton.getStartPoint() + length ;
 	}
 
 	public int getLength() {
 		return length;
 	}
-
-	public int getStartPoint() {
-		return startPoint;
+	protected Canton(int length){
+		
 	}
 
 	public synchronized void enter(Train train) {
 		if (occupyingTrain != null) {
 			System.out.println(toString() + " occupied !");
 			// Train stopped just before canton start point !
-			train.setPosition(startPoint - 1);
+			train.setPosition(getStartPoint() + 1);
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -64,6 +66,10 @@ public class Canton {
 
 	public int getId() {
 		return id;
+	}
+	public int getEndPoint() {
+		return nextCanton.getStartPoint() + 1;
+
 	}
 
 }

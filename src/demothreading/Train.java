@@ -1,8 +1,6 @@
 package demothreading;
 
-/**
- * @author tliu@u-cergy.fr
- */
+
 public class Train extends Thread {
 	private volatile int position = 0;
 	private Line line;

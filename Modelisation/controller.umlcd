@@ -3,7 +3,50 @@
   <modelElement href="GREVES.uml#_xnscUMqLEeW4vIm9LdWEJA"/>
   <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_rpJvYMqNEeW4vIm9LdWEJA" name="GodModeController">
     <modelElement href="GREVES.uml#_yZHSMMqLEeW4vIm9LdWEJA"/>
-    <visualProperties xmi:id="_rpJvYcqNEeW4vIm9LdWEJA" position="50.0,50.0"/>
+    <visualProperties xmi:id="_rpJvYcqNEeW4vIm9LdWEJA" position="197.0,70.0"/>
     <visibility xmi:id="_rpJvYsqNEeW4vIm9LdWEJA" label="+"/>
+    <attributes xmi:id="_vQVpwMqTEeWUZJC4yL52HQ" defaultValue="3" name="TRAIN_SPEED_VARIATION" staticAttribute="true">
+      <modelElement href="GREVES.uml#_vQL4wMqTEeWUZJC4yL52HQ"/>
+      <visibility xmi:id="_vQVpwcqTEeWUZJC4yL52HQ" label="-"/>
+      <cardinality xmi:id="_vQVpwsqTEeWUZJC4yL52HQ" label="1" max="1" min="1"/>
+      <type xmi:id="_vQVpw8qTEeWUZJC4yL52HQ" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_vQVpxMqTEeWUZJC4yL52HQ" defaultValue="2" name="TRAIN_BASIC_SPEED" staticAttribute="true">
+      <modelElement href="GREVES.uml#_vQMf0MqTEeWUZJC4yL52HQ"/>
+      <visibility xmi:id="_vQVpxcqTEeWUZJC4yL52HQ" label="-"/>
+      <cardinality xmi:id="_vQVpxsqTEeWUZJC4yL52HQ" label="1" max="1" min="1"/>
+      <type xmi:id="_vQVpx8qTEeWUZJC4yL52HQ" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_vQVpyMqTEeWUZJC4yL52HQ" defaultValue="0" name="currentTime">
+      <modelElement href="GREVES.uml#_vQMf0sqTEeWUZJC4yL52HQ"/>
+      <stereotypes xmi:id="_vQVpycqTEeWUZJC4yL52HQ" name="LegacyStyledElement">
+        <modelElement href="GREVES.uml#_vQOVAMqTEeWUZJC4yL52HQ"/>
+      </stereotypes>
+      <visibility xmi:id="_vQVpysqTEeWUZJC4yL52HQ" label="-"/>
+      <cardinality xmi:id="_vQVpy8qTEeWUZJC4yL52HQ" label="1" max="1" min="1"/>
+      <type xmi:id="_vQVpzMqTEeWUZJC4yL52HQ" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_vQVpzcqTEeWUZJC4yL52HQ" defaultValue="1000" name="SIMULATION_DURATION" staticAttribute="true">
+      <modelElement href="GREVES.uml#_vQMf1MqTEeWUZJC4yL52HQ"/>
+      <visibility xmi:id="_vQVpzsqTEeWUZJC4yL52HQ" label="-"/>
+      <cardinality xmi:id="_vQVpz8qTEeWUZJC4yL52HQ" label="1" max="1" min="1"/>
+      <type xmi:id="_vQVp0MqTEeWUZJC4yL52HQ" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_vQVp0cqTEeWUZJC4yL52HQ" defaultValue="50" name="TIME_UNIT" staticAttribute="true">
+      <modelElement href="GREVES.uml#_vQMf1sqTEeWUZJC4yL52HQ"/>
+      <visibility xmi:id="_vQVp0sqTEeWUZJC4yL52HQ" label="+"/>
+      <cardinality xmi:id="_vQVp08qTEeWUZJC4yL52HQ" label="1" max="1" min="1"/>
+      <type xmi:id="_vQVp1MqTEeWUZJC4yL52HQ" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
   </nodes>
 </com.yattasolutions.uml.diagrams.classifier:ClassDiagram>
