@@ -16,8 +16,8 @@ public class ConfigurationEnvironmentTest{
 	@Test
 	public void testGetSetProperty() {
 		String a = "helloword";
-		int b = 3;
-		double c = 3.5;
+		Integer b = 3;
+		Double c = 3.5;
 		ConfigurationEnvironment conf = ConfigurationEnvironment.getInstance();
 		conf.setProperty("string", a);
 		
@@ -25,9 +25,9 @@ public class ConfigurationEnvironmentTest{
 		conf.setProperty("double", c);
 		String a1 = (String)conf.getProperty("string").getValue();
 		assertEquals(a, a1);
-		int b1 = (int)conf.getProperty("int").getValue();
+		Integer b1 = (Integer)conf.getProperty("int").getValue();
 		assertEquals(b, b1);
-		double c1 = (double)conf.getProperty("double").getValue();
+		Double c1 = (Double)conf.getProperty("double").getValue();
 		assertEquals(c, c1, 0.001);
 	}
 
