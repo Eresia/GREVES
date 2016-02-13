@@ -1,6 +1,6 @@
 package ucp.greves.model;
 
-
+import ucp.greves.model.exceptions.TerminusException;
 
 public class Canton {
 

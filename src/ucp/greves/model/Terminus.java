@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import ucp.greves.model.exceptions.TerminusException;
+
 public class Terminus extends Canton {
 	private HashMap<Integer, RailWay> railWayAvailable;
 	private RailWay nextRailWay;

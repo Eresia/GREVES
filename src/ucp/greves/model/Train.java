@@ -2,10 +2,24 @@ package ucp.greves.model;
 
 import java.lang.Runnable;
 
+import ucp.greves.model.exceptions.TerminusException;
+
 public class Train implements Runnable {
 	private int trainID;
 	private RoadMap roadMap;
 	private Canton currCanton;
+	private volatile int position = 0;
+	private Canton currentCanton;
+
+	private int speed;
+	private boolean hasArrived = false;
+
+	public Train(Canton startCanton, RoadMap map, int speed) {
+		this.trainID = Registry.register_train(this);
+		currentCanton = startCanton;
+		currentCanton.enter(this);
+		this.speed = speed;
+	}
 
 	public int getTrainID() {
 		return this.trainID;
@@ -21,19 +35,6 @@ public class Train implements Runnable {
 
 	public void setRoadMap(RoadMap value) {
 		this.roadMap = value;
-	}
-
-	private volatile int position = 0;
-	private Canton currentCanton;
-
-	private int speed;
-	private boolean hasArrived = false;
-
-	public Train(Canton startCanton, RoadMap map, int speed) {
-		this.trainID = Registry.register_train(this);
-		currentCanton = startCanton;
-		currentCanton.enter(this);
-		this.speed = speed;
 	}
 
 	public int getPosition() {
@@ -56,9 +57,9 @@ public class Train implements Runnable {
 	public void run() {
 		while (!hasArrived) {
 			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				System.err.println(e.getMessage());
+				Thread.sleep(50);
+			} catch (InterruptedException ie) {
+				System.err.println(ie.getMessage());
 			}
 			
 			if (position + speed >= currentCanton.getEndPoint()) {

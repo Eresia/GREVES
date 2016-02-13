@@ -2,6 +2,8 @@ package ucp.greves.model;
 
 import java.util.ArrayList;
 
+import ucp.greves.model.exceptions.DoubledRailwayException;
+
 public class RoadMap {
 	private ArrayList<Integer> railwaysIDs;
 	private String name;
@@ -14,7 +16,10 @@ public class RoadMap {
 		return railwaysIDs;
 	}
 
-	public void addRailWay(int id) {
+	public void addRailWay(int id) throws DoubledRailwayException {
+		if(railwaysIDs.contains(id)) {
+			throw new DoubledRailwayException();
+		}
 		railwaysIDs.add(id);
 	}
 }
