@@ -20,11 +20,11 @@ public class Line {
 
 
 	public int getTotalLenght() {
-		int lenght = 0;
+		int length = 0;
 		for(Integer rkey : railWay.keySet()){
-			lenght += railWay.get(rkey).getLenght();
+			length += railWay.get(rkey).getLength();
 		}
-		return lenght;
+		return length;
 	}
 	
 	public void addRailWay( RailWay r ){
