@@ -1,7 +1,7 @@
-package ucp.greves.model.exceptions;
+package ucp.greves.model.exceptions.roadmap;
 
-public class BadRoadMapException extends Exception{
-	
+public class BadRoadMapException extends Exception {
+
 	public BadRoadMapException(){
 		super();
 	}
@@ -9,6 +9,5 @@ public class BadRoadMapException extends Exception{
 	public BadRoadMapException(String s){
 		super(s);
 	}
-
-
+	
 }

@@ -6,7 +6,7 @@ import ucp.greves.model.ControlLine;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
-import ucp.greves.model.exceptions.roadmap.BadRoadmapException;
+import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.builder.LineBuilderSimple;
@@ -28,7 +28,7 @@ public class TempMain {
 				printLine(line, control.getTrains());
 				Thread.sleep(100);
 			}
-		} catch (DoubledRailwayException | BadRoadmapException | RailWayNotExistException | BadControlInformationException | InterruptedException e) {
+		} catch (DoubledRailwayException | BadRoadMapException | RailWayNotExistException | BadControlInformationException | InterruptedException e) {
 			e.printStackTrace();
 		}
 	}

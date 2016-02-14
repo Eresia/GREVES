@@ -1,6 +1,6 @@
 package ucp.greves.model.exceptions.roadmap;
 
-public class EmptyRoadMapException extends BadRoadmapException{
+public class EmptyRoadMapException extends BadRoadMapException{
 
 	public EmptyRoadMapException() {
 		super();

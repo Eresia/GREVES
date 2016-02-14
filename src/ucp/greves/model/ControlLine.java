@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
-import ucp.greves.model.exceptions.roadmap.BadRoadmapException;
+import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.exceptions.roadmap.EmptyRoadMapException;
 import ucp.greves.model.exceptions.roadmap.RoadMapNameNotExistException;
 import ucp.greves.model.line.Line;
@@ -29,7 +29,7 @@ public class ControlLine {
 		return instance;
 	}
 	
-	public void launchTrain(String road, int speed) throws BadControlInformationException, BadRoadmapException, RailWayNotExistException{
+	public void launchTrain(String road, int speed) throws BadControlInformationException, BadRoadMapException, RailWayNotExistException{
 		verifyInformation();
 		if(!roads.containsKey(road)){
 			throw new RoadMapNameNotExistException("Impossible to launch the train - the road don't exist");

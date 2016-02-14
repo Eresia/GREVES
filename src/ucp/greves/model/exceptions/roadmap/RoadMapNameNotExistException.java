@@ -1,6 +1,6 @@
 package ucp.greves.model.exceptions.roadmap;
 
-public class RoadMapNameNotExistException extends BadRoadmapException {
+public class RoadMapNameNotExistException extends BadRoadMapException {
 
 	public RoadMapNameNotExistException(){
 		super();
