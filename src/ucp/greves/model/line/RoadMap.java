@@ -29,6 +29,14 @@ public class RoadMap {
 		railwaysIDs.add(id);
 	}
 	
+	public Integer getFirstRailWay(){
+		return railwaysIDs.get(0);
+	}
+	
+	public Integer getLastRailWay(){
+		return railwaysIDs.get(railwaysIDs.size() - 1);
+	}
+	
 	public String getName(){
 		return name;
 	}

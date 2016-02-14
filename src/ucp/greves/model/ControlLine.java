@@ -44,7 +44,12 @@ public class ControlLine {
 		System.out.println(line.getRailWay(rails.get(0)));
 		Train t = new Train(line.getRailWay(rails.get(0)).getFirstCanton(), roads.get(road), speed);
 		trains.add(t);
-		new Thread(t);
+		Thread tThread = new Thread(t);
+		tThread.start();
+	}
+	
+	public Line getLine(){
+		return line;
 	}
 	
 	public void setLine(Line line){

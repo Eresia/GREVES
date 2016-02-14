@@ -2,6 +2,7 @@ package ucp.greves.model.line.canton;
 
 import ucp.greves.model.configuration.Registry;
 import ucp.greves.model.exceptions.TerminusException;
+import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.train.Train;
 
 public class Canton {
@@ -21,10 +22,11 @@ public class Canton {
 	}
 	
 	protected Canton(int length){
-		
+		this.id = Registry.register_canton(this);
+		this.length = length;
 	}
 	
-	public Canton getNextCanton() throws TerminusException{
+	public Canton getNextCanton(RoadMap road) throws TerminusException{
 		return nextCanton;
 	}
 	public int getStartPoint() {
@@ -39,12 +41,17 @@ public class Canton {
 		if (occupyingTrain != null) {
 			System.out.println(toString() + " occupied !");
 			// Train stopped just before canton start point !
-			train.setPosition(getStartPoint() + 1);
+			train.setPosition(getStartPoint() - 1);
 			try {
 				wait();
 			} catch (InterruptedException e) {
 				System.err.println(e.getMessage());
 			}
+		}
+		
+		int trainPosition = train.getPosition();
+		if(trainPosition < 0){
+			train.setPosition(trainPosition + getStartPoint());
 		}
 
 		System.out.println("Canton changed successfully");
@@ -79,5 +86,21 @@ public class Canton {
 		return nextCanton.getStartPoint() + 1;
 
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Canton other = (Canton) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+	
+	
 
 }

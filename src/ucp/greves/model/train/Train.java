@@ -1,7 +1,6 @@
 package ucp.greves.model.train;
 
-import java.lang.Runnable;
-
+import ucp.greves.model.ControlLine;
 import ucp.greves.model.configuration.Registry;
 import ucp.greves.model.exceptions.TerminusException;
 import ucp.greves.model.line.RoadMap;
@@ -10,18 +9,21 @@ import ucp.greves.model.line.canton.Canton;
 public class Train implements Runnable {
 	private int trainID;
 	private RoadMap roadMap;
-	private Canton currCanton;
 	private volatile int position = 0;
 	private Canton currentCanton;
 
 	private int speed;
-	private boolean hasArrived = false;
+	
+	private volatile boolean hasArrived;
 
 	public Train(Canton startCanton, RoadMap map, int speed) {
 		this.trainID = Registry.register_train(this);
 		currentCanton = startCanton;
 		currentCanton.enter(this);
 		this.speed = speed;
+		this.roadMap = map;
+		hasArrived = false;
+		position = ControlLine.getInstance().getLine().getRailWay(map.getRailwaysIDs().get(0)).getLength();
 	}
 
 	public int getTrainID() {
@@ -58,26 +60,32 @@ public class Train implements Runnable {
 
 	@Override
 	public void run() {
-		while (!hasArrived) {
+		while (!hasArrived()) {
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException ie) {
 				System.err.println(ie.getMessage());
 			}
 			
-			if (position + speed >= currentCanton.getEndPoint()) {
+			if (position - speed <= currentCanton.getEndPoint()) {
 				try {
-					Canton nextCanton = currCanton.getNextCanton();
+					Canton nextCanton = currentCanton.getNextCanton(roadMap);
 					nextCanton.enter(this);
 				} catch (TerminusException e) {
+					speed = 0;
 					hasArrived = true;
-					//position = line.getTotalLenght();
+					position = 0;
 				}
-			} else {
+			} 
+			else{
 				updatePosition();
 			}
 		}
 		currentCanton.exit();
+	}
+	
+	public boolean hasArrived(){
+		return hasArrived;
 	}
 
 	@Override

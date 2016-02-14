@@ -20,7 +20,7 @@ public class LineBuilderSimple {
 			railWay2.addCanton(rn.nextInt(100)+20);
 		}
 		railWay.connectTo(railWay2);
-		railWay.connectTo(railWay);
+		railWay2.connectTo(railWay);
 		
 		ln.addRailWay(railWay);
 		ln.addRailWay(railWay2);

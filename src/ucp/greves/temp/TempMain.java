@@ -21,16 +21,22 @@ public class TempMain {
 			control.setLine(line);
 			RoadMap rm = new RoadMap("test");
 			rm.addRailWay(1);
+			rm.addRailWay(2);
 			control.addRoad(rm.getName(), rm);
-			control.launchTrain(rm.getName(), 10);
-			printLine(line, control.getTrains());
-		} catch (DoubledRailwayException | BadRoadmapException | RailWayNotExistException | BadControlInformationException e) {
+			control.launchTrain(rm.getName(), 60);
+			while(!control.getTrains().get(0).hasArrived()){
+				printLine(line, control.getTrains());
+				Thread.sleep(100);
+			}
+		} catch (DoubledRailwayException | BadRoadmapException | RailWayNotExistException | BadControlInformationException | InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public static void printLine(Line line, ArrayList<Train> trains){
-		
+		for(Train t : trains){
+			System.out.println(t.getPosition());
+		}
 	}
 
 }

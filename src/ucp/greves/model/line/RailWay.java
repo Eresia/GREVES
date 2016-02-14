@@ -12,7 +12,7 @@ public class RailWay {
 	private ArrayList<Canton> canton_list;
 
 	public RailWay(){
-		this.terminus = new Terminus();
+		this.terminus = new Terminus(1);
 		this.id = Registry.register_railway();
 		this.canton_list = new ArrayList<Canton>();
 	}
