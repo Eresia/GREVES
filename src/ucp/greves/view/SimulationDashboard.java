@@ -12,6 +12,8 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import ucp.greves.model.*;
+import ucp.greves.model.line.Line;
+import ucp.greves.model.line.LineBuilder;
 
 /**
  * @author tliu@u-cergy.fr
@@ -24,8 +26,9 @@ public class SimulationDashboard extends JPanel {
 
 	public SimulationDashboard() {
 		LineBuilder lineBuilder = new LineBuilder();
-		lineBuilder.buildLine(900, 300);
-		line = lineBuilder.getBuiltLine();
+		//TODO: Do the correction of it
+		//lineBuilder.buildLine(900, 300);
+		//line = lineBuilder.getBuiltLine();
 	}
 
 	public void addTrain(Train train) {

@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 import ucp.greves.model.*;
+import ucp.greves.model.configuration.ConfigurationEnvironmentBuilderXML;
+
 import org.junit.Before;
 import org.junit.Test;
 

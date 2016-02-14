@@ -1,6 +1,9 @@
-package ucp.greves.model;
+package ucp.greves.model.configuration;
 
 import java.util.HashMap;
+
+import ucp.greves.model.line.canton.Canton;
+import ucp.greves.model.train.Train;
 
 public class Registry {
 

@@ -1,18 +1,29 @@
-package ucp.greves.model;
+package ucp.greves.model.line.canton;
 
+import ucp.greves.model.configuration.Registry;
 import ucp.greves.model.exceptions.TerminusException;
+import ucp.greves.model.train.Train;
 
 public class Canton {
 
 	protected int id;
 	protected int length;
 	protected Train occupyingTrain = null;
+	
 	private Canton nextCanton;
+	
+	
+	
 	public Canton(Canton nextCanton , int length) {
 		this.id = Registry.register_canton(this);
 		this.length = length;
 		this.nextCanton = nextCanton;
 	}
+	
+	protected Canton(int length){
+		
+	}
+	
 	public Canton getNextCanton() throws TerminusException{
 		return nextCanton;
 	}
@@ -22,9 +33,6 @@ public class Canton {
 
 	public int getLength() {
 		return length;
-	}
-	protected Canton(int length){
-		
 	}
 
 	public synchronized void enter(Train train) {

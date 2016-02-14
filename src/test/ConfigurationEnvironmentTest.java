@@ -1,5 +1,6 @@
 package test;
 import ucp.greves.model.*;
+import ucp.greves.model.configuration.ConfigurationEnvironment;
 
 import static org.junit.Assert.*;
 

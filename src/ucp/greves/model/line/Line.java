@@ -1,4 +1,4 @@
-package ucp.greves.model;
+package ucp.greves.model.line;
 
 import java.util.ArrayList;
 import java.util.HashMap;

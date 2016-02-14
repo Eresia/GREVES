@@ -1,4 +1,4 @@
-package ucp.greves.model;
+package ucp.greves.model.configuration;
 
 
 public class ConfigurationEnvironmentElement<T> {

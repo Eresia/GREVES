@@ -1,4 +1,4 @@
-package ucp.greves.model;
+package ucp.greves.model.line.canton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import ucp.greves.model.exceptions.TerminusException;
+import ucp.greves.model.line.RailWay;
 
 public class Terminus extends Canton {
 	private HashMap<Integer, RailWay> railWayAvailable;

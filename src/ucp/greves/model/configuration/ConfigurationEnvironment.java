@@ -1,4 +1,4 @@
-package ucp.greves.model;
+package ucp.greves.model.configuration;
 import java.util.HashMap;
 
  public   class ConfigurationEnvironment {

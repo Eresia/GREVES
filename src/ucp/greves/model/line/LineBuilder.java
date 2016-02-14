@@ -1,4 +1,6 @@
-package ucp.greves.model;
+package ucp.greves.model.line;
+
+import ucp.greves.model.configuration.ConfigurationEnvironment;
 
 public class LineBuilder {
 	

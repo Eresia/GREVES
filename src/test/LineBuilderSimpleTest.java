@@ -1,5 +1,7 @@
 package test;
 import ucp.greves.model.*;
+import ucp.greves.model.configuration.ConfigurationEnvironment;
+import ucp.greves.model.line.Line;
 
 import static org.junit.Assert.*;
 
@@ -17,7 +19,7 @@ public class LineBuilderSimpleTest {
 	@Test
 	public void testBuildLine() {
 		ConfigurationEnvironment.getInstance();
-		Line ln = ucp.greves.model.LineBuilder.buildLine(ConfigurationEnvironment.getInstance());
+		Line ln = ucp.greves.model.line.LineBuilder.buildLine(ConfigurationEnvironment.getInstance());
 	}
 
 }

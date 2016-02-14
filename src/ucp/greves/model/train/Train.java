@@ -1,8 +1,11 @@
-package ucp.greves.model;
+package ucp.greves.model.train;
 
 import java.lang.Runnable;
 
+import ucp.greves.model.configuration.Registry;
 import ucp.greves.model.exceptions.TerminusException;
+import ucp.greves.model.line.RoadMap;
+import ucp.greves.model.line.canton.Canton;
 
 public class Train implements Runnable {
 	private int trainID;

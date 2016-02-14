@@ -1,6 +1,10 @@
-package ucp.greves.model;
+package ucp.greves.model.line;
 
 import java.util.ArrayList;
+
+import ucp.greves.model.configuration.Registry;
+import ucp.greves.model.line.canton.Canton;
+import ucp.greves.model.line.canton.Terminus;
 
 public class RailWay {
 	private Terminus terminus;
