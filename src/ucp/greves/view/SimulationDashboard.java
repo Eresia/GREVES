@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 import ucp.greves.model.*;
 import ucp.greves.model.line.Line;
-import ucp.greves.model.line.LineBuilder;
+import ucp.greves.model.line.builder.LineBuilder;
 
 /**
  * @author tliu@u-cergy.fr

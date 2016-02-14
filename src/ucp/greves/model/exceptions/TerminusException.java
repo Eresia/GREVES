@@ -5,4 +5,11 @@ package ucp.greves.model.exceptions;
  */
 public class TerminusException extends Exception {
 
+	public TerminusException(){
+		super();
+	}
+	
+	public TerminusException(String s){
+		super(s);
+	}
 }

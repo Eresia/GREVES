@@ -1,10 +1,12 @@
-package ucp.greves.model.line;
+package ucp.greves.model.line.builder;
 
 import ucp.greves.model.configuration.ConfigurationEnvironment;
+import ucp.greves.model.exceptions.railway.DoubledRailwayException;
+import ucp.greves.model.line.Line;
 
 public class LineBuilder {
 	
-	static public Line buildLine(ConfigurationEnvironment conf) {
+	static public Line buildLine(ConfigurationEnvironment conf) throws DoubledRailwayException {
 	
 		if(conf.getProperty("BUILD_CONFIGURATION") == null){
 			return LineBuilderSimple.BuildLine();

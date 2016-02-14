@@ -1,9 +1,8 @@
 package ucp.greves.model.line;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+
+import ucp.greves.model.exceptions.railway.DoubledRailwayException;
 
 public class Line {
 
@@ -14,8 +13,11 @@ public class Line {
 	}
 
 	public HashMap<Integer, RailWay> getRailWay() {
-
 		return this.railWay;
+	}
+	
+	public RailWay getRailWay(int way){
+		return this.railWay.get(way);
 	}
 
 
@@ -27,10 +29,11 @@ public class Line {
 		return length;
 	}
 	
-	public void addRailWay( RailWay r ){
-		if(! this.railWay.containsKey(r.getId())){
-			this.railWay.put(r.getId(), r);
+	public void addRailWay( RailWay r ) throws DoubledRailwayException{
+		if(this.railWay.containsKey(r.getId())){
+			throw new DoubledRailwayException();
 		}
+		this.railWay.put(r.getId(), r);
 		
 	}
 
