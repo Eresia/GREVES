@@ -1,11 +1,11 @@
 package test;
-import ucp.greves.model.*;
-import ucp.greves.model.configuration.ConfigurationEnvironment;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import ucp.greves.model.configuration.ConfigurationEnvironment;
+import ucp.greves.model.exceptions.PropertyNotFoundException;
 
 public class ConfigurationEnvironmentTest{
 
@@ -24,12 +24,19 @@ public class ConfigurationEnvironmentTest{
 		
 		conf.setProperty("int", b);
 		conf.setProperty("double", c);
-		String a1 = (String)conf.getProperty("string").getValue();
-		assertEquals(a, a1);
-		Integer b1 = (Integer)conf.getProperty("int").getValue();
-		assertEquals(b, b1);
-		Double c1 = (Double)conf.getProperty("double").getValue();
-		assertEquals(c, c1, 0.001);
+		
+		String a1;
+		try {
+			a1 = (String)conf.getProperty("string").getValue();
+			assertEquals(a, a1);
+			Integer b1 = (Integer)conf.getProperty("int").getValue();
+			assertEquals(b, b1);
+			Double c1 = (Double)conf.getProperty("double").getValue();
+			assertEquals(c, c1, 0.001);
+		} catch (PropertyNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

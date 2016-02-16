@@ -1,7 +1,10 @@
 package ucp.greves.model.train;
 
 import ucp.greves.model.ControlLine;
+import ucp.greves.model.configuration.ConfigurationEnvironment;
+import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.configuration.Registry;
+import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.TerminusException;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
@@ -13,14 +16,34 @@ public class Train implements Runnable {
 	private Canton currentCanton;
 
 	private int speed;
+	public final static int SPEED_MAX_DEFAULT = 100;
 	
 	private volatile boolean hasArrived;
 
 	public Train(Canton startCanton, RoadMap map, int speed) {
+		int speedMax = SPEED_MAX_DEFAULT;
+		try {
+			ConfigurationEnvironmentElement speedElement = ConfigurationEnvironment.getInstance().getProperty("train_speed_max");
+			if(!speedElement.getType().equals(Integer.class)){
+				System.err.println("Train speed max has not the right type, default value " + SPEED_MAX_DEFAULT + " used");
+			}
+			else{
+				speedMax = (Integer) speedElement.getValue();
+			}
+		} catch (PropertyNotFoundException e) {
+			System.err.println("Train speed max not defined, default value " + SPEED_MAX_DEFAULT + " used");
+		}
+		
+		if(speed > speedMax){
+			this.speed = speedMax;
+		}
+		else{
+			this.speed = speed;
+		}
+		
 		this.trainID = Registry.register_train(this);
 		currentCanton = startCanton;
 		currentCanton.enter(this);
-		this.speed = speed;
 		this.roadMap = map;
 		hasArrived = false;
 		position = ControlLine.getInstance().getLine().getRailWay(map.getRailwaysIDs().get(0)).getLength();

@@ -1,5 +1,6 @@
 package ucp.greves.model.line.canton;
 
+import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.Registry;
 import ucp.greves.model.exceptions.TerminusException;
 import ucp.greves.model.line.RoadMap;
@@ -39,7 +40,9 @@ public class Canton {
 
 	public synchronized void enter(Train train) {
 		if (occupyingTrain != null) {
-			System.out.println(toString() + " occupied !");
+			if(ConfigurationEnvironment.inDebug()){
+				System.out.println(toString() + " occupied !");
+			}
 			// Train stopped just before canton start point !
 			train.setPosition(getStartPoint() - 1);
 			try {
@@ -54,7 +57,9 @@ public class Canton {
 			train.setPosition(trainPosition + getStartPoint());
 		}
 
-		System.out.println("Canton changed successfully");
+		if(ConfigurationEnvironment.inDebug()){
+			System.out.println("Canton changed successfully");
+		}
 		Canton oldCanton = train.getCurrentCanton();
 		train.setCurrentCanton(this);
 		train.updatePosition();
@@ -67,7 +72,9 @@ public class Canton {
 	public synchronized void exit() {
 		occupyingTrain = null;
 		notify();
-		System.out.println("Canton freed !");
+		if(ConfigurationEnvironment.inDebug()){
+			System.out.println("Canton freed !");
+		}
 	}
 
 	public boolean isFree() {

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<runconfiguration>
+	<property type="integer" name="simulation_duration" value="-1"></property>
+	<property type="string" name="project_title" value="G.R.E.V.E.S"></property>
+	
+	<property type="integer" name="train_speed_max" value="100"></property>
+
+	<property type="boolean" name="debug" value="false"></property>
+</runconfiguration>

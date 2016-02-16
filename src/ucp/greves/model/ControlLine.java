@@ -41,7 +41,6 @@ public class ControlLine {
 		if(line.getRailWay(rails.get(0)) == null){
 			throw new RailWayNotExistException("Impossible to launch the train - the rail way don't exist");
 		}
-		System.out.println(line.getRailWay(rails.get(0)));
 		Train t = new Train(line.getRailWay(rails.get(0)).getFirstCanton(), roads.get(road), speed);
 		trains.add(t);
 		Thread tThread = new Thread(t);
