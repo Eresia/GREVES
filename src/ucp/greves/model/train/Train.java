@@ -5,7 +5,7 @@ import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.configuration.Registry;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
-import ucp.greves.model.exceptions.TerminusException;
+import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
 

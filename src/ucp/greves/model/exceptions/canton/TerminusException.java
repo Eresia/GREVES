@@ -1,4 +1,4 @@
-package ucp.greves.model.exceptions;
+package ucp.greves.model.exceptions.canton;
 
 /**
  * Thrown when a train is on a terminus

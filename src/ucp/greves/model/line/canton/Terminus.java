@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import ucp.greves.model.ControlLine;
-import ucp.greves.model.exceptions.TerminusException;
+import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.line.RailWay;
 import ucp.greves.model.line.RoadMap;
 
