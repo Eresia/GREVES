@@ -117,7 +117,16 @@ public class Train implements Runnable {
 	}
 
 	public void updatePosition() {
-		position -= speed;
+		int startPoint = currentCanton.getStartPoint();
+		int positionGare = currentCanton.getGarePosition();
+		int positionOnCanton = startPoint - position;
+		if(positionOnCanton < positionGare && (positionOnCanton + speed) >= positionGare){
+			position -= (positionGare - positionOnCanton);
+			currentCanton.enterInGare();
+		}
+		else{
+			position -= speed;
+		}
 	}
 
 }
