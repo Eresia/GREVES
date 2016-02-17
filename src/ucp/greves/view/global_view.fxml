@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane id="GridPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="test.Test" alignment="top_center" hgap="10" vgap="30">
+ 	<BorderPane GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
+        <center>
+        	<Text text="VUE GLOBALE">
+        		<font>
+               	 <Font size="30.0"/>
+            	</font>
+            </Text>
+        </center>
+ 	</BorderPane>
+ 	
+ 	<BorderPane id="sandBox" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2">
+       
+ 	</BorderPane> 		
+ 
+</GridPane>
