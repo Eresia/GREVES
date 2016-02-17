@@ -1,12 +1,10 @@
 package ucp.greves.model.line.canton;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
-import ucp.greves.model.ControlLine;
 import ucp.greves.model.exceptions.canton.TerminusException;
+import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RailWay;
 import ucp.greves.model.line.RoadMap;
 
@@ -41,7 +39,7 @@ public class Terminus extends Canton {
 
 	@Override
 	public Canton getNextCanton(RoadMap road) throws TerminusException {
-		if (this.nextRailWay == null || ControlLine.getInstance().getLine().getRailWay(road.getLastRailWay()).getTerminus() == this) {
+		if (this.nextRailWay == null || Line.getRailWays().get(road.getLastRailWay()).getTerminus() == this) {
 			throw new TerminusException();
 		} else {
 			return this.nextRailWay.getFirstCanton();

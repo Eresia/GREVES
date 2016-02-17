@@ -1,9 +1,4 @@
 package ucp.greves.view;
-import demothreading.Train;
-
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -11,15 +6,14 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import ucp.greves.model.*;
-import ucp.greves.model.line.Line;
+import demothreading.Train;
 import ucp.greves.model.line.builder.LineBuilder;
 
 /**
  * @author tliu@u-cergy.fr
  */
 public class SimulationDashboard extends JPanel {
-	private Line line;
+	//private Line_a line;
 	private List<Train> trains = new ArrayList<Train>();
 	private static final int START_X = 20;
 	private static final int START_Y = 150;
@@ -68,13 +62,13 @@ public class SimulationDashboard extends JPanel {
 //		}
 	}
 
-	public Line getLine() {
+	/*public Line_a getLine() {
 		return line;
 	}
 
-	public void setLine(Line line) {
+	public void setLine(Line_a line) {
 		this.line = line;
-	}
+	}*/
 
 	public List<Train> getTrains() {
 		return trains;

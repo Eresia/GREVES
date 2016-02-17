@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<runconfiguration>
+	<line>
+		<railway id="0">
+			<canton size="100">
+				<gare name="gareOne" waittime="3000"></gare>
+			</canton>
+			<canton size="130">
+			</canton>
+			<canton size="80">
+				<gare name="gareTwo"></gare>
+			</canton>
+			<canton size="100">
+			</canton>
+		</railway>
+
+		<railway id="1">
+			<canton size="110">
+			</canton>
+			<canton size="120">
+				<gare name="gareThree" waittime="2000">
+				</gare>
+			</canton>
+			<canton size="100">
+			</canton>
+			<canton size="100">
+			</canton>
+			<canton size="90">
+			</canton>
+		</railway>
+	</line>
+
+	<connexions>
+		<connect from="0" to="1"></connect>
+		<connect from="1" to="0"></connect>
+	</connexions>
+</runconfiguration>

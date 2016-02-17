@@ -12,10 +12,9 @@ import ucp.greves.model.line.station.Station;
 
 public class LineBuilderSimple {
 	
-	static public Line BuildLine() throws DoubledRailwayException{
-		Line ln = new Line();
-		RailWay railWay = new RailWay();
-		RailWay railWay2 = new RailWay();
+	static public void BuildLine() throws DoubledRailwayException{
+		RailWay railWay = new RailWay(0);
+		RailWay railWay2 = new RailWay(1);
 		Random rn = new Random();
 		while(railWay.getLength() < 1000){
 			addCanton(railWay, rn);
@@ -26,13 +25,8 @@ public class LineBuilderSimple {
 		railWay.connectTo(railWay2);
 		railWay2.connectTo(railWay);
 		
-		ln.addRailWay(railWay);
-		ln.addRailWay(railWay2);
-		
-		
-		
-		
-		return ln;
+		Line.register_railway(railWay);
+		Line.register_railway(railWay2);
 	}
 	
 	private static void addCanton(RailWay rw, Random rn){

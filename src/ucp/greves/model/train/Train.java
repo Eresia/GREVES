@@ -3,9 +3,9 @@ package ucp.greves.model.train;
 import ucp.greves.model.ControlLine;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
-import ucp.greves.model.configuration.Registry;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.TerminusException;
+import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
 
@@ -41,12 +41,12 @@ public class Train implements Runnable {
 			this.speed = speed;
 		}
 		
-		this.trainID = Registry.register_train(this);
+		this.trainID = Line.register_train(this);
 		currentCanton = startCanton;
 		currentCanton.enter(this);
 		this.roadMap = map;
 		hasArrived = false;
-		position = ControlLine.getInstance().getLine().getRailWay(map.getRailwaysIDs().get(0)).getLength();
+		position = Line.getRailWays().get(map.getRailwaysIDs().get(0)).getLength();
 	}
 
 	public int getTrainID() {

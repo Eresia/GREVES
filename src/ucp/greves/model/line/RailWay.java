@@ -2,7 +2,6 @@ package ucp.greves.model.line;
 
 import java.util.ArrayList;
 
-import ucp.greves.model.configuration.Registry;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.canton.Terminus;
 
@@ -11,9 +10,10 @@ public class RailWay {
 	private int id;
 	private ArrayList<Canton> canton_list;
 
-	public RailWay(){
+	public RailWay(int id){
 		this.terminus = new Terminus(1);
-		this.id = Registry.register_railway();
+		//this.id = Registry.register_railway();
+		this.id = id;
 		this.canton_list = new ArrayList<Canton>();
 	}
 	

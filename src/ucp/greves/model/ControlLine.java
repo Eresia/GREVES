@@ -15,12 +15,10 @@ import ucp.greves.model.train.Train;
 public class ControlLine {
 	
 	private static ControlLine instance = new ControlLine();
-	private Line line;
 	private HashMap<String, RoadMap> roads;
 	
 	private ControlLine(){
 		roads = new HashMap<String, RoadMap>();
-		line = null;
 	}
 	
 	public static ControlLine getInstance(){
@@ -36,20 +34,12 @@ public class ControlLine {
 		if(rails.size() == 0){
 			throw new EmptyRoadMapException("Impossible to launch the train - the road is empty");
 		}
-		if(line.getRailWay(rails.get(0)) == null){
+		if(Line.getRailWays().get(rails.get(0)) == null){
 			throw new RailWayNotExistException("Impossible to launch the train - the rail way don't exist");
 		}
-		Train t = new Train(line.getRailWay(rails.get(0)).getFirstCanton(), roads.get(road), speed);
+		Train t = new Train(Line.getRailWays().get(rails.get(0)).getFirstCanton(), roads.get(road), speed);
 		Thread tThread = new Thread(t);
 		tThread.start();
-	}
-	
-	public Line getLine(){
-		return line;
-	}
-	
-	public void setLine(Line line){
-		this.line = line;
 	}
 	
 	public void addRoad(String name, RoadMap road){
@@ -65,8 +55,11 @@ public class ControlLine {
 	}
 	
 	private void verifyInformation() throws BadControlInformationException{
-		if(line == null){
-			throw new BadControlInformationException("Line is not set");
+		if(Line.getRailWays().size() == 0){
+			throw new BadControlInformationException("No RailWay");
+		}
+		if(Line.getCantons().size() == 0){
+			throw new BadControlInformationException("No Canton");
 		}
 		if(roads.size() == 0){
 			throw new BadControlInformationException("No road");

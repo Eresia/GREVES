@@ -1,9 +1,9 @@
 package ucp.greves.model.line.canton;
 
 import ucp.greves.model.configuration.ConfigurationEnvironment;
-import ucp.greves.model.configuration.Registry;
 import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.station.StationNotFoundException;
+import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.station.StationDecorator;
 import ucp.greves.model.line.station.HasStation;
@@ -23,13 +23,13 @@ public class Canton {
 	private int positionStation;
 
 	public Canton(Canton nextCanton, int length) {
-		this.id = Registry.register_canton(this);
+		this.id = Line.register_canton(this);
 		this.nextCanton = nextCanton;
 		buildCanton(length);
 	}
 
 	protected Canton(int length) {
-		this.id = Registry.register_canton(this);
+		this.id = Line.register_canton(this);
 		buildCanton(length);
 	}
 	
