@@ -1,13 +1,18 @@
-package ucp.greves.model.line.gare;
+package ucp.greves.model.line.station;
 
-public class Gare {
+public class Station {
 	
+	private int id;
 	private String name;
 	private int waitTime;
 	
-	public Gare(String name, int waitTime){
+	public Station(String name, int waitTime){
 		this.name = name;
 		this.waitTime = waitTime;
+	}
+	
+	public int getId(){
+		return id;
 	}
 	
 	public String getName(){

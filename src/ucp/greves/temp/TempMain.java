@@ -1,8 +1,9 @@
 package ucp.greves.temp;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import ucp.greves.model.ControlLine;
+import ucp.greves.model.configuration.Registry;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.canton.ManyTrainInSameCantonException;
 import ucp.greves.model.exceptions.canton.TerminusException;
@@ -34,10 +35,12 @@ public class TempMain {
 			control.launchTrain(rm.getName(), 10);
 			boolean notArrived = true;
 			while (notArrived) {
-				printLine(line, control.getTrains());
+				printLine(line, Registry.getTrainRegistry());
 				Thread.sleep(100);
 				notArrived = false;
-				for (Train t : control.getTrains()) {
+				HashMap<Integer, Train> trains = Registry.getTrainRegistry();
+				for (Integer tKey : trains.keySet()) {
+					Train t = trains.get(tKey);
 					if (!t.hasArrived()) {
 						notArrived = true;
 					}
@@ -49,14 +52,15 @@ public class TempMain {
 		}
 	}
 
-	public static void printTrainInLine(Line line, ArrayList<Train> trains) {
-		for (Train t : trains) {
+	public static void printTrainInLine(Line line, HashMap<Integer, Train> trains) {
+		for (Integer tKey : trains.keySet()) {
+			Train t = trains.get(tKey);
 			System.out.println(
 					"Train " + t.getTrainID() + " - Pos : " + t.getPosition() + ", " + t.getCurrentCanton().toString());
 		}
 	}
 
-	public static void printLine(Line line, ArrayList<Train> trains) throws ManyTrainInSameCantonException {
+	public static void printLine(Line line, HashMap<Integer, Train> trains) throws ManyTrainInSameCantonException {
 		for (Integer rwI : line.getRailWay().keySet()) {
 			RailWay rw = line.getRailWay(rwI);
 			Canton canton = null;
@@ -71,7 +75,8 @@ public class TempMain {
 					}
 				}
 				String c = "=";
-				for (Train t : trains) {
+				for (Integer tKey : trains.keySet()) {
+					Train t = trains.get(tKey);
 					if(!t.hasArrived()){
 						if (t.getCurrentCanton().equals(canton)) {
 							if (c.equals("=")) {

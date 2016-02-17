@@ -1,14 +1,14 @@
-package ucp.greves.model.line.gare;
+package ucp.greves.model.line.station;
 
 import java.util.ArrayList;
 
 import ucp.greves.model.train.Train;
 
-public class DepositeryGare extends Gare{
+public class DepositeryStation extends Station{
 
 	ArrayList<Train> stockTrains;
 	
-	public DepositeryGare(String name, int waitTime) {
+	public DepositeryStation(String name, int waitTime) {
 		super(name, waitTime);
 		stockTrains = new ArrayList<Train>();
 	}

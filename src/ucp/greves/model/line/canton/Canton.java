@@ -3,12 +3,12 @@ package ucp.greves.model.line.canton;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.Registry;
 import ucp.greves.model.exceptions.canton.TerminusException;
-import ucp.greves.model.exceptions.gare.GareNotFoundException;
+import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.RoadMap;
-import ucp.greves.model.line.gare.Gare;
-import ucp.greves.model.line.gare.GareDecorator;
-import ucp.greves.model.line.gare.HasGare;
-import ucp.greves.model.line.gare.HasNotGare;
+import ucp.greves.model.line.station.StationDecorator;
+import ucp.greves.model.line.station.HasStation;
+import ucp.greves.model.line.station.HasNotStation;
+import ucp.greves.model.line.station.Station;
 import ucp.greves.model.train.Train;
 
 public class Canton {
@@ -19,8 +19,8 @@ public class Canton {
 
 	private Canton nextCanton;
 
-	private GareDecorator gare;
-	private int positionGare;
+	private StationDecorator station;
+	private int positionStation;
 
 	public Canton(Canton nextCanton, int length) {
 		this.id = Registry.register_canton(this);
@@ -35,8 +35,8 @@ public class Canton {
 	
 	private void buildCanton(int length){
 		this.length = length;
-		gare = new HasNotGare();
-		positionGare = -1;
+		station = new HasNotStation();
+		positionStation = -1;
 	}
 
 	public Canton getNextCanton(RoadMap road) throws TerminusException {
@@ -107,28 +107,28 @@ public class Canton {
 		return nextCanton.getStartPoint() + 1;
 	}
 	
-	public void enterInGare(){
+	public void enterInStation(){
 		try {
-			gare.waitInGare();
+			station.waitInStation();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public int getGarePosition(){
-		return positionGare;
+	public int getStationPosition(){
+		return positionStation;
 	}
 
-	public void setGare(Gare gare, int position) {
-		this.gare = new HasGare(gare);
+	public void setStation(Station station, int position) {
+		this.station = new HasStation(station);
 	}
 
-	public boolean hasGare() {
-		return gare.hasGare();
+	public boolean hasStation() {
+		return station.hasStation();
 	}
 	
-	public Gare getGare() throws GareNotFoundException{
-		return gare.getGare();
+	public Station getStation() throws StationNotFoundException{
+		return station.getStation();
 	}
 
 	@Override

@@ -17,12 +17,10 @@ public class ControlLine {
 	private static ControlLine instance = new ControlLine();
 	private Line line;
 	private HashMap<String, RoadMap> roads;
-	private ArrayList<Train> trains;
 	
 	private ControlLine(){
 		roads = new HashMap<String, RoadMap>();
 		line = null;
-		trains = new ArrayList<Train>();
 	}
 	
 	public static ControlLine getInstance(){
@@ -42,7 +40,6 @@ public class ControlLine {
 			throw new RailWayNotExistException("Impossible to launch the train - the rail way don't exist");
 		}
 		Train t = new Train(line.getRailWay(rails.get(0)).getFirstCanton(), roads.get(road), speed);
-		trains.add(t);
 		Thread tThread = new Thread(t);
 		tThread.start();
 	}
@@ -65,10 +62,6 @@ public class ControlLine {
 	
 	public RoadMap getRoad(String name){
 		return roads.get(name);
-	}
-	
-	public ArrayList<Train> getTrains(){
-		return trains;
 	}
 	
 	private void verifyInformation() throws BadControlInformationException{
