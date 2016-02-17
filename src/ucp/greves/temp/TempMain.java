@@ -74,12 +74,18 @@ public class TempMain {
 						e.printStackTrace();
 					}
 				}
-				String c = "=";
+				String c;
+				if(canton.hasStation()){
+					c = "G";
+				}
+				else{
+					c = "=";
+				}
 				for (Integer tKey : trains.keySet()) {
 					Train t = trains.get(tKey);
 					if(!t.hasArrived()){
 						if (t.getCurrentCanton().equals(canton)) {
-							if (c.equals("=")) {
+							if (c.equals("=") || c.equals("G")) {
 								c = String.valueOf(t.getTrainID());
 							} else {
 								throw new ManyTrainInSameCantonException("Train " + c + " and " + t.getTrainID() + "are in the same canton " + canton.getId());

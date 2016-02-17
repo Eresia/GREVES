@@ -2,6 +2,8 @@ package ucp.greves.model.configuration;
 
 import java.util.HashMap;
 
+import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
+import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.Station;
 import ucp.greves.model.train.Train;
@@ -11,7 +13,6 @@ public class Registry {
 	private static int canton_id_register = 0 ;
 	private static int railway_id_register = 0 ;
 	private static int train_id_register = 0;
-	private static int station_id_register = 0;
 	private static HashMap<Integer, Canton> canton_registry = new HashMap<Integer, Canton>();
 	private static HashMap<Integer, Train> train_registry = new HashMap<Integer, Train>();
 	private static HashMap<Integer, Station> station_registry = new HashMap<Integer, Station>();
@@ -33,10 +34,15 @@ public class Registry {
 		return train_id_register;
 	}
 	
-	public synchronized static int register_station(Station station) {
-		station_id_register++;
-		station_registry.put(station_id_register, station);
-		return station_id_register;
+	public synchronized static int register_station(int id, Station station) throws CantonHasAlreadyStationException, CantonNotExistException{
+		if(!canton_registry.containsKey(id)){
+			throw new CantonNotExistException("Canton " + id + " already exist");
+		}
+		if(station_registry.containsKey(id)){
+			throw new CantonHasAlreadyStationException("Canton " + id + " has already the station " + station_registry.get(id).getName());
+		}
+		station_registry.put(id, station);
+		return id;
 	}
 	
 	public static HashMap<Integer, Canton> getCantonsRegistry(){
