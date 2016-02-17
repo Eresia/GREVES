@@ -1,10 +1,10 @@
 package ucp.greves.model.train;
 
-import ucp.greves.model.ControlLine;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.TerminusException;
+import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
@@ -16,43 +16,39 @@ public class Train implements Runnable {
 	private Canton currentCanton;
 
 	private int speed;
-	public final static int SPEED_MAX_DEFAULT = 100;
-	
+	private final int speedDefault;
+
+	private final static int SPEED_MAX_DEFAULT = 100;
+	private final static int SPEED_STATION_DEFAULT = 15;
+	private final static int DISTANCE_TO_STATION_DEFAULT = 100;
+
+	private final static int SPEED_MAX = setSpeedMax();
+	private final static int SPEED_STATION = setSpeedStation();
+	private final static int DISTANCE_TO_STATION = setDistanceToStation();
+
 	private volatile boolean hasArrived;
 
 	public Train(Canton startCanton, RoadMap map, int speed) {
-		int speedMax = SPEED_MAX_DEFAULT;
-		try {
-			ConfigurationEnvironmentElement speedElement = ConfigurationEnvironment.getInstance().getProperty("train_speed_max");
-			if(!speedElement.getType().equals(Integer.class)){
-				System.err.println("Train speed max has not the right type, default value " + SPEED_MAX_DEFAULT + " used");
-			}
-			else{
-				speedMax = (Integer) speedElement.getValue();
-			}
-		} catch (PropertyNotFoundException e) {
-			System.err.println("Train speed max not defined, default value " + SPEED_MAX_DEFAULT + " used");
-		}
-		
-		if(speed > speedMax){
-			this.speed = speedMax;
-		}
-		else{
+		if (speed > SPEED_MAX) {
+			this.speed = SPEED_MAX;
+			this.speedDefault = SPEED_MAX;
+		} else {
 			this.speed = speed;
+			this.speedDefault = speed;
 		}
-		
+
 		this.trainID = Line.register_train(this);
 		currentCanton = startCanton;
-		currentCanton.enter(this);
 		this.roadMap = map;
 		hasArrived = false;
 		position = Line.getRailWays().get(map.getRailwaysIDs().get(0)).getLength();
+		currentCanton.enter(this);
 	}
 
 	public int getTrainID() {
 		return this.trainID;
 	}
-	
+
 	public void setTrainID(int value) {
 		this.trainID = value;
 	}
@@ -89,7 +85,7 @@ public class Train implements Runnable {
 			} catch (InterruptedException ie) {
 				System.err.println(ie.getMessage());
 			}
-			
+
 			if (position - speed <= currentCanton.getEndPoint()) {
 				try {
 					Canton nextCanton = currentCanton.getNextCanton(roadMap);
@@ -99,15 +95,14 @@ public class Train implements Runnable {
 					hasArrived = true;
 					position = 0;
 				}
-			} 
-			else{
+			} else {
 				updatePosition();
 			}
 		}
 		currentCanton.exit();
 	}
-	
-	public boolean hasArrived(){
+
+	public boolean hasArrived() {
 		return hasArrived;
 	}
 
@@ -120,13 +115,74 @@ public class Train implements Runnable {
 		int startPoint = currentCanton.getStartPoint();
 		int positionStation = currentCanton.getStationPosition();
 		int positionOnCanton = startPoint - position;
-		if(positionOnCanton < positionStation && (positionOnCanton + speed) >= positionStation){
-			position -= (positionStation - positionOnCanton);
-			currentCanton.enterInStation();
+
+		try {
+			boolean crossStation = roadMap.cross(currentCanton.getStation().getName());
+			if (positionOnCanton < positionStation && (positionOnCanton + DISTANCE_TO_STATION) >= positionStation) {
+				speed = SPEED_STATION;
+			} else {
+				speed = speedDefault;
+			}
+			if (crossStation) {
+				if (positionOnCanton < positionStation && (positionOnCanton + speed) >= positionStation) {
+					currentCanton.enterInStation();
+				}
+			}
+		} catch (StationNotFoundException e) {}
+
+		position -= speed;
+	}
+
+	private static int setSpeedMax() {
+		int s = SPEED_MAX_DEFAULT;
+		try {
+			ConfigurationEnvironmentElement speedElement = ConfigurationEnvironment.getInstance()
+					.getProperty("train_speed_max");
+			if (!speedElement.getType().equals(Integer.class)) {
+				System.err.println(
+						"Train speed max has not the right type, default value " + SPEED_MAX_DEFAULT + " used");
+			} else {
+				s = (Integer) speedElement.getValue();
+			}
+		} catch (PropertyNotFoundException e) {
+			System.err.println("Train speed max not defined, default value " + SPEED_MAX_DEFAULT + " used");
 		}
-		else{
-			position -= speed;
+		return s;
+	}
+
+	private static int setSpeedStation() {
+		int s = SPEED_STATION_DEFAULT;
+		try {
+			ConfigurationEnvironmentElement speedElement = ConfigurationEnvironment.getInstance()
+					.getProperty("train_speed_station");
+			if (!speedElement.getType().equals(Integer.class)) {
+				System.err.println(
+						"Train speed station has not the right type, default value " + SPEED_STATION_DEFAULT + " used");
+			} else {
+				s = (Integer) speedElement.getValue();
+			}
+		} catch (PropertyNotFoundException e) {
+			System.err.println("Train speed station not defined, default value " + SPEED_STATION_DEFAULT + " used");
 		}
+		return s;
+	}
+
+	private static int setDistanceToStation() {
+		int d = DISTANCE_TO_STATION_DEFAULT;
+		try {
+			ConfigurationEnvironmentElement speedElement = ConfigurationEnvironment.getInstance()
+					.getProperty("slower_distance_to_station");
+			if (!speedElement.getType().equals(Integer.class)) {
+				System.err.println("Distance to station has not the right type, default value "
+						+ DISTANCE_TO_STATION_DEFAULT + " used");
+			} else {
+				d = (Integer) speedElement.getValue();
+			}
+		} catch (PropertyNotFoundException e) {
+			System.err
+					.println("Distance to station not defined, default value " + DISTANCE_TO_STATION_DEFAULT + " used");
+		}
+		return d;
 	}
 
 }

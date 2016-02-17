@@ -2,8 +2,11 @@
 <runconfiguration>
 	<property type="integer" name="simulation_duration" value="-1"></property>
 	<property type="string" name="project_title" value="G.R.E.V.E.S"></property>
-	
+
 	<property type="integer" name="train_speed_max" value="100"></property>
+	<property type="integer" name="train_speed_station" value="15"></property>
+	<property type="integer" name="slower_distance_to_station" value="100"></property>
+
 	<property type="integer" name="station_wait_time" value="1000"></property>
 
 	<property type="boolean" name="debug" value="false"></property>

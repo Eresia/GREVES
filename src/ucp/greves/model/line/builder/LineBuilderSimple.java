@@ -4,6 +4,8 @@ import java.util.Random;
 
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
+import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
+import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RailWay;
@@ -12,7 +14,7 @@ import ucp.greves.model.line.station.Station;
 
 public class LineBuilderSimple {
 	
-	static public void BuildLine() throws DoubledRailwayException{
+	static public void BuildLine() throws DoubledRailwayException, CantonHasAlreadyStationException, CantonNotExistException{
 		RailWay railWay = new RailWay(0);
 		RailWay railWay2 = new RailWay(1);
 		Random rn = new Random();
@@ -29,7 +31,7 @@ public class LineBuilderSimple {
 		Line.register_railway(railWay2);
 	}
 	
-	private static void addCanton(RailWay rw, Random rn){
+	private static void addCanton(RailWay rw, Random rn) throws CantonHasAlreadyStationException, CantonNotExistException{
 		rw.addCanton(rn.nextInt(100)+20);
 		Canton canton = rw.getFirstCanton();
 		int hasGare = rn.nextInt(5);
@@ -41,7 +43,7 @@ public class LineBuilderSimple {
 				e.printStackTrace();
 				waitTime = 500;
 			}
-			canton.setStation(new Station("TestSTation" + canton.getId(), waitTime), (canton.getLength()/2));
+			canton.setStation(new Station(canton.getId(), "TestSTation" + canton.getId(), waitTime), (canton.getLength()/2));
 		}
 	}
 	

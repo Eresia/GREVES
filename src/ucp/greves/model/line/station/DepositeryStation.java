@@ -2,14 +2,16 @@ package ucp.greves.model.line.station;
 
 import java.util.ArrayList;
 
+import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
+import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.train.Train;
 
 public class DepositeryStation extends Station{
 
 	ArrayList<Train> stockTrains;
 	
-	public DepositeryStation(String name, int waitTime) {
-		super(name, waitTime);
+	public DepositeryStation(int canton, String name, int waitTime) throws CantonHasAlreadyStationException, CantonNotExistException {
+		super(canton, name, waitTime);
 		stockTrains = new ArrayList<Train>();
 	}
 	
