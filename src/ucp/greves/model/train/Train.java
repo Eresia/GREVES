@@ -1,5 +1,7 @@
 package ucp.greves.model.train;
 
+import java.util.Observable;
+
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
@@ -9,7 +11,7 @@ import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
 
-public class Train implements Runnable {
+public class Train extends Observable implements Runnable {
 	private int trainID;
 	private RoadMap roadMap;
 	private volatile int position = 0;
@@ -98,6 +100,8 @@ public class Train implements Runnable {
 			} else {
 				updatePosition();
 			}
+			this.setChanged();
+			this.notifyObservers();
 		}
 		currentCanton.exit();
 	}
@@ -131,6 +135,7 @@ public class Train implements Runnable {
 		} catch (StationNotFoundException e) {}
 
 		position -= speed;
+		this.setChanged();
 	}
 
 	private static int setSpeedMax() {

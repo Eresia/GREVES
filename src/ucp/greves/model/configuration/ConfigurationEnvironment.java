@@ -8,7 +8,7 @@ public class ConfigurationEnvironment {
 	private HashMap<String, ConfigurationEnvironmentElement> configurationAttribute;
 	
 	private final static String CONFIG_DEFAULT = "config_default.xml";
-	private final static boolean DEBUG_DEFAULT = false;
+	private final static boolean DEBUG_DEFAULT = true;
 
 	private static ConfigurationEnvironment instance = new ConfigurationEnvironment();
 

@@ -42,7 +42,7 @@ public class ConfigurationEnvironmentBuilderXML {
 					break;
 				case "boolean":
 					String bool = (el.getAttribute("value").toLowerCase());
-					if (bool == "true" || bool == "1") {
+					if (bool.equalsIgnoreCase("true") || bool.equalsIgnoreCase("1")) {
 						configuration.setProperty(el.getAttribute("name").toUpperCase(), true);
 					} else {
 						configuration.setProperty(el.getAttribute("name").toUpperCase(), false);

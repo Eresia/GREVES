@@ -1,5 +1,7 @@
 package ucp.greves.model.line.canton;
 
+import java.util.Observable;
+
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.station.StationNotFoundException;
@@ -11,7 +13,7 @@ import ucp.greves.model.line.station.HasNotStation;
 import ucp.greves.model.line.station.Station;
 import ucp.greves.model.train.Train;
 
-public class Canton {
+public class Canton extends Observable {
 
 	protected int id;
 	protected int length;
@@ -79,7 +81,8 @@ public class Canton {
 
 		oldCanton.exit();
 		occupyingTrain = train;
-
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public synchronized void exit() {
@@ -88,6 +91,8 @@ public class Canton {
 		if (ConfigurationEnvironment.inDebug()) {
 			System.out.println("Canton freed !");
 		}
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public boolean isFree() {
