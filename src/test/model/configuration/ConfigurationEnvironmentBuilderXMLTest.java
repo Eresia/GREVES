@@ -1,4 +1,4 @@
-package test;
+package test.model.configuration;
 
 import static org.junit.Assert.*;
 import ucp.greves.model.*;
