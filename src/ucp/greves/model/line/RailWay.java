@@ -56,6 +56,22 @@ public class RailWay {
 		this.terminus.AddNextRailWay(r);
 		this.terminus.selectNextRailWay(r.id);
 	}
+	public ArrayList<Integer> getStartsPoints(){
+		ArrayList<Integer>	temp= new ArrayList<Integer>();
+
+		for(Canton c : canton_list){
+			temp.add(c.getStartPoint());
+		}
+		return temp;
+	}
+	public ArrayList<Integer> getIdsCantonsStart2End(){
+		ArrayList<Integer>  temp = new ArrayList<Integer>();
+		for(int i = canton_list.size() - 1 ; i >=0 ; i--){
+			temp.add(canton_list.get(i).getId());
+		}
+		temp.add(this.terminus.getId());
+		return temp;
+	}
 	
 	
 	// public Canton getCantonByPosition(int position)throws TerminusException {

@@ -2,13 +2,19 @@ package ucp.greves.model.line.builder;
 
 import java.util.Random;
 
+import ucp.greves.model.ControlLine;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
+import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
+import ucp.greves.model.exceptions.railway.RailWayNotExistException;
+import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
+import ucp.greves.model.exceptions.roadmap.RoadMapHaveAlreadyStationException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RailWay;
+import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.Station;
 
@@ -29,6 +35,37 @@ public class LineBuilderSimple {
 		
 		Line.register_railway(railWay);
 		Line.register_railway(railWay2);
+		
+		
+		
+		
+		ControlLine control = ControlLine.getInstance();
+
+		RoadMap rm = new RoadMap("test");
+		rm.addRailWay(0);
+		rm.addRailWay(1);
+		for(Integer s : Line.getStations().keySet()){
+			/*int r = rn.nextInt(2);
+			if(r == 1){
+				System.out.println(s);
+				rm.addStation(Line.getStations().get(s).getName());
+			}*/
+			try {
+				rm.addStation(Line.getStations().get(s).getName());
+				control.addRoad(rm.getName(), rm);
+				control.launchTrain(rm.getName(), 60);
+				control.launchTrain(rm.getName(), 80);
+				control.launchTrain(rm.getName(), 50);
+				control.launchTrain(rm.getName(), 10);
+				
+			} catch ( BadControlInformationException | BadRoadMapException | RailWayNotExistException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		
+		
 	}
 	
 	private static void addCanton(RailWay rw, Random rn) throws CantonHasAlreadyStationException, CantonNotExistException{
