@@ -29,8 +29,8 @@ public class GlobalView extends Application{
 	}
 	
 	public void modify(BorderPane pane){ //You can make test here
-		Text text = new Text("COUCOU!!!"); //Just an example
-	    pane.getChildren().add(text);
+		//Text text = new Text("COUCOU!!!"); //Just an example
+	    //pane.getChildren().add(text);
 	    LineView lv = new LineView();
 	    pane.getChildren().add(lv);
 	}

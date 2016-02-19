@@ -6,19 +6,38 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane id="GridPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="test.Test" alignment="top_center" hgap="10" vgap="30">
- 	<BorderPane GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
+<GridPane id="GridPane" prefHeight="500" prefWidth="600" xmlns:fx="http://javafx.com/fxml" fx:controller="test.Test" alignment="center" hgap="10" vgap="20">
+ 	<BorderPane GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="3" >
         <center>
         	<Text text="VUE GLOBALE">
         		<font>
-               	 <Font size="30.0"/>
+               	 <Font size="40.0"/>
             	</font>
             </Text>
         </center>
  	</BorderPane>
  	
- 	<BorderPane id="sandBox" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2">
+ 	<BorderPane prefHeight="200.0" id="sandBox" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="3">
        
- 	</BorderPane> 		
+ 	</BorderPane>
+ 	
+ 	<Button GridPane.columnIndex="0" GridPane.rowIndex="3" text="Ajouter un train" prefWidth="180"/>
+ 	
+ 	<Button GridPane.columnIndex="2" GridPane.rowIndex="3" text="Créer un ralentissement" prefWidth="180"/>
+ 	
+ 	<Button GridPane.columnIndex="0" GridPane.rowIndex="4" text="Supprimer un train" prefWidth="180"/>
+ 	
+ 	<Button GridPane.columnIndex="2" GridPane.rowIndex="4" text="Bloquer un canton" prefWidth="180"/>
+ 	
+ 	<Slider id="speed" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="3" min="0" max="100"
+ 	value="50" showTickLabels="true" showTickMarks="true" minorTickCount="5" majorTickUnit="50" blockIncrement="5"/>
+ 	
+ 	<BorderPane GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="3" prefWidth="400">
+ 		<Text  text="Modifier la vitesse des trains" x="75">
+ 			<font>
+               	 <Font size="15"/>
+            </font>
+    	</Text>
+ 	</BorderPane>
  
 </GridPane>
