@@ -1,0 +1,11 @@
+{
+	"properties" : {
+		"simulation_duration" : -1,
+		"project_title" : "G.R.E.V.E.S.",
+		"train_speed_max" : 100,
+		"train_speed_station" : 15,
+		"slower_distance_to_station" : 100,
+		"station_wait_time" : 1000,
+		"debug" : false
+	}
+}
