@@ -1,48 +1,21 @@
 package ucp.greves.temp;
 
 import java.util.HashMap;
-import java.util.Random;
 
-import ucp.greves.model.ControlLine;
-import ucp.greves.model.exceptions.BadControlInformationException;
-import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
-import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.canton.ManyTrainInSameCantonException;
 import ucp.greves.model.exceptions.canton.TerminusException;
-import ucp.greves.model.exceptions.railway.DoubledRailwayException;
-import ucp.greves.model.exceptions.railway.RailWayNotExistException;
-import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RailWay;
-import ucp.greves.model.line.RoadMap;
-import ucp.greves.model.line.builder.LineBuilderSimple;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.canton.Terminus;
 import ucp.greves.model.train.Train;
 
-public class TempMain {
-
-	public static void main(String[] args) {
+public class PrintConsole extends Thread{
+	
+	
+	@Override
+	public void run() {
 		try {
-			LineBuilderSimple.BuildLine();
-			ControlLine control = ControlLine.getInstance();
-			Random rn = new Random();
-			RoadMap rm = new RoadMap("test");
-			rm.addRailWay(0);
-			rm.addRailWay(1);
-			for(Integer s : Line.getStations().keySet()){
-				/*int r = rn.nextInt(2);
-				if(r == 1){
-					System.out.println(s);
-					rm.addStation(Line.getStations().get(s).getName());
-				}*/
-				rm.addStation(Line.getStations().get(s).getName());
-			}
-			control.addRoad(rm.getName(), rm);
-			control.launchTrain(rm.getName(), 60);
-			control.launchTrain(rm.getName(), 80);
-			control.launchTrain(rm.getName(), 50);
-			control.launchTrain(rm.getName(), 10);
 			boolean notArrived = true;
 			while (notArrived) {
 				printLine(Line.getTrains());
@@ -56,13 +29,12 @@ public class TempMain {
 					}
 				}
 			}
-		} catch (DoubledRailwayException | BadRoadMapException | RailWayNotExistException
-				| BadControlInformationException | InterruptedException | ManyTrainInSameCantonException | CantonHasAlreadyStationException | CantonNotExistException e) {
+		} catch (InterruptedException | ManyTrainInSameCantonException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static void printTrainInLine(HashMap<Integer, Train> trains) {
+	public void printTrainInLine(HashMap<Integer, Train> trains) {
 		for (Integer tKey : trains.keySet()) {
 			Train t = trains.get(tKey);
 			System.out.println(
@@ -70,7 +42,7 @@ public class TempMain {
 		}
 	}
 
-	public static void printLine(HashMap<Integer, Train> trains) throws ManyTrainInSameCantonException {
+	public void printLine(HashMap<Integer, Train> trains) throws ManyTrainInSameCantonException {
 		for (Integer rwI : Line.getRailWays().keySet()) {
 			RailWay rw = Line.getRailWays().get(rwI);
 			Canton canton = null;
