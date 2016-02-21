@@ -3,7 +3,21 @@ package ucp.greves.model.configuration;
 import java.util.HashMap;
 
 import ucp.greves.model.exceptions.PropertyNotFoundException;
-
+/**
+ * As the name implies, this class has for aim to
+ * set the configuration of the environment.
+ * 
+ * Configurations are saved in .xml files and determine several variables such as:
+ *  - Duration of simulation.
+ *  - Max speed of trains.
+ *  - Speed of trains when near a station.
+ *  - Distance from a station at which a train has to slow down.
+ *  - The time a train stays in a station.
+ *  - Enable/Disable DEBUG mode.
+ * 
+ * @author	REGNIER Antoine
+ *
+ */
 public class ConfigurationEnvironment {
 	private HashMap<String, ConfigurationEnvironmentElement> configurationAttribute;
 	
@@ -12,15 +26,42 @@ public class ConfigurationEnvironment {
 
 	private static ConfigurationEnvironment instance = new ConfigurationEnvironment();
 
+	/**
+	 * Initialise the environment with the default configuration.
+	 * Default configuration is :
+	 *  - Simulation duration = -1
+	 *  - Train max speed = 100
+	 *  - Speed near station = 15
+	 *  - Distance to slow down = 100
+	 *  - Time a train stays in a station = 1000
+	 *  - DEBUG mode = false
+	 */
 	private ConfigurationEnvironment() {
 		this.configurationAttribute = new HashMap<String, ConfigurationEnvironmentElement>();
 		ConfigurationEnvironmentBuilderXML.BuildEnvironment(CONFIG_DEFAULT, this);
 	}
 
+	/**
+	 * @return
+	 * 			(ConfigurationEnvironment) Returns the current instance of ConfigurationEnvironment.
+	 */
 	public static ConfigurationEnvironment getInstance() {
 		return ConfigurationEnvironment.instance;
 	}
 
+	/**
+	 * Permits to recover a specific ConfigurationEnvironmentElement from the current ConfigurationEnvironment.
+	 * 
+	 * @param property
+	 * 			(String) Name of the configuration property that we want to access.
+	 * 
+	 * @return
+	 * 			(ConfigurationEnvironmentElement) Returns the ConfigurationEnvironmentElement related
+	 * 			to the property name given as the method's argument.
+	 * 
+	 * @throws
+	 * 			PropertyNotFoundException If the property we are trying to access does not exist.
+	 */
 	public synchronized ConfigurationEnvironmentElement getProperty(String property) throws PropertyNotFoundException{
 		String propertyUpper = property.toUpperCase();
 		if (!configurationAttribute.containsKey(propertyUpper)) {
@@ -29,6 +70,15 @@ public class ConfigurationEnvironment {
 		return configurationAttribute.get(propertyUpper);
 	}
 
+	/**
+	 * Permits to change the value of a property in the current ConfigurationEnvironment.
+	 * 
+	 * @param property
+	 * 			(String) Name of the property we want to change to value of.
+	 * 
+	 * @param value
+	 * 			(Object) Value we want to give to the related property.
+	 */
 	public synchronized void setProperty(String property, Object value) {
 		String propertyUpper = property.toUpperCase();
 		if (!configurationAttribute.containsKey(propertyUpper)) {
@@ -39,6 +89,12 @@ public class ConfigurationEnvironment {
 
 	}
 	
+	/**
+	 * Checks if the DEBUG mode is enabled or not in the current ConfigurationEnvironment.
+	 * 
+	 * @return
+	 * 			(Boolean) Returns true if the DEBUG mode is enabled, false if not.
+	 */
 	public static Boolean inDebug(){
 		try {
 			ConfigurationEnvironmentElement el = instance.getProperty("DEBUG");

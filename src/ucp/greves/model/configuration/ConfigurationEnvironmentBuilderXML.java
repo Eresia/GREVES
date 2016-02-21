@@ -11,18 +11,57 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+/**
+ * This class is used to build the ConfigurationEnvironment from a .xml configuration file.
+ * 
+ * @author REGNIER Antoine
+ * 
+ * @see ucp.greves.model.configuration.ConfigurationEnvironmentBuilderJSON for the .json version.
+ */
 public class ConfigurationEnvironmentBuilderXML {
 
 	public final static String DEFAULT_FOLDER = "Configuration/";
 
+	/**
+	 * Calls the build function with the specified file. Uses the current ConfigurationEnvironment.
+	 * 
+	 * @param filename
+	 * 			(String) Name of the .xml file in which the configuration to load is contained.
+	 * 
+	 * @see	ConfigurationEnvironmentBuilderXML#build(String, ConfigurationEnvironment)
+	 */
 	public static void BuildEnvironment(String filename) {
 		build(filename, ConfigurationEnvironment.getInstance());
 	}
 
+	/**
+	 * Calls the build function with the specified file and ConfigurationEnvironment.
+	 * 
+	 * @param filename
+	 * 			(String) Name of the .xml file in which the configuration to load is contained.
+	 * @param configuration
+	 * 			(ConfigurationEnvironment) ConfigurationEnvironment in which the configuration
+	 * 			of the given file has to be loaded.
+	 * 
+	 * @see	ConfigurationEnvironmentBuilderXML#build(String, ConfigurationEnvironment)
+	 * @see ConfigurationEnvironment
+	 */
 	public static void BuildEnvironment(String filename, ConfigurationEnvironment configuration) {
 		build(filename, configuration);
 	}
 
+	/**
+	 * Loads the data contained in the specified .xml configuration file into
+	 *  the specified ConfigurationEnvironment.
+	 * 
+	 * @param filename
+	 * 			(String) Name of the .xml file in which the configuration to load is contained.
+	 * @param configuration
+	 * 			(ConfigurationEnvironment) ConfigurationEnvironment in which the configuration
+	 * 			of the given file is loaded.
+	 * 
+	 * @see ConfigurationEnvironment
+	 */
 	private static void build(String filename, ConfigurationEnvironment configuration) {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
