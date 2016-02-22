@@ -6,6 +6,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import ucp.greves.model.line.Line;
+import ucp.greves.model.line.RoadMap;
+import ucp.greves.model.train.Train;
+
+
 /// TODO : Tests à implémenter
 public class TrainTest {
 
@@ -23,13 +28,14 @@ public class TrainTest {
 	}
 
 	@Test
-	public void testGetTrainID() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetTrainID() {
-		fail("Not yet implemented");
+	public void testGetSetTrainID() {
+		int id = 5;
+		Train train = new Train(Line.getCantons().get(0), new RoadMap("test"), 100);
+		
+		train.setTrainID(id);
+		int idGet = train.getTrainID();
+		
+		assertEquals(id, idGet);
 	}
 
 	@Test
@@ -43,13 +49,14 @@ public class TrainTest {
 	}
 
 	@Test
-	public void testGetPosition() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetPosition() {
-		fail("Not yet implemented");
+	public void testGetSetPosition() {
+		int pos = 27;
+		Train train = new Train(Line.getCantons().get(0), new RoadMap("test"), 100);
+		
+		train.setPosition(pos);
+		int posGet = train.getPosition();
+		
+		assertEquals(pos, posGet);
 	}
 
 	@Test
@@ -69,11 +76,6 @@ public class TrainTest {
 
 	@Test
 	public void testHasArrived() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testToString() {
 		fail("Not yet implemented");
 	}
 
