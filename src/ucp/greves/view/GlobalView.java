@@ -20,17 +20,15 @@ public class GlobalView extends Application{
 	      Scene scene = new Scene(root,800,600);
 	      primaryStage.setTitle("G.R.E.V.E.S.");
 	      
-	      BorderPane sandBox = (BorderPane) root.lookup("#sandBox"); //Get the borderPane from the root
-	      modify(sandBox);
+	      BorderPane lineDraw = (BorderPane) root.lookup("#lineDraw"); //Get the borderPane from the root
+	      //modify(lineDraw);
 	     
 	      primaryStage.setScene(scene);
 	      primaryStage.show();
 	     
 	}
 	
-	public void modify(BorderPane pane){ //You can make test here
-		//Text text = new Text("COUCOU!!!"); //Just an example
-	    //pane.getChildren().add(text);
+	public void modify(BorderPane pane){
 	    LineView lv = new LineView();
 	    pane.getChildren().add(lv);
 	}
