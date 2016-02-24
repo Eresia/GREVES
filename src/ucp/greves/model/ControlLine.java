@@ -46,7 +46,7 @@ public class ControlLine {
 	}
 	
 	public void removeTrain(int train){
-		
+		Line.getTrains().get(train).remove(stockRemoveTrain);
 	}
 	
 	public void addRoad(String name, RoadMap road){
