@@ -24,10 +24,12 @@ public class Train extends Observable implements Runnable {
 	private final static int SPEED_MAX_DEFAULT = 100;
 	private final static int SPEED_STATION_DEFAULT = 15;
 	private final static int DISTANCE_TO_STATION_DEFAULT = 100;
+	private final static int FRAME_DURATION_DEFAULT = 50;
 
 	private final static int SPEED_MAX = setSpeedMax();
 	private final static int SPEED_STATION = setSpeedStation();
 	private final static int DISTANCE_TO_STATION = setDistanceToStation();
+	private volatile static int FRAME_DURATION = setFrameDuration();
 
 	private volatile boolean hasArrived;
 	
@@ -51,6 +53,10 @@ public class Train extends Observable implements Runnable {
 		removeStation = null;
 		position = Line.getRailWays().get(map.getRailwaysIDs().get(0)).getLength();
 		currentCanton.enter(this);
+	}
+	
+	public static void changeFrameDuration(int duration){
+		FRAME_DURATION = duration;
 	}
 
 	public int getTrainID() {
@@ -89,7 +95,7 @@ public class Train extends Observable implements Runnable {
 	public void run() {
 		while (!hasArrived() && !isRemoved()) {
 			try {
-				Thread.sleep(50);
+				Thread.sleep(FRAME_DURATION);
 			} catch (InterruptedException ie) {
 				System.err.println(ie.getMessage());
 			}
@@ -188,6 +194,23 @@ public class Train extends Observable implements Runnable {
 			System.err.println("Train speed station not defined, default value " + SPEED_STATION_DEFAULT + " used");
 		}
 		return s;
+	}
+	
+	private static int setFrameDuration() {
+		int fD = FRAME_DURATION_DEFAULT;
+		try {
+			ConfigurationEnvironmentElement frameElement = ConfigurationEnvironment.getInstance()
+					.getProperty("frame_simulation_duration");
+			if (!frameElement.getType().equals(Integer.class)) {
+				System.err.println(
+						"Frame duration has not the right type, default value " + SPEED_STATION_DEFAULT + " used");
+			} else {
+				fD = (Integer) frameElement.getValue();
+			}
+		} catch (PropertyNotFoundException e) {
+			System.err.println("Frame duration not defined, default value " + SPEED_STATION_DEFAULT + " used");
+		}
+		return fD;
 	}
 
 	private static int setDistanceToStation() {

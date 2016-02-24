@@ -1,6 +1,7 @@
 {
 	"properties" : {
 		"simulation_duration" : -1,
+		"frame_simulation_duration" : 100,
 		"project_title" : "G.R.E.V.E.S.",
 		"train_speed_max" : 100,
 		"train_speed_station" : 15,
