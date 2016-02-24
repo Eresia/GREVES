@@ -6,6 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.layout.BorderPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400" minWidth="600" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -20,10 +21,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ScrollPane GridPane.rowIndex="1">
-               <content>
-                  <BorderPane fx:id="lineDraw" />
-               </content></ScrollPane>
+            <ScrollPane fx:id="lineDraw" GridPane.rowIndex="1" />
             <BorderPane GridPane.columnSpan="3">
                <center>
                   <Label alignment="CENTER" text="Vue Globale" BorderPane.alignment="CENTER">
@@ -55,27 +53,27 @@
                <children>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <Button mnemonicParsing="false" text="Ajouter un train" BorderPane.alignment="CENTER" />
+                        <Button fx:id="buttonAdd" mnemonicParsing="false" text="Ajouter un train" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                   <BorderPane GridPane.rowIndex="1">
                      <center>
-                        <Button mnemonicParsing="false" text="Supprimer un train" BorderPane.alignment="CENTER" />
+                        <Button fx:id="buttonRemove" mnemonicParsing="false" text="Supprimer un train" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <center>
-                        <Button mnemonicParsing="false" text="Créer un ralentissement" BorderPane.alignment="CENTER" />
+                        <Button fx:id="buttonSlow" mnemonicParsing="false" text="Créer un ralentissement" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <center>
-                        <Button mnemonicParsing="false" text="Bloquer un canton" BorderPane.alignment="CENTER" />
+                        <Button fx:id="buttonBlock" mnemonicParsing="false" text="Bloquer un canton" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <center>
-                        <Slider blockIncrement="2.0" majorTickUnit="5.0" max="20.0" minorTickCount="4" showTickLabels="true" showTickMarks="true" BorderPane.alignment="CENTER" />
+                        <Slider fx:id="changeSpeed" blockIncrement="2.0" majorTickUnit="5.0" max="20.0" minorTickCount="4" showTickLabels="true" showTickMarks="true" BorderPane.alignment="CENTER" />
                      </center>
                      <bottom>
                         <Label text="Vitesse de simulation" BorderPane.alignment="CENTER" />
