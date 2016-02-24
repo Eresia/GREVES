@@ -27,8 +27,8 @@ public class CantonView extends Parent implements Observer {
 		  this.posYB =new SimpleIntegerProperty(); 
 		this.posXA.bindBidirectional(posXA);
 		this.posYA.bindBidirectional(posYA);
-		posXB.set((int) (posXA.get() + (factor * canton.getLength())));
-		posYB.set((int) (posYA.get()));
+		posXB.set((int) (posXA.get() ));
+		posYB.set((int) (posYA.get() + (factor * canton.getLength())));
 		this.controller = controller;
 		this.lineofCanton = new Line(this.posXA.get(), this.posYA.get(), this.posXB.get(), this.posYB.get());
 		this.lineofCanton.setFill(Color.GREEN);

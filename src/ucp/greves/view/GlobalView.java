@@ -1,6 +1,8 @@
 package ucp.greves.view;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import ucp.greves.controller.GodModeController;
+import ucp.greves.model.ControlLine;
 
 public class GlobalView extends Application{
 	
@@ -45,7 +47,7 @@ public class GlobalView extends Application{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("buttonAdd");	//Action to do
+				System.out.println("buttonAdd");	//Action to do	
 			}
 		});
 		
@@ -75,6 +77,16 @@ public class GlobalView extends Application{
 				System.out.println("buttonBlock");	//Action to do
 			}
 		});
+		
+		Slider changeSpeed = (Slider) root.lookup("#changeSpeed");
+		changeSpeed.valueProperty().addListener(new ChangeListener<Object>() {
+
+			@Override
+			public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+				ControlLine.getInstance().changeSimulationSpeed((int) changeSpeed.getValue());
+			}
+		});
+		changeSpeed.setValue(0);
 	}
 
 }

@@ -19,8 +19,8 @@ public class RailWayView extends Parent  {
 		startYpos = new SimpleIntegerProperty();
 		RailWayController controller = new RailWayController();
 		CantonController cantonController = new CantonController();
-		startXpos.set(10 );
-		startYpos.set(10 + railway.getId() * 50);
+		startXpos.set(10 + railway.getId() * 50);
+		startYpos.set(10 );
 		IntegerProperty xpos =new SimpleIntegerProperty();
 		IntegerProperty ypos = new SimpleIntegerProperty();
 		xpos.bind(startXpos);
