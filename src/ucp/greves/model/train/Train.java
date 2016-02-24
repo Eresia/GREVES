@@ -10,6 +10,7 @@ import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
+import ucp.greves.model.line.station.DepositeryStation;
 
 public class Train extends Observable implements Runnable {
 	private int trainID;
@@ -29,6 +30,9 @@ public class Train extends Observable implements Runnable {
 	private final static int DISTANCE_TO_STATION = setDistanceToStation();
 
 	private volatile boolean hasArrived;
+	
+	private volatile boolean isRemoved;
+	private volatile DepositeryStation removeStation;
 
 	public Train(Canton startCanton, RoadMap map, int speed) {
 		if (speed > SPEED_MAX) {
@@ -43,6 +47,8 @@ public class Train extends Observable implements Runnable {
 		currentCanton = startCanton;
 		this.roadMap = map;
 		hasArrived = false;
+		isRemoved = false;
+		removeStation = null;
 		position = Line.getRailWays().get(map.getRailwaysIDs().get(0)).getLength();
 		currentCanton.enter(this);
 	}
@@ -81,7 +87,7 @@ public class Train extends Observable implements Runnable {
 
 	@Override
 	public void run() {
-		while (!hasArrived()) {
+		while (!hasArrived() && !isRemoved()) {
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException ie) {
@@ -104,10 +110,22 @@ public class Train extends Observable implements Runnable {
 			this.notifyObservers();
 		}
 		currentCanton.exit();
+		if(!isRemoved()){
+			removeStation.stockTrain(this);
+		}
+	}
+	
+	public void remove(DepositeryStation station){
+		removeStation = station;
+		isRemoved = true;
 	}
 
 	public boolean hasArrived() {
 		return hasArrived;
+	}
+	
+	public boolean isRemoved() {
+		return isRemoved;
 	}
 
 	@Override

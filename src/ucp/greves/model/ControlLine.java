@@ -10,15 +10,18 @@ import ucp.greves.model.exceptions.roadmap.EmptyRoadMapException;
 import ucp.greves.model.exceptions.roadmap.RoadMapNameNotExistException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
+import ucp.greves.model.line.station.DepositeryStation;
 import ucp.greves.model.train.Train;
 
 public class ControlLine {
 	
 	private static ControlLine instance = new ControlLine();
 	private HashMap<String, RoadMap> roads;
+	private DepositeryStation stockRemoveTrain;
 	
 	private ControlLine(){
 		roads = new HashMap<String, RoadMap>();
+		stockRemoveTrain = new DepositeryStation("Removed Train Stockage");
 	}
 	
 	public static ControlLine getInstance(){
@@ -40,6 +43,10 @@ public class ControlLine {
 		Train t = new Train(Line.getRailWays().get(rails.get(0)).getFirstCanton(), roads.get(road), speed);
 		Thread tThread = new Thread(t);
 		tThread.start();
+	}
+	
+	public void removeTrain(int train){
+		
 	}
 	
 	public void addRoad(String name, RoadMap road){

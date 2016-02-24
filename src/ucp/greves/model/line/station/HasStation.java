@@ -12,7 +12,7 @@ public class HasStation implements StationDecorator{
 
 	@Override
 	public void waitInStation() throws InterruptedException {
-		Thread.sleep(station.getWaitTime());
+		station.waitInStation();
 	}
 
 	@Override

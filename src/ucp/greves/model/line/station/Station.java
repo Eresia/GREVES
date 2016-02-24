@@ -6,19 +6,23 @@ import ucp.greves.model.line.Line;
 
 public class Station {
 	
-	//private int id;
 	private String name;
 	private int waitTime;
 	
 	public Station(int canton, String name, int waitTime) throws CantonHasAlreadyStationException, CantonNotExistException{
+		this(name);
 		Line.register_station(canton, this);
-		this.name = name;
 		this.waitTime = waitTime;
 	}
 	
-	/*public int getId(){
-		return id;
-	}*/
+	protected Station(int canton, String name) throws CantonHasAlreadyStationException, CantonNotExistException{
+		this(canton, name, -1);
+	}
+	
+	protected Station(String name){
+		this.name = name;
+		this.waitTime = -1;
+	}
 	
 	public String getName(){
 		return name;
@@ -26,6 +30,10 @@ public class Station {
 	
 	public int getWaitTime(){
 		return waitTime;
+	}
+	
+	public void waitInStation() throws InterruptedException{
+		Thread.sleep(waitTime);
 	}
 
 }

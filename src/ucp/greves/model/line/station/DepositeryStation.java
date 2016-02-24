@@ -10,8 +10,13 @@ public class DepositeryStation extends Station{
 
 	ArrayList<Train> stockTrains;
 	
-	public DepositeryStation(int canton, String name, int waitTime) throws CantonHasAlreadyStationException, CantonNotExistException {
-		super(canton, name, waitTime);
+	public DepositeryStation(int canton, String name) throws CantonHasAlreadyStationException, CantonNotExistException {
+		super(canton, name);
+		stockTrains = new ArrayList<Train>();
+	}
+	
+	public DepositeryStation(String name){
+		super(name);
 		stockTrains = new ArrayList<Train>();
 	}
 	
@@ -23,6 +28,9 @@ public class DepositeryStation extends Station{
 		stockTrains.remove(train);
 	}
 	
-	
+	@Override
+	public void waitInStation() throws InterruptedException{
+		//Thread.sleep(waitTime);
+	}
 
 }
