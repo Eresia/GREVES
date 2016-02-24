@@ -29,7 +29,8 @@ public class Train extends Observable implements Runnable {
 	private final static int SPEED_MAX = setSpeedMax();
 	private final static int SPEED_STATION = setSpeedStation();
 	private final static int DISTANCE_TO_STATION = setDistanceToStation();
-	private volatile static int FRAME_DURATION = setFrameDuration();
+	private final static int FRAME_DURATION = setFrameDuration();
+	private volatile static int simulationSpeed = 1;
 
 	private volatile boolean hasArrived;
 	
@@ -55,8 +56,8 @@ public class Train extends Observable implements Runnable {
 		currentCanton.enter(this);
 	}
 	
-	public static void changeFrameDuration(int duration){
-		FRAME_DURATION = duration;
+	public static void changeSimulationSpeed(int duration){
+		simulationSpeed = duration;
 	}
 
 	public int getTrainID() {
@@ -118,6 +119,14 @@ public class Train extends Observable implements Runnable {
 		currentCanton.exit();
 		if(!isRemoved()){
 			removeStation.stockTrain(this);
+		}
+	}
+	
+	public void waitFrameTime() throws InterruptedException{
+		int waitVar = 0;
+		while(waitVar < FRAME_DURATION){
+			Thread.sleep(1);
+			waitVar += simulationSpeed;
 		}
 	}
 	

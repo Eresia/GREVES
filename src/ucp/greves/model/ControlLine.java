@@ -28,8 +28,8 @@ public class ControlLine {
 		return instance;
 	}
 	
-	public void changeFrameDuration(int duration){
-		Train.changeFrameDuration(duration);
+	public void changeSimulationSpeed(int duration){
+		Train.changeSimulationSpeed(duration);
 	}
 	
 	public void launchTrain(String road, int speed) throws BadControlInformationException, BadRoadMapException, RailWayNotExistException{
