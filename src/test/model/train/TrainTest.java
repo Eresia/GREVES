@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
+import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.train.Train;
 
 
@@ -24,7 +25,9 @@ public class TrainTest {
 
 	@Test
 	public void testTrain() {
-		fail("Not yet implemented");
+		Train train = new Train(new Canton(null,100), new RoadMap("test"), 100);
+		
+		assertNotNull(train);
 	}
 
 	@Test
