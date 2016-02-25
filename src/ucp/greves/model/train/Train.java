@@ -52,7 +52,6 @@ public class Train extends Observable implements Runnable {
 		isRemoved = false;
 		removeStation = null;
 		position = Line.getRailWays().get(map.getRailwaysIDs().get(0)).getLength();
-		currentCanton.enter(this);
 	}
 
 	public int getTrainID() {
@@ -89,6 +88,7 @@ public class Train extends Observable implements Runnable {
 
 	@Override
 	public void run() {
+		currentCanton.enter(this);
 		while (!hasArrived() && !isRemoved()) {
 			try {
 				SimulationSpeed.waitFrameTime();

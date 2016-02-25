@@ -47,9 +47,9 @@ public class LineBuilderSimple {
 			}
 			control.addRoad(rm.getName(), rm);
 			control.launchTrain(rm.getName(), 150);
-			/*control.launchTrain(rm.getName(), 250);
+			control.launchTrain(rm.getName(), 250);
 			control.launchTrain(rm.getName(), 200);
-			control.launchTrain(rm.getName(), 320);*/
+			control.launchTrain(rm.getName(), 320);
 
 		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException e) {
 			// TODO Auto-generated catch block
