@@ -9,7 +9,7 @@ public class SimulationSpeed {
 	private final static int FRAME_DURATION_DEFAULT = 50;
 	private final static int FRAME_DURATION = setFrameDuration();
 	
-	private volatile static int simulationSpeed = 1;
+	private volatile static int simulationSpeed = 0;
 	
 	public static void changeSimulationSpeed(int duration){
 		simulationSpeed = duration;
