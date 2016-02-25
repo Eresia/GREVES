@@ -56,7 +56,7 @@ public class Canton extends Observable {
 	public synchronized void enter(Train train) {
 		if (occupyingTrain != null) {
 			if (ConfigurationEnvironment.inDebug()) {
-				System.out.println(toString() + " occupied !");
+				System.err.println(toString() + " occupied !");
 			}
 			// Train stopped just before canton start point !
 			train.setPosition(getStartPoint() - 1);
@@ -73,7 +73,7 @@ public class Canton extends Observable {
 		}
 
 		if (ConfigurationEnvironment.inDebug()) {
-			System.out.println("Canton changed successfully");
+			System.err.println("Canton changed successfully");
 		}
 		Canton oldCanton = train.getCurrentCanton();
 		train.setCurrentCanton(this);
@@ -89,7 +89,7 @@ public class Canton extends Observable {
 		occupyingTrain = null;
 		notify();
 		if (ConfigurationEnvironment.inDebug()) {
-			System.out.println("Canton freed !");
+			System.err.println("Canton freed !");
 		}
 		this.setChanged();
 		this.notifyObservers();

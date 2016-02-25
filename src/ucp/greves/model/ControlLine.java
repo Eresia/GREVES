@@ -3,14 +3,25 @@ package ucp.greves.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.BadControlInformationException;
+import ucp.greves.model.exceptions.canton.CantonNotExistException;
+import ucp.greves.model.exceptions.canton.TerminusException;
+import ucp.greves.model.exceptions.railway.DoubledRailwayException;
+import ucp.greves.model.exceptions.railway.PathNotExistException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.exceptions.roadmap.EmptyRoadMapException;
+import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
+import ucp.greves.model.exceptions.roadmap.RoadMapHaveAlreadyStationException;
 import ucp.greves.model.exceptions.roadmap.RoadMapNameNotExistException;
+import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
+import ucp.greves.model.line.RailWay;
 import ucp.greves.model.line.RoadMap;
+import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.DepositeryStation;
+import ucp.greves.model.line.station.Station;
 import ucp.greves.model.simulation.SimulationSpeed;
 import ucp.greves.model.train.Train;
 
@@ -31,6 +42,42 @@ public class ControlLine {
 	
 	public void changeSimulationSpeed(int duration){
 		SimulationSpeed.changeSimulationSpeed(duration);
+	}
+	
+	public void addRoadMap(String name, Station firstStation, Station lastStation) throws RoadMapAlreadyExistException, RailWayNotExistException, CantonNotExistException, PathNotExistException{
+		if(roads.containsKey(name)){
+			throw new RoadMapAlreadyExistException("RoadMap " + name + " already exist");
+		}
+		int firstRailWay = findRailWay(firstStation);
+		int lastRailWay = findRailWay(firstStation);
+		RailWay r = Line.getRailWays().get(firstRailWay);
+		RoadMap road = new RoadMap(name);
+		try{
+			do{
+				Canton canton = r.getFirstCanton();
+				do{
+					try{
+					if(canton.hasStation()){
+						road.addStation(canton.getStation().getName());
+					}
+						canton = canton.getNextCanton(null);
+					} catch (RoadMapHaveAlreadyStationException | StationNotFoundException e) {
+						if(ConfigurationEnvironment.inDebug()){
+							System.err.println("Station not exist or already in road");
+						}
+					} catch(TerminusException e){
+						break;
+					}
+				}while(true);
+				road.addRailWay(r.getId());
+				r = r.getTerminus().getNextRailWay();
+			}while(r.getId() != lastRailWay);
+			road.addRailWay(lastRailWay);
+		} catch (DoubledRailwayException e){
+			throw new PathNotExistException("Path beetween station " + firstStation.getName() + " and station " + lastStation.getName() + "don't exist (loop)");
+		} catch (TerminusException e) {
+			throw new PathNotExistException("Path beetween station " + firstStation.getName() + " and station " + lastStation.getName() + "don't exist (terminus)");
+		}
 	}
 	
 	public void launchTrain(String road, int speed) throws BadControlInformationException, BadRoadMapException, RailWayNotExistException{
@@ -64,6 +111,52 @@ public class ControlLine {
 	
 	public RoadMap getRoad(String name){
 		return roads.get(name);
+	}
+	
+	public int findRailWay(int canton) throws RailWayNotExistException{
+		int railway = -1;
+		
+		for(Integer i : Line.getRailWays().keySet()){
+			Canton c = Line.getRailWays().get(i).getFirstCanton();
+			while((c != null) && (railway == -1)){
+				try{
+					if(c.getId() == canton){
+						railway = i;
+						break;
+					}
+					else{
+						c = c.getNextCanton(null);
+					}
+				} catch(TerminusException e){
+					break;
+				}
+			}
+			if(railway != -1){
+				break;
+			}
+		}
+		if(railway == -1){
+			throw new RailWayNotExistException("Canton " + canton + "is not in a railway");
+		}
+		return railway;
+	}
+	
+	public int findRailWay(Station station) throws RailWayNotExistException, CantonNotExistException{
+		return findRailWay(findCanton(station));
+	}
+	
+	public int findCanton(Station station) throws CantonNotExistException{
+		int canton = -1;
+		if(!Line.getStations().containsValue(station)){
+			throw new CantonNotExistException("Any canton contains the station " + station.getName());
+		}
+		for(Integer i : Line.getStations().keySet()){
+			if(Line.getStations().get(i) == station){
+				canton = i;
+				break;
+			}
+		}
+		return canton;
 	}
 	
 	private void verifyInformation() throws BadControlInformationException{
