@@ -12,14 +12,12 @@ public class SimulationSpeed {
 	private volatile static int simulationSpeed = 1;
 	
 	public static void changeSimulationSpeed(int duration){
-		System.out.println(duration);
 		simulationSpeed = duration;
 	}
 	
 	public static void waitFrameTime() throws InterruptedException{
 		int waitVar = 0;
 		while(waitVar < FRAME_DURATION){
-			//System.out.println(waitVar);
 			Thread.sleep(1);
 			waitVar += simulationSpeed;
 		}

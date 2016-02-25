@@ -39,7 +39,7 @@ public class Terminus extends Canton {
 
 	@Override
 	public Canton getNextCanton(RoadMap road) throws TerminusException {
-		if (this.nextRailWay == null || Line.getRailWays().get(road.getLastRailWay()).getTerminus() == this) {
+		if (this.nextRailWay == null || road == null ||  Line.getRailWays().get(road.getLastRailWay()).getTerminus() == this) {
 			throw new TerminusException();
 		} else {
 			return this.nextRailWay.getFirstCanton();
