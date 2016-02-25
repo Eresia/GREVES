@@ -33,7 +33,13 @@ public class Station {
 	}
 	
 	public void waitInStation() throws InterruptedException{
-		Thread.sleep(waitTime);
+		waitInStation(waitTime);
+	}
+	
+	public void waitInStation(int specialTime) throws InterruptedException{
+		for(int i = 0; i < specialTime; i++){
+			Thread.sleep(specialTime);
+		}
 	}
 
 }

@@ -11,6 +11,7 @@ import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.DepositeryStation;
+import ucp.greves.model.simulation.SimulationSpeed;
 
 public class Train extends Observable implements Runnable {
 	private int trainID;
@@ -24,13 +25,11 @@ public class Train extends Observable implements Runnable {
 	private final static int SPEED_MAX_DEFAULT = 100;
 	private final static int SPEED_STATION_DEFAULT = 15;
 	private final static int DISTANCE_TO_STATION_DEFAULT = 100;
-	private final static int FRAME_DURATION_DEFAULT = 50;
+	
 
 	private final static int SPEED_MAX = setSpeedMax();
 	private final static int SPEED_STATION = setSpeedStation();
 	private final static int DISTANCE_TO_STATION = setDistanceToStation();
-	private final static int FRAME_DURATION = setFrameDuration();
-	private volatile static int simulationSpeed = 1;
 
 	private volatile boolean hasArrived;
 	
@@ -54,10 +53,6 @@ public class Train extends Observable implements Runnable {
 		removeStation = null;
 		position = Line.getRailWays().get(map.getRailwaysIDs().get(0)).getLength();
 		currentCanton.enter(this);
-	}
-	
-	public static void changeSimulationSpeed(int duration){
-		simulationSpeed = duration;
 	}
 
 	public int getTrainID() {
@@ -96,11 +91,10 @@ public class Train extends Observable implements Runnable {
 	public void run() {
 		while (!hasArrived() && !isRemoved()) {
 			try {
-				Thread.sleep(FRAME_DURATION);
+				SimulationSpeed.waitFrameTime();
 			} catch (InterruptedException ie) {
 				System.err.println(ie.getMessage());
 			}
-
 			if (position - speed <= currentCanton.getEndPoint()) {
 				try {
 					Canton nextCanton = currentCanton.getNextCanton(roadMap);
@@ -117,16 +111,8 @@ public class Train extends Observable implements Runnable {
 			this.notifyObservers();
 		}
 		currentCanton.exit();
-		if(!isRemoved()){
+		if(isRemoved()){
 			removeStation.stockTrain(this);
-		}
-	}
-	
-	public void waitFrameTime() throws InterruptedException{
-		int waitVar = 0;
-		while(waitVar < FRAME_DURATION){
-			Thread.sleep(1);
-			waitVar += simulationSpeed;
 		}
 	}
 	
@@ -203,23 +189,6 @@ public class Train extends Observable implements Runnable {
 			System.err.println("Train speed station not defined, default value " + SPEED_STATION_DEFAULT + " used");
 		}
 		return s;
-	}
-	
-	private static int setFrameDuration() {
-		int fD = FRAME_DURATION_DEFAULT;
-		try {
-			ConfigurationEnvironmentElement frameElement = ConfigurationEnvironment.getInstance()
-					.getProperty("frame_simulation_duration");
-			if (!frameElement.getType().equals(Integer.class)) {
-				System.err.println(
-						"Frame duration has not the right type, default value " + SPEED_STATION_DEFAULT + " used");
-			} else {
-				fD = (Integer) frameElement.getValue();
-			}
-		} catch (PropertyNotFoundException e) {
-			System.err.println("Frame duration not defined, default value " + SPEED_STATION_DEFAULT + " used");
-		}
-		return fD;
 	}
 
 	private static int setDistanceToStation() {

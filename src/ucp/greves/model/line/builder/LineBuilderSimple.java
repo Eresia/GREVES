@@ -24,10 +24,10 @@ public class LineBuilderSimple {
 		RailWay railWay = new RailWay(0);
 		RailWay railWay2 = new RailWay(1);
 		Random rn = new Random();
-		while (railWay.getLength() < 1000) {
+		while (railWay.getLength() < 10000) {
 			addCanton(railWay, rn);
 		}
-		while (railWay2.getLength() < 1000) {
+		while (railWay2.getLength() < 10000) {
 			addCanton(railWay2, rn);
 		}
 		railWay.connectTo(railWay2);
@@ -46,10 +46,10 @@ public class LineBuilderSimple {
 				rm.addStation(Line.getStations().get(s).getName());
 			}
 			control.addRoad(rm.getName(), rm);
-			control.launchTrain(rm.getName(), 60);
-			control.launchTrain(rm.getName(), 80);
-			control.launchTrain(rm.getName(), 50);
-			control.launchTrain(rm.getName(), 10);
+			control.launchTrain(rm.getName(), 150);
+			/*control.launchTrain(rm.getName(), 250);
+			control.launchTrain(rm.getName(), 200);
+			control.launchTrain(rm.getName(), 320);*/
 
 		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException e) {
 			// TODO Auto-generated catch block
@@ -60,10 +60,11 @@ public class LineBuilderSimple {
 
 	private static void addCanton(RailWay rw, Random rn)
 			throws CantonHasAlreadyStationException, CantonNotExistException {
-		rw.addCanton(rn.nextInt(100) + 20);
+		rw.addCanton(rn.nextInt(300) + 700);
 		Canton canton = rw.getFirstCanton();
-		int hasGare = rn.nextInt(5);
-		if (hasGare == 3) {
+		//int hasStation = rn.nextInt(5);
+		int hasStation = 0;
+		if (hasStation == 3) {
 			int waitTime;
 			try {
 				waitTime = (int) ConfigurationEnvironment.getInstance().getProperty("station_wait_time").getValue();
@@ -71,8 +72,7 @@ public class LineBuilderSimple {
 				e.printStackTrace();
 				waitTime = 500;
 			}
-			canton.setStation(new Station(canton.getId(), "TestSTation" + canton.getId(), waitTime),
-					(canton.getLength() / 2));
+			canton.setStation(new Station(canton.getId(), "TestSTation" + canton.getId(), waitTime),(canton.getLength() / 2));
 		}
 	}
 

@@ -33,6 +33,7 @@ public class GlobalView extends Application{
 	      
 	      primaryStage.setScene(scene);
 	      primaryStage.show();
+	      
 	     
 	}
 	

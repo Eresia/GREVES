@@ -11,6 +11,7 @@ import ucp.greves.model.exceptions.roadmap.RoadMapNameNotExistException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.station.DepositeryStation;
+import ucp.greves.model.simulation.SimulationSpeed;
 import ucp.greves.model.train.Train;
 
 public class ControlLine {
@@ -29,7 +30,7 @@ public class ControlLine {
 	}
 	
 	public void changeSimulationSpeed(int duration){
-		Train.changeSimulationSpeed(duration);
+		SimulationSpeed.changeSimulationSpeed(duration);
 	}
 	
 	public void launchTrain(String road, int speed) throws BadControlInformationException, BadRoadMapException, RailWayNotExistException{
