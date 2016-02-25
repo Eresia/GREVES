@@ -16,7 +16,7 @@ public class RailWayController {
 	public ArrayList<Integer> IntegerlistOfRailWaysID(){
 		return new ArrayList<Integer>(Line.getRailWays().keySet());
 	}
-	public RailWay getRaiWailById(int id){
+	public RailWay getRailWaysById(int id){
 		return Line.getRailWays().get(id);
 	}
 }

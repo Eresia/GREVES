@@ -14,6 +14,11 @@ import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 import ucp.greves.controller.GodModeController;
 import ucp.greves.model.ControlLine;
+import ucp.greves.model.configuration.ConfigurationEnvironment;
+import ucp.greves.model.exceptions.BadControlInformationException;
+import ucp.greves.model.exceptions.PropertyNotFoundException;
+import ucp.greves.model.exceptions.railway.RailWayNotExistException;
+import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 
 public class GlobalView extends Application{
 	
@@ -48,7 +53,32 @@ public class GlobalView extends Application{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("buttonAdd");	//Action to do	
+				
+				/*TODO : fenêtre popup demandant à l'utilisateur le parcours et vitesse qu'il veut pour le train.
+				 * 	(=> besoin de la liste des roadmap pour les proposer).
+				 */
+				
+				int speed = 100;
+				try {
+					speed = (int) ConfigurationEnvironment.getInstance().getProperty("train_speed_max").getValue();
+				} catch (PropertyNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				String roadmapName = "test";
+				
+				try {
+					ControlLine.getInstance().launchTrain(roadmapName, speed);
+				} catch (BadControlInformationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (BadRoadMapException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (RailWayNotExistException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		
@@ -57,7 +87,14 @@ public class GlobalView extends Application{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("buttonRemove");		//Action to do		
+				
+				/* TODO
+				 * Faire en sorte que "train" prenne la valeur du train sélectionné par l'utilisateur, afin de pouvoir le supprimer
+				 */
+				
+				//train = 
+				
+				//ControlLine.getInstance().removeTrain(train);
 			}
 		});
 		
