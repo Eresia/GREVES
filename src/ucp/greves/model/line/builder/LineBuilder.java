@@ -136,10 +136,12 @@ public class LineBuilder {
 													Set<Map.Entry<String, Object>> stationMap = stationSOM.entrySet();
 
 													// For each item in the station part (name [& wait_time])
+													
+													String name = "";
+													int waitTime = 0;
+													
 													for (Entry<String, Object> stationEntry : stationMap) {
 														System.out.println("        " + stationEntry);
-														String name = "";
-														int waitTime = 0;
 														switch (stationEntry.getKey().toLowerCase()) {
 														case "name":
 															name = stationEntry.toString();
@@ -149,14 +151,15 @@ public class LineBuilder {
 															break;
 														}
 
-														try {
-															currCanton.setStation(new Station(currCanton.getId(), name, waitTime), currCanton.getLength()/2);
-														} catch (CantonHasAlreadyStationException
-																| CantonNotExistException e) {
-															e.printStackTrace();
-														}
-
 													}
+													
+													try {
+														currCanton.setStation(new Station(currCanton.getId(), name, waitTime), currCanton.getLength()/2);
+													} catch (CantonHasAlreadyStationException
+															| CantonNotExistException e) {
+														e.printStackTrace();
+													}
+
 
 													break;
 												}
