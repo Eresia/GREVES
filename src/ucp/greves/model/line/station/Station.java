@@ -3,6 +3,7 @@ package ucp.greves.model.line.station;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.line.Line;
+import ucp.greves.model.simulation.SimulationSpeed;
 
 public class Station {
 	
@@ -38,7 +39,7 @@ public class Station {
 	
 	public void waitInStation(int specialTime) throws InterruptedException{
 		for(int i = 0; i < specialTime; i++){
-			Thread.sleep(specialTime);
+			SimulationSpeed.waitFrameTime();
 		}
 	}
 

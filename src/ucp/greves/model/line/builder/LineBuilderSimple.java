@@ -62,8 +62,7 @@ public class LineBuilderSimple {
 			throws CantonHasAlreadyStationException, CantonNotExistException {
 		rw.addCanton(rn.nextInt(300) + 700);
 		Canton canton = rw.getFirstCanton();
-		//int hasStation = rn.nextInt(5);
-		int hasStation = 0;
+		int hasStation = rn.nextInt(5);
 		if (hasStation == 3) {
 			int waitTime;
 			try {

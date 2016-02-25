@@ -6,7 +6,7 @@
 		"train_speed_max" : 100,
 		"train_speed_station" : 15,
 		"slower_distance_to_station" : 100,
-		"station_wait_time" : 1000,
+		"station_wait_time" : 20,
 		"debug" : false
 	}
 }
