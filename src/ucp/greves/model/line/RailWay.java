@@ -38,9 +38,9 @@ public class RailWay {
 	public void addCanton(int lenght) {
 		Canton cn;
 		if(this.canton_list.size() == 0){
-			 cn  = new Canton(terminus, lenght);
+			 cn  = new Canton(terminus, getId(), lenght);
 		}else{
-			 cn  = new Canton(this.getFirstCanton(), lenght);
+			 cn  = new Canton(this.getFirstCanton(), getId(), lenght);
 		}
 		this.canton_list.add(cn);
 	}
