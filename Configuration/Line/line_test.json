@@ -1,0 +1,65 @@
+{
+	"line": {
+		"railways": [
+			{
+				"id": 0,
+				"cantons": [
+					{
+						"size": 100,
+						"station": {
+							"name": "stationOne",
+							"waittime": 3000
+						}
+					},
+					{
+						"size": 130
+					},
+					{
+						"size": 180,
+						"station": {
+							"name": "stationTwo"
+						}
+					},
+					{
+						"size": 100
+					}
+				]
+			},
+			{
+				"id": 1,
+				"cantons": [
+					{
+						"size": 110
+					},
+					{
+						"size": 120,
+						"station": {
+							"name": "stationThree",
+							"waittime": 2000
+						}
+					},
+					{
+						"size": 100
+					},
+					{
+						"size": 100
+					},
+					{
+						"size": 90
+					}
+				]
+			}
+		]
+	},
+	
+	"connections": {
+		"connect": {
+			"from": 0,
+			"to": 1
+		},
+		"connect": {
+			"from": 1,
+			"to": 0
+		}
+	}
+}
