@@ -31,9 +31,9 @@
                   </Label>
                </center>
             </BorderPane>
-            <TableView GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <TableView fx:id="table" GridPane.columnIndex="2" GridPane.rowIndex="1">
               <columns>
-                <TableColumn prefWidth="119.0" text="Liste Gares" />
+                <TableColumn fx:id="listStation" prefWidth="119.0" text="Liste Gares" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -58,17 +58,17 @@
                   </BorderPane>
                   <BorderPane GridPane.rowIndex="1">
                      <center>
-                        <Button fx:id="buttonRemove" mnemonicParsing="false" text="Supprimer un train" BorderPane.alignment="CENTER" />
+                        <Button fx:id="buttonRemove" mnemonicParsing="false" opacity="0.46" text="Supprimer un train" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <center>
-                        <Button fx:id="buttonSlow" mnemonicParsing="false" text="Créer un ralentissement" BorderPane.alignment="CENTER" />
+                        <Button fx:id="buttonSlow" mnemonicParsing="false" opacity="0.45" text="Créer un ralentissement" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <center>
-                        <Button fx:id="buttonBlock" mnemonicParsing="false" text="Bloquer un canton" BorderPane.alignment="CENTER" />
+                        <Button fx:id="buttonBlock" mnemonicParsing="false" opacity="0.4" text="Bloquer un canton" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">

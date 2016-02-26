@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import ucp.greves.controller.GodModeController;
 import ucp.greves.model.ControlLine;
@@ -51,6 +53,7 @@ public class GlobalView extends Application{
 		Line.getInstance();
   
 		modify(lineDraw);
+		//addStation(root);
 	}
 	
 	public void modify(ScrollPane pane){
@@ -139,5 +142,11 @@ public class GlobalView extends Application{
 		});
 		changeSpeed.setValue(0);
 	}
+	
+	/*public void addStation(Parent root){
+		TableView<String> table  = (TableView<String>) root.lookup("#table");
+		table.getColumns().get(0);
+		System.out.println(table.getColumns().get(0).);
+	}*/
 
 }
