@@ -43,7 +43,7 @@ public class LineBuilderSimple {
 		rm.addRailWay(1);
 		try {
 			for (Integer s : Line.getStations().keySet()) {
-				rm.addStation(Line.getStations().get(s).getName());
+				rm.addStation(s);
 			}
 			control.addRoad(rm.getName(), rm);
 			control.launchTrain(rm.getName(), 150);

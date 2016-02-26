@@ -205,6 +205,18 @@
 					{
 						"size": 1000,
 						"station": {
+							"name": "Cergy Préfecture"
+						}
+					},
+					{
+						"size": 1000
+					},
+					{
+						"size": 1000
+					},
+					{
+						"size": 1000,
+						"station": {
 							"name": "Cergy St Christophe"
 						}
 					},
@@ -710,6 +722,10 @@
 			{
 				"from": 2,
 				"to": 4
+			},
+			{
+				"from": 4,
+				"to": 5
 			},
 			{
 				"from": 5,

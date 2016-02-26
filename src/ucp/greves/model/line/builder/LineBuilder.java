@@ -78,7 +78,9 @@ public class LineBuilder {
 
 			// For each item in the first layer (line & connections)
 			for (Entry<String, Object> topEntry : jsonMap) {
-				System.out.println(topEntry);
+				if (ConfigurationEnvironment.inDebug()) {
+					System.err.println(topEntry);
+				}
 				switch (topEntry.getKey().toLowerCase()) {
 				case "line":
 					// If we are declaring a line
@@ -86,7 +88,9 @@ public class LineBuilder {
 
 					// For each entry in line
 					for (Entry<String, Object> lineEntry : lineMap) {
-						System.out.println("  " + lineEntry);
+						if (ConfigurationEnvironment.inDebug()) {
+							System.err.println("  " + lineEntry);
+						}
 						// If we are parsing a railway
 						if (lineEntry.getKey().equalsIgnoreCase("railways")) {
 							Collection<Object> railwayCol = ((JSONListAdapter) lineEntry.getValue()).values();
@@ -100,8 +104,9 @@ public class LineBuilder {
 								
 								// For each item in railway (id & cantons)
 								for (Entry<String, Object> rwEntry : rwMap) {
-									System.out.println("    " + rwEntry);
-									
+									if (ConfigurationEnvironment.inDebug()) {
+										System.err.println("    " + rwEntry);
+									}									
 									
 									// If we are parsing the id, we add the railway to the line
 									if (rwEntry.getKey().equalsIgnoreCase("id")) {
@@ -125,8 +130,10 @@ public class LineBuilder {
 											
 											// For each item in canton (size [& station])
 											for (Entry<String, Object> cantonEntry : cantonMap) {
-												System.out.println("      " + ++nbCantons);
-												System.out.println("      " + cantonEntry);
+												if (ConfigurationEnvironment.inDebug()) {
+													System.err.println("      " + ++nbCantons);
+													System.err.println("      " + cantonEntry);;
+												}			
 												switch (cantonEntry.getKey().toLowerCase()) {
 												// If we are on the size part
 												case "size":
@@ -145,7 +152,9 @@ public class LineBuilder {
 
 													// For each item in the station part (name [& wait_time])
 													for (Entry<String, Object> stationEntry : stationMap) {
-														System.out.println("        " + stationEntry);
+														if (ConfigurationEnvironment.inDebug()) {
+															System.err.println("        " + stationEntry);
+														}	
 														switch (stationEntry.getKey().toLowerCase()) {
 														case "name":
 															name = stationEntry.toString();
@@ -182,7 +191,9 @@ public class LineBuilder {
 
 					// For each entry in line
 					for (Entry<String, Object> connectionsEntry : connectionsMap) {
-						System.out.println("  " + connectionsEntry);
+						if (ConfigurationEnvironment.inDebug()) {
+							System.err.println("  " + connectionsEntry);
+						}
 
 						if (connectionsEntry.getKey().equalsIgnoreCase("connect")) {
 							Collection<Object> connectCol = ((JSONListAdapter) connectionsEntry.getValue()).values();
@@ -197,7 +208,9 @@ public class LineBuilder {
 								
 								// For each item in railway
 								for (Entry<String, Object> connectEntry : connectMap) {
-									System.out.println("    " + connectEntry);
+									if (ConfigurationEnvironment.inDebug()) {
+										System.err.println("    " + connectEntry);
+									}
 									switch (connectEntry.getKey().toLowerCase()) {
 									case "from":
 										idFrom = (Integer) connectEntry.getValue();
@@ -244,17 +257,9 @@ public class LineBuilder {
 			}
 		}*/
 		try {
-			/*System.out.println(Line.getRailWays().get(0).getLength());
-			System.out.println(Line.getRailWays().get(0).getFirstCanton());
-			System.out.println(Line.getRailWays().get(1).getLength());
-			System.out.println(Line.getRailWays().get(1).getFirstCanton());
-			System.out.println(Line.getRailWays().get(2).getLength());
-			System.out.println(Line.getRailWays().get(2).getFirstCanton());
-			System.out.println(Line.getRailWays().get(3).getLength());
-			System.out.println(Line.getRailWays().get(3).getFirstCanton());*/
 			Line.getRailWays().get(0).getFirstCanton().getStation();
 			Line.getRailWays().get(4).getTerminus().getStation();
-			ControlLine.getInstance().addRoad("Line A", Line.getRailWays().get(0).getFirstCanton().getStation(), Line.getRailWays().get(4).getTerminus().getStation());			
+			ControlLine.getInstance().addRoad("Line A", Line.getRailWays().get(0).getFirstCanton().getStation(), Line.getRailWays().get(1).getTerminus().getStation());			
 			control.launchTrain("Line A", 150);
 			
 		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException | RoadMapAlreadyExistException | CantonNotExistException | PathNotExistException | StationNotFoundException e) {

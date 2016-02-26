@@ -3,12 +3,12 @@ package ucp.greves.model.line;
 import java.util.ArrayList;
 
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
-import ucp.greves.model.exceptions.roadmap.RoadMapHaveAlreadyStationException;
+import ucp.greves.model.exceptions.roadmap.StationAlreadyExistInRoadMapException;
 
 public class RoadMap {
 	private ArrayList<Integer> railwaysIDs;
 	private String name;
-	private ArrayList<String> stations;
+	private ArrayList<Integer> stations;
 	/**
 	 * departures is the timetable of departures (in minutes)
 	 */
@@ -18,7 +18,7 @@ public class RoadMap {
 	public RoadMap(String name){
 		this.name = name;
 		railwaysIDs = new ArrayList<Integer>();
-		stations = new ArrayList<String>();
+		stations = new ArrayList<Integer>();
 	}
 
 	public ArrayList<Integer> getRailwaysIDs() {
@@ -32,9 +32,9 @@ public class RoadMap {
 		railwaysIDs.add(id);
 	}
 	
-	public void addStation(String station) throws RoadMapHaveAlreadyStationException{
+	public void addStation(int station) throws StationAlreadyExistInRoadMapException{
 		if(stations.contains(station)){
-			throw new RoadMapHaveAlreadyStationException("Station " + station + "alreday crossed");
+			throw new StationAlreadyExistInRoadMapException("Station " + station + "alreday crossed");
 		}
 		stations.add(station);
 	}

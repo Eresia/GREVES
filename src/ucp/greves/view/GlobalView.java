@@ -78,7 +78,7 @@ public class GlobalView extends Application{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				String roadmapName = "test";
+				String roadmapName = "Line A";
 				
 				try {
 					ControlLine.getInstance().launchTrain(roadmapName, speed);
