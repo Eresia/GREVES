@@ -21,6 +21,7 @@ import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
+import ucp.greves.model.line.Line;
 
 public class GlobalView extends Application{
 	
@@ -32,21 +33,24 @@ public class GlobalView extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-	      Parent root = FXMLLoader.load(getClass().getResource("global_view.fxml"));
-	      Scene scene = new Scene(root,800,600);
-	      primaryStage.setTitle("G.R.E.V.E.S.");
+		Parent root = FXMLLoader.load(getClass().getResource("global_view.fxml"));
+		Scene scene = new Scene(root,800,600);
+		primaryStage.setTitle("G.R.E.V.E.S.");
+
+		this.paneHeight = new SimpleIntegerProperty();
+		this.paneWidth = new SimpleIntegerProperty();
+
+		ScrollPane lineDraw = (ScrollPane) root.lookup("#lineDraw"); //Get the borderPane from the root
+		setButton(root);
 	      
-	      this.paneHeight = new SimpleIntegerProperty();
-	      this.paneWidth = new SimpleIntegerProperty();
-	      
-	      ScrollPane lineDraw = (ScrollPane) root.lookup("#lineDraw"); //Get the borderPane from the root
-	      setButton(root);
-	      
-	      primaryStage.setScene(scene);
-	      primaryStage.show();
-	      
-	      modify(lineDraw);     
-	     
+		primaryStage.setScene(scene);
+		primaryStage.show();  
+
+		// Décommenter ces 2 lignes pour utiliser le json
+//		ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "JSON");
+//		Line.getInstance();
+  
+		modify(lineDraw);
 	}
 	
 	public void modify(ScrollPane pane){

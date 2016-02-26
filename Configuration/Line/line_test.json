@@ -5,23 +5,23 @@
 				"id": 0,
 				"cantons": [
 					{
-						"size": 100,
+						"size": 800,
 						"station": {
 							"name": "stationOne",
 							"wait_time": 3000
 						}
 					},
 					{
-						"size": 130
+						"size": 1000
 					},
 					{
-						"size": 180,
+						"size": 950,
 						"station": {
 							"name": "stationTwo"
 						}
 					},
 					{
-						"size": 100
+						"size": 1100
 					}
 				]
 			},
@@ -29,23 +29,23 @@
 				"id": 1,
 				"cantons": [
 					{
-						"size": 110
+						"size": 1100
 					},
 					{
-						"size": 120,
+						"size": 920,
 						"station": {
 							"name": "stationThree",
 							"wait_time": 2000
 						}
 					},
 					{
-						"size": 100
+						"size": 750
 					},
 					{
-						"size": 100
+						"size": 830
 					},
 					{
-						"size": 90
+						"size": 1200
 					}
 				]
 			}

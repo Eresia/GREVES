@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
@@ -14,15 +15,22 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import com.sun.jndi.url.rmi.rmiURLContext;
+
 import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import jdk.nashorn.internal.runtime.JSONListAdapter;
+import ucp.greves.model.ControlLine;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
+import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
+import ucp.greves.model.exceptions.railway.RailWayNotExistException;
+import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RailWay;
+import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.canton.Terminus;
 import ucp.greves.model.line.station.Station;
@@ -57,6 +65,8 @@ public class LineBuilder {
 
 		ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
 		engine = scriptEngineManager.getEngineByName("javascript");
+		
+		HashMap<Integer, RailWay> newRailways = new HashMap<>();
 
 		String json;
 		try {
@@ -86,11 +96,12 @@ public class LineBuilder {
 								ScriptObjectMirror rwSOM = (ScriptObjectMirror) rwColValue;
 								Set<Map.Entry<String, Object>> rwMap = rwSOM.entrySet();
 
+								RailWay rw = null;
+								
 								// For each item in railway (id & cantons)
 								for (Entry<String, Object> rwEntry : rwMap) {
 									System.out.println("    " + rwEntry);
 									
-									RailWay rw = null;
 									
 									// If we are parsing the id, we add the railway to the line
 									if (rwEntry.getKey().equalsIgnoreCase("id")) {
@@ -110,9 +121,7 @@ public class LineBuilder {
 											ScriptObjectMirror cantonSOM = (ScriptObjectMirror) cantonIt.previous();
 											Set<Map.Entry<String, Object>> cantonMap = cantonSOM.entrySet();
 
-											boolean terminusCreated = false;
-											Canton currCanton = null;
-											Canton nextCanton = new Terminus(1);
+											Canton canton = rw.getFirstCanton();
 											
 											// For each item in canton (size [& station])
 											for (Entry<String, Object> cantonEntry : cantonMap) {
@@ -122,12 +131,7 @@ public class LineBuilder {
 												// If we are on the size part
 												case "size":
 													int length = (Integer) cantonEntry.getValue();
-													if (!terminusCreated) {
-														currCanton = new Terminus(length);
-														terminusCreated = true;
-													} else {
-														currCanton = new Canton(nextCanton, length);
-													}
+													rw.addCanton(length);
 													break;
 												// If we are on the station part
 												case "station":
@@ -135,11 +139,10 @@ public class LineBuilder {
 															.getValue();
 													Set<Map.Entry<String, Object>> stationMap = stationSOM.entrySet();
 
-													// For each item in the station part (name [& wait_time])
-													
 													String name = "";
 													int waitTime = 0;
-													
+
+													// For each item in the station part (name [& wait_time])
 													for (Entry<String, Object> stationEntry : stationMap) {
 														System.out.println("        " + stationEntry);
 														switch (stationEntry.getKey().toLowerCase()) {
@@ -154,26 +157,18 @@ public class LineBuilder {
 													}
 													
 													try {
-														currCanton.setStation(new Station(currCanton.getId(), name, waitTime), currCanton.getLength()/2);
+														canton.setStation(new Station(canton.getId(), name, waitTime), canton.getLength()/2);
 													} catch (CantonHasAlreadyStationException
 															| CantonNotExistException e) {
 														e.printStackTrace();
 													}
-
-
 													break;
 												}
-												nextCanton = currCanton;
 											}
 										}
 									}
-
-									try {
-										Line.register_railway(rw);
-									} catch (DoubledRailwayException e) {
-										e.printStackTrace();
-									}
 								}
+								newRailways.put(rw.getId(), rw);
 							}
 						}
 					}
@@ -196,19 +191,27 @@ public class LineBuilder {
 								ScriptObjectMirror connectSOM = (ScriptObjectMirror) connectColValue;
 								Set<Map.Entry<String, Object>> connectMap = connectSOM.entrySet();
 
+								int idFrom = 0, idTo = 0;
+								boolean from = false, to = false;
+								
 								// For each item in railway
 								for (Entry<String, Object> connectEntry : connectMap) {
 									System.out.println("    " + connectEntry);
-									int idFrom, idTo;
 									switch (connectEntry.getKey().toLowerCase()) {
 									case "from":
 										idFrom = (Integer) connectEntry.getValue();
+										from = true;
 										break;
 									case "to":
-										idFrom = (Integer) connectEntry.getValue();
+										idTo = (Integer) connectEntry.getValue();
+										to = true;
 										break;
 									}
-									/// TODO : Add connections between railways
+								}
+								if(to && from) {
+									RailWay connectRw = newRailways.get(idFrom);
+									connectRw.connectTo(newRailways.get(idTo));
+									newRailways.put(connectRw.getId(), connectRw);
 								}
 							}
 						}
@@ -220,7 +223,38 @@ public class LineBuilder {
 		} catch (IOException | ScriptException e) {
 			e.printStackTrace();
 		}
+		
+		// Adding the railways to the line
+		for(RailWay rw : newRailways.values()) {
+			try {
+				Line.register_railway(rw);
+			} catch (DoubledRailwayException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		ControlLine control = ControlLine.getInstance();
+		RoadMap rm = new RoadMap("test");
+		// Adding the railways to the controller
+		for(RailWay rw : newRailways.values()) {
+			try {
+				rm.addRailWay(rw.getId());
+			} catch (DoubledRailwayException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			for (Integer s : Line.getStations().keySet()) {
+				rm.addStation(Line.getStations().get(s).getName());
+				System.out.println(Line.getStations().get(s).getName());
+			}
+			control.addRoad(rm.getName(), rm);
+			
+			control.launchTrain(rm.getName(), 150);
+			
+		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException e) {
+			e.printStackTrace();
+		}
 
 	}
-
 }
