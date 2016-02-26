@@ -1,6 +1,8 @@
 package ucp.greves.view;
 
 import javafx.application.Application;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -22,6 +24,8 @@ import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 
 public class GlobalView extends Application{
 	
+	IntegerProperty paneWidth, paneHeight;
+	
 	public static void main(String[] args){
 		launch(args);
 	}
@@ -32,19 +36,24 @@ public class GlobalView extends Application{
 	      Scene scene = new Scene(root,800,600);
 	      primaryStage.setTitle("G.R.E.V.E.S.");
 	      
+	      this.paneHeight = new SimpleIntegerProperty();
+	      this.paneWidth = new SimpleIntegerProperty();
+	      
 	      ScrollPane lineDraw = (ScrollPane) root.lookup("#lineDraw"); //Get the borderPane from the root
-	      modify(lineDraw);
 	      setButton(root);
 	      
 	      primaryStage.setScene(scene);
 	      primaryStage.show();
 	      
+	      modify(lineDraw);     
 	     
 	}
 	
 	public void modify(ScrollPane pane){
-	    LineView lv = new LineView();
-	    pane.setContent(lv);
+		paneWidth.setValue(pane.getWidth());
+		paneHeight.setValue(pane.getHeight());
+		LineView lv = new LineView(paneWidth, paneHeight);	    
+		pane.setContent(lv);
 	}
 	
 	public void setButton(Parent root){

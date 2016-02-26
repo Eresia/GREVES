@@ -7,24 +7,24 @@ import ucp.greves.controller.TrainController;
 import ucp.greves.model.train.Train;
 import javafx.beans.property.IntegerProperty;
 import javafx.scene.Parent;
+import javafx.scene.shape.Rectangle;
 
 public class TrainView extends Parent implements Observer{
-
-	private IntegerProperty StartPosX,StartPosY,EndPosX,EndPosY;
-	public TrainView(IntegerProperty StartPosX , IntegerProperty StartPosY , IntegerProperty EndPosX, IntegerProperty EndPosY , Train tr){
+	
+	Rectangle rect;
+	
+	public TrainView(Train tr){
 		TrainController trcontroller  = new TrainController();
-		this.StartPosX.bind(StartPosX);
-		this.StartPosY.bind(StartPosY);
-		this.EndPosX.bind(EndPosX);
-		this.EndPosY.bind(EndPosY);
+
+		this.rect = new Rectangle(10, 10); //Rectnagle qui représente le train
 		
-		tr.getPosition();
-		
+		tr.addObserver(this);
+		this.getChildren().add(rect);
 		
 	}
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		// Mis a jour de la position du train
 		
 	}
 	
