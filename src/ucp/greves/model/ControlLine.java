@@ -44,12 +44,12 @@ public class ControlLine {
 		SimulationSpeed.changeSimulationSpeed(duration);
 	}
 	
-	public void addRoadMap(String name, Station firstStation, Station lastStation) throws RoadMapAlreadyExistException, RailWayNotExistException, CantonNotExistException, PathNotExistException{
+	public RoadMap addRoad(String name, Station firstStation, Station lastStation) throws RoadMapAlreadyExistException, RailWayNotExistException, CantonNotExistException, PathNotExistException{
 		if(roads.containsKey(name)){
 			throw new RoadMapAlreadyExistException("RoadMap " + name + " already exist");
 		}
 		int firstRailWay = findRailWay(firstStation);
-		int lastRailWay = findRailWay(firstStation);
+		int lastRailWay = findRailWay(lastStation);
 		RailWay r = Line.getRailWays().get(firstRailWay);
 		RoadMap road = new RoadMap(name);
 		try{
@@ -78,6 +78,8 @@ public class ControlLine {
 		} catch (TerminusException e) {
 			throw new PathNotExistException("Path beetween station " + firstStation.getName() + " and station " + lastStation.getName() + "don't exist (terminus)");
 		}
+		roads.put(name, road);
+		return road;
 	}
 	
 	public void launchTrain(String road, int speed) throws BadControlInformationException, BadRoadMapException, RailWayNotExistException{

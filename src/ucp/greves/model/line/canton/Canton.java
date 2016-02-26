@@ -27,13 +27,17 @@ public class Canton extends Observable {
 	private int railWay;
 	
 	public Canton(Canton nextCanton, int railWay, int length) {
-		this(length);
+		this(railWay, length);
 		this.nextCanton = nextCanton;
-		this.railWay = railWay;
 	}
 
 	public Canton(Canton nextCanton, int length) {
 		this(nextCanton, -1, length);
+	}
+	
+	protected Canton(int railWay, int length) {
+		this(length);
+		this.railWay = railWay;
 	}
 
 	protected Canton(int length) {

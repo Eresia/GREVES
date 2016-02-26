@@ -47,8 +47,8 @@ public class GlobalView extends Application{
 		primaryStage.show();  
 
 		// Décommenter ces 2 lignes pour utiliser le json
-//		ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "JSON");
-//		Line.getInstance();
+		ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "JSON");
+		Line.getInstance();
   
 		modify(lineDraw);
 	}

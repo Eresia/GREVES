@@ -8,14 +8,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.ListIterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-
-import com.sun.jndi.url.rmi.rmiURLContext;
 
 import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import jdk.nashorn.internal.runtime.JSONListAdapter;
@@ -25,14 +23,16 @@ import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
+import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
+import ucp.greves.model.exceptions.railway.PathNotExistException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
+import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
+import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RailWay;
-import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
-import ucp.greves.model.line.canton.Terminus;
 import ucp.greves.model.line.station.Station;
 
 public class LineBuilder {
@@ -47,7 +47,7 @@ public class LineBuilder {
 
 				break;
 			case "JSON":
-				buildLineFromJson("Configuration/Line/line_test.json");
+				buildLineFromJson("Configuration/Line/line_A.json");
 				break;
 			default:
 				LineBuilderSimple.BuildLine();
@@ -121,7 +121,7 @@ public class LineBuilder {
 											ScriptObjectMirror cantonSOM = (ScriptObjectMirror) cantonIt.previous();
 											Set<Map.Entry<String, Object>> cantonMap = cantonSOM.entrySet();
 
-											Canton canton = rw.getFirstCanton();
+											Canton canton = null;
 											
 											// For each item in canton (size [& station])
 											for (Entry<String, Object> cantonEntry : cantonMap) {
@@ -132,6 +132,7 @@ public class LineBuilder {
 												case "size":
 													int length = (Integer) cantonEntry.getValue();
 													rw.addCanton(length);
+													canton = rw.getFirstCanton();
 													break;
 												// If we are on the station part
 												case "station":
@@ -140,7 +141,7 @@ public class LineBuilder {
 													Set<Map.Entry<String, Object>> stationMap = stationSOM.entrySet();
 
 													String name = "";
-													int waitTime = 0;
+													int waitTime = Station.getWaitTimeConfig();
 
 													// For each item in the station part (name [& wait_time])
 													for (Entry<String, Object> stationEntry : stationMap) {
@@ -211,7 +212,6 @@ public class LineBuilder {
 								if(to && from) {
 									RailWay connectRw = newRailways.get(idFrom);
 									connectRw.connectTo(newRailways.get(idTo));
-									newRailways.put(connectRw.getId(), connectRw);
 								}
 							}
 						}
@@ -234,25 +234,30 @@ public class LineBuilder {
 		}
 		
 		ControlLine control = ControlLine.getInstance();
-		RoadMap rm = new RoadMap("test");
+		//RoadMap rm = new RoadMap("test");
 		// Adding the railways to the controller
-		for(RailWay rw : newRailways.values()) {
+		/*for(RailWay rw : newRailways.values()) {
 			try {
 				rm.addRailWay(rw.getId());
 			} catch (DoubledRailwayException e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
 		try {
-			for (Integer s : Line.getStations().keySet()) {
-				rm.addStation(Line.getStations().get(s).getName());
-				System.out.println(Line.getStations().get(s).getName());
-			}
-			control.addRoad(rm.getName(), rm);
+			/*System.out.println(Line.getRailWays().get(0).getLength());
+			System.out.println(Line.getRailWays().get(0).getFirstCanton());
+			System.out.println(Line.getRailWays().get(1).getLength());
+			System.out.println(Line.getRailWays().get(1).getFirstCanton());
+			System.out.println(Line.getRailWays().get(2).getLength());
+			System.out.println(Line.getRailWays().get(2).getFirstCanton());
+			System.out.println(Line.getRailWays().get(3).getLength());
+			System.out.println(Line.getRailWays().get(3).getFirstCanton());*/
+			Line.getRailWays().get(0).getFirstCanton().getStation();
+			Line.getRailWays().get(4).getTerminus().getStation();
+			ControlLine.getInstance().addRoad("Line A", Line.getRailWays().get(0).getFirstCanton().getStation(), Line.getRailWays().get(4).getTerminus().getStation());			
+			control.launchTrain("Line A", 150);
 			
-			control.launchTrain(rm.getName(), 150);
-			
-		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException e) {
+		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException | RoadMapAlreadyExistException | CantonNotExistException | PathNotExistException | StationNotFoundException e) {
 			e.printStackTrace();
 		}
 

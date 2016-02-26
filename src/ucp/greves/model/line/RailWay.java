@@ -11,7 +11,7 @@ public class RailWay {
 	private ArrayList<Canton> canton_list;
 
 	public RailWay(int id){
-		this.terminus = new Terminus(1);
+		//this.terminus = new Terminus(1);
 		//this.id = Registry.register_railway();
 		this.id = id;
 		this.canton_list = new ArrayList<Canton>();
@@ -36,13 +36,18 @@ public class RailWay {
 
 
 	public void addCanton(int lenght) {
-		Canton cn;
-		if(this.canton_list.size() == 0){
-			 cn  = new Canton(terminus, getId(), lenght);
-		}else{
-			 cn  = new Canton(this.getFirstCanton(), getId(), lenght);
+		if(terminus == null){
+			terminus = new Terminus(getId(), lenght);
 		}
-		this.canton_list.add(cn);
+		else{
+			Canton cn;
+			if(this.canton_list.size() == 0){
+				 cn  = new Canton(terminus, getId(), lenght);
+			}else{
+				 cn  = new Canton(this.getFirstCanton(), getId(), lenght);
+			}
+			this.canton_list.add(cn);
+		}
 	}
 	
 	public Canton getFirstCanton(){

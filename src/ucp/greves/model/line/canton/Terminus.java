@@ -11,6 +11,11 @@ import ucp.greves.model.line.RoadMap;
 public class Terminus extends Canton {
 	private HashMap<Integer, RailWay> railWayAvailable;
 	private RailWay nextRailWay;
+	
+	public Terminus(int railWay, int length) {
+		this(length);
+		setRailWay(railWay);
+	}
 
 	public Terminus(int length) {
 		super(length);
