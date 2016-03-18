@@ -8,6 +8,8 @@
 	<property type="integer" name="train_speed_station" value="15"></property>
 	<property type="integer" name="slower_distance_to_station" value="100"></property>
 
+	<property type="integer" name="slow_down_speed" value="100"></property>
+
 	<property type="integer" name="station_wait_time" value="20"></property>
 
 	<property type="boolean" name="debug" value="false"></property>

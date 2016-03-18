@@ -3,6 +3,8 @@ package ucp.greves.model.line.canton;
 import java.util.Observable;
 
 import ucp.greves.model.configuration.ConfigurationEnvironment;
+import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
+import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.railway.RailWayNotDefinedException;
 import ucp.greves.model.exceptions.station.StationNotFoundException;
@@ -26,6 +28,20 @@ public class Canton extends Observable {
 	private int positionStation;
 	private int railWay;
 	
+	private int trainSpeed;
+	private int slowDownSpeed;
+	private CantonState state;
+
+	private final static int SPEED_MAX_DEFAULT = 100;
+	private final static int SPEED_STATION_DEFAULT = 15;
+	private final static int SPEED_SLOWDOWN_DEFAULT = 100;
+	private final static int DISTANCE_TO_STATION_DEFAULT = 100;
+
+	private final static int SPEED_MAX = setSpeedMax();
+	private final static int SPEED_STATION = setSpeedStation();
+	private final static int SPEED_SLOWDOWN = setSpeedSlowDown();
+	private final static int DISTANCE_TO_STATION = setDistanceToStation();
+	
 	public Canton(Canton nextCanton, int railWay, int length) {
 		this(railWay, length);
 		this.nextCanton = nextCanton;
@@ -43,6 +59,8 @@ public class Canton extends Observable {
 	protected Canton(int length) {
 		this.id = Line.register_canton(this);
 		buildCanton(length);
+		
+		trainSpeed = SPEED_MAX;
 	}
 	
 	private void buildCanton(int length){
@@ -93,6 +111,76 @@ public class Canton extends Observable {
 		occupyingTrain = train;
 		this.setChanged();
 		this.notifyObservers();
+	}
+	
+	public int updateTrainPosition(int position, boolean crossStation){
+		int startPoint = getStartPoint();
+		int positionOnCanton = startPoint - position;
+		int speed = getTrainSpeed(position);
+		
+		if (crossStation) {
+			if (positionOnCanton < positionStation && (positionOnCanton + speed) >= positionStation) {
+				enterInStation();
+			}
+		}
+		
+		return speed;
+	}
+	
+	public void createSlowDown(){
+		state = CantonState.SLOWSDOWN;
+		slowDownSpeed = SPEED_SLOWDOWN;
+	}
+	
+	public void createSlowDown(int newSpeed){
+		state = CantonState.SLOWSDOWN;
+		slowDownSpeed = newSpeed;
+	}
+	
+	public void stopSlowDown(){
+		state = CantonState.NO_PROBLEM;
+		slowDownSpeed = SPEED_MAX;
+	}
+	
+	public void blockCanton(){
+		state = CantonState.BLOCKED;
+	}
+	
+	public void unblockCanton(){
+		trainSpeed = SPEED_MAX;
+	}
+	
+	public int getTrainSpeed(int position){
+		if(state == CantonState.BLOCKED){
+			return 0;
+		}
+		int startPoint = getStartPoint();
+		int positionOnCanton = startPoint - position;
+		int speed = 0;
+		int defaultSpeed;
+		
+		if(state == CantonState.SLOWSDOWN){
+			defaultSpeed = slowDownSpeed;
+		}
+		else{
+			defaultSpeed = trainSpeed;
+		}
+		
+		if ((positionOnCanton < positionStation) && (positionOnCanton + DISTANCE_TO_STATION) >= positionStation) {
+			if(SPEED_STATION <= defaultSpeed){
+				speed = SPEED_STATION;
+			}
+			else{
+				speed = defaultSpeed;
+			}
+		} else {
+			speed = defaultSpeed;
+		}
+		return speed;
+	}
+	
+	public CantonState getState(){
+		return state;
 	}
 
 	public synchronized void exit() {
@@ -155,6 +243,75 @@ public class Canton extends Observable {
 	
 	public void setRailWay(int railWay){
 		this.railWay = railWay;
+	}
+	
+	private static int setSpeedMax() {
+		int s = SPEED_MAX_DEFAULT;
+		try {
+			ConfigurationEnvironmentElement speedElement = ConfigurationEnvironment.getInstance()
+					.getProperty("train_speed_max");
+			if (!speedElement.getType().equals(Integer.class)) {
+				System.err.println(
+						"Train speed max has not the right type, default value " + SPEED_MAX_DEFAULT + " used");
+			} else {
+				s = (Integer) speedElement.getValue();
+			}
+		} catch (PropertyNotFoundException e) {
+			System.err.println("Train speed max not defined, default value " + SPEED_MAX_DEFAULT + " used");
+		}
+		return s;
+	}
+
+	private static int setSpeedStation() {
+		int s = SPEED_STATION_DEFAULT;
+		try {
+			ConfigurationEnvironmentElement speedElement = ConfigurationEnvironment.getInstance()
+					.getProperty("train_speed_station");
+			if (!speedElement.getType().equals(Integer.class)) {
+				System.err.println(
+						"Train speed station has not the right type, default value " + SPEED_STATION_DEFAULT + " used");
+			} else {
+				s = (Integer) speedElement.getValue();
+			}
+		} catch (PropertyNotFoundException e) {
+			System.err.println("Train speed station not defined, default value " + SPEED_STATION_DEFAULT + " used");
+		}
+		return s;
+	}
+	
+	private static int setSpeedSlowDown() {
+		int s = SPEED_SLOWDOWN_DEFAULT;
+		try {
+			ConfigurationEnvironmentElement speedElement = ConfigurationEnvironment.getInstance()
+					.getProperty("slow_down_speed");
+			if (!speedElement.getType().equals(Integer.class)) {
+				System.err.println(
+						"Slow down speed has not the right type, default value " + SPEED_STATION_DEFAULT + " used");
+			} else {
+				s = (Integer) speedElement.getValue();
+			}
+		} catch (PropertyNotFoundException e) {
+			System.err.println("Slow down speed not defined, default value " + SPEED_STATION_DEFAULT + " used");
+		}
+		return s;
+	}
+
+	private static int setDistanceToStation() {
+		int d = DISTANCE_TO_STATION_DEFAULT;
+		try {
+			ConfigurationEnvironmentElement speedElement = ConfigurationEnvironment.getInstance()
+					.getProperty("slower_distance_to_station");
+			if (!speedElement.getType().equals(Integer.class)) {
+				System.err.println("Distance to station has not the right type, default value "
+						+ DISTANCE_TO_STATION_DEFAULT + " used");
+			} else {
+				d = (Integer) speedElement.getValue();
+			}
+		} catch (PropertyNotFoundException e) {
+			System.err
+					.println("Distance to station not defined, default value " + DISTANCE_TO_STATION_DEFAULT + " used");
+		}
+		return d;
 	}
 
 	@Override
