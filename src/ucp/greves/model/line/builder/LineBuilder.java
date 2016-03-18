@@ -14,6 +14,15 @@ import java.util.Set;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import jdk.nashorn.internal.runtime.JSONListAdapter;
@@ -60,7 +69,46 @@ public class LineBuilder {
 	}
 	
 	private static void buildLineFromXml(String filepath) {
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder;
 		
+		try {
+			dBuilder = dbFactory.newDocumentBuilder();
+
+			Document doc = (Document) dBuilder.parse(filepath);
+			NodeList railwayList = doc.getElementsByTagName("railways");
+			
+			/* For each railway */
+			for (int rwI = 0; rwI < railwayList.getLength(); rwI ++) {
+				Element rwEl = (Element) railwayList.item(rwI);
+				NodeList rwChilds = rwEl.getChildNodes();
+				
+				int rwId = -1;
+				
+				for(int rwChildI = 0 ; rwChildI < rwChilds.getLength() ; rwChildI ++) {
+					Node rwDescEl = (Node) rwChilds.item(rwChildI);
+					
+					if(rwDescEl.getNodeType() != Node.ELEMENT_NODE) {
+						continue;
+					}
+					
+					switch(rwDescEl.getNodeName().toLowerCase()) {
+					case "id":
+						rwId = Integer.valueOf(rwDescEl.getFirstChild().getNodeValue());
+						break;
+					case "cantons":
+						break;
+					default:
+							break;
+					}
+					
+					System.out.println(rwChildI+" - "+rwDescEl.getNodeName()+"="
+							+rwDescEl.getFirstChild().getNodeValue());
+				}
+			}
+		} catch (ParserConfigurationException | SAXException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void buildLineFromJson(String filepath) {

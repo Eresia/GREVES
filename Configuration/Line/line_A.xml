@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<lineConfig>
 	<line>
 		<railways>
 			<id>0</id>
@@ -719,4 +720,4 @@
 			<to>1</to>
 		</connect>
 	</connections>
-	
+</lineConfig>
