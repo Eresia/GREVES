@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 /**
- * As the name implies, this class has for aim to
+ * This class has for aim to
  * set the configuration of the environment.
  * 
  * Configurations are saved in .xml files and determine several variables such as:
