@@ -9,6 +9,7 @@ import org.junit.Test;
 import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
+import ucp.greves.model.train.Train;
 
 /// TODO : Tests à implémenter
 public class CantonTest {
@@ -64,7 +65,19 @@ public class CantonTest {
 
 	@Test
 	public void testEnter() {
-		//fail("Not yet implemented");
+		Canton secondCanton = new Canton(null, 2, 100);
+		Canton firstCanton = new Canton(secondCanton, 2, 100);
+		Train train = new Train(firstCanton, new RoadMap("test"), 10);
+		Train secondTrain = new Train(firstCanton, new RoadMap("test"), 10);
+		
+		/*The first train can enter in the next canton because he is free*/
+		firstCanton.enter(train);
+		assertEquals(train.getCurrentCanton(), firstCanton);
+		
+		/*the second can't enter because the first is in the canton*/
+		secondCanton.enter(secondTrain);
+		assertEquals(train.getCurrentCanton(), firstCanton);
+		
 	}
 
 	@Test
