@@ -44,7 +44,7 @@ public class LineBuilder {
 			String build_configuration = (String) conf.getProperty("BUILD_CONFIGURATION").getValue();
 			switch (build_configuration) {
 			case "XML":
-
+				buildLineFromXml("Configuration/Line/line_A.xml");
 				break;
 			case "JSON":
 				buildLineFromJson("Configuration/Line/line_A.json");
@@ -57,6 +57,10 @@ public class LineBuilder {
 			LineBuilderSimple.BuildLine();
 		}
 
+	}
+	
+	private static void buildLineFromXml(String filepath) {
+		
 	}
 
 	private static void buildLineFromJson(String filepath) {
