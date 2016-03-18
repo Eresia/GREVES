@@ -13,9 +13,9 @@ import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.exceptions.roadmap.EmptyRoadMapException;
 import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
-import ucp.greves.model.exceptions.roadmap.StationAlreadyExistInRoadMapException;
 import ucp.greves.model.exceptions.roadmap.RoadMapNameNotExistException;
-import ucp.greves.model.exceptions.station.StationNotFoundException;
+import ucp.greves.model.exceptions.roadmap.StationAlreadyExistInRoadMapException;
+import ucp.greves.model.exceptions.train.TrainNotExistException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RailWay;
 import ucp.greves.model.line.RoadMap;
@@ -109,14 +109,51 @@ public class ControlLine {
 	}
 	
 	public void createSlowDown(int canton) throws CantonNotExistException{
-		
+		if(!Line.getCantons().containsKey(canton)){
+			throw new CantonNotExistException("Canton " + canton + " not exist");
+		}
+		Line.getCantons().get(canton).createSlowDown();
+	}
+	
+	public void createSlowDown(int canton, int newSpeed) throws CantonNotExistException{
+		if(!Line.getCantons().containsKey(canton)){
+			throw new CantonNotExistException("Canton " + canton + " not exist");
+		}
+		Line.getCantons().get(canton).createSlowDown(newSpeed);
 	}
 	
 	public void blockCanton(int canton) throws CantonNotExistException{
-		
+		if(!Line.getCantons().containsKey(canton)){
+			throw new CantonNotExistException("Canton " + canton + " not exist");
+		}
+		Line.getCantons().get(canton).blockCanton();
+	}
+	
+	public void removeCantonProblem(int canton) throws CantonNotExistException{
+		if(!Line.getCantons().containsKey(canton)){
+			throw new CantonNotExistException("Canton " + canton + " not exist");
+		}
+		Line.getCantons().get(canton).removeProblem();
+	}
+	
+	public void blockTrain(int train) throws TrainNotExistException{
+		if(!Line.getTrains().containsKey(train)){
+			throw new TrainNotExistException("Train " + train + " not exist");
+		}
+		Line.getTrains().get(train).blockTrain();
+	}
+	
+	public void unblockTrain(int train) throws TrainNotExistException{
+		if(!Line.getTrains().containsKey(train)){
+			throw new TrainNotExistException("Train " + train + " not exist");
+		}
+		Line.getTrains().get(train).unblockTrain();
 	}
 
-	public void addRoad(String name, RoadMap road) {
+	public void addRoad(String name, RoadMap road) throws RoadMapAlreadyExistException {
+		if(roads.containsKey(name)){
+			throw new RoadMapAlreadyExistException("Road map " + name + " already exist");
+		}
 		roads.put(name, road);
 	}
 
@@ -124,7 +161,10 @@ public class ControlLine {
 		roads.remove(name);
 	}
 
-	public RoadMap getRoad(String name) {
+	public RoadMap getRoad(String name) throws RoadMapNameNotExistException {
+		if(roads.containsKey(name)){
+			throw new RoadMapNameNotExistException("Road map " + name + " not exist");
+		}
 		return roads.get(name);
 	}
 

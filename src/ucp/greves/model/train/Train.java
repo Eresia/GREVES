@@ -100,6 +100,14 @@ public class Train extends Observable implements Runnable {
 		removeStation = station;
 		isRemoved = true;
 	}
+	
+	public void blockTrain(){
+		currentCanton.blockCanton();
+	}
+	
+	public void unblockTrain(){
+		currentCanton.removeProblem();
+	}
 
 	public boolean hasArrived() {
 		return hasArrived;

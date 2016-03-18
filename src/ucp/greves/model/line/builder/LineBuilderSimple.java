@@ -11,6 +11,7 @@ import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
+import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RailWay;
 import ucp.greves.model.line.RoadMap;
@@ -51,7 +52,7 @@ public class LineBuilderSimple {
 			control.launchTrain(rm.getName(), 200);
 			control.launchTrain(rm.getName(), 320);
 
-		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException e) {
+		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException | RoadMapAlreadyExistException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

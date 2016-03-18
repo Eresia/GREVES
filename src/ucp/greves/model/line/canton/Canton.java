@@ -137,17 +137,12 @@ public class Canton extends Observable {
 		slowDownSpeed = newSpeed;
 	}
 	
-	public void stopSlowDown(){
-		state = CantonState.NO_PROBLEM;
-		slowDownSpeed = SPEED_MAX;
-	}
-	
 	public void blockCanton(){
 		state = CantonState.BLOCKED;
 	}
 	
-	public void unblockCanton(){
-		trainSpeed = SPEED_MAX;
+	public void removeProblem(){
+		state = CantonState.NO_PROBLEM;
 	}
 	
 	public int getTrainSpeed(int position){
