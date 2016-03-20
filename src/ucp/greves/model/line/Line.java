@@ -9,6 +9,7 @@ import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
+import ucp.greves.model.exceptions.line.InvalidXMLException;
 import ucp.greves.model.line.builder.LineBuilder;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.Station;
@@ -37,7 +38,7 @@ public class Line extends Observable implements Observer {
 			try {
 				LineBuilder.buildLine(ConfigurationEnvironment.getInstance());
 			} catch (DoubledRailwayException | CantonHasAlreadyStationException
-					| CantonNotExistException e) {
+					| CantonNotExistException | InvalidXMLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

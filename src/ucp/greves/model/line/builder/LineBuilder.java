@@ -33,6 +33,7 @@ import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.canton.TerminusException;
+import ucp.greves.model.exceptions.line.InvalidXMLException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
 import ucp.greves.model.exceptions.railway.PathNotExistException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
@@ -47,7 +48,7 @@ import ucp.greves.model.line.station.Station;
 public class LineBuilder {
 
 	static public void buildLine(ConfigurationEnvironment conf)
-			throws DoubledRailwayException, CantonHasAlreadyStationException, CantonNotExistException {
+			throws DoubledRailwayException, CantonHasAlreadyStationException, CantonNotExistException, InvalidXMLException {
 
 		try {
 			String build_configuration = (String) conf.getProperty("BUILD_CONFIGURATION").getValue();
@@ -68,7 +69,7 @@ public class LineBuilder {
 
 	}
 	
-	private static void buildLineFromXml(String filepath) {
+	private static void buildLineFromXml(String filepath) throws InvalidXMLException {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
 		
@@ -76,39 +77,139 @@ public class LineBuilder {
 			dBuilder = dbFactory.newDocumentBuilder();
 
 			Document doc = (Document) dBuilder.parse(filepath);
-			NodeList railwayList = doc.getElementsByTagName("railways");
 			
+			HashMap<Integer, RailWay> newRailways = new HashMap<>();
+			
+			NodeList railwayList = doc.getElementsByTagName("railway");
 			/* For each railway */
 			for (int rwI = 0; rwI < railwayList.getLength(); rwI ++) {
 				Element rwEl = (Element) railwayList.item(rwI);
-				NodeList rwChilds = rwEl.getChildNodes();
 				
-				int rwId = -1;
+				int rwId;
+				try {
+					rwId = Integer.valueOf(rwEl.getAttribute("id"));
+				}
+				catch(NumberFormatException nfe) {
+					rwId = -1;
+					throw new InvalidXMLException();
+				}
 				
-				for(int rwChildI = 0 ; rwChildI < rwChilds.getLength() ; rwChildI ++) {
-					Node rwDescEl = (Node) rwChilds.item(rwChildI);
+				RailWay rw = new RailWay(rwId);
+				
+				NodeList cantonList = rwEl.getElementsByTagName("canton");
+				
+
+				if (ConfigurationEnvironment.inDebug()) {
+					System.err.println("Railway n°"+rwId+" ("+cantonList.getLength()+" cantons) :");
+				}
+				
+				/* For each canton in the railway */
+				for(int cantonI = cantonList.getLength()-1 ; cantonI >= 0  ; cantonI--) {
+					Element cantonEl = (Element) cantonList.item(cantonI);
 					
-					if(rwDescEl.getNodeType() != Node.ELEMENT_NODE) {
-						continue;
+					int cantonSize;
+					try {
+						cantonSize = Integer.valueOf(cantonEl.getAttribute("size"));
+					}
+					catch(NumberFormatException nfe) {
+						cantonSize = 1000;
 					}
 					
-					switch(rwDescEl.getNodeName().toLowerCase()) {
-					case "id":
-						rwId = Integer.valueOf(rwDescEl.getFirstChild().getNodeValue());
-						break;
-					case "cantons":
-						break;
-					default:
-							break;
+					rw.addCanton(cantonSize);
+					Canton canton = rw.getFirstCanton();
+
+					if (ConfigurationEnvironment.inDebug()) {
+						System.err.println("\tCanton "+(cantonI+1)+" : size = "+cantonSize);
 					}
+
+					NodeList stationList = cantonEl.getElementsByTagName("station");
 					
-					System.out.println(rwChildI+" - "+rwDescEl.getNodeName()+"="
-							+rwDescEl.getFirstChild().getNodeValue());
+					if(stationList.getLength() > 0) {
+						Element stationEl = (Element) stationList.item(0);
+						
+						String stationName = stationEl.getAttribute("name");
+						int stationWaitTime;
+						
+						try {
+							stationWaitTime = Integer.valueOf(stationEl.getAttribute("wait_time"));
+						}
+						catch(NumberFormatException nfe) {
+							stationWaitTime = Station.getWaitTimeConfig();
+						}
+
+						if (ConfigurationEnvironment.inDebug()) {
+							System.err.println("\t\tStation : name = \""+stationName+"\" - wait_time = "+stationWaitTime);
+						}
+						
+						try {
+							canton.setStation(new Station(canton.getId(), stationName, stationWaitTime), canton.getLength()/2);
+						} catch (CantonHasAlreadyStationException
+								| CantonNotExistException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				
+				newRailways.put(rw.getId(), rw);
+			}
+			
+			System.out.println();
+
+			/* Parsing the connections */
+			NodeList connectList = doc.getElementsByTagName("connect");
+			for(int connectI=0 ; connectI < connectList.getLength() ; connectI++) {
+				Element connectEl = (Element) connectList.item(connectI);
+				
+				int fromId = -1;
+				try {
+					fromId = Integer.valueOf(connectEl.getAttribute("from"));
+				}
+				catch(NumberFormatException nfe) {
+					fromId = -1;
+					throw new InvalidXMLException();
+				}
+				
+				int toId = -1;
+				try {
+					toId = Integer.valueOf(connectEl.getAttribute("to"));
+				}
+				catch(NumberFormatException nfe) {
+					toId = -1;
+					throw new InvalidXMLException();
+				}
+				
+				RailWay connectRw = newRailways.get(fromId);
+				connectRw.connectTo(newRailways.get(toId));
+
+				if (ConfigurationEnvironment.inDebug()) {
+					System.err.println("Connection from "+fromId+" to "+toId);
 				}
 			}
+			
+			/* Adding the railways to the line */
+			for(RailWay rw : newRailways.values()) {
+				try {
+					Line.register_railway(rw);
+				} catch (DoubledRailwayException e) {
+					e.printStackTrace();
+				}
+			}
+			
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 		}
+		
+		ControlLine control = ControlLine.getInstance();
+		try {
+			Line.getRailWays().get(0).getFirstCanton().getStation();
+			Line.getRailWays().get(4).getTerminus().getStation();
+			ControlLine.getInstance().addRoad("Line A", Line.getRailWays().get(0).getFirstCanton().getStation(), Line.getRailWays().get(1).getTerminus().getStation());			
+			control.launchTrain("Line A", 150);
+			
+		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException | RoadMapAlreadyExistException | CantonNotExistException | PathNotExistException | StationNotFoundException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private static void buildLineFromJson(String filepath) {

@@ -1,723 +1,420 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<lineConfig>
+<?xml version="1.0" encoding="UTF-8"?>
+<lineConfiguration>
 	<line>
-		<railways>
-			<id>0</id>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Cergy Le haut</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Cergy St Christophe</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Cergy Préfecture</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Neuville Université</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Conflans fin d'Oise</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Achères-Ville</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Maison Laffite</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Sartrouville</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Houilles Carrières sur Seine</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-		</railways>
-		<railways>
-			<id>1</id>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Houilles Carrières sur Seine</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Sartrouville</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Maison Laffite</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Achères-Ville</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Conflans fin d'Oise</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Neuville Université</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Cergy Préfecture</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Cergy St Christophe</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Cergy Le Haut</name>
-				</station>
-			</cantons>
-		</railways>
-		<railways>
-			<id>2</id>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Nanterre-Préfecture</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>La Défense</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Charles de Gaulle Etoile</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Auber</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Châtelet-Les-Halles</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Gare de Lyon</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Nation</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Vincennes</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-		</railways>
-		<railways>
-			<id>3</id>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Vincennes</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Nation</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Gare de Lyon</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Châtelet-Les-Halles</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Auber</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Charles De Gaulle Etoile</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>La Défense</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Nanterre-Préfecture</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-		</railways>
-		<railways>
-			<id>4</id>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Val de Fontenay</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Neuilly Plaisance</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Bry sur Marne</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Noisy Le Grand</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Noisy Champs</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Noisiel</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Lognes</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Torcy</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Bussy Saint-Georges</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Val d'Europe</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Marne la Vallée</name>
-				</station>
-			</cantons>
-		</railways>
-		<railways>
-			<id>5</id>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Marne la Vallée</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Val d'Europe</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Bussy Saint-Georges</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Torcy</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Lognes</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Noisiel</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Noisy Champs</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Noisy le Grand</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Bry sur Marne</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Neuilly Plaisance</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-				<station>
-					<name>Val de Fontenay</name>
-				</station>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-			<cantons>
-				<size>1000</size>
-			</cantons>
-		</railways>
+		<railway id="0">
+			<canton size="1000">
+				<station name="Cergy Le haut" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Cergy St-Christophe" wait_time="40" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Cergy Préfecture" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Neuville Université" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Conflans fin d'Oise" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Achères-Ville" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Maison Laffite" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Sartrouville" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Houilles Carrières sur Seine" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+		</railway>
+		<railway id="1">
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Houilles Carrières sur Seine" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Sartrouville" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Maison Laffite" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Achères-Ville" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Conflans fin d'Oise" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Neuville Université" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Cergy Préfecture" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Cergy St Christophe" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Cergy Le Haut" />
+			</canton>
+		</railway>
+		<railway id="2">
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Nanterre-Préfecture" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="La Défense" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Charles de Gaulle Etoile" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Auber" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Châtelet-Les-Halles" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Gare de Lyon" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Nation" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Vincennes" />
+			</canton>
+			<canton size="1000">
+			</canton>
+		</railway>
+		<railway id="3">
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Vincennes" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Nation" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Gare de Lyon" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Châtelet-Les-Halles" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Auber" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Charles De Gaulle Etoile" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="La Défense" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Nanterre-Préfecture" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+		</railway>
+		<railway id="4">
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Val de Fontenay" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Neuilly Plaisance" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Bry sur Marne" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Noisy Le Grand" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Noisy Champs" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Noisiel" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Lognes" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Torcy" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Bussy Saint-Georges" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Val d'Europe" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Marne la Vallée" />
+			</canton>
+		</railway>
+		<railway id="5">
+			<canton size="1000">
+				<station name="Marne la Vallée" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Val d'Europe" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Bussy Saint-Georges" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Torcy" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Lognes" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Noisiel" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Noisy Champs" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Noisy le Grand" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Bry sur Marne" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Neuilly Plaisance" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+				<station name="Val de Fontenay" />
+			</canton>
+			<canton size="1000">
+			</canton>
+			<canton size="1000">
+			</canton>
+		</railway>
 	</line>
 	<connections>
-		<connect>
-			<from>0</from>
-			<to>2</to>
-		</connect>
-		<connect>
-			<from>2</from>
-			<to>4</to>
-		</connect>
-		<connect>
-			<from>4</from>
-			<to>5</to>
-		</connect>
-		<connect>
-			<from>5</from>
-			<to>3</to>
-		</connect>
-		<connect>
-			<from>3</from>
-			<to>1</to>
-		</connect>
+		<connect from="0" to="2" />
+		<connect from="2" to="4" />
+		<connect from="4" to="5" />
+		<connect from="5" to="3" />
+		<connect from="3" to="1" />
 	</connections>
-</lineConfig>
+</lineConfiguration>

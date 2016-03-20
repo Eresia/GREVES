@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<runconfiguration>
+<lineConfiguration>
 	<line>
 		<railway id="0">
 			<canton size="100">
-				<gare name="gareOne" waittime="3000"></gare>
+				<station name="stationOne" wait_time="3000" />
 			</canton>
 			<canton size="130">
 			</canton>
 			<canton size="80">
-				<gare name="gareTwo"></gare>
+				<station name="stationTwo" />
 			</canton>
 			<canton size="100">
 			</canton>
@@ -18,8 +18,7 @@
 			<canton size="110">
 			</canton>
 			<canton size="120">
-				<gare name="gareThree" waittime="2000">
-				</gare>
+				<station name="stationThree" wait_time="2000" />
 			</canton>
 			<canton size="100">
 			</canton>
@@ -30,8 +29,8 @@
 		</railway>
 	</line>
 
-	<connexions>
-		<connect from="0" to="1"></connect>
-		<connect from="1" to="0"></connect>
-	</connexions>
-</runconfiguration>
+	<connections>
+		<connect from="0" to="1" />
+		<connect from="1" to="0" />
+	</connections>
+</lineConfiguration>
