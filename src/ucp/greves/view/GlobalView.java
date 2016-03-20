@@ -37,7 +37,7 @@ public class GlobalView extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("global_view.fxml"));
 		Scene scene = new Scene(root,800,600);
-		primaryStage.setTitle("G.R.E.V.E.S.");
+		primaryStage.setTitle("G.R.E.V.E.S. - Vue globale");
 
 		this.paneHeight = new SimpleIntegerProperty();
 		this.paneWidth = new SimpleIntegerProperty();
@@ -64,7 +64,7 @@ public class GlobalView extends Application{
 	}
 	
 	public void setButton(Parent root){
-		Button buttonAdd = (Button) root.lookup("#buttonAdd");
+		Button buttonAdd = (Button) root.lookup("#addTrain");
 		buttonAdd.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
@@ -98,39 +98,39 @@ public class GlobalView extends Application{
 			}
 		});
 		
-		Button buttonRemove = (Button) root.lookup("#buttonRemove");
-		buttonRemove.setOnAction(new EventHandler<ActionEvent>() {
+		//Button buttonRemove = (Button) root.lookup("#buttonRemove");
+		//buttonRemove.setOnAction(new EventHandler<ActionEvent>() {
 			
-			@Override
-			public void handle(ActionEvent event) {
+			//@Override
+			/*public void handle(ActionEvent event) {
 				
 				/* TODO
 				 * Faire en sorte que "train" prenne la valeur du train sélectionné par l'utilisateur, afin de pouvoir le supprimer
-				 */
+				 *
 				
 				//train = 
 				
 				//ControlLine.getInstance().removeTrain(train);
 			}
-		});
+		});*/
 		
-		Button buttonSlow = (Button) root.lookup("#buttonSlow");
-		buttonSlow.setOnAction(new EventHandler<ActionEvent>() {
+		//Button buttonSlow = (Button) root.lookup("#buttonSlow");
+		//buttonSlow.setOnAction(new EventHandler<ActionEvent>() {
 			
-			@Override
-			public void handle(ActionEvent event) {
+			//@Override
+			/*public void handle(ActionEvent event) {
 				System.out.println("buttonSlow");	//Action to do			
 			}
-		});
+		});*/
 		
-		Button buttonBlock = (Button) root.lookup("#buttonBlock");
-		buttonBlock.setOnAction(new EventHandler<ActionEvent>() {
+		//Button buttonBlock = (Button) root.lookup("#buttonBlock");
+		//buttonBlock.setOnAction(new EventHandler<ActionEvent>() {
 			
-			@Override
+			/*@Override
 			public void handle(ActionEvent event) {
 				System.out.println("buttonBlock");	//Action to do
 			}
-		});
+		});*/
 		
 		Slider changeSpeed = (Slider) root.lookup("#changeSpeed");
 		changeSpeed.valueProperty().addListener(new ChangeListener<Object>() {
