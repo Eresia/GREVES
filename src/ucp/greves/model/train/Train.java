@@ -1,10 +1,8 @@
 package ucp.greves.model.train;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
-import ucp.greves.model.configuration.ConfigurationEnvironment;
-import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
-import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
@@ -18,9 +16,10 @@ public class Train extends Observable implements Runnable {
 	private RoadMap roadMap;
 	private volatile int position = 0;
 	private Canton currentCanton;
+	private int nextStation;
 
 	private volatile boolean hasArrived;
-	
+
 	private volatile boolean isRemoved;
 	private volatile DepositeryStation removeStation;
 
@@ -33,6 +32,7 @@ public class Train extends Observable implements Runnable {
 		isRemoved = false;
 		removeStation = null;
 		position = Line.getRailWays().get(map.getRailwaysIDs().get(0)).getLength();
+		nextStation = map.getStations().get(0);
 	}
 
 	public int getTrainID() {
@@ -91,28 +91,104 @@ public class Train extends Observable implements Runnable {
 			this.notifyObservers();
 		}
 		currentCanton.exit();
-		if(isRemoved()){
+		if (isRemoved()) {
 			removeStation.stockTrain(this);
 		}
 	}
-	
-	public void remove(DepositeryStation station){
+
+	public void remove(DepositeryStation station) {
 		removeStation = station;
 		isRemoved = true;
 	}
 	
-	public void blockTrain(){
-		currentCanton.blockCanton();
+	public int nextStation() throws StationNotFoundException{
+		if(nextStation == -1){
+			throw new StationNotFoundException();
+		}
+		
+		return nextStation;
 	}
 	
-	public void unblockTrain(){
+	public ArrayList<Integer> nextStations() throws StationNotFoundException{
+		if(nextStation == -1){
+			throw new StationNotFoundException();
+		}
+		ArrayList<Integer> stations = roadMap.getStations();
+		ArrayList<Integer> next = new ArrayList<Integer>();
+		int actualPos = stations.indexOf(nextStation);
+		
+		for(int i = actualPos; i < stations.size(); i++){
+			next.add(stations.get(i));
+		}
+		
+		return next;
+	}
+
+	/*Deprecated*/
+	/*public Station getNextStation() throws StationNotFoundException{
+		Station result = null;
+		if (currentCanton.hasStation() && currentCanton.getStationPosition() > positionInCanton()) {
+			result = currentCanton.getStation();
+		}
+		else{
+			try{
+				Canton actual = currentCanton.getNextCanton(roadMap);
+				boolean stationFound = false;
+				while(!stationFound){
+					if(actual.hasStation()){
+						result = actual.getStation();
+						stationFound = true;
+					}
+					else{
+						actual = actual.getNextCanton(roadMap);
+					}
+				}
+			} catch(TerminusException e){
+				throw new StationNotFoundException();
+			}
+		}
+
+		return result;
+	}
+	
+	public ArrayList<Station> getNextStations(){
+		ArrayList<Station> result = new ArrayList<Station>();
+		
+		try{
+			if (currentCanton.hasStation() && currentCanton.getStationPosition() > positionInCanton()) {
+				result.add(currentCanton.getStation());
+			}
+	
+			try{
+				Canton actual = currentCanton.getNextCanton(roadMap);
+				while(true){
+					if(actual.hasStation()){
+						result.add(actual.getStation());
+					}
+					actual = actual.getNextCanton(roadMap);
+				}
+			} catch(TerminusException e){
+				
+			}
+		} catch(StationNotFoundException e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}*/
+
+	public void blockTrain() {
+		currentCanton.blockCanton();
+	}
+
+	public void unblockTrain() {
 		currentCanton.removeProblem();
 	}
 
 	public boolean hasArrived() {
 		return hasArrived;
 	}
-	
+
 	public boolean isRemoved() {
 		return isRemoved;
 	}
@@ -123,13 +199,30 @@ public class Train extends Observable implements Runnable {
 	}
 
 	public void updatePosition() {
-		
+		ModifiedTrainInformation informations;
 		try {
-			position -= currentCanton.updateTrainPosition(position, roadMap.cross(currentCanton.getStation().getName()));
+			informations = currentCanton.updatedTrainPosition(position,	roadMap.cross(currentCanton.getStation().getName()));
 		} catch (StationNotFoundException e) {
-			position -= currentCanton.updateTrainPosition(position, false);
+			informations = currentCanton.updatedTrainPosition(position, false);
 		}
+		position -= informations.getUpdatedPosition();
+		
+		if(informations.getStationCrossed()){
+			ArrayList<Integer> stationList = roadMap.getStations();
+			int actualStationPos = stationList.indexOf(nextStation);
+			if(actualStationPos == (stationList.size()-1)){
+				nextStation = -1;
+			}
+			else{
+				nextStation = stationList.get(actualStationPos + 1);
+			}
+		}
+		
 		this.setChanged();
+	}
+
+	private int positionInCanton() {
+		return currentCanton.getStartPoint() - position;
 	}
 
 }

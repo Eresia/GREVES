@@ -14,6 +14,7 @@ import ucp.greves.model.line.station.StationDecorator;
 import ucp.greves.model.line.station.HasStation;
 import ucp.greves.model.line.station.HasNotStation;
 import ucp.greves.model.line.station.Station;
+import ucp.greves.model.train.ModifiedTrainInformation;
 import ucp.greves.model.train.Train;
 
 public class Canton extends Observable {
@@ -113,18 +114,21 @@ public class Canton extends Observable {
 		this.notifyObservers();
 	}
 	
-	public int updateTrainPosition(int position, boolean crossStation){
+	public ModifiedTrainInformation updatedTrainPosition(int position, boolean crossStation){
 		int startPoint = getStartPoint();
 		int positionOnCanton = startPoint - position;
 		int speed = getTrainSpeed(position);
+		ModifiedTrainInformation informations = new ModifiedTrainInformation(speed);
+		informations.setStationCrossed(false);
 		
 		if (crossStation) {
 			if (positionOnCanton < positionStation && (positionOnCanton + speed) >= positionStation) {
+				informations.setStationCrossed(true);
 				enterInStation();
 			}
 		}
 		
-		return speed;
+		return informations;
 	}
 	
 	public void createSlowDown(){
