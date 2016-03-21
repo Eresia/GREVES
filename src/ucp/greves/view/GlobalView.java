@@ -13,10 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import ucp.greves.controller.GodModeController;
 import ucp.greves.model.ControlLine;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.BadControlInformationException;
@@ -141,6 +138,26 @@ public class GlobalView extends Application{
 			}
 		});
 		changeSpeed.setValue(0);
+		
+		//Boutton d'affichage de la vue de la gares (Boutton "Horaires")
+		Button stationViewButton = (Button) root.lookup("#StationViewButton");
+		stationViewButton.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				new StationView();
+			}
+		});
+		
+		//Bouton d'affichage de la vue conducteur (bouton "vue conducteur")
+		Button DriverViewButton = (Button) root.lookup("#DriverViewButton");
+		DriverViewButton.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				new DriverView();
+			}
+		});
 	}
 	
 	/*public void addStation(Parent root){

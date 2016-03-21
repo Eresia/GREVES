@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400" minWidth="600" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400" minWidth="600" prefHeight="475.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -74,7 +74,7 @@
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <bottom>
-                              <Label text="Vitesse" BorderPane.alignment="CENTER" />
+                              <Label text="Vitesse :" BorderPane.alignment="CENTER" />
                            </bottom>
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
@@ -94,7 +94,7 @@
                                  </toggleGroup></RadioButton>
                            </left>
                            <center>
-                              <RadioButton mnemonicParsing="false" text="Ralenti" toggleGroup="$TrainSpeed" BorderPane.alignment="CENTER"/>
+                              <RadioButton mnemonicParsing="false" text="Ralenti" toggleGroup="$TrainSpeed" BorderPane.alignment="CENTER" />
                               
                            </center>
                            <right>
@@ -112,7 +112,7 @@
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6">
                            <center>
-                              <Button mnemonicParsing="false" text="Vue conducteur" BorderPane.alignment="CENTER" />
+                              <Button fx:id="DriverViewButton" mnemonicParsing="false" text="Vue conducteur" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
                      </children>
@@ -147,7 +147,7 @@
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <bottom>
-                              <Label text="Vitesse" BorderPane.alignment="CENTER" />
+                              <Label text="Vitesse :" BorderPane.alignment="CENTER" />
                            </bottom>
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
@@ -158,7 +158,7 @@
                               </toggleGroup></RadioButton>
                            </left>
                            <center>
-                              <RadioButton mnemonicParsing="false" text="Ralenti" toggleGroup="$CantonSpeed" BorderPane.alignment="CENTER"/>                                                             
+                              <RadioButton mnemonicParsing="false" text="Ralenti" toggleGroup="$CantonSpeed" BorderPane.alignment="CENTER" />                                                             
                            </center>
                            <right>
                               <RadioButton mnemonicParsing="false" text="normale" toggleGroup="$CantonSpeed" BorderPane.alignment="CENTER" />
@@ -181,7 +181,7 @@
                      <children>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <center>
-                              <Button mnemonicParsing="false" text="Horaires" BorderPane.alignment="CENTER" />
+                              <Button fx:id="StationViewButton" mnemonicParsing="false" text="Horaires" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
