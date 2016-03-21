@@ -54,4 +54,8 @@ public class RoadMap {
 	public String getName(){
 		return name;
 	}
+	
+	public ArrayList<Integer> getStations() {
+		return stations;
+	}
 }
