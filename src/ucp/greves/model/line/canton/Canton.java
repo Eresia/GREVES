@@ -2,9 +2,13 @@ package ucp.greves.model.line.canton;
 
 import java.util.Observable;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
+import sun.awt.X11.XAnyEvent;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
+import ucp.greves.model.exceptions.canton.CantonIsEmptyException;
 import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.railway.RailWayNotDefinedException;
 import ucp.greves.model.exceptions.station.StationNotFoundException;
@@ -195,6 +199,21 @@ public class Canton extends Observable {
 	public boolean isFree() {
 		return occupyingTrain == null;
 	}
+	
+	/**
+	 * return the train on the Canton
+	 * 
+	 * @throws CantonIsEmptyException
+	 * 
+	 */
+	public synchronized Train getOccupyingTrain() throws CantonIsEmptyException{
+		if(this.isFree()){
+			throw new CantonIsEmptyException();
+		}else{
+			return this.occupyingTrain;
+		}
+	}
+	
 
 	@Override
 	public String toString() {

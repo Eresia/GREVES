@@ -221,7 +221,7 @@ public class Train extends Observable implements Runnable {
 		this.setChanged();
 	}
 
-	private int positionInCanton() {
+	public int positionInCanton() {
 		return currentCanton.getStartPoint() - position;
 	}
 

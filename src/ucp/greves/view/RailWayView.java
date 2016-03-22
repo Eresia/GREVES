@@ -23,7 +23,7 @@ public class RailWayView extends Parent  {
 		RailWayController controller = new RailWayController();
 		CantonController cantonController = new CantonController();
 		startXpos.setValue((railway.getId()+1) * (paneWidth.get() / (numberOfRailWays +1)));
-		startYpos.set(10);
+		startYpos.set(20);
 		IntegerProperty xpos =new SimpleIntegerProperty();
 		IntegerProperty ypos = new SimpleIntegerProperty();
 		xpos.bind(startXpos);
