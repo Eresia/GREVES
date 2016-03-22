@@ -8,9 +8,12 @@ import javax.management.RuntimeErrorException;
 import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
 import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 
+import test.model.line.canton.CantonTest;
 import ucp.greves.controller.CantonController;
 import ucp.greves.model.exceptions.canton.CantonIsEmptyException;
+import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.canton.Canton;
+import ucp.greves.model.line.station.Station;
 import ucp.greves.model.train.Train;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
@@ -19,12 +22,15 @@ import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
+import javafx.scene.text.Text;
 import jdk.nashorn.internal.runtime.regexp.JoniRegExp.Factory;
 
 public class CantonView extends Parent implements Observer {
 	private Train innerTrain;
 	private double scaleFactor;
-	private Circle trainPosition;
+	private Polygon trainPosition;
+	private Text trainText;
 	IntegerProperty  posXA, posYA, posXB, posYB;
 	Line lineofCanton;
 	CantonController controller;
@@ -34,8 +40,8 @@ public class CantonView extends Parent implements Observer {
 		  this.posXB =new SimpleIntegerProperty(); 
 		  this.posYA =new SimpleIntegerProperty(); 
 		  this.posYB =new SimpleIntegerProperty(); 
-		this.posXA.bindBidirectional(posXA);
-		this.posYA.bindBidirectional(posYA);
+			this.posXA.bindBidirectional(posXA);
+			this.posYA.bindBidirectional(posYA);
 		this.scaleFactor = factor;		
 		posXB.set((int) (posXA.get() ));
 		posYB.set((int) (posYA.get() + (factor * canton.getLength())));
@@ -48,9 +54,35 @@ public class CantonView extends Parent implements Observer {
 		}else{
 			lineofCanton.setStroke(Color.RED);
 		}
+		Circle stationPosition;
+		Text stationText;
+		try {
+			Station station = canton.getStation();
+			int stationPos = canton.getStationPosition();
+			stationPosition = new Circle();
+			stationPosition.setRadius(4);
+			stationPosition.setStroke(Color.BLUE);
+			stationPosition.setCenterX(this.posXA.get());
+			stationPosition.setCenterY(posYA.get() +  ( this.scaleFactor *   stationPos));
+			stationText = new Text();
+			stationText.xProperty().set(this.posXA.get() + 4);
+			stationText.yProperty().set(posYA.get() +  ( this.scaleFactor *   stationPos));
+			stationText.textProperty().set(station.getName());
+			this.getChildren().add(stationPosition);
+			this.getChildren().add(stationText);
+			
+		} catch (StationNotFoundException e) {
+			// TODO: handle exception
+		}
 		
-		this.trainPosition = new Circle();
-		this.trainPosition.setRadius(3);
+		/*
+		 * PARTIE AFFICHAGE DE LA POSTION DU TRAIN
+		 */
+
+		this.trainPosition = new Polygon();
+		this.trainPosition.setStroke(Color.DARKGRAY);
+		this.trainText = new Text();
+		
 //		Circle startLine = new Circle();
 //		startLine.setCenterX(posXA.get());
 //		startLine.setCenterY(posYA.get());
@@ -76,15 +108,27 @@ public class CantonView extends Parent implements Observer {
 				this.innerTrain.deleteObserver(this);
 				this.innerTrain = null;
 				Platform.runLater(()->  this.getChildren().remove(trainPosition));
+				Platform.runLater(()->  this.getChildren().remove(trainText));
 			}
 		}else{
 			try {
 				this.innerTrain = c.getOccupyingTrain();
 				this.innerTrain.addObserver(this);
-				trainPosition.setCenterX( posXB.get() -  ( this.scaleFactor *   innerTrain.positionInCanton() ));
-				this.trainPosition.setCenterY(posYA.get());
+				trainPosition.getPoints().setAll(
+						(double)posXA.get(),
+						posYA.get() +  ( this.scaleFactor *   this.innerTrain.positionInCanton()),
+						(double)posXA.get()-5,
+						posYA.get() +  ( this.scaleFactor *   this.innerTrain.positionInCanton())-5,
+						(double)posXA.get()+5,
+						posYA.get() +  ( this.scaleFactor *   this.innerTrain.positionInCanton()) -5
+											
+						);	
+				this.trainText.yProperty().set(posYA.get() +  ( this.scaleFactor *   this.innerTrain.positionInCanton()));
+				this.trainText.xProperty().set((double)posXA.get() + 6);
 				
 				Platform.runLater(()->  this.getChildren().add(trainPosition));
+				Platform.runLater(()->  this.getChildren().add(trainText));
+				this.trainText.textProperty().set(innerTrain.getTrainID()+"");
 				
 			} catch (CantonIsEmptyException e) {
 				
@@ -96,11 +140,19 @@ public class CantonView extends Parent implements Observer {
 		}
 		}else if (o instanceof Train) {
 			Train t = (Train)o;
-			this.trainPosition.setCenterX( posXB.get());
-			this.trainPosition.setCenterY(posYA.get() +  ( this.scaleFactor *   t.positionInCanton() ));
+			this.trainPosition.getPoints().setAll(
+					(double)posXA.get(),
+					posYA.get() +  ( this.scaleFactor *   t.positionInCanton()),
+					(double)posXA.get()-5,
+					posYA.get() +  ( this.scaleFactor *   t.positionInCanton())-5,
+					(double)posXA.get()+5,
+					posYA.get() +  ( this.scaleFactor *   t.positionInCanton()) -5
+										
+					);			
 			
-			
-
+			this.trainText.yProperty().set(posYA.get() +  ( this.scaleFactor *   t.positionInCanton()));
+			this.trainText.xProperty().set((double)posXA.get() + 6);
+			this.trainText.textProperty().set(t.getTrainID()+"");
 			
 		}
 			
