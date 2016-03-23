@@ -36,7 +36,7 @@ public class GlobalView extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("global_view.fxml"));
-		Scene scene = new Scene(root,800,600);
+		Scene scene = new Scene(root,1024,768);
 		primaryStage.setTitle("G.R.E.V.E.S. - Vue globale");
 
 		this.paneHeight = new SimpleIntegerProperty();
