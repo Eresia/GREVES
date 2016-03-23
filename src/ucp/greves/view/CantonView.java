@@ -37,7 +37,7 @@ public class CantonView extends Parent implements Observer {
 
 	public CantonView(IntegerProperty posXA, IntegerProperty posYA,
 			double factor, Canton canton, CantonController controller) {
-		canton.addObserver(this);
+		
 		this.posXA = new SimpleIntegerProperty();
 		this.posXB = new SimpleIntegerProperty();
 		this.posYA = new SimpleIntegerProperty();
@@ -97,12 +97,12 @@ public class CantonView extends Parent implements Observer {
 		// endLine.setCenterY(posYB.get());
 		// endLine.setRadius(3);
 		// this.getChildren().addAll(startLine , endLine);
-
+		canton.addObserver(this);
 		this.getChildren().add(lineofCanton);
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
+	public synchronized void   update(Observable o, Object arg) {
 		if (o instanceof Canton) {
 
 			Canton c = (Canton) o;
@@ -179,7 +179,12 @@ public class CantonView extends Parent implements Observer {
 			this.trainText.textProperty().set(t.getTrainID() + "");
 
 		}
-
+		try {
+			Thread.sleep(15);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public IntegerProperty getEndX() {
