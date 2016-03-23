@@ -94,7 +94,7 @@ public class LineBuilder {
 					
 
 					if (ConfigurationEnvironment.inDebug()) {
-						System.err.println("Railway n°"+rwId+" ("+cantonList.getLength()+" cantons) :");
+						System.err.println("Railway nÂ°"+rwId+" ("+cantonList.getLength()+" cantons) :");
 					}
 					
 					/* For each canton in the railway */
@@ -364,7 +364,10 @@ public class LineBuilder {
 															}	
 															switch (stationEntry.getKey().toLowerCase()) {
 															case "name":
-																name = stationEntry.toString();
+																name = stationEntry.getValue().toString();
+																if (ConfigurationEnvironment.inDebug()) {
+																	System.err.println("        " + name);
+																}	
 																break;
 															case "wait_time":
 																waitTime = (Integer) stationEntry.getValue();
