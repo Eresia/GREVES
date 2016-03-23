@@ -39,20 +39,21 @@ public class LineBuilderSimple {
 
 		ControlLine control = ControlLine.getInstance();
 
-		RoadMap rm = new RoadMap("test");
+		RoadMap rm = null;
+		try {
+			rm = new RoadMap("test");
+		} catch (RoadMapAlreadyExistException e1) {
+			e1.printStackTrace();
+		}
 		rm.addRailWay(0);
 		rm.addRailWay(1);
 		try {
-			for (Integer s : Line.getStations().keySet()) {
-				rm.addStation(s);
-			}
-			control.addRoad(rm.getName(), rm);
 			control.launchTrain(rm.getName(), 150);
 			control.launchTrain(rm.getName(), 250);
 			control.launchTrain(rm.getName(), 200);
 			control.launchTrain(rm.getName(), 320);
 
-		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException | RoadMapAlreadyExistException e) {
+		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

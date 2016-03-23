@@ -2,6 +2,7 @@ package ucp.greves.model.line;
 
 import java.util.ArrayList;
 
+import ucp.greves.model.exceptions.railway.DoubledRailwayException;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.canton.Terminus;
 
@@ -10,11 +11,11 @@ public class RailWay {
 	private int id;
 	private ArrayList<Canton> canton_list;
 
-	public RailWay(int id){
-		//this.terminus = new Terminus(1);
-		//this.id = Registry.register_railway();
+	public RailWay(int id) throws DoubledRailwayException{
 		this.id = id;
 		this.canton_list = new ArrayList<Canton>();
+		Line.register_railway(this);
+		terminus = null;
 	}
 	
 	/**
@@ -57,10 +58,11 @@ public class RailWay {
 			return canton_list.get(canton_list.size() -1 );
 		}
 	}
+	
 	public void connectTo(RailWay r){
 		this.terminus.AddNextRailWay(r);
-		this.terminus.selectNextRailWay(r.id);
 	}
+	
 	public ArrayList<Integer> getStartsPoints(){
 		ArrayList<Integer>	temp= new ArrayList<Integer>();
 
@@ -77,9 +79,4 @@ public class RailWay {
 		temp.add(this.terminus.getId());
 		return temp;
 	}
-	
-	
-	// public Canton getCantonByPosition(int position)throws TerminusException {
-	// //return new Canton(id, length, startPoint);
-	// }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<roadMapConfiguration>
+	<road name="Cergy-Marne">
+		<railway id="0">
+		</railway>
+		<railway id="2">
+		</railway>
+		<railway id="4">
+			<dontPass name="Bry sur Marne" />
+		</railway>
+	</road>
+
+	<road name="Marne-Cergy">
+		<railway id="5">
+		</railway>
+		<railway id="3">
+		</railway>
+		<railway id="1">
+		</railway>
+	</road>
+</roadMapConfiguration>

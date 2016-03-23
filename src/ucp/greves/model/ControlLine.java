@@ -28,11 +28,9 @@ import ucp.greves.model.train.Train;
 public class ControlLine {
 
 	private static ControlLine instance = new ControlLine();
-	private HashMap<String, RoadMap> roads;
 	private DepositeryStation stockRemoveTrain;
 
 	private ControlLine() {
-		roads = new HashMap<String, RoadMap>();
 		stockRemoveTrain = new DepositeryStation("Removed Train Stockage");
 	}
 
@@ -44,7 +42,7 @@ public class ControlLine {
 		SimulationSpeed.changeSimulationSpeed(duration);
 	}
 
-	public RoadMap addRoad(String name, Station firstStation, Station lastStation) throws RoadMapAlreadyExistException,
+	/*public RoadMap addRoad(String name, Station firstStation, Station lastStation) throws RoadMapAlreadyExistException,
 			RailWayNotExistException, CantonNotExistException, PathNotExistException {
 		if (roads.containsKey(name)) {
 			throw new RoadMapAlreadyExistException("RoadMap " + name + " already exist");
@@ -84,11 +82,11 @@ public class ControlLine {
 		}
 		roads.put(name, road);
 		return road;
-	}
+	}*/
 
-	public void launchTrain(String road, int speed)
-			throws BadControlInformationException, BadRoadMapException, RailWayNotExistException {
+	public void launchTrain(String road, int speed)	throws BadControlInformationException, BadRoadMapException, RailWayNotExistException {
 		verifyInformation();
+		HashMap<String, RoadMap> roads = Line.getRoadMaps();
 		if (!roads.containsKey(road)) {
 			throw new RoadMapNameNotExistException("Impossible to launch the train - the road don't exist");
 		}
@@ -150,22 +148,15 @@ public class ControlLine {
 		Line.getTrains().get(train).unblockTrain();
 	}
 
-	public void addRoad(String name, RoadMap road) throws RoadMapAlreadyExistException {
-		if(roads.containsKey(name)){
-			throw new RoadMapAlreadyExistException("Road map " + name + " already exist");
-		}
-		roads.put(name, road);
-	}
-
 	public void removeRoad(String name) {
-		roads.remove(name);
+		Line.getRoadMaps().remove(name);
 	}
 
 	public RoadMap getRoad(String name) throws RoadMapNameNotExistException {
-		if(roads.containsKey(name)){
+		if(Line.getRoadMaps().containsKey(name)){
 			throw new RoadMapNameNotExistException("Road map " + name + " not exist");
 		}
-		return roads.get(name);
+		return Line.getRoadMaps().get(name);
 	}
 
 	public int findRailWay(int canton) throws RailWayNotExistException {
@@ -220,7 +211,7 @@ public class ControlLine {
 		if (Line.getCantons().size() == 0) {
 			throw new BadControlInformationException("No Canton");
 		}
-		if (roads.size() == 0) {
+		if (Line.getRoadMaps().size() == 0) {
 			throw new BadControlInformationException("No road");
 		}
 	}

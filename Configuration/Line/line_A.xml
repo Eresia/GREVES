@@ -416,5 +416,6 @@
 		<connect from="4" to="5" />
 		<connect from="5" to="3" />
 		<connect from="3" to="1" />
+		<connect from="1" to="0" />
 	</connections>
 </lineConfiguration>
