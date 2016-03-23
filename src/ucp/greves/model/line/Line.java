@@ -9,6 +9,7 @@ import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
+import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
 import ucp.greves.model.exceptions.line.InvalidXMLException;
 import ucp.greves.model.line.builder.LineBuilder;
 import ucp.greves.model.line.canton.Canton;
@@ -23,6 +24,7 @@ public class Line extends Observable implements Observer {
 	private  HashMap<Integer, Canton> canton_registry;
 	private  HashMap<Integer, Train> train_registry;
 	private  HashMap<Integer, Station> station_registry;
+	private HashMap<String, RoadMap> roadmap_registry;
 	
 	private Line(){
 		canton_id_register = 0 ;
@@ -31,6 +33,7 @@ public class Line extends Observable implements Observer {
 		canton_registry = new HashMap<Integer, Canton>();
 		train_registry = new HashMap<Integer, Train>();
 		station_registry = new HashMap<Integer, Station>();
+		roadmap_registry = new HashMap<String, RoadMap>();
 	}
 	public static Line getInstance(){
 		if(instance == null){
@@ -80,6 +83,14 @@ public class Line extends Observable implements Observer {
 		instance.station_registry.put(id, station);
 	}
 	
+	public synchronized static void register_roadMap(String name, RoadMap road) throws RoadMapAlreadyExistException {
+		getInstance();
+		if(instance.roadmap_registry.containsKey(name)){
+			throw new RoadMapAlreadyExistException("RoadMap " + name + " already exist");
+		}
+		instance.roadmap_registry.put(name, road);
+	}
+	
 	public int getTotalLenght() {
 		getInstance();
 		int length = 0;
@@ -104,6 +115,11 @@ public class Line extends Observable implements Observer {
 	public static HashMap<Integer, Station> getStations(){
 		return instance.station_registry;
 	}
+	
+	public static HashMap<String, RoadMap> getRoadMaps(){
+		return instance.roadmap_registry;
+	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		if(ConfigurationEnvironment.inDebug() == true){

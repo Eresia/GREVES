@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
@@ -25,7 +26,11 @@ public class TrainTest {
 
 	@Test
 	public void testTrain() {
-		Train train = new Train(new Canton(null,100), new RoadMap("test"), 100);
+		Train train = null;
+		try {
+			train = new Train(new Canton(null,100), new RoadMap("test"), 100);
+		} catch (RoadMapAlreadyExistException e) {
+		}
 		
 		assertNotNull(train);
 	}
@@ -33,7 +38,13 @@ public class TrainTest {
 	@Test
 	public void testGetSetTrainID() {
 		int id = 5;
-		Train train = new Train(Line.getCantons().get(0), new RoadMap("test"), 100);
+		Train train = null;
+		try {
+			train = new Train(Line.getCantons().get(0), new RoadMap("test"), 100);
+		} catch (RoadMapAlreadyExistException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		train.setTrainID(id);
 		int idGet = train.getTrainID();
@@ -54,7 +65,13 @@ public class TrainTest {
 	@Test
 	public void testGetSetPosition() {
 		int pos = 27;
-		Train train = new Train(Line.getCantons().get(0), new RoadMap("test"), 100);
+		Train train = null;
+		try {
+			train = new Train(Line.getCantons().get(0), new RoadMap("test"), 100);
+		} catch (RoadMapAlreadyExistException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		train.setPosition(pos);
 		int posGet = train.getPosition();

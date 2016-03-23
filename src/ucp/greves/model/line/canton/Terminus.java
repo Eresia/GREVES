@@ -1,16 +1,17 @@
 package ucp.greves.model.line.canton;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
 import ucp.greves.model.exceptions.canton.TerminusException;
+import ucp.greves.model.exceptions.railway.RailWayNotDefinedException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RailWay;
 import ucp.greves.model.line.RoadMap;
 
 public class Terminus extends Canton {
-	private HashMap<Integer, RailWay> railWayAvailable;
-	private RailWay nextRailWay;
+	private ArrayList<Integer> railWayAvailable;
 	
 	public Terminus(int railWay, int length) {
 		this(length);
@@ -19,17 +20,12 @@ public class Terminus extends Canton {
 
 	public Terminus(int length) {
 		super(length);
-		this.railWayAvailable = new HashMap<Integer, RailWay>();
-		nextRailWay = null;
+		this.railWayAvailable = new ArrayList<Integer>();
 	}
 
-	public Set<Integer> getRailWayAvailable() {
+	public ArrayList<Integer> getRailWayAvailable() {
 
-		return this.railWayAvailable.keySet();
-	}
-
-	public void setRailWay(RailWay value) {
-		this.nextRailWay = value;
+		return this.railWayAvailable;
 	}
 
 	@Override
@@ -44,29 +40,41 @@ public class Terminus extends Canton {
 
 	@Override
 	public Canton getNextCanton(RoadMap road) throws TerminusException {
-		if (this.nextRailWay == null || road == null ||  Line.getRailWays().get(road.getLastRailWay()).getTerminus() == this) {
-			throw new TerminusException();
-		} else {
-			return this.nextRailWay.getFirstCanton();
-		}
+		return getNextRailWay(road).getFirstCanton();
 	}
 
-	public RailWay getNextRailWay() throws TerminusException {
-		if (this.nextRailWay == null) {
+	public RailWay getNextRailWay(RoadMap road) throws TerminusException {
+		int actualPos;
+		ArrayList<Integer> rails;
+		
+		int railWay;
+		try {
+			railWay = getRailWay();
+		} catch (RailWayNotDefinedException e) {
 			throw new TerminusException();
 		}
-		return this.nextRailWay;
+		
+		if (this.railWayAvailable.size() == 0 || road == null) {
+			throw new TerminusException();
+		}
+		
+		rails = road.getRailwaysIDs();
+		actualPos = rails.indexOf(railWay);
+		if(actualPos == (rails.size()-1)){
+			throw new TerminusException();
+		}
+		
+		int next = rails.get(actualPos+1);
+		if(!railWayAvailable.contains(next)){
+			throw new TerminusException();
+		}
+		
+		return Line.getRailWays().get(next);
 	}
 
 	public void AddNextRailWay(RailWay r) {
-		if (!this.railWayAvailable.containsKey(r.getId())) {
-			this.railWayAvailable.put(r.getId(), r);
-		}
-	}
-
-	public void selectNextRailWay(Integer rId) {
-		if (this.railWayAvailable.containsKey(rId)) {
-			this.nextRailWay = this.railWayAvailable.get(rId);
+		if (!this.railWayAvailable.contains(r.getId())) {
+			this.railWayAvailable.add(r.getId());
 		}
 	}
 

@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import ucp.greves.model.exceptions.canton.TerminusException;
+import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.train.Train;
@@ -43,12 +44,12 @@ public class CantonTest {
 		Canton thirdCanton = null;
 		try {
 			thirdCanton = secondCanton.getNextCanton(new RoadMap("name"));
-		} catch (TerminusException e) {
+		} catch (TerminusException | RoadMapAlreadyExistException e) {
 		}
 		assertEquals(thirdCanton, firstCanton);
 		try {
 			thirdCanton = thirdCanton.getNextCanton(new RoadMap("name"));
-		} catch (TerminusException e) {
+		} catch (TerminusException | RoadMapAlreadyExistException e) {
 		}
 		assertEquals(thirdCanton, null);
 	}
@@ -67,8 +68,13 @@ public class CantonTest {
 	public void testEnter() {
 		Canton secondCanton = new Canton(null, 2, 100);
 		Canton firstCanton = new Canton(secondCanton, 2, 100);
-		Train train = new Train(firstCanton, new RoadMap("test"), 10);
-		Train secondTrain = new Train(firstCanton, new RoadMap("test"), 10);
+		Train train = null;
+		Train secondTrain = null;
+		try {
+			train = new Train(firstCanton, new RoadMap("test"), 10);
+			secondTrain = new Train(firstCanton, new RoadMap("test"), 10);
+		} catch (RoadMapAlreadyExistException e) {
+		}
 		
 		/*The first train can enter in the next canton because he is free*/
 		firstCanton.enter(train);

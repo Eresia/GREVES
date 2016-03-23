@@ -45,8 +45,8 @@ public class GlobalView extends Application{
 		primaryStage.setScene(scene);
 		primaryStage.show();  
 
-		// Décommenter ces 2 lignes pour utiliser le json
-		ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "JSON");
+		//ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "JSON");
+		ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "XML");
 		Line.getInstance();
   
 		modify(lineDraw);
@@ -78,7 +78,7 @@ public class GlobalView extends Application{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				String roadmapName = "Line A";
+				String roadmapName = "Cergy-Marne";
 				
 				try {
 					ControlLine.getInstance().launchTrain(roadmapName, speed);
