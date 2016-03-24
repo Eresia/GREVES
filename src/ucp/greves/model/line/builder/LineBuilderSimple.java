@@ -18,8 +18,20 @@ import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.Station;
 
+/**
+ * This class has for aim to construct a line if it is not exist a configuration file
+ * 
+ * @author Bastien LEPESANT, Vincent MONOT &#38; Antoine REGNIER
+ *
+ */
 public class LineBuilderSimple {
 
+	/**
+	 * This method construct the default Line
+	 * @throws DoubledRailwayException
+	 * @throws CantonHasAlreadyStationException
+	 * @throws CantonNotExistException
+	 */
 	static public void BuildLine()
 			throws DoubledRailwayException, CantonHasAlreadyStationException, CantonNotExistException {
 		RailWay railWay = new RailWay(0);
@@ -60,6 +72,14 @@ public class LineBuilderSimple {
 
 	}
 
+	/**
+	 * This method add a canton on a railway
+	 * @param rw (RailWay) The railway
+	 * @param rn (Random) The common random
+	 * @throws CantonHasAlreadyStationException If a canton has already a station
+	 * @throws CantonNotExistException If canton not exist
+	 * @see Railway, Random
+	 */
 	private static void addCanton(RailWay rw, Random rn)
 			throws CantonHasAlreadyStationException, CantonNotExistException {
 		rw.addCanton(rn.nextInt(300) + 700);
