@@ -19,7 +19,7 @@ public class LineView extends Parent{
 		 ArrayList<Integer> RailsWayIds = Rcontroller.IntegerlistOfRailWaysID();
 		 int numberOfRailWays = Rcontroller.IntegerlistOfRailWaysID().size();
 		 for(int rid : RailsWayIds){
-			 RailWayView RWV = new RailWayView(Rcontroller.getRailWaysById(rid), paneWidth, paneHeight, numberOfRailWays);
+			 RailWayView RWV = new RailWayView(Rcontroller.getRailWayById(rid), paneWidth, paneHeight, numberOfRailWays);
 			 this.RailWays.add(RWV);
 			 this.getChildren().add(RWV);
 		 } 

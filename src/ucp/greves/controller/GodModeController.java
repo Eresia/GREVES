@@ -9,27 +9,23 @@ import ucp.greves.model.line.station.Station;
 import ucp.greves.model.train.Train;
 
 public class GodModeController {
-/*private static final int TRAIN_SPEED_VARIATION = 3;
-
-private static final int TRAIN_BASIC_SPEED = 2;
-
-private int currentTime = 0;
-private static final int SIMULATION_DURATION = 1000;
-
-public static final int TIME_UNIT = 50;*/
 	
+	@Deprecated //see RailWayController
 	public static HashMap<Integer, RailWay> listOfRailWays(){
 		return Line.getRailWays();
 	}
 	
+	@Deprecated //see CantonController
 	public static HashMap<Integer, Canton> listOfCantons(){
 		return Line.getCantons();
 	}
 	
+	@Deprecated //see TrainController
 	public static HashMap<Integer, Train> listOfTrains(){
 		return Line.getTrains();
 	}
 	
+	@Deprecated //see StationController
 	public static HashMap<Integer, Station> listOfStation(){
 		return Line.getStations();
 	}
