@@ -15,4 +15,12 @@ public class TrainController {
 		return Line.getTrains().get(id);
 	}
 	
+	public static ArrayList<Integer> IntegerlistOfArrivedTrainsID(){
+		return new ArrayList<Integer>(Line.getArrivedTrains().keySet());
+	}
+	
+	public static Train getArrivedTrainById(int id){
+		return Line.getArrivedTrains().get(id);
+	}
+	
 }

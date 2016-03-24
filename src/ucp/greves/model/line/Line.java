@@ -23,6 +23,7 @@ public class Line extends Observable implements Observer {
 	private  HashMap<Integer, RailWay> railway_registry;
 	private  HashMap<Integer, Canton> canton_registry;
 	private  HashMap<Integer, Train> train_registry;
+	private	 HashMap<Integer, Train> arrived_train_registry;
 	private  HashMap<Integer, Station> station_registry;
 	private HashMap<String, RoadMap> roadmap_registry;
 	
@@ -32,6 +33,7 @@ public class Line extends Observable implements Observer {
 		railway_registry = new HashMap<Integer, RailWay>();
 		canton_registry = new HashMap<Integer, Canton>();
 		train_registry = new HashMap<Integer, Train>();
+		arrived_train_registry = new HashMap<Integer, Train>();
 		station_registry = new HashMap<Integer, Station>();
 		roadmap_registry = new HashMap<String, RoadMap>();
 	}
@@ -72,6 +74,14 @@ public class Line extends Observable implements Observer {
 		return instance.train_id_register;
 	}
 	
+	public synchronized static void register_arrived_train(int id) {
+		getInstance();
+		if(instance.train_registry.containsKey(id)){
+			instance.arrived_train_registry.put(id, instance.train_registry.get(id));
+			instance.train_registry.remove(id);
+		}
+	}
+	
 	public synchronized static void register_station(int id, Station station) throws CantonHasAlreadyStationException, CantonNotExistException{
 		getInstance();
 		if(!instance.canton_registry.containsKey(id)){
@@ -110,6 +120,10 @@ public class Line extends Observable implements Observer {
 	
 	public static HashMap<Integer, Train> getTrains(){
 		return instance.train_registry;
+	}
+	
+	public static HashMap<Integer, Train> getArrivedTrains(){
+		return instance.arrived_train_registry;
 	}
 	
 	public static HashMap<Integer, Station> getStations(){
