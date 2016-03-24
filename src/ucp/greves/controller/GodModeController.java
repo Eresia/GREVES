@@ -8,6 +8,7 @@ import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.Station;
 import ucp.greves.model.train.Train;
 
+@Deprecated //See others controller
 public class GodModeController {
 	
 	@Deprecated //see RailWayController

@@ -82,6 +82,7 @@ public class Train extends Observable implements Runnable {
 					nextCanton.enter(this);
 				} catch (TerminusException e) {
 					hasArrived = true;
+					Line.register_arrived_train(trainID);
 					position = 0;
 				}
 			} else {
@@ -100,6 +101,7 @@ public class Train extends Observable implements Runnable {
 		removeStation = station;
 		isRemoved = true;
 		hasArrived = true;
+		Line.register_arrived_train(trainID);
 	}
 	
 	public int nextStation() throws StationNotFoundException{
