@@ -32,7 +32,7 @@ public class Clock extends Thread{
 				for(int i = 0; i < NB_SECOND_BY_FRAME; i++){
 					time.incrementSecond();
 				}
-				//System.out.println(time);
+				System.out.println(time);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();

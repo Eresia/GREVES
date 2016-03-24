@@ -42,7 +42,6 @@ public class GodModeController {
 	public void startStimulation(){
 		Clock.getInstance().start();
 		Line.getInstance().getSchedule().start();
-		System.out.println(Line.getInstance().getSchedule().getInformations());
 	}
 	
 	public void stopSimulation(){

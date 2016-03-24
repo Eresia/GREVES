@@ -39,11 +39,15 @@ public class Time {
 		return new Time(this);
 	}
 	
+	public void incrementDay(){
+		nbDay++;
+	}
+	
 	public void incrementHour(){
 		hours++;
 		if(hours >= 24){
 			hours = 0;
-			nbDay++;
+			incrementDay();
 		}
 	}
 	
@@ -68,14 +72,20 @@ public class Time {
 	}
 	
 	public boolean isInferiorOrEquals(Time other, boolean countDay){
-		if(countDay && (nbDay < other.nbDay)){
-			return true;
+		if(countDay){
+			if (nbDay > other.nbDay){
+				return false;
+			}
+			
+			if(nbDay < other.nbDay){
+				return true;
+			}
 		}
 		if(hours == other.hours){
 			if(minutes == other.minutes){
-				return seconds < other.seconds;
+				return seconds <= other.seconds;
 			}
-			return minutes <= other.minutes;
+			return minutes < other.minutes;
 		}
 		return hours < other.hours;
 	}
@@ -85,14 +95,20 @@ public class Time {
 	}
 	
 	public boolean isSuperiorOrEquals(Time other, boolean countDay){
-		if(countDay && (nbDay > other.nbDay)){
-			return true;
+		if(countDay){
+			if (nbDay > other.nbDay){
+				return true;
+			}
+			
+			if(nbDay < other.nbDay){
+				return false;
+			}
 		}
 		if(hours == other.hours){
 			if(minutes == other.minutes){
-				return seconds > other.seconds;
+				return seconds >= other.seconds;
 			}
-			return minutes >= other.minutes;
+			return minutes > other.minutes;
 		}
 		return hours > other.hours;
 	}
@@ -102,8 +118,14 @@ public class Time {
 	}
 	
 	public boolean isInferior(Time other, boolean countDay){
-		if(countDay && (nbDay < other.nbDay)){
-			return true;
+		if(countDay){
+			if (nbDay > other.nbDay){
+				return false;
+			}
+			
+			if(nbDay < other.nbDay){
+				return true;
+			}
 		}
 		if(hours == other.hours){
 			if(minutes == other.minutes){
@@ -119,8 +141,14 @@ public class Time {
 	}
 	
 	public boolean isSuperior(Time other, boolean countDay){
-		if(countDay && (nbDay > other.nbDay)){
-			return true;
+		if(countDay){
+			if (nbDay > other.nbDay){
+				return true;
+			}
+			
+			if(nbDay < other.nbDay){
+				return false;
+			}
 		}
 		if(hours == other.hours){
 			if(minutes == other.minutes){
