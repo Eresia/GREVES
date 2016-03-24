@@ -1,21 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+	0 : Cergy Le Haut => Achere Ville
+	1 : Acheres Ville => Cergy Le Haut
+	2 : Poissy => Achères Grand Cormier
+	3 : Achères Grand Cormier => Poissy
+	4 : Maison Laffitte => Houilles Carrières sur Seine
+	5 : Houilles Carrières sur Seine => Maison Laffitte
+	6 : St-Germain en Laye => Nanterre Université
+	7 : Nanterre Université => St-Germain en Laye
+	8 : Nanterre Préfecture => Vincennes
+	9 : Vincennes => Nanterre Préfecture
+	10 : Val de Fontenay => Marne la Vallée Chessy
+	11 : Marne la Vallée Chessy => Val de Fontenay
+	12 : Fontenay sous Bois => Boissy St-Léger
+	13 : Boissy St-Léger => Fontenay sous Bois
+-->
 <roadMapConfiguration>
 	<road name="Cergy-Marne">
-		<railway id="0">
-		</railway>
-		<railway id="2">
-		</railway>
-		<railway id="4">
-			<dontPass name="Bry sur Marne" />
+		<railway id="0" />
+		<railway id="4" />
+		<railway id="8" />
+		<railway id="10">
+			<!--<dontPass name="Bry sur Marne" />-->
 		</railway>
 	</road>
 
+
 	<road name="Marne-Cergy">
-		<railway id="5">
-		</railway>
-		<railway id="3">
-		</railway>
-		<railway id="1">
-		</railway>
+		<railway id="11" />
+		<railway id="9" />
+		<railway id="5" />
+		<railway id="1" />
+	</road>
+
+
+	<road name="Cergy-Boissy">
+		<railway id="0" />
+		<railway id="4" />
+		<railway id="8" />
+		<railway id="12" />
+	</road>
+
+
+	<road name="Boissy-Cergy">
+		<railway id="13" />
+		<railway id="9" />
+		<railway id="5" />
+		<railway id="1" />
+	</road>
+
+
+	<road name="Poissy-Marne">
+		<railway id="2" />
+		<railway id="4" />
+		<railway id="8" />
+		<railway id="12" />
+	</road>
+
+
+	<road name="Marne-Poissy">
+		<railway id="13" />
+		<railway id="9" />
+		<railway id="5" />
+		<railway id="3" />
+	</road>
+
+
+	<road name="Poissy-Boissy">
+		<railway id="2" />
+		<railway id="4" />
+		<railway id="8" />
+		<railway id="12" />
+	</road>
+
+
+	<road name="Boissy-Poissy">
+		<railway id="13" />
+		<railway id="9" />
+		<railway id="5" />
+		<railway id="3" />
+	</road>
+
+
+	<road name="StGermain-Marne">
+		<railway id="6" />
+		<railway id="8" />
+		<railway id="12" />
+	</road>
+
+
+	<road name="Marne-StGermain">
+		<railway id="13" />
+		<railway id="9" />
+		<railway id="7" />
+	</road>
+
+
+	<road name="StGermain-Boissy">
+		<railway id="6" />
+		<railway id="8" />
+		<railway id="12" />
+	</road>
+
+
+	<road name="Boissy-StGermain">
+		<railway id="13" />
+		<railway id="9" />
+		<railway id="7" />
 	</road>
 </roadMapConfiguration>

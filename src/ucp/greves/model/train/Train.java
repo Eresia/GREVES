@@ -99,6 +99,7 @@ public class Train extends Observable implements Runnable {
 	public void remove(DepositeryStation station) {
 		removeStation = station;
 		isRemoved = true;
+		hasArrived = true;
 	}
 	
 	public int nextStation() throws StationNotFoundException{
