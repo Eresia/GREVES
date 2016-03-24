@@ -15,13 +15,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
-import ucp.greves.model.ControlLine;
+import ucp.greves.controller.GodModeController;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.line.Line;
+import ucp.greves.model.schedule.Clock;
 import ucp.greves.model.train.Train;
 
 public class GlobalView extends Application{
@@ -49,7 +50,7 @@ public class GlobalView extends Application{
 
 		//ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "JSON");
 		ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "XML");
-		Line.getInstance();
+		//GodModeController.getInstance().startStimulation();
   
 		modify(lineDraw);
 		//addStation(root);
@@ -83,7 +84,7 @@ public class GlobalView extends Application{
 				String roadmapName = "Cergy-Marne";
 				
 				try {
-					ControlLine.getInstance().launchTrain(roadmapName, speed);
+					GodModeController.getInstance().launchTrain(roadmapName);
 				} catch (BadControlInformationException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -102,7 +103,7 @@ public class GlobalView extends Application{
 
 			@Override
 			public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-				ControlLine.getInstance().changeSimulationSpeed((int) changeSpeed.getValue());
+				GodModeController.getInstance().changeSimulationSpeed((int) changeSpeed.getValue());
 			}
 		});
 		changeSpeed.setValue(0);
