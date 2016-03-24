@@ -24,6 +24,7 @@ import org.xml.sax.SAXException;
 
 import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import jdk.nashorn.internal.runtime.JSONListAdapter;
+import ucp.greves.controller.GodModeController;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
@@ -36,6 +37,7 @@ import ucp.greves.model.line.RailWay;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.Station;
+import ucp.greves.model.schedule.Time;
 
 /**
  * This class has for aim to construct the line and different road maps from files configuration.
@@ -47,7 +49,7 @@ import ucp.greves.model.line.station.Station;
 public class LineBuilder {
 
 	/**
-	 * Method to construct the line and the road maps from a configuration (XML or JSON)
+	 * Method to construct the line the road maps and the schedule from a configuration (XML or JSON)
 	 * @param conf (ConfigurationEnvironment) The Object which contains the program configuration
 	 * @throws DoubledRailwayException If many railway has the same ID in the configuration
 	 * @throws CantonHasAlreadyStationException If there are many stations placed on the same Canton in the configuration
@@ -64,10 +66,12 @@ public class LineBuilder {
 			case "XML":
 				buildLineFromXml("Configuration/Line/line_A.xml");
 				buildRoadFromXml("Configuration/RoadMap/road_A.xml");
+				buildScheduleFromXml("Configuration/Schedule/schedule_A.xml");
 				break;
 			case "JSON":
 				buildLineFromJson("Configuration/Line/line_A.json");
 				buildRoadFromJson("Configuration/RoadMap/road_A.json");
+				buildScheduleFromJson("Configuration/Schedule/schedule_A.json");
 				break;
 			default:
 				LineBuilderSimple.BuildLine();
@@ -292,6 +296,54 @@ public class LineBuilder {
 		}
 
 	}
+	
+	/**
+	 * Method to construct the schedule from a XML configuration
+	 * @param (String) filepath The XML file path
+	 * @throws InvalidXMLException If XML syntax is bad
+	 */
+	private static void buildScheduleFromXml(String filepath) throws InvalidXMLException {
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder;
+		
+		try {
+			dBuilder = dbFactory.newDocumentBuilder();
+
+			Document doc = (Document) dBuilder.parse(filepath);
+			
+			NodeList launchList = doc.getElementsByTagName("launch");
+			if(launchList.getLength() > 0){
+				/* For each launch */
+				for (int lI = 0; lI < launchList.getLength(); lI ++) {
+					Element lEl = (Element) launchList.item(lI);
+					
+					String rmName;
+					String[] sTime;
+					Time time;
+					try {
+						rmName = lEl.getAttribute("road");
+						sTime = lEl.getAttribute("time").split(":");
+						if(sTime.length != 3){
+							throw new InvalidXMLException("Bad Time");
+						}
+						time = new Time(Integer.valueOf(sTime[0]), Integer.valueOf(sTime[1]), Integer.valueOf(sTime[2]));
+						GodModeController.getInstance().addLaunch(rmName, time);
+					}
+					catch(NumberFormatException nfe) {
+						rmName = "";
+						throw new InvalidXMLException();
+					}
+					
+					
+				}
+			}
+				
+			
+		} catch (ParserConfigurationException | SAXException | IOException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	/**
 	 * Method to construct the line from a JSON configuration
@@ -490,6 +542,15 @@ public class LineBuilder {
 	 * @throws InvalidXMLException If JSON syntax is bad
 	 */
 	private static void buildRoadFromJson(String filepath) {
+		//TODO
+	}
+	
+	/**
+	 * Method to construct the schedule from a JSON configuration
+	 * @param (String) filepath The JSON file path
+	 * @throws InvalidXMLException If JSON syntax is bad
+	 */
+	private static void buildScheduleFromJson(String filepath) {
 		//TODO
 	}
 }

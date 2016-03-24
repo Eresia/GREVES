@@ -3,17 +3,20 @@ package ucp.greves.model.line;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.concurrent.ScheduledExecutorService;
 
-import sun.security.jca.GetInstance;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
+import ucp.greves.model.exceptions.line.InvalidXMLException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
 import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
-import ucp.greves.model.exceptions.line.InvalidXMLException;
 import ucp.greves.model.line.builder.LineBuilder;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.Station;
+import ucp.greves.model.schedule.Schedule;
+import ucp.greves.model.schedule.LaunchTrainInformation;
+import ucp.greves.model.schedule.Time;
 import ucp.greves.model.train.Train;
 
 public class Line extends Observable implements Observer {
@@ -25,7 +28,9 @@ public class Line extends Observable implements Observer {
 	private  HashMap<Integer, Train> train_registry;
 	private	 HashMap<Integer, Train> arrived_train_registry;
 	private  HashMap<Integer, Station> station_registry;
-	private HashMap<String, RoadMap> roadmap_registry;
+	private  HashMap<String, RoadMap> roadmap_registry;
+	
+	private Schedule schedule;
 	
 	private Line(){
 		canton_id_register = 0 ;
@@ -36,6 +41,7 @@ public class Line extends Observable implements Observer {
 		arrived_train_registry = new HashMap<Integer, Train>();
 		station_registry = new HashMap<Integer, Station>();
 		roadmap_registry = new HashMap<String, RoadMap>();
+		schedule = new Schedule();
 	}
 	public static Line getInstance(){
 		if(instance == null){
@@ -99,6 +105,14 @@ public class Line extends Observable implements Observer {
 			throw new RoadMapAlreadyExistException("RoadMap " + name + " already exist");
 		}
 		instance.roadmap_registry.put(name, road);
+	}
+	
+	public synchronized static void addLaunch(String roadMap, Time time){
+		instance.schedule.addInformation(new LaunchTrainInformation(time, roadMap));
+	}
+	
+	public Schedule getSchedule(){
+		return schedule;
 	}
 	
 	public int getTotalLenght() {

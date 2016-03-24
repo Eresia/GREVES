@@ -71,8 +71,8 @@ public class CantonTest {
 		Train train = null;
 		Train secondTrain = null;
 		try {
-			train = new Train(firstCanton, new RoadMap("test"), 10);
-			secondTrain = new Train(firstCanton, new RoadMap("test"), 10);
+			train = new Train(firstCanton, new RoadMap("test"));
+			secondTrain = new Train(firstCanton, new RoadMap("test"));
 		} catch (RoadMapAlreadyExistException e) {
 		}
 		

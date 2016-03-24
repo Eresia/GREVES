@@ -50,6 +50,7 @@ public class GlobalView extends Application{
 
 		//ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "JSON");
 		ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "XML");
+		Line.getInstance();
 		//GodModeController.getInstance().startStimulation();
   
 		modify(lineDraw);

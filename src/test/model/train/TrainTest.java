@@ -28,7 +28,7 @@ public class TrainTest {
 	public void testTrain() {
 		Train train = null;
 		try {
-			train = new Train(new Canton(null,100), new RoadMap("test"), 100);
+			train = new Train(new Canton(null,100), new RoadMap("test"));
 		} catch (RoadMapAlreadyExistException e) {
 		}
 		
@@ -40,7 +40,7 @@ public class TrainTest {
 		int id = 5;
 		Train train = null;
 		try {
-			train = new Train(Line.getCantons().get(0), new RoadMap("test"), 100);
+			train = new Train(Line.getCantons().get(0), new RoadMap("test"));
 		} catch (RoadMapAlreadyExistException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,7 +67,7 @@ public class TrainTest {
 		int pos = 27;
 		Train train = null;
 		try {
-			train = new Train(Line.getCantons().get(0), new RoadMap("test"), 100);
+			train = new Train(Line.getCantons().get(0), new RoadMap("test"));
 		} catch (RoadMapAlreadyExistException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

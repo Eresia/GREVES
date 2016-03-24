@@ -23,7 +23,7 @@ public class Train extends Observable implements Runnable {
 	private volatile boolean isRemoved;
 	private volatile DepositeryStation removeStation;
 
-	public Train(Canton startCanton, RoadMap map, int speed) {
+	public Train(Canton startCanton, RoadMap map) {
 
 		this.trainID = Line.register_train(this);
 		currentCanton = startCanton;
@@ -196,11 +196,6 @@ public class Train extends Observable implements Runnable {
 		return isRemoved;
 	}
 
-	@Override
-	public String toString() {
-		return "Train [speed=" + currentCanton.getTrainSpeed(position) + "]";
-	}
-
 	public void updatePosition() {
 		ModifiedTrainInformation informations;
 		try {
@@ -226,6 +221,15 @@ public class Train extends Observable implements Runnable {
 
 	public int positionInCanton() {
 		return currentCanton.getStartPoint() - position;
+	}
+	
+	public int getSpeed(){
+		return currentCanton.getTrainSpeed(position);
+	}
+	
+	@Override
+	public String toString() {
+		return "Train [speed=" + currentCanton.getTrainSpeed(position) + "]";
 	}
 
 }

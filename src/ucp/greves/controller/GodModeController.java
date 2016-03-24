@@ -3,25 +3,22 @@ package ucp.greves.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.canton.TerminusException;
-import ucp.greves.model.exceptions.railway.DoubledRailwayException;
-import ucp.greves.model.exceptions.railway.PathNotExistException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.exceptions.roadmap.EmptyRoadMapException;
-import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
 import ucp.greves.model.exceptions.roadmap.RoadMapNameNotExistException;
-import ucp.greves.model.exceptions.roadmap.StationAlreadyExistInRoadMapException;
 import ucp.greves.model.exceptions.train.TrainNotExistException;
 import ucp.greves.model.line.Line;
-import ucp.greves.model.line.RailWay;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.DepositeryStation;
 import ucp.greves.model.line.station.Station;
+import ucp.greves.model.schedule.Clock;
+import ucp.greves.model.schedule.LaunchTrainInformation;
+import ucp.greves.model.schedule.Time;
 import ucp.greves.model.simulation.SimulationSpeed;
 import ucp.greves.model.train.Train;
 
@@ -41,8 +38,18 @@ public class GodModeController {
 	public void changeSimulationSpeed(int duration) {
 		SimulationSpeed.changeSimulationSpeed(duration);
 	}
+	
+	public void startStimulation(){
+		Clock.getInstance().start();
+		Line.getInstance().getSchedule().start();
+		System.out.println(Line.getInstance().getSchedule().getInformations());
+	}
+	
+	public void stopSimulation(){
+		Clock.getInstance().stopSimulation();
+	}
 
-	public void launchTrain(String road, int speed)	throws BadControlInformationException, BadRoadMapException, RailWayNotExistException {
+	public void launchTrain(String road)	throws BadControlInformationException, BadRoadMapException, RailWayNotExistException {
 		verifyInformation();
 		HashMap<String, RoadMap> roads = Line.getRoadMaps();
 		if (!roads.containsKey(road)) {
@@ -55,9 +62,13 @@ public class GodModeController {
 		if (Line.getRailWays().get(rails.get(0)) == null) {
 			throw new RailWayNotExistException("Impossible to launch the train - the rail way don't exist");
 		}
-		Train t = new Train(Line.getRailWays().get(rails.get(0)).getFirstCanton(), roads.get(road), speed);
+		Train t = new Train(Line.getRailWays().get(rails.get(0)).getFirstCanton(), roads.get(road));
 		Thread tThread = new Thread(t);
 		tThread.start();
+	}
+	
+	public void addLaunch(String roadMap, Time time){
+		Line.getInstance().getSchedule().addInformation(new LaunchTrainInformation(time, roadMap));
 	}
 
 	public void removeTrain(int train) {

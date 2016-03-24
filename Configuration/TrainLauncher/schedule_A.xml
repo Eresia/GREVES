@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scheduleConfiguration>
+  <launch road="Cergy-Marne" time="10:0:0" />
+  <launch road="Cergy-Boissy" time="11:0:0" />
+  <launch road="Poissy-Marne" time="12:0:0" />
+  <launch road="Poissy-Boissy" time="13:0:0" />
+  <launch road="StGermain-Marne" time="14:0:0" />
+  <launch road="StGermain-Boissy" time="15:0:0" />
+  <launch road="Marne-Cergy" time="16:0:0" />
+  <launch road="Boissy-Cergy" time="17:0:0" />
+  <launch road="Marne-Poissy" time="18:0:0" />
+  <launch road="Boissy-Poissy" time="19:0:0" />
+  <launch road="Marne-StGermain" time="20:0:0" />
+  <launch road="Boissy-StGermain" time="21:0:0" />
+</scheduleConfiguration>

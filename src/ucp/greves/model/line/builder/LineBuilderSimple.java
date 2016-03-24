@@ -55,10 +55,10 @@ public class LineBuilderSimple {
 			rm.addRailWay(0);
 			rm.addRailWay(1);
 
-			control.launchTrain(rm.getName(), 150);
-			control.launchTrain(rm.getName(), 250);
-			control.launchTrain(rm.getName(), 200);
-			control.launchTrain(rm.getName(), 320);
+			control.launchTrain(rm.getName());
+			control.launchTrain(rm.getName());
+			control.launchTrain(rm.getName());
+			control.launchTrain(rm.getName());
 
 		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException | DoubledRailwayException | RoadMapAlreadyExistException | CantonHasAlreadyStationException | CantonNotExistException e) {
 			// TODO Auto-generated catch block
