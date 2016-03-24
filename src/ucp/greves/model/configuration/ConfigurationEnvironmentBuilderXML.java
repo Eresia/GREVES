@@ -11,6 +11,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import ucp.greves.model.schedule.Time;
+
 /**
  * This class is used to build the ConfigurationEnvironment from a .xml configuration file.
  * 
@@ -94,6 +96,12 @@ public class ConfigurationEnvironmentBuilderXML {
 				case "string":
 					configuration.setProperty(el.getAttribute("name").toUpperCase(), el.getAttribute("value"));
 					break;
+				case "time":
+					String[] sTime = el.getAttribute("value").split(":");
+					if(sTime.length == 3){
+						Time time = new Time(Integer.valueOf(sTime[0]), Integer.valueOf(sTime[1]), Integer.valueOf(sTime[2]));
+						configuration.setProperty(el.getAttribute("name").toUpperCase(), time);
+					}
 
 				default:
 					break;

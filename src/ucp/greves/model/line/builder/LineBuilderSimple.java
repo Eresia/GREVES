@@ -2,7 +2,7 @@ package ucp.greves.model.line.builder;
 
 import java.util.Random;
 
-import ucp.greves.model.ControlLine;
+import ucp.greves.controller.GodModeController;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
@@ -37,7 +37,7 @@ public class LineBuilderSimple {
 		Line.register_railway(railWay);
 		Line.register_railway(railWay2);
 
-		ControlLine control = ControlLine.getInstance();
+		GodModeController control = GodModeController.getInstance();
 
 		RoadMap rm = null;
 		try {
