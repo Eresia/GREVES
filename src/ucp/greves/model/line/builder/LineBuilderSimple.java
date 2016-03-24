@@ -28,44 +28,39 @@ public class LineBuilderSimple {
 
 	/**
 	 * This method construct the default Line
-	 * @throws DoubledRailwayException
-	 * @throws CantonHasAlreadyStationException
-	 * @throws CantonNotExistException
 	 */
-	static public void BuildLine()
-			throws DoubledRailwayException, CantonHasAlreadyStationException, CantonNotExistException {
-		RailWay railWay = new RailWay(0);
-		RailWay railWay2 = new RailWay(1);
-		Random rn = new Random();
-		while (railWay.getLength() < 10000) {
-			addCanton(railWay, rn);
-		}
-		while (railWay2.getLength() < 10000) {
-			addCanton(railWay2, rn);
-		}
-		railWay.connectTo(railWay2);
-		railWay2.connectTo(railWay);
-
-		Line.register_railway(railWay);
-		Line.register_railway(railWay2);
-
-		ControlLine control = ControlLine.getInstance();
-
-		RoadMap rm = null;
+	static public void BuildLine() {
+		RailWay railWay;
 		try {
+			railWay = new RailWay(0);
+			RailWay railWay2 = new RailWay(1);
+			Random rn = new Random();
+			while (railWay.getLength() < 10000) {
+				addCanton(railWay, rn);
+			}
+			while (railWay2.getLength() < 10000) {
+				addCanton(railWay2, rn);
+			}
+			railWay.connectTo(railWay2);
+			railWay2.connectTo(railWay);
+	
+			Line.register_railway(railWay);
+			Line.register_railway(railWay2);
+	
+			ControlLine control = ControlLine.getInstance();
+	
+			RoadMap rm = null;
 			rm = new RoadMap("test");
-		} catch (RoadMapAlreadyExistException e1) {
-			e1.printStackTrace();
-		}
-		rm.addRailWay(0);
-		rm.addRailWay(1);
-		try {
+			
+			rm.addRailWay(0);
+			rm.addRailWay(1);
+
 			control.launchTrain(rm.getName(), 150);
 			control.launchTrain(rm.getName(), 250);
 			control.launchTrain(rm.getName(), 200);
 			control.launchTrain(rm.getName(), 320);
 
-		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException e) {
+		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException | DoubledRailwayException | RoadMapAlreadyExistException | CantonHasAlreadyStationException | CantonNotExistException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
