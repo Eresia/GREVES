@@ -24,7 +24,7 @@
         </rowConstraints>
          <children>
             <ScrollPane fx:id="lineDraw" prefHeight="363.0" prefWidth="300.0" GridPane.rowIndex="1" GridPane.rowSpan="2" />
-            <TableView fx:id="table" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <TableView fx:id="StationList" GridPane.columnIndex="2" GridPane.rowIndex="1">
               <columns>
                 <TableColumn fx:id="listStation" prefWidth="119.0" text="Liste Gares" />
               </columns>
@@ -88,13 +88,13 @@
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                            <left>
-                              <RadioButton mnemonicParsing="false" text="Arrêt" BorderPane.alignment="CENTER">
+                              <RadioButton mnemonicParsing="false" text="Arrêt" toggleGroup="$TrainSpeed" BorderPane.alignment="CENTER" />
+                           </left>
+                           <center>
+                              <RadioButton mnemonicParsing="false" text="Ralenti" BorderPane.alignment="CENTER">
                               <toggleGroup>
                                     <ToggleGroup fx:id="TrainSpeed" />
                                  </toggleGroup></RadioButton>
-                           </left>
-                           <center>
-                              <RadioButton mnemonicParsing="false" text="Ralenti" toggleGroup="$TrainSpeed" BorderPane.alignment="CENTER" />
                               
                            </center>
                            <right>
@@ -152,13 +152,13 @@
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                            <left>
-                              <RadioButton mnemonicParsing="false" text="Arrêt" BorderPane.alignment="CENTER">
-                              <toggleGroup>
-                                    <ToggleGroup fx:id="CantonSpeed" />
-                              </toggleGroup></RadioButton>
+                              <RadioButton mnemonicParsing="false" text="Arrêt" toggleGroup="$CantonSpeed" BorderPane.alignment="CENTER" />
                            </left>
                            <center>
-                              <RadioButton mnemonicParsing="false" text="Ralenti" toggleGroup="$CantonSpeed" BorderPane.alignment="CENTER" />                                                             
+                              <RadioButton mnemonicParsing="false" text="Ralenti" BorderPane.alignment="CENTER">
+                              <toggleGroup>
+                                    <ToggleGroup fx:id="CantonSpeed" />
+                              </toggleGroup></RadioButton>                                                             
                            </center>
                            <right>
                               <RadioButton mnemonicParsing="false" text="normale" toggleGroup="$CantonSpeed" BorderPane.alignment="CENTER" />
@@ -193,6 +193,14 @@
                   </GridPane>
                </children>
             </VBox>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <left>
+                  <Label text="Heure :" BorderPane.alignment="CENTER" />
+               </left>
+               <center>
+                  <Label fx:id="timeLabel" text="00:00" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
          </children>
       </GridPane>
       <MenuBar maxWidth="1.7976931348623157E308">
