@@ -2,9 +2,6 @@ package ucp.greves.model.line.canton;
 
 import java.util.Observable;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-
-import sun.awt.X11.XAnyEvent;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
@@ -14,10 +11,10 @@ import ucp.greves.model.exceptions.railway.RailWayNotDefinedException;
 import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
-import ucp.greves.model.line.station.StationDecorator;
-import ucp.greves.model.line.station.HasStation;
 import ucp.greves.model.line.station.HasNotStation;
+import ucp.greves.model.line.station.HasStation;
 import ucp.greves.model.line.station.Station;
+import ucp.greves.model.line.station.StationDecorator;
 import ucp.greves.model.train.ModifiedTrainInformation;
 import ucp.greves.model.train.Train;
 
