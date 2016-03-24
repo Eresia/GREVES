@@ -1,13 +1,15 @@
 package ucp.greves.controller;
-import ucp.greves.model.line.Line;
-import ucp.greves.model.line.canton.*;
-
 import java.util.ArrayList;
-public class CantonController {
-	private ArrayList<Canton> CantonList;
-	
 
-	public Canton getCantonById(int id){
+import ucp.greves.model.line.Line;
+import ucp.greves.model.line.canton.Canton;
+public class CantonController {
+	
+	public static ArrayList<Integer> IntegerlistOfCantonID(){
+		return new ArrayList<Integer>(Line.getCantons().keySet());
+	}
+
+	public static Canton getCantonById(int id){
 		return Line.getCantons().get(id);
 	}
 }

@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
@@ -21,6 +22,7 @@ import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.line.Line;
+import ucp.greves.model.train.Train;
 
 public class GlobalView extends Application{
 	
@@ -93,41 +95,7 @@ public class GlobalView extends Application{
 					e.printStackTrace();
 				}
 			}
-		});
-		
-		//Button buttonRemove = (Button) root.lookup("#buttonRemove");
-		//buttonRemove.setOnAction(new EventHandler<ActionEvent>() {
-			
-			//@Override
-			/*public void handle(ActionEvent event) {
-				
-				/* TODO
-				 * Faire en sorte que "train" prenne la valeur du train sélectionné par l'utilisateur, afin de pouvoir le supprimer
-				 *
-				
-				//train = 
-				
-				//ControlLine.getInstance().removeTrain(train);
-			}
-		});*/
-		
-		//Button buttonSlow = (Button) root.lookup("#buttonSlow");
-		//buttonSlow.setOnAction(new EventHandler<ActionEvent>() {
-			
-			//@Override
-			/*public void handle(ActionEvent event) {
-				System.out.println("buttonSlow");	//Action to do			
-			}
-		});*/
-		
-		//Button buttonBlock = (Button) root.lookup("#buttonBlock");
-		//buttonBlock.setOnAction(new EventHandler<ActionEvent>() {
-			
-			/*@Override
-			public void handle(ActionEvent event) {
-				System.out.println("buttonBlock");	//Action to do
-			}
-		});*/
+		});		
 		
 		Slider changeSpeed = (Slider) root.lookup("#changeSpeed");
 		changeSpeed.valueProperty().addListener(new ChangeListener<Object>() {
@@ -165,5 +133,15 @@ public class GlobalView extends Application{
 		table.getColumns().get(0);
 		System.out.println(table.getColumns().get(0).);
 	}*/
+	
+	/**
+	 * Get the ComboBox which is supposed to contain the list of the trains and fill it
+	 * 
+	 * @param root
+	 * 		 (Parent) The root of the scene where the list is placed
+	 */
+	public void addTrains(Parent root){
+		ComboBox<Train> trainList = (ComboBox<Train>) root.lookup("#TrainList"); //Pas sur du type que contient la combobox 
+	}
 
 }

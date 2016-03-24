@@ -1,3 +1,6 @@
+/*
+ * TODO : See javadoc
+ */
 package ucp.greves.view;
 
 import javafx.application.Application;
@@ -18,6 +21,12 @@ public class StationView extends Application {
 		}	
 	}
 	
+	/**
+	 * @param primaryStage
+	 * 	(Stage) 
+	 * @throws 
+	 * 	Exception
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("station_view.fxml"));

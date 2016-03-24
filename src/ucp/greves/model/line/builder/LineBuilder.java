@@ -37,8 +37,24 @@ import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.Station;
 
+/**
+ * This class has for aim to construct the line and different road maps from files configuration.
+ * 
+ * 
+ * @author Bastien LEPESANT, Vincent MONOT &#38; Antoine REGNIER
+ *
+ */
 public class LineBuilder {
 
+	/**
+	 * Method to construct the line and the road maps from a configuration (XML or JSON)
+	 * @param conf (ConfigurationEnvironment) The Object which contains the program configuration
+	 * @throws DoubledRailwayException If many railway has the same ID in the configuration
+	 * @throws CantonHasAlreadyStationException If there are many stations placed on the same Canton in the configuration
+	 * @throws CantonNotExistException If a station is placed in an inexistent canton
+	 * @throws InvalidXMLException If XML syntax is bad
+	 * @see ConfigurationEnvironment
+	 */
 	static public void buildLine(ConfigurationEnvironment conf)
 			throws DoubledRailwayException, CantonHasAlreadyStationException, CantonNotExistException, InvalidXMLException {
 
@@ -63,6 +79,11 @@ public class LineBuilder {
 
 	}
 	
+	/**
+	 * Method to construct the line from a XML configuration
+	 * @param (String) filepath The XML file path
+	 * @throws InvalidXMLException If XML syntax is bad
+	 */
 	private static void buildLineFromXml(String filepath) throws InvalidXMLException {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
@@ -190,6 +211,11 @@ public class LineBuilder {
 
 	}
 	
+	/**
+	 * Method to construct the road maps from a XML configuration
+	 * @param (String) filepath The XML file path
+	 * @throws InvalidXMLException If XML syntax is bad
+	 */
 	private static void buildRoadFromXml(String filepath) throws InvalidXMLException {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
@@ -267,6 +293,11 @@ public class LineBuilder {
 
 	}
 
+	/**
+	 * Method to construct the line from a JSON configuration
+	 * @param (String) filepath The JSON file path
+	 * @throws InvalidXMLException If JSON syntax is bad
+	 */
 	private static void buildLineFromJson(String filepath) {
 		int nbCantons = 0;
 		ScriptEngine engine;
@@ -452,7 +483,13 @@ public class LineBuilder {
 
 	}
 	
+	
+	/**
+	 * Method to construct the road maps from a JSON configuration
+	 * @param (String) filepath The JSON file path
+	 * @throws InvalidXMLException If JSON syntax is bad
+	 */
 	private static void buildRoadFromJson(String filepath) {
-		
+		//TODO
 	}
 }
