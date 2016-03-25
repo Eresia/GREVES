@@ -124,7 +124,6 @@ public class Canton extends Observable {
 		
 		if (crossStation) {
 			if (positionOnCanton > positionStation && (positionOnCanton - speed) <= positionStation) {
-				System.out.println("Train : " + positionOnCanton + ", Station : " + positionStation);
 				informations.setUpdatedPosition(positionOnCanton - positionStation);
 				informations.setStationCrossed(true);
 			}
