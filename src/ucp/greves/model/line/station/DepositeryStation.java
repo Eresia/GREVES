@@ -15,6 +15,11 @@ public class DepositeryStation extends Station{
 		stockTrains = new ArrayList<Train>();
 	}
 	
+	@Override
+	public void enter(Train train){
+		train.remove(this);
+	}
+	
 	public DepositeryStation(String name){
 		super(name);
 		stockTrains = new ArrayList<Train>();

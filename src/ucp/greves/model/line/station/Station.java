@@ -54,7 +54,7 @@ public class Station {
 		nextStation.put(railWay, station);
 	}
 	
-	public void changeTimeOfNextTrain(Train train, Time time){
+	private void changeTimeOfNextTrain(Train train, Time time){
 		RoadMap map = train.getRoadMap();
 		nextTrains.put(train.getTrainID(), time);
 		for(Integer rw : nextStation.keySet()){
@@ -77,7 +77,7 @@ public class Station {
 		}
 	}
 	
-	public void undefinedTimeOfNextTrain(Train train){
+	private void undefinedTimeOfNextTrain(Train train){
 		RoadMap map = train.getRoadMap();
 		nextTrains.put(train.getTrainID(), new UndefinedTime());
 		for(Integer rw : nextStation.keySet()){

@@ -99,6 +99,7 @@ public class Train extends Observable implements Runnable {
 
 	public void remove(DepositeryStation station) {
 		removeStation = station;
+		station.stockTrain(this);
 		isRemoved = true;
 		hasArrived = true;
 		Line.register_arrived_train(trainID);
