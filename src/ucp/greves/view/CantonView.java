@@ -111,29 +111,27 @@ public class CantonView extends Parent implements Observer {
 			} else {
 				try {
 					this.innerTrain = c.getOccupyingTrain();
+					int trainPositionOnCanton = this.innerTrain.positionInCanton();
 					this.innerTrain.addObserver(this);
 					trainPosition.getPoints().setAll(
 							(double) posXA.get(),
 							posYA.get()
-									+ (this.scaleFactor * this.innerTrain
-											.positionInCanton()),
+									+ (this.scaleFactor * trainPositionOnCanton),
 							(double) posXA.get() - 5,
 							posYA.get()
-									+ (this.scaleFactor * this.innerTrain
-											.positionInCanton()) - 5,
+									+ (this.scaleFactor * trainPositionOnCanton) - 5,
 							(double) posXA.get() + 5,
 							posYA.get()
-									+ (this.scaleFactor * this.innerTrain
-											.positionInCanton()) - 5
+									+ (this.scaleFactor * trainPositionOnCanton) - 5
 
 					);
 					this.trainText.yProperty().set(
 							posYA.get()
-									+ (this.scaleFactor * this.innerTrain
-											.positionInCanton()));
+									+ (this.scaleFactor * trainPositionOnCanton));
 					this.trainText.xProperty().set((double) posXA.get() + 6);
 					this.trainText.textProperty().set(
 							innerTrain.getTrainID() + "");
+					this.innerTrain.addObserver(this);
 
 					Platform.runLater(() -> this.getChildren().add(
 							trainPosition));
