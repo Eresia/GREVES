@@ -9,6 +9,7 @@ public class Clock extends Thread{
 
 	public volatile Time time;
 	public volatile boolean simulationStopped;
+	private volatile String text;
 	
 	private final static Time BASE_SIMULATION_TIME_DEFAULT = new Time(8);
 	private final static int NB_SECOND_BY_FRAME_DEFAULT = 1;
@@ -21,6 +22,7 @@ public class Clock extends Thread{
 	private Clock(){
 		time = BASE_SIMULATION_TIME.clone();
 		simulationStopped = true;
+		text = "bbb";
 	}
 	
 	@Override
@@ -32,11 +34,24 @@ public class Clock extends Thread{
 				for(int i = 0; i < NB_SECOND_BY_FRAME; i++){
 					time.incrementSecond();
 				}
-				System.out.println(time);
+				updateText();
+				System.out.println(time.toString());
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void updateText(){
+		text = time.toString();
+	}
+	
+	public String getText(){
+		return text;
+	}
+	
+	public static final int nbSecondByFrame(){
+		return NB_SECOND_BY_FRAME;
 	}
 	
 	public void stopSimulation(){
@@ -89,6 +104,10 @@ public class Clock extends Thread{
 					.println("Nb Seconds By Frame not defined, default value " + NB_SECOND_BY_FRAME_DEFAULT + " used");
 		}
 		return n;
+	}
+	
+	public String toString(){
+		return new String(text);
 	}
 	
 }

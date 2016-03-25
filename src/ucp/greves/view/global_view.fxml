@@ -198,7 +198,7 @@
                   <Label text="Heure :" BorderPane.alignment="CENTER" />
                </left>
                <center>
-                  <Label fx:id="timeLabel" text="00:00" BorderPane.alignment="CENTER" />
+                  <Label fx:id="timeLabel" text="00:00:00" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </children>

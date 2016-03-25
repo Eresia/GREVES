@@ -1,8 +1,14 @@
 package ucp.greves.view;
 
+import com.sun.javafx.robot.FXRobotFactory;
+
 import javafx.application.Application;
+import javafx.beans.InvalidationListener;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ReadOnlyStringPropertyBase;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -14,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
@@ -22,6 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import ucp.greves.controller.GodModeController;
 import ucp.greves.controller.StationController;
+import ucp.greves.controller.TimeController;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
@@ -53,6 +61,7 @@ public class GlobalView extends Application{
 
 		ScrollPane lineDraw = (ScrollPane) root.lookup("#lineDraw"); //Get the borderPane from the root
 		setButton(root);
+		setTime(root);
 	      
 		primaryStage.setScene(scene);
 		primaryStage.show();  
@@ -62,7 +71,7 @@ public class GlobalView extends Application{
 		Line.getInstance();
 		
 		//Launch Time witch this method
-		//GodModeController.getInstance().startStimulation();
+		GodModeController.getInstance().startStimulation();
   
 		modify(lineDraw);
 		//addStation(root);
@@ -140,6 +149,12 @@ public class GlobalView extends Application{
 				new DriverView();
 			}
 		});
+	}
+	
+	public void setTime(Parent root){
+		Label label  = (Label) root.lookup("#timeLabel");
+		//TODO : Print hour ( TimeController.getClockString() )
+		//label.textProperty().bind(r);
 	}
 	
 	/*public void addStation(Parent root){

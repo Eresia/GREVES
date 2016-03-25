@@ -207,7 +207,7 @@ public class Train extends Observable implements Runnable {
 		position -= informations.getUpdatedPosition();
 		
 		if(informations.getStationCrossed()){
-			currentCanton.enterInStation();
+			currentCanton.enterInStation(this);
 			ArrayList<Integer> stationList = roadMap.getStations();
 			int actualStationPos = stationList.indexOf(nextStation);
 			if(actualStationPos == (stationList.size()-1)){

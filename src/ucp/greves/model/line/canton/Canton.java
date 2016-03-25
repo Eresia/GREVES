@@ -225,12 +225,8 @@ public class Canton extends Observable {
 		return nextCanton.getStartPoint() + 1;
 	}
 	
-	public void enterInStation(){
-		try {
-			station.waitInStation();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+	public void enterInStation(Train train){
+		station.enter(train);
 	}
 	
 	public int getStationPosition(){

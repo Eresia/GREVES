@@ -8,5 +8,9 @@ public class TimeController {
 	public static Time getCurrentTime(){
 		return Clock.getTime();
 	}
+	
+	public static String getClockString(){
+		return Clock.getInstance().getText();
+	}
 
 }

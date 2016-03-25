@@ -1,12 +1,18 @@
 package ucp.greves.model.line.station;
 
+import java.util.HashMap;
+
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.line.Line;
+import ucp.greves.model.line.RoadMap;
+import ucp.greves.model.schedule.Clock;
+import ucp.greves.model.schedule.Time;
 import ucp.greves.model.simulation.SimulationSpeed;
+import ucp.greves.model.train.Train;
 
 public class Station {
 	
@@ -14,11 +20,15 @@ public class Station {
 	private final static int WAIT_TIME_CONFIG= set_wait_time_default();
 	
 	private String name;
+	private int canton;
 	private int waitTime;
+	private HashMap<Integer, NextStationInformation> nextStation;
+	private HashMap<Integer, Time> nextTrains;
 	
 	public Station(int canton, String name, int waitTime) throws CantonHasAlreadyStationException, CantonNotExistException{
 		this(name);
 		Line.register_station(canton, this);
+		this.canton = canton;
 		this.waitTime = waitTime;
 	}
 	
@@ -29,6 +39,37 @@ public class Station {
 	protected Station(String name){
 		this.name = name;
 		this.waitTime = -1;
+	}
+	
+	public void addNextStation(int railWay, int station, Time timeToTravel){
+		nextStation.put(railWay, new NextStationInformation(station, timeToTravel));
+	}
+	
+	public void changeTimeOfNextTrain(Train train, Time time){
+		RoadMap map = train.getRoadMap();
+		nextTrains.put(train.getTrainID(), time);
+		for(Integer rw : nextStation.keySet()){
+			if(map.getRailwaysIDs().contains(rw)){
+				NextStationInformation info = nextStation.get(rw);
+				Time nextTime = time.clone();
+				if(map.cross(canton)){
+					Time wait = new Time();
+					wait.addSeconds(waitTime*Clock.nbSecondByFrame());
+					nextTime.addTime(wait);
+				}
+				nextTime.addTime(info.getTimeToTravel());
+				Line.getStations().get(info.getStation()).changeTimeOfNextTrain(train, nextTime);
+			}
+		}
+	}
+	
+	public void enter(Train train){
+		
+		try {
+			waitInStation();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String getName(){

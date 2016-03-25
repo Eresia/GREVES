@@ -6,7 +6,7 @@ public class Time {
 	private int minutes;
 	private int seconds;
 	
-	private int nbDay;
+	private int nbDays;
 	
 	public Time(){
 		this(0, 0, 0);
@@ -25,14 +25,14 @@ public class Time {
 		this.minutes = minutes;
 		this.seconds = seconds;
 		
-		nbDay = 0;
+		nbDays = 0;
 	}
 	
 	public Time(Time other){
 		hours = other.hours;
 		minutes = other.minutes;
 		seconds = other.seconds;
-		nbDay = other.nbDay;
+		nbDays = other.nbDays;
 	}
 	
 	public Time clone(){
@@ -40,7 +40,7 @@ public class Time {
 	}
 	
 	public void incrementDay(){
-		nbDay++;
+		nbDays++;
 	}
 	
 	public void incrementHour(){
@@ -67,17 +67,41 @@ public class Time {
 		}
 	}
 	
+	public void addSeconds(int seconds){
+		this.seconds = (this.seconds + seconds) % 60;
+		addMinutes((this.seconds + seconds) / 60);
+	}
+	
+	public void addMinutes(int minutes){
+		this.minutes = (this.minutes + minutes) % 60;
+		addHours((this.minutes + minutes) / 60);
+	}
+	
+	public void addHours(int hours){
+		this.hours = (this.hours + hours) % 24;
+		addDays((this.hours + hours) / 24);
+	}
+	
+	public void addDays(int nbDays){
+		this.nbDays += nbDays;
+	}
+	
+	public void addTime(Time other){
+		addSeconds(other.seconds);
+		addMinutes(minutes);
+	}
+	
 	public boolean isInferiorOrEquals(Time other){
 		return isInferiorOrEquals(other, false);
 	}
 	
 	public boolean isInferiorOrEquals(Time other, boolean countDay){
 		if(countDay){
-			if (nbDay > other.nbDay){
+			if (nbDays > other.nbDays){
 				return false;
 			}
 			
-			if(nbDay < other.nbDay){
+			if(nbDays < other.nbDays){
 				return true;
 			}
 		}
@@ -96,11 +120,11 @@ public class Time {
 	
 	public boolean isSuperiorOrEquals(Time other, boolean countDay){
 		if(countDay){
-			if (nbDay > other.nbDay){
+			if (nbDays > other.nbDays){
 				return true;
 			}
 			
-			if(nbDay < other.nbDay){
+			if(nbDays < other.nbDays){
 				return false;
 			}
 		}
@@ -119,11 +143,11 @@ public class Time {
 	
 	public boolean isInferior(Time other, boolean countDay){
 		if(countDay){
-			if (nbDay > other.nbDay){
+			if (nbDays > other.nbDays){
 				return false;
 			}
 			
-			if(nbDay < other.nbDay){
+			if(nbDays < other.nbDays){
 				return true;
 			}
 		}
@@ -142,11 +166,11 @@ public class Time {
 	
 	public boolean isSuperior(Time other, boolean countDay){
 		if(countDay){
-			if (nbDay > other.nbDay){
+			if (nbDays > other.nbDays){
 				return true;
 			}
 			
-			if(nbDay < other.nbDay){
+			if(nbDays < other.nbDays){
 				return false;
 			}
 		}
@@ -164,7 +188,7 @@ public class Time {
 	}
 
 	public void setHours(int hours) {
-		this.hours = hours;
+		this.hours = hours%24;
 	}
 
 	public int getMinutes() {
@@ -172,7 +196,7 @@ public class Time {
 	}
 
 	public void setMinutes(int minutes) {
-		this.minutes = minutes;
+		this.minutes = minutes%60;
 	}
 
 	public int getSeconds() {
@@ -180,7 +204,7 @@ public class Time {
 	}
 
 	public void setSeconds(int seconds) {
-		this.seconds = seconds;
+		this.seconds = seconds%60;
 	}
 
 	@Override
