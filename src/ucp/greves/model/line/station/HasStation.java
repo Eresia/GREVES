@@ -1,6 +1,7 @@
 package ucp.greves.model.line.station;
 
 import ucp.greves.model.exceptions.station.StationNotFoundException;
+import ucp.greves.model.train.Train;
 
 public class HasStation implements StationDecorator{
 	
@@ -11,8 +12,8 @@ public class HasStation implements StationDecorator{
 	}
 
 	@Override
-	public void waitInStation() throws InterruptedException {
-		station.waitInStation();
+	public void enter(Train train) {
+		station.enter(train);
 	}
 
 	@Override

@@ -1,10 +1,18 @@
 package ucp.greves.view;
 
+import com.sun.javafx.robot.FXRobotFactory;
+
 import javafx.application.Application;
+import javafx.beans.InvalidationListener;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ReadOnlyStringPropertyBase;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -12,21 +20,31 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import ucp.greves.model.ControlLine;
+import ucp.greves.controller.GodModeController;
+import ucp.greves.controller.StationController;
+import ucp.greves.controller.TimeController;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.line.Line;
+import ucp.greves.model.line.station.Station;
+import ucp.greves.model.schedule.Clock;
 import ucp.greves.model.train.Train;
 
 public class GlobalView extends Application{
 	
 	IntegerProperty paneWidth, paneHeight;
+	
+	private TableView<Station> stationList;
 	
 	public static void main(String[] args){
 		launch(args);
@@ -43,6 +61,7 @@ public class GlobalView extends Application{
 
 		ScrollPane lineDraw = (ScrollPane) root.lookup("#lineDraw"); //Get the borderPane from the root
 		setButton(root);
+		setTime(root);
 	      
 		primaryStage.setScene(scene);
 		primaryStage.show();  
@@ -50,9 +69,13 @@ public class GlobalView extends Application{
 		//ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "JSON");
 		ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "XML");
 		Line.getInstance();
+		
+		//Launch Time witch this method
+		GodModeController.getInstance().startStimulation();
   
 		modify(lineDraw);
 		//addStation(root);
+		setStationList(root);
 	}
 	
 	public void modify(ScrollPane pane){
@@ -83,7 +106,7 @@ public class GlobalView extends Application{
 				String roadmapName = "Cergy-Marne";
 				
 				try {
-					ControlLine.getInstance().launchTrain(roadmapName, speed);
+					GodModeController.getInstance().launchTrain(roadmapName);
 				} catch (BadControlInformationException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -102,7 +125,7 @@ public class GlobalView extends Application{
 
 			@Override
 			public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-				ControlLine.getInstance().changeSimulationSpeed((int) changeSpeed.getValue());
+				GodModeController.getInstance().changeSimulationSpeed((int) changeSpeed.getValue());
 			}
 		});
 		changeSpeed.setValue(0);
@@ -113,7 +136,7 @@ public class GlobalView extends Application{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				new StationView();
+				new StationView(stationList.getSelectionModel().getSelectedItem());
 			}
 		});
 		
@@ -126,6 +149,12 @@ public class GlobalView extends Application{
 				new DriverView();
 			}
 		});
+	}
+	
+	public void setTime(Parent root){
+		Label label  = (Label) root.lookup("#timeLabel");
+		//TODO : Print hour ( TimeController.getClockString() )
+		//label.textProperty().bind(r);
 	}
 	
 	/*public void addStation(Parent root){
@@ -142,6 +171,26 @@ public class GlobalView extends Application{
 	 */
 	public void addTrains(Parent root){
 		ComboBox<Train> trainList = (ComboBox<Train>) root.lookup("#TrainList"); //Pas sur du type que contient la combobox 
+	}
+	
+	
+	/**
+	 * Get the TableView which is supposed to contain the list of the Station and fill it
+	 * 
+	 * @param root
+	 * 		 (Parent) The root of the scene where the list is placed
+	 */
+	public void setStationList(Parent root){
+		stationList = (TableView<Station>) root.lookup("#StationList");
+		TableColumn<Station, String> stationNames = (TableColumn<Station, String>) stationList.getColumns().get(0);
+		stationNames.setCellValueFactory(new PropertyValueFactory<Station,String>("name"));
+		ObservableList<Station> stationListObs = FXCollections.observableArrayList();
+		Station currentStation;
+		for(Integer currentStationId : StationController.IntegerlistOfStationsID()){
+			currentStation = StationController.getStationById(currentStationId);
+			stationListObs.add(currentStation);
+		}
+		stationList.setItems(stationListObs);
 	}
 
 }

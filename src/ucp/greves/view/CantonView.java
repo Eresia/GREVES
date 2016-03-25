@@ -5,7 +5,7 @@ import java.util.Observer;
 
 import javax.management.RuntimeErrorException;
 
-import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
+import com.sun.javafx.runtime.SystemProperties;
 import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 
 import test.model.line.canton.CantonTest;
@@ -37,7 +37,7 @@ public class CantonView extends Parent implements Observer {
 
 	public CantonView(IntegerProperty posXA, IntegerProperty posYA,
 			double factor, Canton canton, CantonController controller) {
-		
+		SystemProperties.setFXProperty("javafx.debug", "true");
 		this.posXA = new SimpleIntegerProperty();
 		this.posXB = new SimpleIntegerProperty();
 		this.posYA = new SimpleIntegerProperty();
@@ -88,15 +88,7 @@ public class CantonView extends Parent implements Observer {
 		this.trainPosition.setStroke(Color.DARKGRAY);
 		this.trainText = new Text();
 
-		// Circle startLine = new Circle();
-		// startLine.setCenterX(posXA.get());
-		// startLine.setCenterY(posYA.get());
-		// startLine.setRadius(3);
-		// Circle endLine = new Circle();
-		// endLine.setCenterX(posXB.get());
-		// endLine.setCenterY(posYB.get());
-		// endLine.setRadius(3);
-		// this.getChildren().addAll(startLine , endLine);
+
 		canton.addObserver(this);
 		this.getChildren().add(lineofCanton);
 	}
@@ -119,33 +111,32 @@ public class CantonView extends Parent implements Observer {
 			} else {
 				try {
 					this.innerTrain = c.getOccupyingTrain();
+					int trainPositionOnCanton = this.innerTrain.positionInCanton();
 					this.innerTrain.addObserver(this);
 					trainPosition.getPoints().setAll(
 							(double) posXA.get(),
 							posYA.get()
-									+ (this.scaleFactor * this.innerTrain
-											.positionInCanton()),
+									+ (this.scaleFactor * trainPositionOnCanton),
 							(double) posXA.get() - 5,
 							posYA.get()
-									+ (this.scaleFactor * this.innerTrain
-											.positionInCanton()) - 5,
+									+ (this.scaleFactor * trainPositionOnCanton) - 5,
 							(double) posXA.get() + 5,
 							posYA.get()
-									+ (this.scaleFactor * this.innerTrain
-											.positionInCanton()) - 5
+									+ (this.scaleFactor * trainPositionOnCanton) - 5
 
 					);
 					this.trainText.yProperty().set(
 							posYA.get()
-									+ (this.scaleFactor * this.innerTrain
-											.positionInCanton()));
+									+ (this.scaleFactor * trainPositionOnCanton));
 					this.trainText.xProperty().set((double) posXA.get() + 6);
+					this.trainText.textProperty().set(
+							innerTrain.getTrainID() + "");
+					this.innerTrain.addObserver(this);
 
 					Platform.runLater(() -> this.getChildren().add(
 							trainPosition));
 					Platform.runLater(() -> this.getChildren().add(trainText));
-					this.trainText.textProperty().set(
-							innerTrain.getTrainID() + "");
+
 
 				} catch (CantonIsEmptyException e) {
 
@@ -157,34 +148,30 @@ public class CantonView extends Parent implements Observer {
 			}
 		} else if (o instanceof Train) {
 			Train t = (Train) o;
-			this.trainPosition
-					.getPoints()
-					.setAll((double) posXA.get(),
-							posYA.get()
-									+ (this.scaleFactor * t.positionInCanton()),
-							(double) posXA.get() - 5,
-							posYA.get()
-									+ (this.scaleFactor * t.positionInCanton())
-									- 5,
-							(double) posXA.get() + 5,
-							posYA.get()
-									+ (this.scaleFactor * t.positionInCanton())
-									- 5
+//			this.trainPosition
+//					.getPoints()
+//					.setAll((double) posXA.get(),
+//							posYA.get()
+//									+ (this.scaleFactor * t.positionInCanton()),
+//							(double) posXA.get() - 5,
+//							posYA.get()
+//									+ (this.scaleFactor * t.positionInCanton())
+//									- 5,
+//							(double) posXA.get() + 5,
+//							posYA.get()
+//									+ (this.scaleFactor * t.positionInCanton())
+//									- 5
+//
+//					);
+			
+			
+			int trainPositionInCanton = t.positionInCanton();
+			Platform.runLater(() -> this.trainPosition.setLayoutY(scaleFactor * trainPositionInCanton));
+			Platform.runLater(() -> this.trainText.setLayoutY(scaleFactor * trainPositionInCanton ));
 
-					);
-
-			this.trainText.yProperty().set(
-					posYA.get() + (this.scaleFactor * t.positionInCanton()));
-			this.trainText.xProperty().set((double) posXA.get() + 6);
-			this.trainText.textProperty().set(t.getTrainID() + "");
 
 		}
-		try {
-			Thread.sleep(15);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 	}
 
 	public IntegerProperty getEndX() {

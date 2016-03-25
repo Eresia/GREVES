@@ -23,7 +23,7 @@ public class Train extends Observable implements Runnable {
 	private volatile boolean isRemoved;
 	private volatile DepositeryStation removeStation;
 
-	public Train(Canton startCanton, RoadMap map, int speed) {
+	public Train(Canton startCanton, RoadMap map) {
 
 		this.trainID = Line.register_train(this);
 		currentCanton = startCanton;
@@ -196,21 +196,18 @@ public class Train extends Observable implements Runnable {
 		return isRemoved;
 	}
 
-	@Override
-	public String toString() {
-		return "Train [speed=" + currentCanton.getTrainSpeed(position) + "]";
-	}
-
 	public void updatePosition() {
 		ModifiedTrainInformation informations;
-		try {
-			informations = currentCanton.updatedTrainPosition(position,	roadMap.cross(currentCanton.getStation().getName()));
-		} catch (StationNotFoundException e) {
-			informations = currentCanton.updatedTrainPosition(position, false);
+		if(currentCanton.hasStation()){
+			informations = currentCanton.updatedTrainPosition(position,	roadMap.cross(currentCanton.getId()));
+		}
+		else{
+			informations = currentCanton.updatedTrainPosition(position,	false);
 		}
 		position -= informations.getUpdatedPosition();
 		
 		if(informations.getStationCrossed()){
+			currentCanton.enterInStation(this);
 			ArrayList<Integer> stationList = roadMap.getStations();
 			int actualStationPos = stationList.indexOf(nextStation);
 			if(actualStationPos == (stationList.size()-1)){
@@ -226,6 +223,15 @@ public class Train extends Observable implements Runnable {
 
 	public int positionInCanton() {
 		return currentCanton.getStartPoint() - position;
+	}
+	
+	public int getSpeed(){
+		return currentCanton.getTrainSpeed(position);
+	}
+	
+	@Override
+	public String toString() {
+		return "Train [speed=" + currentCanton.getTrainSpeed(position) + "]";
 	}
 
 }

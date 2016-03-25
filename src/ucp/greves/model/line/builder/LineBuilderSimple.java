@@ -2,7 +2,7 @@ package ucp.greves.model.line.builder;
 
 import java.util.Random;
 
-import ucp.greves.model.ControlLine;
+import ucp.greves.controller.GodModeController;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
@@ -18,48 +18,63 @@ import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.Station;
 
+/**
+ * This class has for aim to construct a line if it is not exist a configuration file
+ * 
+ * @author Bastien LEPESANT, Vincent MONOT &#38; Antoine REGNIER
+ *
+ */
 public class LineBuilderSimple {
 
-	static public void BuildLine()
-			throws DoubledRailwayException, CantonHasAlreadyStationException, CantonNotExistException {
-		RailWay railWay = new RailWay(0);
-		RailWay railWay2 = new RailWay(1);
-		Random rn = new Random();
-		while (railWay.getLength() < 10000) {
-			addCanton(railWay, rn);
-		}
-		while (railWay2.getLength() < 10000) {
-			addCanton(railWay2, rn);
-		}
-		railWay.connectTo(railWay2);
-		railWay2.connectTo(railWay);
-
-		Line.register_railway(railWay);
-		Line.register_railway(railWay2);
-
-		ControlLine control = ControlLine.getInstance();
-
-		RoadMap rm = null;
+	/**
+	 * This method construct the default Line
+	 */
+	static public void BuildLine() {
+		RailWay railWay;
 		try {
+			railWay = new RailWay(0);
+			RailWay railWay2 = new RailWay(1);
+			Random rn = new Random();
+			while (railWay.getLength() < 10000) {
+				addCanton(railWay, rn);
+			}
+			while (railWay2.getLength() < 10000) {
+				addCanton(railWay2, rn);
+			}
+			railWay.connectTo(railWay2);
+			railWay2.connectTo(railWay);
+	
+			Line.register_railway(railWay);
+			Line.register_railway(railWay2);
+	
+			GodModeController control = GodModeController.getInstance();
+	
+			RoadMap rm = null;
 			rm = new RoadMap("test");
-		} catch (RoadMapAlreadyExistException e1) {
-			e1.printStackTrace();
-		}
-		rm.addRailWay(0);
-		rm.addRailWay(1);
-		try {
-			control.launchTrain(rm.getName(), 150);
-			control.launchTrain(rm.getName(), 250);
-			control.launchTrain(rm.getName(), 200);
-			control.launchTrain(rm.getName(), 320);
+			
+			rm.addRailWay(0);
+			rm.addRailWay(1);
 
-		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException e) {
+			control.launchTrain(rm.getName());
+			control.launchTrain(rm.getName());
+			control.launchTrain(rm.getName());
+			control.launchTrain(rm.getName());
+
+		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException | DoubledRailwayException | RoadMapAlreadyExistException | CantonHasAlreadyStationException | CantonNotExistException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
+	/**
+	 * This method add a canton on a railway
+	 * @param rw (RailWay) The railway
+	 * @param rn (Random) The common random
+	 * @throws CantonHasAlreadyStationException If a canton has already a station
+	 * @throws CantonNotExistException If canton not exist
+	 * @see Railway, Random
+	 */
 	private static void addCanton(RailWay rw, Random rn)
 			throws CantonHasAlreadyStationException, CantonNotExistException {
 		rw.addCanton(rn.nextInt(300) + 700);

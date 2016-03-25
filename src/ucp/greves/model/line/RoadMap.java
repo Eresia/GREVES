@@ -75,8 +75,8 @@ public class RoadMap {
 		stations.add(station);
 	}
 	
-	public boolean cross(String stationName){
-		return stations.contains(stationName);
+	public boolean cross(int stationCantonId){
+		return stations.contains(stationCantonId);
 	}
 	
 	public Integer getFirstRailWay(){
