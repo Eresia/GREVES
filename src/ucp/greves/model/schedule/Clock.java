@@ -35,7 +35,7 @@ public class Clock extends Thread{
 					time.incrementSecond();
 				}
 				updateText();
-				System.out.println(time.toString());
+				//System.out.println(time.toString());
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();

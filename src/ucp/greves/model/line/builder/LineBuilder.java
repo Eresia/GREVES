@@ -29,13 +29,16 @@ import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
+import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.line.InvalidXMLException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
 import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
+import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RailWay;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
+import ucp.greves.model.line.canton.Terminus;
 import ucp.greves.model.line.station.Station;
 import ucp.greves.model.schedule.Time;
 
@@ -208,6 +211,8 @@ public class LineBuilder {
 					System.err.println("Connection from "+fromId+" to "+toId);
 				}
 			}
+			
+			buildStationInformation();
 			
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
@@ -528,6 +533,8 @@ public class LineBuilder {
 					break;
 				}
 			}
+			
+			buildStationInformation();
 
 		} catch (IOException | ScriptException e) {
 			e.printStackTrace();
@@ -552,5 +559,24 @@ public class LineBuilder {
 	 */
 	private static void buildScheduleFromJson(String filepath) {
 		//TODO
+	}
+	
+	private static void buildStationInformation(){
+		for(Integer rwI : Line.getRailWays().keySet()){
+			Canton canton = Line.getRailWays().get(rwI).getFirstCanton();
+			try{
+				while(true){
+					try {
+						Station s = canton.getStation();
+						
+					} catch (StationNotFoundException e) {
+						
+					}
+					canton = canton.getNextCanton(null);
+				}
+			} catch(TerminusException e){
+				
+			}
+		}
 	}
 }
