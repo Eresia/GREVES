@@ -30,6 +30,8 @@ public class Station {
 		Line.register_station(canton, this);
 		this.canton = canton;
 		this.waitTime = waitTime;
+		nextStation = new HashMap<Integer, Integer>();
+		nextTrains = new HashMap<Integer, Time>();
 	}
 	
 	protected Station(int canton, String name) throws CantonHasAlreadyStationException, CantonNotExistException{
@@ -41,7 +43,7 @@ public class Station {
 		this.waitTime = -1;
 	}
 	
-	public void addNextStation(int railWay, int station, Time timeToTravel){
+	public void addNextStation(int railWay, int station){
 		nextStation.put(railWay, station);
 	}
 	

@@ -565,15 +565,57 @@ public class LineBuilder {
 		for(Integer rwI : Line.getRailWays().keySet()){
 			Canton canton = Line.getRailWays().get(rwI).getFirstCanton();
 			try{
-				while(true){
+				Station s = null;
+				while(s == null){
 					try {
-						Station s = canton.getStation();
-						
+						s = canton.getStation();
 					} catch (StationNotFoundException e) {
+						canton = canton.getNextCanton(null);
+					}
+				}
+				
+				if(!canton.getClass().equals(Terminus.class)){
+					while(!canton.getClass().equals(Terminus.class)){
+						try {
+							if(canton.hasStation()){
+								s.addNextStation(rwI, canton.getId());
+								s = canton.getStation();
+							}
+						} catch (StationNotFoundException e) {
+							e.printStackTrace();
+						}
+						canton = canton.getNextCanton(null);
+					}
+				}
+				
+				Terminus term = (Terminus) canton;
+				try {
+					if(term.hasStation()){
+						s.addNextStation(rwI, term.getId());
+						s = term.getStation();
+					}
+				} catch (StationNotFoundException e) {
+					e.printStackTrace();
+				}
+				
+				ArrayList<Integer> rList = term.getNextRailWays();
+				for(Integer i : rList){
+					canton = Line.getRailWays().get(i).getFirstCanton();
+					
+					boolean haveNext = false;
+					try{
+						while(!haveNext){
+							if(canton.hasStation()){
+								s.addNextStation(i, canton.getId());
+								haveNext = true;
+							}
+							canton = canton.getNextCanton(null);
+						}
+					} catch(TerminusException e){
 						
 					}
-					canton = canton.getNextCanton(null);
 				}
+				
 			} catch(TerminusException e){
 				
 			}
