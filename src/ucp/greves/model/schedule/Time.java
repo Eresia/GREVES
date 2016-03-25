@@ -1,6 +1,8 @@
 package ucp.greves.model.schedule;
 
-public class Time {
+import ucp.greves.model.exceptions.time.UndefinedTimeException;
+
+public class Time implements TimeDecorator{
 	
 	private int hours;
 	private int minutes;
@@ -88,7 +90,35 @@ public class Time {
 	
 	public void addTime(Time other){
 		addSeconds(other.seconds);
-		addMinutes(minutes);
+		addMinutes(other.minutes);
+		addHours(other.hours);
+		addDays(other.nbDays);
+	}
+	
+	private void multSeconds(int mult){
+		seconds = (seconds * mult) % 60;
+		addMinutes((seconds * mult) / 60);
+	}
+	
+	private void multMinutes(int mult){
+		minutes = (minutes * mult) % 60;
+		addHours((minutes * mult) / 60);
+	}
+	
+	private void multHours(int mult){
+		hours = (hours * mult) % 24;
+		addDays((hours * mult) / 24);
+	}
+	
+	private void multDays(int mult){
+		this.nbDays *= mult;
+	}
+	
+	public void multTime(int mult){
+		multSeconds(mult);
+		multMinutes(mult);
+		multHours(mult);
+		multDays(mult);
 	}
 	
 	public boolean isInferiorOrEquals(Time other){
@@ -214,6 +244,11 @@ public class Time {
 	@Override
 	public String toString(){
 		return hours + ":" + minutes + ":" + seconds;
+	}
+
+	@Override
+	public String getString() throws UndefinedTimeException {
+		return toString();
 	}
 
 }

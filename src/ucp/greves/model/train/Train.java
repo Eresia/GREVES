@@ -127,59 +127,6 @@ public class Train extends Observable implements Runnable {
 		return next;
 	}
 
-	/*Deprecated*/
-	/*public Station getNextStation() throws StationNotFoundException{
-		Station result = null;
-		if (currentCanton.hasStation() && currentCanton.getStationPosition() > positionInCanton()) {
-			result = currentCanton.getStation();
-		}
-		else{
-			try{
-				Canton actual = currentCanton.getNextCanton(roadMap);
-				boolean stationFound = false;
-				while(!stationFound){
-					if(actual.hasStation()){
-						result = actual.getStation();
-						stationFound = true;
-					}
-					else{
-						actual = actual.getNextCanton(roadMap);
-					}
-				}
-			} catch(TerminusException e){
-				throw new StationNotFoundException();
-			}
-		}
-
-		return result;
-	}
-	
-	public ArrayList<Station> getNextStations(){
-		ArrayList<Station> result = new ArrayList<Station>();
-		
-		try{
-			if (currentCanton.hasStation() && currentCanton.getStationPosition() > positionInCanton()) {
-				result.add(currentCanton.getStation());
-			}
-	
-			try{
-				Canton actual = currentCanton.getNextCanton(roadMap);
-				while(true){
-					if(actual.hasStation()){
-						result.add(actual.getStation());
-					}
-					actual = actual.getNextCanton(roadMap);
-				}
-			} catch(TerminusException e){
-				
-			}
-		} catch(StationNotFoundException e){
-			e.printStackTrace();
-		}
-		
-		return result;
-	}*/
-
 	public void blockTrain() {
 		currentCanton.blockCanton();
 	}

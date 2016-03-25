@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.station.Station;
-import ucp.greves.model.schedule.Time;
+import ucp.greves.model.schedule.TimeDecorator;
 
 public class StationController {
 
@@ -17,7 +17,7 @@ public class StationController {
 		return Line.getStations().get(id);
 	}
 	
-	public static HashMap<Integer, Time> getNextTrains(int station){
+	public static HashMap<Integer, TimeDecorator> getNextTrains(int station){
 		return Line.getStations().get(station).getNextTrains();
 	}
 }

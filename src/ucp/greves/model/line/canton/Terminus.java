@@ -42,6 +42,16 @@ public class Terminus extends Canton {
 	public Canton getNextCanton(RoadMap road) throws TerminusException {
 		return getNextRailWay(road).getFirstCanton();
 	}
+	
+	@Override
+	public Canton getNextCanton(int rw) throws TerminusException {
+		if(railWayAvailable.contains(rw)){
+			return Line.getRailWays().get(rw).getFirstCanton();
+		}
+		else{
+			throw new TerminusException();
+		}
+	}
 
 	public RailWay getNextRailWay(RoadMap road) throws TerminusException {
 		int actualPos;

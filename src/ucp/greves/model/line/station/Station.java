@@ -6,12 +6,18 @@ import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
+import ucp.greves.model.exceptions.canton.CantonIsBlockedException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
+import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
+import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.schedule.Clock;
 import ucp.greves.model.schedule.Time;
+import ucp.greves.model.schedule.TimeDecorator;
+import ucp.greves.model.schedule.UndefinedTime;
 import ucp.greves.model.simulation.SimulationSpeed;
+import ucp.greves.model.train.ModifiedTrainInformation;
 import ucp.greves.model.train.Train;
 
 public class Station {
@@ -23,15 +29,15 @@ public class Station {
 	private int canton;
 	private int waitTime;
 	private HashMap<Integer, Integer> nextStation;
-	private HashMap<Integer, Time> nextTrains;
+	private HashMap<Integer, TimeDecorator> nextTrains;
 	
 	public Station(int canton, String name, int waitTime) throws CantonHasAlreadyStationException, CantonNotExistException{
-		this(name);
+		this.name = name;
 		Line.register_station(canton, this);
 		this.canton = canton;
 		this.waitTime = waitTime;
 		nextStation = new HashMap<Integer, Integer>();
-		nextTrains = new HashMap<Integer, Time>();
+		nextTrains = new HashMap<Integer, TimeDecorator>();
 	}
 	
 	protected Station(int canton, String name) throws CantonHasAlreadyStationException, CantonNotExistException{
@@ -41,6 +47,7 @@ public class Station {
 	protected Station(String name){
 		this.name = name;
 		this.waitTime = -1;
+		canton = -1;
 	}
 	
 	public void addNextStation(int railWay, int station){
@@ -51,6 +58,7 @@ public class Station {
 		RoadMap map = train.getRoadMap();
 		nextTrains.put(train.getTrainID(), time);
 		for(Integer rw : nextStation.keySet()){
+			
 			if(map.getRailwaysIDs().contains(rw)){
 				Station next = Line.getStations().get(nextStation.get(rw));
 				Time nextTime = time.clone();
@@ -59,15 +67,54 @@ public class Station {
 					wait.addSeconds(waitTime*Clock.nbSecondByFrame());
 					nextTime.addTime(wait);
 				}
-				nextTime.addTime(timeToNextStation(rw));
-				next.changeTimeOfNextTrain(train, nextTime);
+				try{
+					nextTime.addTime(timeToNextStation(rw));
+					next.changeTimeOfNextTrain(train, nextTime);
+				} catch(CantonIsBlockedException e){
+					next.undefinedTimeOfNextTrain(train);
+				}
 			}
 		}
 	}
 	
-	private Time timeToNextStation(int rw){
-		Time time = new Time();
+	public void undefinedTimeOfNextTrain(Train train){
+		RoadMap map = train.getRoadMap();
+		nextTrains.put(train.getTrainID(), new UndefinedTime());
+		for(Integer rw : nextStation.keySet()){
+			if(map.getRailwaysIDs().contains(rw)){
+				Station next = Line.getStations().get(nextStation.get(rw));
+				next.undefinedTimeOfNextTrain(train);
+			}
+		}
+	}
+	
+	private Time timeToNextStation(int rw) throws CantonIsBlockedException{
+		Time time;
+		int nbFrame = 0;
 		
+		Canton canton = Line.getCantons().get(this.canton);
+		int position = canton.getStartPoint() - canton.getStationPosition();
+		
+		try {
+			while(true){
+				if (position - canton.getTrainSpeed(position) <= canton.getEndPoint()) {
+					canton = canton.getNextCanton(rw);
+					position = canton.simulateEnter(position);
+				} 
+				ModifiedTrainInformation info = canton.updatedTrainPosition(position, true);
+				nbFrame++;
+				
+				if(info.getStationCrossed()){
+					break;
+				}
+				position -= info.getUpdatedPosition();
+			}
+		} catch (TerminusException e) {
+			return new Time();
+		}
+		
+		time = new Time(0, 0, Clock.nbSecondByFrame());
+		time.multTime(nbFrame);
 		return time;
 	}
 	
@@ -81,7 +128,7 @@ public class Station {
 		}
 	}
 	
-	public HashMap<Integer, Time> getNextTrains(){
+	public HashMap<Integer, TimeDecorator> getNextTrains(){
 		return nextTrains;
 	}
 	

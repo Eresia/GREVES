@@ -5,6 +5,7 @@ import java.util.Observable;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
+import ucp.greves.model.exceptions.canton.CantonIsBlockedException;
 import ucp.greves.model.exceptions.canton.CantonIsEmptyException;
 import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.railway.RailWayNotDefinedException;
@@ -70,6 +71,10 @@ public class Canton extends Observable {
 		station = new HasNotStation();
 		positionStation = -1;
 	}
+	
+	public Canton getNextCanton(int rw) throws TerminusException {
+		return nextCanton;
+	}
 
 	public Canton getNextCanton(RoadMap road) throws TerminusException {
 		return nextCanton;
@@ -113,6 +118,23 @@ public class Canton extends Observable {
 		occupyingTrain = train;
 		this.setChanged();
 		this.notifyObservers();
+	}
+	
+	public int simulateEnter(int position) throws CantonIsBlockedException{
+		int newPosition = position;
+		if (occupyingTrain != null || (this.getState() == CantonState.BLOCKED)) {
+			throw new CantonIsBlockedException();
+		}
+
+		if (position < 0) {
+			newPosition = position + getStartPoint();
+		}
+
+		if (ConfigurationEnvironment.inDebug()) {
+			System.err.println("Canton changed successfully");
+		}
+
+		return newPosition;
 	}
 	
 	public ModifiedTrainInformation updatedTrainPosition(int position, boolean crossStation){
