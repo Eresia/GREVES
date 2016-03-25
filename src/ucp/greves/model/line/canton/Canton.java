@@ -123,9 +123,10 @@ public class Canton extends Observable {
 		informations.setStationCrossed(false);
 		
 		if (crossStation) {
-			if (positionOnCanton < positionStation && (positionOnCanton + speed) >= positionStation) {
+			if (positionOnCanton > positionStation && (positionOnCanton - speed) <= positionStation) {
+				System.out.println("Train : " + positionOnCanton + ", Station : " + positionStation);
+				informations.setUpdatedPosition(positionOnCanton - positionStation);
 				informations.setStationCrossed(true);
-				enterInStation();
 			}
 		}
 		
@@ -166,7 +167,7 @@ public class Canton extends Observable {
 			defaultSpeed = trainSpeed;
 		}
 		
-		if ((positionOnCanton < positionStation) && (positionOnCanton + DISTANCE_TO_STATION) >= positionStation) {
+		if (hasStation() && (Math.abs(positionOnCanton - positionStation) <= DISTANCE_TO_STATION)) {
 			if(SPEED_STATION <= defaultSpeed){
 				speed = SPEED_STATION;
 			}
@@ -239,6 +240,7 @@ public class Canton extends Observable {
 
 	public void setStation(Station station, int position) {
 		this.station = new HasStation(station);
+		this.positionStation = position;
 	}
 
 	public boolean hasStation() {

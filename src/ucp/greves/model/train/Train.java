@@ -198,14 +198,16 @@ public class Train extends Observable implements Runnable {
 
 	public void updatePosition() {
 		ModifiedTrainInformation informations;
-		try {
-			informations = currentCanton.updatedTrainPosition(position,	roadMap.cross(currentCanton.getStation().getName()));
-		} catch (StationNotFoundException e) {
-			informations = currentCanton.updatedTrainPosition(position, false);
+		if(currentCanton.hasStation()){
+			informations = currentCanton.updatedTrainPosition(position,	roadMap.cross(currentCanton.getId()));
+		}
+		else{
+			informations = currentCanton.updatedTrainPosition(position,	false);
 		}
 		position -= informations.getUpdatedPosition();
 		
 		if(informations.getStationCrossed()){
+			currentCanton.enterInStation();
 			ArrayList<Integer> stationList = roadMap.getStations();
 			int actualStationPos = stationList.indexOf(nextStation);
 			if(actualStationPos == (stationList.size()-1)){
