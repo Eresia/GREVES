@@ -71,6 +71,10 @@ public class Terminus extends Canton {
 		
 		return Line.getRailWays().get(next);
 	}
+	
+	public ArrayList<Integer> getNextRailWays(){
+		return railWayAvailable;
+	}
 
 	public void AddNextRailWay(RailWay r) {
 		if (!this.railWayAvailable.contains(r.getId())) {

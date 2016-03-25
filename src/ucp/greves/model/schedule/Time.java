@@ -183,6 +183,10 @@ public class Time {
 		return hours > other.hours;
 	}
 	
+	public int getDays(){
+		return nbDays;
+	}
+	
 	public int getHours() {
 		return hours;
 	}

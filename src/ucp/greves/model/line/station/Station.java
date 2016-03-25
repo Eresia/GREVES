@@ -22,7 +22,7 @@ public class Station {
 	private String name;
 	private int canton;
 	private int waitTime;
-	private HashMap<Integer, NextStationInformation> nextStation;
+	private HashMap<Integer, Integer> nextStation;
 	private HashMap<Integer, Time> nextTrains;
 	
 	public Station(int canton, String name, int waitTime) throws CantonHasAlreadyStationException, CantonNotExistException{
@@ -30,6 +30,8 @@ public class Station {
 		Line.register_station(canton, this);
 		this.canton = canton;
 		this.waitTime = waitTime;
+		nextStation = new HashMap<Integer, Integer>();
+		nextTrains = new HashMap<Integer, Time>();
 	}
 	
 	protected Station(int canton, String name) throws CantonHasAlreadyStationException, CantonNotExistException{
@@ -41,8 +43,8 @@ public class Station {
 		this.waitTime = -1;
 	}
 	
-	public void addNextStation(int railWay, int station, Time timeToTravel){
-		nextStation.put(railWay, new NextStationInformation(station, timeToTravel));
+	public void addNextStation(int railWay, int station){
+		nextStation.put(railWay, station);
 	}
 	
 	public void changeTimeOfNextTrain(Train train, Time time){
@@ -50,26 +52,37 @@ public class Station {
 		nextTrains.put(train.getTrainID(), time);
 		for(Integer rw : nextStation.keySet()){
 			if(map.getRailwaysIDs().contains(rw)){
-				NextStationInformation info = nextStation.get(rw);
+				Station next = Line.getStations().get(nextStation.get(rw));
 				Time nextTime = time.clone();
 				if(map.cross(canton)){
 					Time wait = new Time();
 					wait.addSeconds(waitTime*Clock.nbSecondByFrame());
 					nextTime.addTime(wait);
 				}
-				nextTime.addTime(info.getTimeToTravel());
-				Line.getStations().get(info.getStation()).changeTimeOfNextTrain(train, nextTime);
+				nextTime.addTime(timeToNextStation(rw));
+				next.changeTimeOfNextTrain(train, nextTime);
 			}
 		}
 	}
 	
-	public void enter(Train train){
+	private Time timeToNextStation(int rw){
+		Time time = new Time();
 		
+		return time;
+	}
+	
+	public void enter(Train train){
 		try {
+			changeTimeOfNextTrain(train, new Time());
 			waitInStation();
+			nextTrains.remove(train.getTrainID());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public HashMap<Integer, Time> getNextTrains(){
+		return nextTrains;
 	}
 	
 	public String getName(){

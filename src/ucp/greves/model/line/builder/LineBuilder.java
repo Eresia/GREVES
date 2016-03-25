@@ -29,13 +29,16 @@ import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
+import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.line.InvalidXMLException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
 import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
+import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RailWay;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
+import ucp.greves.model.line.canton.Terminus;
 import ucp.greves.model.line.station.Station;
 import ucp.greves.model.schedule.Time;
 
@@ -208,6 +211,8 @@ public class LineBuilder {
 					System.err.println("Connection from "+fromId+" to "+toId);
 				}
 			}
+			
+			buildStationInformation();
 			
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
@@ -528,6 +533,8 @@ public class LineBuilder {
 					break;
 				}
 			}
+			
+			buildStationInformation();
 
 		} catch (IOException | ScriptException e) {
 			e.printStackTrace();
@@ -552,5 +559,66 @@ public class LineBuilder {
 	 */
 	private static void buildScheduleFromJson(String filepath) {
 		//TODO
+	}
+	
+	private static void buildStationInformation(){
+		for(Integer rwI : Line.getRailWays().keySet()){
+			Canton canton = Line.getRailWays().get(rwI).getFirstCanton();
+			try{
+				Station s = null;
+				while(s == null){
+					try {
+						s = canton.getStation();
+					} catch (StationNotFoundException e) {
+						canton = canton.getNextCanton(null);
+					}
+				}
+				
+				if(!canton.getClass().equals(Terminus.class)){
+					while(!canton.getClass().equals(Terminus.class)){
+						try {
+							if(canton.hasStation()){
+								s.addNextStation(rwI, canton.getId());
+								s = canton.getStation();
+							}
+						} catch (StationNotFoundException e) {
+							e.printStackTrace();
+						}
+						canton = canton.getNextCanton(null);
+					}
+				}
+				
+				Terminus term = (Terminus) canton;
+				try {
+					if(term.hasStation()){
+						s.addNextStation(rwI, term.getId());
+						s = term.getStation();
+					}
+				} catch (StationNotFoundException e) {
+					e.printStackTrace();
+				}
+				
+				ArrayList<Integer> rList = term.getNextRailWays();
+				for(Integer i : rList){
+					canton = Line.getRailWays().get(i).getFirstCanton();
+					
+					boolean haveNext = false;
+					try{
+						while(!haveNext){
+							if(canton.hasStation()){
+								s.addNextStation(i, canton.getId());
+								haveNext = true;
+							}
+							canton = canton.getNextCanton(null);
+						}
+					} catch(TerminusException e){
+						
+					}
+				}
+				
+			} catch(TerminusException e){
+				
+			}
+		}
 	}
 }
