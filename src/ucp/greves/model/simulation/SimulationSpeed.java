@@ -16,11 +16,19 @@ public class SimulationSpeed {
 	}
 	
 	public static void waitFrameTime() throws InterruptedException{
-		int waitVar = 0;
+		/*int waitVar = 0;
 		while(waitVar < FRAME_DURATION){
 			Thread.sleep(1);
 			waitVar += simulationSpeed;
-		}
+		}*/
+		int wait;
+		do{
+			wait = simulationSpeed;
+			if(wait == 0){
+				Thread.sleep(10);
+			}
+		}while(wait == 0);
+		Thread.sleep(FRAME_DURATION/wait);
 	}
 	
 	private static int setFrameDuration() {
