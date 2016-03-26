@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import ucp.greves.controller.CantonController;
 import ucp.greves.controller.RailWayController;
 import ucp.greves.model.line.RailWay;
+import ucp.greves.model.line.canton.Canton;
 
 public class RailWayView extends Parent  {
 	
@@ -21,16 +22,12 @@ public class RailWayView extends Parent  {
 	 * 
 	 * @param railway
 	 * 	(Railway) The railway that will be print in the pane
-	 * @param paneWidth
-	 * 	(IntegerProperty) The width of the pane
-	 * @param paneHeight
-	 * 	(IntegerProperty The height of the pane
 	 * @param numberOfRailWays
 	 * 	(int) number of railways for know the start position of them
 	 * 
 	 * @see Railway
 	 */
-	public RailWayView(RailWay railway, IntegerProperty paneWidth, IntegerProperty paneHeight, int numberOfRailWays){
+	public RailWayView(RailWay railway, int numberOfRailWays){
 		this.Cantons = new HashMap<Integer, CantonView>();
 		startXpos = new SimpleIntegerProperty();
 		startYpos = new SimpleIntegerProperty();
