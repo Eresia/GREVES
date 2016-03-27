@@ -46,6 +46,9 @@ public class GodModeController {
 	
 	public void stopSimulation(){
 		Clock.getInstance().stopSimulation();
+		for(Integer i : TrainController.IntegerlistOfTrainsID()){
+			TrainController.getTrainById(i).remove(stockRemoveTrain);
+		}
 	}
 
 	public void launchTrain(String road)	throws BadControlInformationException, BadRoadMapException, RailWayNotExistException {
