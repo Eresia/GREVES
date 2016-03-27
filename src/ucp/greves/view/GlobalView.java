@@ -1,6 +1,7 @@
 package ucp.greves.view;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -21,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import ucp.greves.controller.GodModeController;
 import ucp.greves.controller.StationController;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
@@ -71,6 +73,17 @@ public class GlobalView extends Application{
 		lineDraw.setContent(lineView);
 		//addStation(root);
 		setStationList(root);
+		
+		//make all the window close and stop the programm when this window is closed
+		
+		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				Platform.exit();
+				System.exit(0);				
+			}
+		});
 	}
 	
 	public void setButton(Parent root){
