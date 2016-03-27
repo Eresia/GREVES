@@ -2,9 +2,12 @@ package ucp.greves.model.line;
 
 import java.util.ArrayList;
 
+import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
+import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.canton.Terminus;
+import ucp.greves.model.line.station.Station;
 
 public class RailWay {
 	private Terminus terminus;
@@ -78,5 +81,32 @@ public class RailWay {
 		}
 		temp.add(this.terminus.getId());
 		return temp;
+	}
+	
+	/**
+	 * Give the name of the RailWay : "FirstStation : LastStation"
+	 * @return The name of the Rail : "FirstStation : LastStation"
+	 */
+	public String getName(){
+		Canton canton = getFirstCanton();
+		String firstStation = null, lastStation = null;
+		try{
+			while(canton != null){
+				try{
+					Station s = canton.getStation();
+					if(firstStation == null){
+						firstStation = s.getName();
+					}
+					lastStation = s.getName();
+				} catch(StationNotFoundException e){
+					
+				}
+				canton = canton.getNextCanton(null);
+			}
+		} catch(TerminusException e){
+			
+		}
+		
+		return firstStation + " : " + lastStation;
 	}
 }

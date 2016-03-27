@@ -3,7 +3,6 @@ package ucp.greves.model.line;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.concurrent.ScheduledExecutorService;
 
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
@@ -13,9 +12,10 @@ import ucp.greves.model.exceptions.railway.DoubledRailwayException;
 import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
 import ucp.greves.model.line.builder.LineBuilder;
 import ucp.greves.model.line.canton.Canton;
+import ucp.greves.model.line.station.GlobalStation;
 import ucp.greves.model.line.station.Station;
-import ucp.greves.model.schedule.Schedule;
 import ucp.greves.model.schedule.LaunchTrainInformation;
+import ucp.greves.model.schedule.Schedule;
 import ucp.greves.model.schedule.Time;
 import ucp.greves.model.train.Train;
 
@@ -28,6 +28,7 @@ public class Line extends Observable implements Observer {
 	private  HashMap<Integer, Train> train_registry;
 	private	 HashMap<Integer, Train> arrived_train_registry;
 	private  HashMap<Integer, Station> station_registry;
+	private	 HashMap<String, GlobalStation> global_station_registry;
 	private  HashMap<String, RoadMap> roadmap_registry;
 	
 	private Schedule schedule;
@@ -40,6 +41,7 @@ public class Line extends Observable implements Observer {
 		train_registry = new HashMap<Integer, Train>();
 		arrived_train_registry = new HashMap<Integer, Train>();
 		station_registry = new HashMap<Integer, Station>();
+		global_station_registry = new HashMap<String, GlobalStation>();
 		roadmap_registry = new HashMap<String, RoadMap>();
 		schedule = new Schedule();
 	}
@@ -97,6 +99,11 @@ public class Line extends Observable implements Observer {
 			throw new CantonHasAlreadyStationException("Canton " + id + " has already the station " + instance.station_registry.get(id).getName());
 		}
 		instance.station_registry.put(id, station);
+		String name = station.getName();
+		if(!instance.global_station_registry.containsKey(name)){
+			instance.global_station_registry.put(name, new GlobalStation(name));
+		}
+		instance.global_station_registry.get(name).addStation(id);
 	}
 	
 	public synchronized static void register_roadMap(String name, RoadMap road) throws RoadMapAlreadyExistException {
@@ -142,6 +149,10 @@ public class Line extends Observable implements Observer {
 	
 	public static HashMap<Integer, Station> getStations(){
 		return instance.station_registry;
+	}
+	
+	public static HashMap<String, GlobalStation> getGlobalStations(){
+		return instance.global_station_registry;
 	}
 	
 	public static HashMap<String, RoadMap> getRoadMaps(){

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import ucp.greves.model.line.Line;
+import ucp.greves.model.line.station.GlobalStation;
 import ucp.greves.model.line.station.Station;
 import ucp.greves.model.schedule.TimeDecorator;
 
@@ -17,7 +18,15 @@ public class StationController {
 		return Line.getStations().get(id);
 	}
 	
-	public static HashMap<Integer, TimeDecorator> getNextTrains(int station){
+	public static HashMap<Integer, TimeDecorator> getNextTrainsInStation(int station){
 		return Line.getStations().get(station).getNextTrains();
+	}
+	
+	public static ArrayList<String> StringlistOfGlobalStationsName(){
+		return new ArrayList<String>(Line.getGlobalStations().keySet());
+	}
+	
+	public static GlobalStation getGlobalStationByName(String name){
+		return Line.getGlobalStations().get(name);
 	}
 }
