@@ -9,7 +9,7 @@ import ucp.greves.model.line.Line;
 import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.DepositeryStation;
-import ucp.greves.model.simulation.SimulationSpeed;
+import ucp.greves.model.simulation.SimulationInfo;
 
 public class Train extends Observable implements Runnable {
 	private int trainID;
@@ -72,7 +72,7 @@ public class Train extends Observable implements Runnable {
 		currentCanton.enter(this);
 		while (!hasArrived() && !isRemoved()) {
 			try {
-				SimulationSpeed.waitFrameTime();
+				SimulationInfo.waitFrameTime();
 			} catch (InterruptedException ie) {
 				System.err.println(ie.getMessage());
 			}

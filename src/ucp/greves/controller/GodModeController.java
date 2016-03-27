@@ -19,7 +19,7 @@ import ucp.greves.model.line.station.Station;
 import ucp.greves.model.schedule.Clock;
 import ucp.greves.model.schedule.LaunchTrainInformation;
 import ucp.greves.model.schedule.Time;
-import ucp.greves.model.simulation.SimulationSpeed;
+import ucp.greves.model.simulation.SimulationInfo;
 import ucp.greves.model.train.Train;
 
 public class GodModeController {
@@ -36,7 +36,7 @@ public class GodModeController {
 	}
 
 	public void changeSimulationSpeed(int duration) {
-		SimulationSpeed.changeSimulationSpeed(duration);
+		SimulationInfo.changeSimulationSpeed(duration);
 	}
 	
 	public void startStimulation(){
@@ -45,7 +45,7 @@ public class GodModeController {
 	}
 	
 	public void stopSimulation(){
-		Clock.getInstance().stopSimulation();
+		SimulationInfo.stopSimulation();
 		for(Integer i : TrainController.IntegerlistOfTrainsID()){
 			TrainController.getTrainById(i).remove(stockRemoveTrain);
 		}

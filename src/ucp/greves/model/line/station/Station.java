@@ -16,7 +16,7 @@ import ucp.greves.model.schedule.Clock;
 import ucp.greves.model.schedule.Time;
 import ucp.greves.model.schedule.TimeDecorator;
 import ucp.greves.model.schedule.UndefinedTime;
-import ucp.greves.model.simulation.SimulationSpeed;
+import ucp.greves.model.simulation.SimulationInfo;
 import ucp.greves.model.train.ModifiedTrainInformation;
 import ucp.greves.model.train.Train;
 
@@ -146,7 +146,7 @@ public class Station {
 	
 	public void waitInStation(int specialTime) throws InterruptedException{
 		for(int i = 0; i < specialTime; i++){
-			SimulationSpeed.waitFrameTime();
+			SimulationInfo.waitFrameTime();
 		}
 	}
 	

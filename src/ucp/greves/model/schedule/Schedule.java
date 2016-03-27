@@ -6,7 +6,7 @@ import ucp.greves.controller.GodModeController;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
-import ucp.greves.model.simulation.SimulationSpeed;
+import ucp.greves.model.simulation.SimulationInfo;
 
 public class Schedule extends Thread{
 	
@@ -24,14 +24,15 @@ public class Schedule extends Thread{
 		try {
 			Time ancientTime = Clock.getTime().clone();
 			Time newTime = ancientTime;
-			while(!Clock.getInstance().stopped()){
+			while(!SimulationInfo.stopped()){
 				for(LaunchTrainInformation info : informations){
-					if(info.getTime().isSuperior(ancientTime, true) && info.getTime().isInferiorOrEquals(newTime, true)){
+					System.out.println(info.getRoadMap() + " " + info.getTime().isSuperior(ancientTime) + " " + info.getTime().isInferiorOrEquals(newTime));
+					if(info.getTime().isSuperior(ancientTime) && info.getTime().isInferiorOrEquals(newTime)){
 						GodModeController.getInstance().launchTrain(info.getRoadMap());
 					}
 				}
 				ancientTime = newTime.clone();
-				SimulationSpeed.waitFrameTime();
+				SimulationInfo.waitFrameTime();
 				newTime = Clock.getTime().clone();
 			}
 		} catch (InterruptedException | BadControlInformationException | BadRoadMapException | RailWayNotExistException e) {

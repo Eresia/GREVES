@@ -4,12 +4,13 @@ import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 
-public class SimulationSpeed {
+public class SimulationInfo {
 
 	private final static int FRAME_DURATION_DEFAULT = 50;
 	private final static int FRAME_DURATION = setFrameDuration();
 	
 	private volatile static int simulationSpeed = 0;
+	public volatile static boolean simulationStopped = false;
 	
 	public static void changeSimulationSpeed(int duration){
 		simulationSpeed = duration;
@@ -27,8 +28,18 @@ public class SimulationSpeed {
 			if(wait == 0){
 				Thread.sleep(10);
 			}
-		}while(wait == 0);
-		Thread.sleep(FRAME_DURATION/wait);
+		}while(wait == 0 && !simulationStopped);
+		if(!simulationStopped){
+			Thread.sleep(FRAME_DURATION/wait);
+		}
+	}
+	
+	public static void stopSimulation(){
+		simulationStopped = true;
+	}
+	
+	public static boolean stopped(){
+		return simulationStopped;
 	}
 	
 	private static int setFrameDuration() {

@@ -16,7 +16,7 @@ import ucp.greves.model.line.station.HasNotStation;
 import ucp.greves.model.line.station.HasStation;
 import ucp.greves.model.line.station.Station;
 import ucp.greves.model.line.station.StationDecorator;
-import ucp.greves.model.simulation.SimulationSpeed;
+import ucp.greves.model.simulation.SimulationInfo;
 import ucp.greves.model.train.ModifiedTrainInformation;
 import ucp.greves.model.train.Train;
 
@@ -105,7 +105,7 @@ public class Canton extends Observable {
 		
 		while(state == CantonState.BLOCKED && !train.hasArrived()){
 			try {
-				SimulationSpeed.waitFrameTime();
+				SimulationInfo.waitFrameTime();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

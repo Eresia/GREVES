@@ -3,12 +3,11 @@ package ucp.greves.model.schedule;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
-import ucp.greves.model.simulation.SimulationSpeed;
+import ucp.greves.model.simulation.SimulationInfo;
 
 public class Clock extends Thread{
 
 	public volatile Time time;
-	public volatile boolean simulationStopped;
 	private volatile String text;
 	
 	private final static Time BASE_SIMULATION_TIME_DEFAULT = new Time(8);
@@ -21,21 +20,19 @@ public class Clock extends Thread{
 	
 	private Clock(){
 		time = BASE_SIMULATION_TIME.clone();
-		simulationStopped = true;
 		text = "bbb";
 	}
 	
 	@Override
 	public void run(){
-		simulationStopped = false;
 		try{
-			while(!simulationStopped){
-				SimulationSpeed.waitFrameTime();
+			while(!SimulationInfo.stopped()){
+				SimulationInfo.waitFrameTime();
 				for(int i = 0; i < NB_SECOND_BY_FRAME; i++){
 					time.incrementSecond();
 				}
 				updateText();
-				//System.out.println(time.toString());
+				System.out.println(time.toString());
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -52,14 +49,6 @@ public class Clock extends Thread{
 	
 	public static final int nbSecondByFrame(){
 		return NB_SECOND_BY_FRAME;
-	}
-	
-	public void stopSimulation(){
-		simulationStopped = true;
-	}
-	
-	public boolean stopped(){
-		return simulationStopped;
 	}
 	
 	public static Time getTime(){
