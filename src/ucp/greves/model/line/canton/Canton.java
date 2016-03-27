@@ -103,7 +103,7 @@ public class Canton extends Observable {
 			}
 		}
 		
-		while(state == CantonState.BLOCKED){
+		while(state == CantonState.BLOCKED && !train.hasArrived()){
 			try {
 				SimulationSpeed.waitFrameTime();
 			} catch (InterruptedException e) {
