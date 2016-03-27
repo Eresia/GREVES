@@ -1,723 +1,633 @@
-{
+{	
+	
 	"line": {
 		"railways": [
+		{
+			"id": 0,
+			"cantons": [
 			{
-				"id": 0,
-				"cantons": [
-					{
-						"size": 1000,
-						"station": {
-							"name": "Cergy Le haut"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Cergy St Christophe"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Cergy Préfecture"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Neuville Université"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Conflans fin d'Oise"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Achères-Ville"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Maison Laffite"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Sartrouville"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					}
-					,
-					{
-						"size": 1000,
-						"station": {
-							"name": "Houilles Carrières sur Seine"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					}
-				]
+				"size": 1000,
+				"station": { "name": "Cergy Le haut" }
 			},
+			{ "size": 1000 },
+			{ "size": 1000 },
 			{
-				"id": 1,
-				"cantons": [
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Houilles Carrières sur Seine"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Sartrouville"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Maison Laffite"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Achères-Ville"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Conflans fin d'Oise"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Neuville Université"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Cergy Préfecture"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Cergy St Christophe"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Cergy Le Haut"
-						}
-					}
-				]
+				"size": 1000,
+				"station": {
+				"name": "Cergy St-Christophe",
+				"wait_time": 40
+				}
 			},
+			{ "size": 1000 },
+			{ "size": 1000 },
 			{
-				"id": 2,
-				"cantons": [
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Nanterre-Préfecture"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "La Défense"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Charles de Gaulle Etoile"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Auber"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Châtelet-Les-Halles"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Gare de Lyon"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Nation"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Vincennes"
-						}
-					},
-					{
-						"size": 1000
-					}
-				]
+				"size": 1000,
+				"station": { "name": "Cergy Préfecture" }
 			},
+			{ "size": 1000 },
+			{ "size": 1000 },
 			{
-				"id": 3,
-				"cantons": [
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Vincennes"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Nation"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Gare de Lyon"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Châtelet-Les-Halles"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Auber"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Charles De Gaulle Etoile"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "La Défense"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Nanterre-Préfecture"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					}
-				]
+				"size": 1000,
+				"station": { "name": "Neuville Université" }
 			},
+			{ "size": 1000 },
+			{ "size": 1000 },
 			{
-				"id": 4,
-				"cantons": [
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Val de Fontenay"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Neuilly Plaisance"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Bry sur Marne"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Noisy Le Grand"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Noisy Champs"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Noisiel"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Lognes"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Torcy"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Bussy Saint-Georges"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Val d'Europe"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Marne la Vallée"
-						}
-					},
-				]
+				"size": 1000,
+				"station": { "name": "Conflans fin d'Oise" }
 			},
+			{ "size": 1000 },
+			{ "size": 1000 },
 			{
-				"id": 5,
-				"cantons": [
-					{
-						"size": 1000,
-						"station": {
-							"name": "Marne la Vallée"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Val d'Europe"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Bussy Saint-Georges"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Torcy"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Lognes"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Noisiel"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Noisy Champs"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Noisy le Grand"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Bry sur Marne"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Neuilly Plaisance"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000,
-						"station": {
-							"name": "Val de Fontenay"
-						}
-					},
-					{
-						"size": 1000
-					},
-					{
-						"size": 1000
-					}
-				]
+				"size": 1000,
+				"station": { "name": "Achères-Ville" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 }
+			]
+		},
+		{
+			"id": 1,
+			"cantons": [
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Achères-Ville" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Conflans fin d'Oise" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Neuville Université" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Cergy Préfecture" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Cergy St Christophe" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Cergy Le Haut" }
 			}
-		]
+			]
+		},
+		{
+			"id": 2,
+			"cantons": [
+			{
+				"size": 1000,
+				"station": { "name": "Poissy" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Achères Grand Cormier" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 }
+			]
+		},
+		{
+			"id": 3,
+			"cantons": [
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Achères Grand Cormier" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Poissy" }
+			}
+			]
+		},
+		{
+			"id": 4,
+			"cantons": [
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Maison Laffite" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Sartrouville" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Houilles Carrières sur Seine" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 }
+			]
+		},
+		{
+			"id": 5,
+			"cantons": [
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Houilles Carrières sur Seine" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Sartrouville" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Maison Laffite" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 }
+			]
+		},
+		{
+			"id": 6,
+			"cantons": [
+			{
+				"size": 1000,
+				"station": { "name": "St-Germain en Laye" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Le Vésinet - Le Pecq" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Le Vésinet - Centre" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Chatou - Croissy" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Rueil-Malmaison" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Nanterre-Ville" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Nanterre Université" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 }
+			]
+		},
+		{
+			"id": 7,
+			"cantons": [
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Nanterre Université" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Nanterre-Ville" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Rueil-Malmaison" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Chatou - Croissy" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Le Vésinet - Centre" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Le Vésinet - Le Pecq" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "St-Germain en Laye" }
+			}
+			]
+		},
+		{
+			"id": 8,
+			"cantons": [
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Nanterre-Préfecture" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "La Défense" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Charles de Gaulle Etoile" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Auber" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Châtelet-Les-Halles" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Gare de Lyon" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Nation" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Vincennes" }
+			},
+			{ "size": 1000 }
+			]
+		},
+		{
+			"id": 9,
+			"cantons": [
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Vincennes" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Nation" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Gare de Lyon" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Châtelet-Les-Halles" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Auber" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Charles De Gaulle Etoile" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "La Défense" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Nanterre-Préfecture" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 }
+			]
+		},
+		{
+			"id": 10,
+			"cantons": [
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Val de Fontenay" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Neuilly Plaisance" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Bry sur Marne" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Noisy Le Grand" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Noisy Champs" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Noisiel" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Lognes" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Torcy" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Bussy Saint-Georges" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Val d'Europe" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Marne la Vallée" }
+			}
+			]
+		},
+		{
+			"id": 11,
+			"cantons": [
+			{
+				"size": 1000,
+				"station": { "name": "Marne la Vallée" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Val d'Europe" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Bussy Saint-Georges" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Torcy" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Lognes" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Noisiel" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Noisy Champs" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Noisy le Grand" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Bry sur Marne" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Neuilly Plaisance" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Val de Fontenay" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 }
+			]
+		},
+		{
+			"id": 12,
+			"cantons": [
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Fontenay sous Bois" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Nogent sur Marne" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Joinville le Pont" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "St-Maur - Créteil" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Le Parc de St-Maur" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Champigny" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "La Varenne Chennevières" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Sucy - Bonneuil" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Boissy-St-Léger" }
+			}
+			]
+		},
+		{
+			"id": 13,
+			"cantons": [
+			{
+				"size": 1000,
+				"station": { "name": "Boissy-St-Léger" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Sucy - Bonneuil" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "La Varenne Chennevières" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Champigny" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Le Parc de St-Maur" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "St-Maur - Créteil" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Joinville le Pont" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Nogent sur Marne" }
+			},
+			{ "size": 1000 },
+			{
+				"size": 1000,
+				"station": { "name": "Fontenay sous Bois" }
+			},
+			{ "size": 1000 },
+			{ "size": 1000 }
+			]
+		}
+	  ]
 	},
 
 	"connections": {
 		"connect": [
 			{
 				"from": 0,
-				"to": 2
+				"to": 4
 			},
 			{
 				"from": 2,
@@ -725,6 +635,42 @@
 			},
 			{
 				"from": 4,
+				"to": 8
+			},
+			{
+				"from": 6,
+				"to": 8
+			},
+			{
+				"from": 8,
+				"to": 10
+			},
+			{
+				"from": 8,
+				"to": 12
+			},
+			{
+				"from": 10,
+				"to": 11
+			},
+			{
+				"from": 12,
+				"to": 13
+			},
+			{
+				"from": 11,
+				"to": 9
+			},
+			{
+				"from": 13,
+				"to": 9
+			},
+			{
+				"from": 9,
+				"to": 7
+			},
+			{
+				"from": 9,
 				"to": 5
 			},
 			{
@@ -732,8 +678,20 @@
 				"to": 3
 			},
 			{
-				"from": 3,
+				"from": 5,
 				"to": 1
+			},
+			{
+				"from": 7,
+				"to": 6
+			},
+			{
+				"from": 3,
+				"to": 2
+			},
+			{
+				"from": 1,
+				"to": 0
 			}
 		]
 	}
