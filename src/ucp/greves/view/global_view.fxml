@@ -136,13 +136,13 @@
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <left>
-                              <Button fx:id="StopCanton" mnemonicParsing="false" text="Arrêt" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+                              <Button fx:id="StopCanton" mnemonicParsing="false" text="Arrêter" textAlignment="CENTER" BorderPane.alignment="CENTER" />
                            </left>
                            <center>
-                              <Button fx:id="SlowCanton" mnemonicParsing="false" text="Ralenti" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+                              <Button fx:id="SlowCanton" mnemonicParsing="false" text="Ralentir" textAlignment="CENTER" BorderPane.alignment="CENTER" />
                            </center>
                            <right>
-                              <Button fx:id="NormalSpeedCanton" mnemonicParsing="false" text="normal" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+                              <Button fx:id="NormalCanton" mnemonicParsing="false" text="Normaliser" textAlignment="CENTER" BorderPane.alignment="CENTER" />
                            </right>
                         </BorderPane>
                      </children>

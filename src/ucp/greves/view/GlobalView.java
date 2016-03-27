@@ -25,6 +25,7 @@ import ucp.greves.controller.GodModeController;
 import ucp.greves.controller.StationController;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.BadControlInformationException;
+import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.line.Line;
@@ -107,15 +108,62 @@ public class GlobalView extends Application{
 			}
 		});		
 		
-		Slider changeSpeed = (Slider) root.lookup("#ChangeSpeed");
-		changeSpeed.valueProperty().addListener(new ChangeListener<Object>() {
-
+		/****************** Gestion Cantons *******************/
+		//Button "Arrêt"
+		Button stopCantonButton = (Button) root.lookup("#StopCanton");
+		stopCantonButton.setOnAction(new EventHandler<ActionEvent>() {
+		
 			@Override
-			public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-				GodModeController.getInstance().changeSimulationSpeed((int) changeSpeed.getValue());
+			public void handle(ActionEvent event) {
+				Canton selectedCanton = getSelectedCanton();
+				if(selectedCanton != null) {
+					try {
+						GodModeController.getInstance().blockCanton(selectedCanton.getId());
+					} catch (CantonNotExistException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
 		});
-		changeSpeed.setValue(0);
+		
+		//Button "Normaliser"
+		Button normaliseCantonButton = (Button) root.lookup("#NormalCanton");
+		normaliseCantonButton.setOnAction(new EventHandler<ActionEvent>() {
+		
+			@Override
+			public void handle(ActionEvent event) {
+				Canton selectedCanton = getSelectedCanton();
+				if(selectedCanton != null) {
+					try {
+						GodModeController.getInstance().removeCantonProblem(selectedCanton.getId());
+					} catch (CantonNotExistException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		
+		//Button "Ralentir"
+		Button slowDownCantonButton = (Button) root.lookup("#SlowCanton");
+		slowDownCantonButton.setOnAction(new EventHandler<ActionEvent>() {
+		
+			@Override
+			public void handle(ActionEvent event) {
+				Canton selectedCanton = getSelectedCanton();
+				if(selectedCanton != null) {
+					try {
+						GodModeController.getInstance().createSlowDown(selectedCanton.getId());
+					} catch (CantonNotExistException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		
+		
 		
 		//Boutton d'affichage de la vue de la gares (Boutton "Horaires")
 		Button stationViewButton = (Button) root.lookup("#StationViewButton");
@@ -136,6 +184,17 @@ public class GlobalView extends Application{
 				new DriverView();
 			}
 		});
+		
+		//Slider to change the simulation's speed.
+		Slider changeSpeed = (Slider) root.lookup("#ChangeSpeed");
+		changeSpeed.valueProperty().addListener(new ChangeListener<Object>() {
+
+			@Override
+			public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+				GodModeController.getInstance().changeSimulationSpeed((int) changeSpeed.getValue());
+			}
+		});
+		changeSpeed.setValue(0);
 	}
 	
 	public void setTime(Parent root){

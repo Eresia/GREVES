@@ -6,7 +6,7 @@
 4. Conventions
  4.1 Convention : Javadoc
  4.2 Convention : Documentation
-5. Récupération de données
+5. Récupération de données fxml
 
 
 /****************************************/
@@ -107,7 +107,7 @@
     - La page de garde et l'abstract sont également dans des fichiers à part.
     - Chaque section, subsection et figure doit avoir un label unique attribué.
 
-#5. Récupération de Données
+#5. Récupération de Données fxml
 
 	Pour récupérer un élément de la fenêtre il suffit de prendre la racine de la fenêtre (root) et utiliser
 	la méthode root.lookup("#id de l'élément à récupérer").
@@ -124,9 +124,9 @@
 			-bouton de la vue ajouter un train (Button) = AddTrainViewButton
 			-bouton vue conducteur (Button) = DriverViewButton
 			-affichage de l'etat du canton selectionner (Label) = CantonState
-			-boutton arrêt du canton (Button) = StopCanton
-			-boutton ralentir le canton (Button) = SlowCanton
-			-boutton vitesse normale du canton (Button) = NormalSpeedCanton
+			-bouton arrêt du canton (Button) = StopCanton
+			-bouton ralentir le canton (Button) = SlowCanton
+			-bouton vitesse normale du canton (Button) = NormalCanton
 			-barre de vitesse globale (Slider) = ChangeSpeed
 			-liste des gares (TableView) = StationList
 			-bouton vue des horaire de la gare (Button) = StationViewButton
