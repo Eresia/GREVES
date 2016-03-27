@@ -18,7 +18,7 @@
          <children>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <ComboBox fx:id="RailwaysList" prefWidth="150.0" promptText="Départ : Arrivé" BorderPane.alignment="CENTER" />
+                  <ComboBox fx:id="RoadMapsList" prefWidth="150.0" promptText="Départ-Arrivée" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">

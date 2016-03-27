@@ -79,32 +79,8 @@ public class GlobalView extends Application{
 			
 			@Override
 			public void handle(ActionEvent event) {
-								
-				/*TODO : fenêtre popup demandant à l'utilisateur le parcours et vitesse qu'il veut pour le train.
-				 * 	(=> besoin de la liste des roadmap pour les proposer).
-				 */
 				
-				/*int speed = 100;
-				try {
-					speed = (int) ConfigurationEnvironment.getInstance().getProperty("train_speed_max").getValue();
-				} catch (PropertyNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}*/
-				String roadmapName = "Cergy-Marne";
-				
-				try {
-					GodModeController.getInstance().launchTrain(roadmapName);
-				} catch (BadControlInformationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (BadRoadMapException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (RailWayNotExistException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				new addTrainView();
 			}
 		});		
 		
@@ -216,7 +192,7 @@ public class GlobalView extends Application{
 	 * @param root
 	 * 		 (Parent) The root of the scene where the list is placed
 	 */
-	public void addTrains(Parent root){
+	public void setTrainIDsList(Parent root){
 		ComboBox<Train> trainList = (ComboBox<Train>) root.lookup("#TrainList"); //Pas sur du type que contient la combobox 
 	}
 	

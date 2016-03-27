@@ -145,5 +145,5 @@
 			-gares desservies voie 2 (TableView) = NextStationSecondTable
 
 		AddTrain view :
-			-liste des trajets possibles (ComboBox) = RailWaysList
+			-liste des trajets possibles (ComboBox) = RoadMapsList
 			-bouton ajouter un train (Button) = AddTrain
