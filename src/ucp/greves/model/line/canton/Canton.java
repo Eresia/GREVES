@@ -89,7 +89,7 @@ public class Canton extends Observable {
 	}
 
 	public synchronized void enter(Train train) {
-		if (occupyingTrain != null) {
+		if (occupyingTrain != null || state == CantonState.BLOCKED) {
 			if (ConfigurationEnvironment.inDebug()) {
 				System.err.println(toString() + " occupied !");
 			}
@@ -101,23 +101,24 @@ public class Canton extends Observable {
 				System.err.println(e.getMessage());
 			}
 		}
+		else{
+			int trainPosition = train.getPosition();
+			if (trainPosition < 0) {
+				train.setPosition(trainPosition + getStartPoint());
+			}
 
-		int trainPosition = train.getPosition();
-		if (trainPosition < 0) {
-			train.setPosition(trainPosition + getStartPoint());
+			if (ConfigurationEnvironment.inDebug()) {
+				System.err.println("Canton changed successfully");
+			}
+			Canton oldCanton = train.getCurrentCanton();
+			train.setCurrentCanton(this);
+			train.updatePosition();
+
+			oldCanton.exit();
+			occupyingTrain = train;
+			this.setChanged();
+			this.notifyObservers();
 		}
-
-		if (ConfigurationEnvironment.inDebug()) {
-			System.err.println("Canton changed successfully");
-		}
-		Canton oldCanton = train.getCurrentCanton();
-		train.setCurrentCanton(this);
-		train.updatePosition();
-
-		oldCanton.exit();
-		occupyingTrain = train;
-		this.setChanged();
-		this.notifyObservers();
 	}
 	
 	public int simulateEnter(int position) throws CantonIsBlockedException{
