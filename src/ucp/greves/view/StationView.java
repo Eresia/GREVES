@@ -13,13 +13,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import ucp.greves.model.line.station.GlobalStation;
 import ucp.greves.model.line.station.Station;
+import ucp.greves.model.train.Train;
 
 public class StationView extends Application {
 	
-	private Station station;
+	private GlobalStation station;
 
-	public StationView(Station station) {
+	public StationView(GlobalStation station) {
 		this.station = station;
 		Stage stage = new Stage();
 		try {
@@ -55,6 +57,9 @@ public class StationView extends Application {
 	 * 		 (Parent) The root of the scene where the TableView are placed
 	 */
 	public void setTableView(Parent root){
+		TableView<Train> nextTrainFirstTable = (TableView<Train>) root.lookup("#extTrainFirstTable");
+		
+		
 		TableView<Station> fisrtNextStation = (TableView<Station>) root.lookup("#NextStationFirstTable");
 		TableColumn<Station, String> fisrtNextStationColumn = (TableColumn<Station, String>) fisrtNextStation.getColumns().get(0);
 		fisrtNextStationColumn.setCellValueFactory(new PropertyValueFactory<Station,String>("name"));

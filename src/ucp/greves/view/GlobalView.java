@@ -32,6 +32,7 @@ import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.canton.Canton;
+import ucp.greves.model.line.station.GlobalStation;
 import ucp.greves.model.line.station.Station;
 import ucp.greves.model.train.Train;
 
@@ -39,7 +40,7 @@ public class GlobalView extends Application{
 	
 	IntegerProperty paneWidth, paneHeight;
 	
-	private TableView<Station> stationList;
+	private TableView<GlobalStation> stationList;
 	private static Canton selectedCanton = null;
 	
 	public static void main(String[] args){
@@ -74,7 +75,7 @@ public class GlobalView extends Application{
 		//addStation(root);
 		setStationList(root);
 		
-		//make all the window close and stop the programm when this window is closed
+		//make all the window close and stop the program when this window is closed
 		
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			
@@ -158,7 +159,7 @@ public class GlobalView extends Application{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				Station selectedStation = stationList.getSelectionModel().getSelectedItem();
+				GlobalStation selectedStation = stationList.getSelectionModel().getSelectedItem();
 				if(selectedStation != null) {
 					new StationView(selectedStation);
 				}
@@ -217,13 +218,13 @@ public class GlobalView extends Application{
 	 * 		 (Parent) The root of the scene where the list is placed
 	 */
 	public void setStationList(Parent root){
-		stationList = (TableView<Station>) root.lookup("#StationList");
-		TableColumn<Station, String> stationNames = (TableColumn<Station, String>) stationList.getColumns().get(0);
-		stationNames.setCellValueFactory(new PropertyValueFactory<Station,String>("name"));
-		ObservableList<Station> stationListObs = FXCollections.observableArrayList();
-		Station currentStation;
-		for(Integer currentStationId : StationController.IntegerlistOfStationsID()){
-			currentStation = StationController.getStationById(currentStationId);
+		stationList = (TableView<GlobalStation>) root.lookup("#StationList");
+		TableColumn<GlobalStation, String> stationNames = (TableColumn<GlobalStation, String>) stationList.getColumns().get(0);
+		stationNames.setCellValueFactory(new PropertyValueFactory<GlobalStation,String>("name"));
+		ObservableList<GlobalStation> stationListObs = FXCollections.observableArrayList();
+		GlobalStation currentStation;
+		for(String currentStationId : StationController.StringlistOfGlobalStationsName()){
+			currentStation = StationController.getGlobalStationByName(currentStationId);
 			stationListObs.add(currentStation);
 		}
 		stationList.setItems(stationListObs);
