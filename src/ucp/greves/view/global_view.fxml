@@ -23,10 +23,10 @@
             <RowConstraints maxHeight="373.0" minHeight="10.0" percentHeight="10.0" prefHeight="373.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ScrollPane fx:id="lineDraw" prefHeight="363.0" prefWidth="300.0" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+            <ScrollPane fx:id="LineDraw" prefHeight="363.0" prefWidth="300.0" GridPane.rowIndex="1" GridPane.rowSpan="2" />
             <TableView fx:id="StationList" GridPane.columnIndex="2" GridPane.rowIndex="1">
               <columns>
-                <TableColumn fx:id="listStation" prefWidth="119.0" text="Liste Gares" />
+                <TableColumn prefWidth="119.0" text="Liste Gares" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -37,14 +37,14 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" percentHeight="55.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <center>
-                        <Slider fx:id="changeSpeed" blockIncrement="2.0" majorTickUnit="5.0" max="20.0" minorTickCount="4" showTickLabels="true" showTickMarks="true" BorderPane.alignment="CENTER" />
+                        <Slider fx:id="ChangeSpeed" blockIncrement="2.0" majorTickUnit="5.0" max="20.0" minorTickCount="4" showTickLabels="true" showTickMarks="true" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
                         <Label text="Vitesse Globale" textAlignment="CENTER" underline="true" BorderPane.alignment="CENTER">
@@ -73,13 +73,13 @@
                            </center>
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-                           <bottom>
-                              <Label text="Vitesse :" BorderPane.alignment="CENTER" />
-                           </bottom>
+                           <center>
+                              <Button fx:id="StartTrain" mnemonicParsing="false" text="Démarer" BorderPane.alignment="CENTER" />
+                           </center>
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <center>
-                              <Label text="Trains" underline="true" BorderPane.alignment="CENTER">
+                              <Label text="Gestion des trains :" underline="true" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -87,27 +87,17 @@
                            </center>
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
-                           <left>
-                              <RadioButton mnemonicParsing="false" text="Arrêt" toggleGroup="$TrainSpeed" BorderPane.alignment="CENTER" />
-                           </left>
                            <center>
-                              <RadioButton mnemonicParsing="false" text="Ralenti" BorderPane.alignment="CENTER">
-                              <toggleGroup>
-                                    <ToggleGroup fx:id="TrainSpeed" />
-                                 </toggleGroup></RadioButton>
-                              
+                              <Button fx:id="StopTrain" mnemonicParsing="false" text="Arrêter" BorderPane.alignment="CENTER" />
                            </center>
-                           <right>
-                              <RadioButton mnemonicParsing="false" text="normale" toggleGroup="$TrainSpeed" BorderPane.alignment="CENTER" />
-                           </right>
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
                            <center>
-                              <Button mnemonicParsing="false" text="Supprimer" BorderPane.alignment="CENTER" />
+                              <Button fx:id="DeleteTrain" mnemonicParsing="false" text="Supprimer" BorderPane.alignment="CENTER" />
                            </center></BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
                            <center>
-                              <Button fx:id="addTrain" mnemonicParsing="false" text="Ajouter un train" BorderPane.alignment="CENTER" />
+                              <Button fx:id="AddTrainViewButton" mnemonicParsing="false" text="Ajouter un train" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6">
@@ -125,12 +115,11 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <center>
-                              <Label text="Cantons" underline="true" BorderPane.alignment="CENTER">
+                              <Label text="Gestion des cantons :" underline="true" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -142,26 +131,18 @@
                               <Label text="Etat :" BorderPane.alignment="CENTER" />
                            </left>
                            <center>
-                              <Label text="Normal" textFill="#0ce82d" BorderPane.alignment="CENTER" />
+                              <Label fx:id="CantonState" text="Normal" textFill="#0ce82d" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-                           <bottom>
-                              <Label text="Vitesse :" BorderPane.alignment="CENTER" />
-                           </bottom>
-                        </BorderPane>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                            <left>
-                              <RadioButton mnemonicParsing="false" text="Arrêt" toggleGroup="$CantonSpeed" BorderPane.alignment="CENTER" />
+                              <Button fx:id="StopCanton" mnemonicParsing="false" text="Arrêt" textAlignment="CENTER" BorderPane.alignment="CENTER" />
                            </left>
                            <center>
-                              <RadioButton mnemonicParsing="false" text="Ralenti" BorderPane.alignment="CENTER">
-                              <toggleGroup>
-                                    <ToggleGroup fx:id="CantonSpeed" />
-                              </toggleGroup></RadioButton>                                                             
+                              <Button fx:id="SlowCanton" mnemonicParsing="false" text="Ralenti" textAlignment="CENTER" BorderPane.alignment="CENTER" />
                            </center>
                            <right>
-                              <RadioButton mnemonicParsing="false" text="normale" toggleGroup="$CantonSpeed" BorderPane.alignment="CENTER" />
+                              <Button fx:id="NormalSpeedCanton" mnemonicParsing="false" text="normal" textAlignment="CENTER" BorderPane.alignment="CENTER" />
                            </right>
                         </BorderPane>
                      </children>
@@ -170,27 +151,11 @@
             </GridPane>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <children>
-                  <GridPane>
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0">
-                           <center>
-                              <Button fx:id="StationViewButton" mnemonicParsing="false" text="Horaires" BorderPane.alignment="CENTER" />
-                           </center>
-                        </BorderPane>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                           <center>
-                              <Button mnemonicParsing="false" text="Ajouter train" BorderPane.alignment="CENTER" />
-                           </center>
-                        </BorderPane>
-                     </children>
-                  </GridPane>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <Button fx:id="StationViewButton" mnemonicParsing="false" text="Horaires" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
                </children>
             </VBox>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -198,7 +163,7 @@
                   <Label text="Heure :" BorderPane.alignment="CENTER" />
                </left>
                <center>
-                  <Label fx:id="timeLabel" text="00:00:00" BorderPane.alignment="CENTER" />
+                  <Label fx:id="TimeLabel" text="00:00:00" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </children>

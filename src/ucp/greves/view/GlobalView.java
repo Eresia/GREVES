@@ -1,14 +1,8 @@
 package ucp.greves.view;
 
-import com.sun.javafx.robot.FXRobotFactory;
-
 import javafx.application.Application;
-import javafx.beans.InvalidationListener;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ReadOnlyStringPropertyBase;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -29,15 +23,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import ucp.greves.controller.GodModeController;
 import ucp.greves.controller.StationController;
-import ucp.greves.controller.TimeController;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.BadControlInformationException;
-import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.line.Line;
+import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.Station;
-import ucp.greves.model.schedule.Clock;
 import ucp.greves.model.train.Train;
 
 public class GlobalView extends Application{
@@ -45,6 +37,7 @@ public class GlobalView extends Application{
 	IntegerProperty paneWidth, paneHeight;
 	
 	private TableView<Station> stationList;
+	private static Canton selectedCanton = null;
 	
 	public static void main(String[] args){
 		launch(args);
@@ -59,7 +52,6 @@ public class GlobalView extends Application{
 		this.paneHeight = new SimpleIntegerProperty();
 		this.paneWidth = new SimpleIntegerProperty();
 
-		ScrollPane lineDraw = (ScrollPane) root.lookup("#lineDraw"); //Get the borderPane from the root
 		setButton(root);
 		setTime(root);
 	      
@@ -73,36 +65,31 @@ public class GlobalView extends Application{
 		//Launch Time witch this method
 		GodModeController.getInstance().startStimulation();
   
-		modify(lineDraw);
+		ScrollPane lineDraw = (ScrollPane) root.lookup("#LineDraw"); //Get the borderPane from the root
+		LineView lineView = new LineView();
+		lineDraw.setContent(lineView);
 		//addStation(root);
 		setStationList(root);
 	}
 	
-	public void modify(ScrollPane pane){
-		paneWidth.setValue(pane.getWidth());
-		paneHeight.setValue(pane.getHeight());
-		LineView lv = new LineView(paneWidth, paneHeight);	    
-		pane.setContent(lv);
-	}
-	
 	public void setButton(Parent root){
-		Button buttonAdd = (Button) root.lookup("#addTrain");
+		Button buttonAdd = (Button) root.lookup("#AddTrainViewButton");
 		buttonAdd.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				
+								
 				/*TODO : fenêtre popup demandant à l'utilisateur le parcours et vitesse qu'il veut pour le train.
 				 * 	(=> besoin de la liste des roadmap pour les proposer).
 				 */
 				
-				int speed = 100;
+				/*int speed = 100;
 				try {
 					speed = (int) ConfigurationEnvironment.getInstance().getProperty("train_speed_max").getValue();
 				} catch (PropertyNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
+				}*/
 				String roadmapName = "Cergy-Marne";
 				
 				try {
@@ -120,7 +107,7 @@ public class GlobalView extends Application{
 			}
 		});		
 		
-		Slider changeSpeed = (Slider) root.lookup("#changeSpeed");
+		Slider changeSpeed = (Slider) root.lookup("#ChangeSpeed");
 		changeSpeed.valueProperty().addListener(new ChangeListener<Object>() {
 
 			@Override
@@ -152,7 +139,7 @@ public class GlobalView extends Application{
 	}
 	
 	public void setTime(Parent root){
-		Label label  = (Label) root.lookup("#timeLabel");
+		Label label  = (Label) root.lookup("#TimeLabel");
 		//TODO : Print hour ( TimeController.getClockString() )
 		//label.textProperty().bind(r);
 	}
@@ -191,6 +178,14 @@ public class GlobalView extends Application{
 			stationListObs.add(currentStation);
 		}
 		stationList.setItems(stationListObs);
+	}
+	
+	public static void setSelectedCanton(Canton canton){
+		selectedCanton = canton;
+	}
+	
+	public static Canton getSelectedCanton(){
+		return selectedCanton;
 	}
 
 }

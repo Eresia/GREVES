@@ -541,15 +541,111 @@ public class LineBuilder {
 		}
 
 	}
-	
-	
+		
 	/**
 	 * Method to construct the road maps from a JSON configuration
 	 * @param (String) filepath The JSON file path
 	 * @throws InvalidXMLException If JSON syntax is bad
 	 */
 	private static void buildRoadFromJson(String filepath) {
-		//TODO
+		ScriptEngine engine;
+
+		ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
+		engine = scriptEngineManager.getEngineByName("javascript");
+		
+		String json;
+		try {
+			json = new String(Files.readAllBytes(Paths.get(filepath)));
+			String script = "Java.asJSONCompatible(" + json + ")";
+			Object result = engine.eval(script);
+
+			if (ConfigurationEnvironment.inDebug()) {
+				System.err.println("=================== ROADMAPS ===================");
+			}
+			
+			Set<Map.Entry<String, Object>> jsonMap = ((ScriptObjectMirror) result).entrySet();
+
+			// For each item in the first layer (roads)
+			for (Entry<String, Object> topEntry : jsonMap) {
+				if (ConfigurationEnvironment.inDebug()) {
+					System.err.println(topEntry);
+				}
+				if(! topEntry.getKey().equalsIgnoreCase("roads")) {
+					continue;
+				}
+				
+				Collection<Object> roadmapCol = ((JSONListAdapter) topEntry.getValue()).values();
+				
+				// For each roadmap
+				for (Object rmColValue : roadmapCol) {
+					String rmName = "";
+					ArrayList<Integer> railways = new ArrayList<Integer>();
+					ArrayList<String> avoid = new ArrayList<String>();
+					
+					ScriptObjectMirror rmSOM = (ScriptObjectMirror) rmColValue;
+					Set<Map.Entry<String, Object>> rmMap = rmSOM.entrySet();
+					
+					// For each item in roadmap
+					for(Entry<String, Object> rmEntry : rmMap) {
+						if (ConfigurationEnvironment.inDebug()) {
+							System.err.println("  "+rmEntry);
+						}
+						
+						if(rmEntry.getKey().equalsIgnoreCase("name")) {
+							rmName = rmEntry.getValue().toString();
+						}
+						else if(rmEntry.getKey().equalsIgnoreCase("railways")) {
+							Collection<Object> rwCol = ((JSONListAdapter) rmEntry.getValue()).values();
+	
+							// For each railway
+							for (Object rwColValue : rwCol) {
+								ScriptObjectMirror rwSOM = (ScriptObjectMirror) rwColValue;
+								Set<Map.Entry<String, Object>> rwMap = rwSOM.entrySet();
+								
+								for(Entry<String, Object> rwEntry : rwMap) {
+									if (ConfigurationEnvironment.inDebug()) {
+										System.err.println("    "+rwEntry);
+									}
+									railways.add((Integer) rwEntry.getValue());
+								}
+							}
+						}
+						else if(rmEntry.getKey().equalsIgnoreCase("avoid")) {
+							Collection<Object> avoidCol = ((JSONListAdapter) rmEntry.getValue()).values();
+							
+							// For each station to avoid
+							for (Object avoidColValue : avoidCol) {
+								ScriptObjectMirror avoidSOM = (ScriptObjectMirror) avoidColValue;
+								Set<Map.Entry<String, Object>> avoidMap = avoidSOM.entrySet();
+								
+								for(Entry<String, Object> avoidEntry : avoidMap) {
+									if (ConfigurationEnvironment.inDebug()) {
+										System.err.println("    "+avoidEntry);
+									}
+									avoid.add(avoidEntry.getValue().toString());
+								}
+							}
+						}
+					}
+
+					try {
+						RoadMap road = new RoadMap(rmName);
+						
+						for(int i=0 ; i<railways.size() ; i++) {
+							road.addRailWay(railways.get(i));
+						}
+					} catch (RoadMapAlreadyExistException | DoubledRailwayException e) {
+						e.printStackTrace();
+					}
+					
+					if (ConfigurationEnvironment.inDebug()) {
+						System.err.println();
+					}
+				}			
+			}
+		} catch (IOException | ScriptException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -558,7 +654,73 @@ public class LineBuilder {
 	 * @throws InvalidXMLException If JSON syntax is bad
 	 */
 	private static void buildScheduleFromJson(String filepath) {
-		//TODO
+		ScriptEngine engine;
+
+		ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
+		engine = scriptEngineManager.getEngineByName("javascript");
+		
+		String json;
+		try {
+			json = new String(Files.readAllBytes(Paths.get(filepath)));
+			String script = "Java.asJSONCompatible(" + json + ")";
+			Object result = engine.eval(script);
+
+			if (ConfigurationEnvironment.inDebug()) {
+				System.err.println("=================== SCHEDULE ===================");
+			}
+			
+			Set<Map.Entry<String, Object>> jsonMap = ((ScriptObjectMirror) result).entrySet();
+
+			// For each item in the first layer (launches)
+			for (Entry<String, Object> topEntry : jsonMap) {
+				if (ConfigurationEnvironment.inDebug()) {
+					System.err.println(topEntry);
+				}
+				if(! topEntry.getKey().equalsIgnoreCase("launches")) {
+					continue;
+				}
+				
+				Collection<Object> launchesCol = ((JSONListAdapter) topEntry.getValue()).values();
+
+				// For each launch
+				for (Object launchesValue : launchesCol) {					
+					ScriptObjectMirror launchesSOM = (ScriptObjectMirror) launchesValue;
+					Set<Map.Entry<String, Object>> launchesMap = launchesSOM.entrySet();
+
+					String rmName = null;
+					String[] sTime = null;
+					Time time = null;
+					
+					// For each item in launch
+					for(Entry<String, Object> launchEntry : launchesMap) {
+						if (ConfigurationEnvironment.inDebug()) {
+							System.err.println("  "+launchEntry);
+						}
+						
+						if(launchEntry.getKey().equalsIgnoreCase("road")) {
+							rmName = launchEntry.getValue().toString();
+						}
+						else if(launchEntry.getKey().equalsIgnoreCase("time")) {
+							sTime = launchEntry.getValue().toString().split(":");
+							if(sTime.length == 3) {
+								time = new Time(Integer.valueOf(sTime[0]), Integer.valueOf(sTime[1]), Integer.valueOf(sTime[2]));
+							}
+						}
+					}
+					
+					if(rmName != null && sTime != null && time != null) {
+						GodModeController.getInstance().addLaunch(rmName, time);
+					}
+					
+					if (ConfigurationEnvironment.inDebug()) {
+						System.err.println();
+					}
+				}
+			}
+			
+		} catch (IOException | ScriptException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private static void buildStationInformation(){

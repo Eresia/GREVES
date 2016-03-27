@@ -26,7 +26,7 @@
  - Paul VALENTIN	: QA	(https://github.com/Sephage)
  - Bruno TESSIER	: MOA	(https://github.com/BrunoBob)
  - Filipe GAMA		: DOC	(https://github.com/Baalon)
- 
+
  Nous avons choisi pour nom de groupe l'acronyme "G.R.E.V.E.S.", correspondant à "Gestion Répartie entre Etudiants des Viaferrata Enterrées et en Surface"
 
 #3. Glossaire
@@ -35,7 +35,7 @@
 
 * Canton : Zone de taille variable dans laquelle il ne peut y avoir qu'un seul Train en même temps. Chaque Canton connait le Canton suivant. Chaque Canton possède une vitesse maximum limite que les Trains ne peuvent dépasser. Peut également contenir une Gare (au maximum).
 
-* Voie (RailWay) : Ensemble des Cantons entre une gare de départ et une gare d'arrivée (Terminus). 
+* Voie (RailWay) : Ensemble des Cantons entre une gare de départ et une gare d'arrivée (Terminus).
 
 * Terminus : Dernier Canton d'une Voie, dans lequel se trouve une Gare, signifiant la fin de celle-ci.
 
@@ -50,14 +50,14 @@
 #4. Conventions
 
   En plus des mots définis dans le Glossaire, certaines conventions ont dû être mises au point. Encore une fois, ceci est fait dans un but d'améliorer le travail d'équipe, d'éviter les confusions et d'avoir un résultat cohérent.
-  
+
   4.1 Convention : Javadoc
- 
+
   Cette convention concerne la forme de la documentation du code (javadoc) :
-   
+
    - Toute la javadoc doit être faite en anglais.
    - La javadoc doit être présente sur toutes les méthodes et suivre le modèle type ci-dessous.
-   
+
     /**
     * Description de la méthode, comprenant :
     *  - Le "Pourquoi" de la méthode.
@@ -93,18 +93,57 @@
     * ou
     * @see Nom_Classe
     */
- 
+
  4.2 Convention : Documentation
- 
+
    Différents documents étaient à réaliser, demandant chacun la participation de différents membres de l'équipe.
    Afin d'unifier l'ensemble des documents, il a fallu établir certaines conventions :
-   
+
     - Tous les documents doivent être écrits en LaTeX, sur sharelatex.com.
     - Tous les documents doivent être écrits en français.
     - Tous les documents doivent utiliser la même police (celle par défaut) et taille de caractère (12).
-    
+
     - Chaque section doit être dans un fichier à part, qui a pour nom celui de la section.
     - La page de garde et l'abstract sont également dans des fichiers à part.
     - Chaque section, subsection et figure doit avoir un label unique attribué.
 
 #5. Récupération de Données
+
+	Pour récupérer un élément de la fenêtre il suffit de prendre la racine de la fenêtre (root) et utiliser
+	la méthode root.lookup("#id de l'élément à récupérer").
+
+	Liste des id :
+
+		Global view :
+			-affichage graphiqe de la ligne (ScrollPane) = LineDraw
+			-affichage de l'heure (Label) = TimeLabel
+			-liste des trains (ComboBox) = TrainList
+			-bouton démarer un train (Button) = StartTrain
+			-bouton arrêter un train (Button) = StopTrain
+			-bouton supprimer un train (Button) = DeleteTrain;
+			-bouton de la vue ajouter un train (Button) = AddTrainViewButton
+			-bouton vue conducteur (Button) = DriverViewButton
+			-affichage de l'etat du canton selectionner (Label) = CantonState
+			-boutton arrêt du canton (Button) = StopCanton
+			-boutton ralentir le canton (Button) = SlowCanton
+			-boutton vitesse normale du canton (Button) = NormalSpeedCanton
+			-barre de vitesse globale (Slider) = ChangeSpeed
+			-liste des gares (TableView) = StationList
+			-bouton vue des horaire de la gare (Button) = StationViewButton
+
+		Driver view :
+			-prochaine station (Label) = NextStationName
+			-temps avant prochaine gare (Label) = NextStationTime
+			-destination (Label) = FinalStation
+			-avance/retard (Label) = TimeState
+			-affichage graphiqe de la ligne du conducteur (ScrollPane) = DriverLineDraw
+
+		Station view :
+			-prochain trains voie 1 (TableView) = NextTrainFirstTable
+			-gares desservies voie 1 (TableView) = NextStationFirstTable
+			-prochain trains voie 2 (TableView) = NextTrainSecondTable
+			-gares desservies voie 2 (TableView) = NextStationSecondTable
+
+		AddTrain view :
+			-liste des trajets possibles (ComboBox) = RailWaysList
+			-bouton ajouter un train (Button) = AddTrain

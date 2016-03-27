@@ -21,7 +21,7 @@
           <RowConstraints minHeight="10.0" percentHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+            <TableView fx:id="NextTrainFirstTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
               <columns>
                 <TableColumn prefWidth="40.0" text="Ligne" />
                 <TableColumn prefWidth="43.0" text="Nom" />
@@ -48,7 +48,7 @@
                   </Label>
                </center>
             </BorderPane>
-            <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+            <TableView fx:id="NextTrainSecondTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
                <columns>
                   <TableColumn prefWidth="40.0" text="Ligne" />
                   <TableColumn prefWidth="43.0" text="Nom" />
@@ -83,7 +83,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView fx:id="nextStationFirstTable" prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="NextStationFirstTable" prefHeight="200.0" prefWidth="200.0">
                     <columns>
                       <TableColumn fx:id="nextStationFirstList" prefWidth="338.0" text="Gares desservies" />
                     </columns>
@@ -101,7 +101,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="NextStationSecondTable" prefHeight="200.0" prefWidth="200.0">
                     <columns>
                       <TableColumn prefWidth="338.0" text="Gares desservies" />
                     </columns>

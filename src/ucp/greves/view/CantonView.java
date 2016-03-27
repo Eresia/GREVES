@@ -18,7 +18,9 @@ import ucp.greves.model.train.Train;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -88,9 +90,17 @@ public class CantonView extends Parent implements Observer {
 		this.trainPosition.setStroke(Color.DARKGRAY);
 		this.trainText = new Text();
 
-
 		canton.addObserver(this);
 		this.getChildren().add(lineofCanton);
+		
+		setOnMousePressed(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				GlobalView.setSelectedCanton(canton);				
+			}
+			
+		});
 	}
 
 	@Override

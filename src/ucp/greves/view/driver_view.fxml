@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="454.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane prefHeight="454.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane prefHeight="454.0" prefWidth="559.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -20,11 +20,6 @@
           <RowConstraints minHeight="10.0" percentHeight="55.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-              </content>
-            </ScrollPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                <left>
                   <Label text="Destination :" underline="true" BorderPane.alignment="CENTER">
@@ -34,7 +29,7 @@
                   </Label>
                </left>
                <center>
-                  <Label text="Lune" BorderPane.alignment="CENTER" />
+                  <Label fx:id="FinalStation" text="Lune" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -46,7 +41,7 @@
                   </Label>
                </left>
                <center>
-                  <Label text="Cergy le haut" BorderPane.alignment="CENTER" />
+                  <Label fx:id="NextStationName" text="Cergy le haut" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -58,7 +53,7 @@
                   </Label>
                </left>
                <center>
-                  <Label text="02:35" BorderPane.alignment="CENTER" />
+                  <Label fx:id="NextStationTime" text="02:35" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -70,14 +65,19 @@
                   </Label>
                </left>
                <center>
-                  <Label text="- 00:25" BorderPane.alignment="CENTER" />
+                  <Label fx:id="TimeState" text="- 00:25" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
+            <ScrollPane fx:id="DriverLineDraw" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+              </content>
+            </ScrollPane>
          </children>
       </GridPane>
       <MenuBar>
         <menus>
-          <Menu mnemonicParsing="false" text="Menu" fx:id="MERDE">
+          <Menu  mnemonicParsing="false" text="Menu">
             <items>
               <MenuItem fx:id="closeButton" mnemonicParsing="false" text="Close" />
             </items>

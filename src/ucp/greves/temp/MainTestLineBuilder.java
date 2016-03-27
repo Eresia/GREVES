@@ -7,7 +7,7 @@ public class MainTestLineBuilder {
 	public static void main(String[] args) {
 		
 		ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "JSON");
-		ConfigurationEnvironment.getInstance().setProperty("DEBUG", true);
+		ConfigurationEnvironment.getInstance().setProperty("DEBUG", false);
 		Line.getInstance();
 		
 	}
