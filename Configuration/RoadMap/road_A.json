@@ -1,0 +1,111 @@
+{
+	"roads": [
+		{
+			"name": "Cergy-Marne",
+			"railways": [
+				{ "id": 0},
+				{ "id": 4},
+				{ "id": 8},
+				{ "id": 10}
+			],
+			"avoid": [
+				{"station": "Bry sur Marne"}
+			]
+		},
+		{
+			"name": "Marne-Cergy",
+			"railways": [
+				{ "id": 11},
+				{ "id": 9},
+				{ "id": 5},
+				{ "id": 1}
+			]
+		},
+		{
+			"name": "Cergy-Boissy",
+			"railways": [
+				{ "id": 0},
+				{ "id": 4},
+				{ "id": 8},
+				{ "id": 12}
+			]
+		},
+		{
+			"name": "Boissy-Cergy",
+			"railways": [
+				{ "id": 13},
+				{ "id": 9},
+				{ "id": 5},
+				{ "id": 1}
+			]
+		},
+		{
+			"name": "Poissy-Marne",
+			"railways": [
+				{ "id": 2},
+				{ "id": 4},
+				{ "id": 8},
+				{ "id": 12}
+			]
+		},
+		{
+			"name": "Marne-Poissy",
+			"railways": [
+				{ "id": 13},
+				{ "id": 9},
+				{ "id": 5},
+				{ "id": 3}
+			]
+		},
+		{
+			"name": "Poissy-Boissy",
+			"railways": [
+				{ "id": 2},
+				{ "id": 4},
+				{ "id": 8},
+				{ "id": 12}
+			]
+		},
+		{
+			"name": "Boissy-Poissy",
+			"railways": [
+				{ "id": 13},
+				{ "id": 9},
+				{ "id": 5},
+				{ "id": 3}
+			]
+		},
+		{
+			"name": "StGermain-Marne",
+			"railways": [
+				{ "id": 6},
+				{ "id": 8},
+				{ "id": 12}
+			]
+		},
+		{
+			"name": "Marne-StGermain",
+			"railways": [
+				{ "id": 13},
+				{ "id": 9},
+				{ "id": 7}
+			]
+		},
+		{
+			"name": "StGermain-Boissy",
+			"railways": [
+				{ "id": 6},
+				{ "id": 8},
+				{ "id": 12}
+			]
+		},
+		{
+			"name": "Boissy-StGermain",
+			"railways": [
+				{ "id": 13},
+				{ "id": 9},
+				{ "id": 7}
+			]
+		}
+	]
+}

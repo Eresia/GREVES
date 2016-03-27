@@ -1,0 +1,52 @@
+{
+	"launches": [
+		{
+			"road": "Cergy-Marne",
+			"time": "10:0:0"
+		},
+		{
+			"road": "Cergy-Boissy",
+			"time": "11:0:0"
+		},
+		{
+			"road": "Poissy-Marne",
+			"time": "12:0:0"
+		},
+		{
+			"road": "Poissy-Boissy",
+			"time": "13:0:0"
+		},
+		{
+			"road": "StGermain-Marne",
+			"time": "14:0:0"
+		},
+		{
+			"road": "StGermain-Boissy",
+			"time": "15:0:0"
+		},
+		{
+			"road": "Marne-Cergy",
+			"time": "16:0:0"
+		},
+		{
+			"road": "Boissy-Cergy",
+			"time": "17:0:0"
+		},
+		{
+			"road": "Marne-Poissy",
+			"time": "18:0:0"
+		},
+		{
+			"road": "Boissy-Poissy",
+			"time": "19:0:0"
+		},
+		{
+			"road": "Marne-StGermain",
+			"time": "20:0:0"
+		},
+		{
+			"road": "Boissy-StGermain",
+			"time": "21:0:0"
+		}
+	]
+}
