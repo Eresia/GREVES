@@ -16,6 +16,7 @@ import ucp.greves.model.line.station.HasNotStation;
 import ucp.greves.model.line.station.HasStation;
 import ucp.greves.model.line.station.Station;
 import ucp.greves.model.line.station.StationDecorator;
+import ucp.greves.model.simulation.SimulationSpeed;
 import ucp.greves.model.train.ModifiedTrainInformation;
 import ucp.greves.model.train.Train;
 
@@ -33,7 +34,7 @@ public class Canton extends Observable {
 	
 	private int trainSpeed;
 	private int slowDownSpeed;
-	private CantonState state;
+	private volatile CantonState state;
 
 	private final static int SPEED_MAX_DEFAULT = 100;
 	private final static int SPEED_STATION_DEFAULT = 15;
@@ -89,7 +90,7 @@ public class Canton extends Observable {
 	}
 
 	public synchronized void enter(Train train) {
-		if (occupyingTrain != null || state == CantonState.BLOCKED) {
+		if (occupyingTrain != null) {
 			if (ConfigurationEnvironment.inDebug()) {
 				System.err.println(toString() + " occupied !");
 			}
@@ -101,24 +102,32 @@ public class Canton extends Observable {
 				System.err.println(e.getMessage());
 			}
 		}
-		else{
-			int trainPosition = train.getPosition();
-			if (trainPosition < 0) {
-				train.setPosition(trainPosition + getStartPoint());
+		
+		while(state == CantonState.BLOCKED){
+			try {
+				SimulationSpeed.waitFrameTime();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-
-			if (ConfigurationEnvironment.inDebug()) {
-				System.err.println("Canton changed successfully");
-			}
-			Canton oldCanton = train.getCurrentCanton();
-			train.setCurrentCanton(this);
-			train.updatePosition();
-
-			oldCanton.exit();
-			occupyingTrain = train;
-			this.setChanged();
-			this.notifyObservers();
 		}
+		
+		int trainPosition = train.getPosition();
+		if (trainPosition < 0) {
+			train.setPosition(trainPosition + getStartPoint());
+		}
+
+		if (ConfigurationEnvironment.inDebug()) {
+			System.err.println("Canton changed successfully");
+		}
+		Canton oldCanton = train.getCurrentCanton();
+		train.setCurrentCanton(this);
+		train.updatePosition();
+
+		oldCanton.exit();
+		occupyingTrain = train;
+		this.setChanged();
+		this.notifyObservers();
+
 	}
 	
 	public int simulateEnter(int position) throws CantonIsBlockedException{
