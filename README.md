@@ -7,6 +7,8 @@
  4.1 Convention : Javadoc
  4.2 Convention : Documentation
 5. Récupération de données fxml
+6. Problèmes Connus
+ 6.1 ArrayIndexOutOfBounds:-1
 
 
 /****************************************/
@@ -118,7 +120,7 @@
 			-affichage graphiqe de la ligne (ScrollPane) = LineDraw
 			-affichage de l'heure (Label) = TimeLabel
 			-liste des trains (ComboBox) = TrainList
-			-bouton démarer un train (Button) = StartTrain
+			-bouton normaliser un train (Button) = StartTrain
 			-bouton arrêter un train (Button) = StopTrain
 			-bouton supprimer un train (Button) = DeleteTrain;
 			-bouton de la vue ajouter un train (Button) = AddTrainViewButton
@@ -147,3 +149,13 @@
 		AddTrain view :
 			-liste des trajets possibles (ComboBox) = RoadMapsList
 			-bouton ajouter un train (Button) = AddTrain
+
+#6. Problèmes Connus
+
+  Cette section comporte les différents problèmes connus qui sont présents dans le programme, et les informations que nous avons sur ces problèmes. Lorsqu'un problème est résolu, il faut le retirer de cette liste.
+  
+  6.1 ArrayIndexOutOfBounds:-1
+  
+   Ce problème apparait de façon aléatoire et a pour conséquence de bloquer une partie de la ligne (en tout cas, graphiquement). Il apparait plus fréquemment lorsqu'il y a un grand nombre de Trains.
+   La source de ce problème est inconnue (bien que le nom indique que l'on tente d'accéder à un indice d'une ArrayList qui est en dehors de celle-ci), étant donné que ce bug n'apparait jamais lorsque le programme est lancé en mode DEBUG.
+   Les lignes indiquées par les erreurs s'affichant sur la console n'ont pas permis d'identifier la source non plus.

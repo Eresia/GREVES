@@ -34,6 +34,7 @@ import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
+import ucp.greves.model.exceptions.train.TrainNotExistException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.line.station.GlobalStation;
@@ -115,6 +116,44 @@ public class GlobalView extends Application{
 				
 				if(selectedTrain != null) {
 					GodModeController.getInstance().removeTrain(selectedTrain);
+				}
+			}
+		});
+		
+		Button buttonStart = (Button) root.lookup("#StartTrain");
+		buttonStart.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				
+				Integer selectedTrain = trainIDListComboBox.getValue();
+				
+				if(selectedTrain != null) {
+					try {
+						GodModeController.getInstance().unblockTrain(selectedTrain);
+					} catch (TrainNotExistException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		
+		Button buttonStop = (Button) root.lookup("#StopTrain");
+		buttonStop.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				
+				Integer selectedTrain = trainIDListComboBox.getValue();
+				
+				if(selectedTrain != null) {
+					try {
+						GodModeController.getInstance().blockTrain(selectedTrain);
+					} catch (TrainNotExistException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		});

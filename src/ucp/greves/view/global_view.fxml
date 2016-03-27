@@ -74,7 +74,7 @@
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <center>
-                              <Button fx:id="StartTrain" mnemonicParsing="false" text="Démarer" BorderPane.alignment="CENTER" />
+                              <Button fx:id="StartTrain" mnemonicParsing="false" text="Normaliser" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
