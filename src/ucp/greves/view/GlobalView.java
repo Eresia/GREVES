@@ -108,7 +108,7 @@ public class GlobalView extends Application{
 			}
 		});		
 		
-		/****************** Gestion Cantons *******************/
+		/****************** Cantons Management (Gestion Cantons) *******************/
 		//Button "Arrêt"
 		Button stopCantonButton = (Button) root.lookup("#StopCanton");
 		stopCantonButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -119,24 +119,6 @@ public class GlobalView extends Application{
 				if(selectedCanton != null) {
 					try {
 						GodModeController.getInstance().blockCanton(selectedCanton.getId());
-					} catch (CantonNotExistException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-		});
-		
-		//Button "Normaliser"
-		Button normaliseCantonButton = (Button) root.lookup("#NormalCanton");
-		normaliseCantonButton.setOnAction(new EventHandler<ActionEvent>() {
-		
-			@Override
-			public void handle(ActionEvent event) {
-				Canton selectedCanton = getSelectedCanton();
-				if(selectedCanton != null) {
-					try {
-						GodModeController.getInstance().removeCantonProblem(selectedCanton.getId());
 					} catch (CantonNotExistException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -163,19 +145,38 @@ public class GlobalView extends Application{
 			}
 		});
 		
+		//Button "Normaliser"
+		Button normaliseCantonButton = (Button) root.lookup("#NormalCanton");
+		normaliseCantonButton.setOnAction(new EventHandler<ActionEvent>() {
 		
+			@Override
+			public void handle(ActionEvent event) {
+				Canton selectedCanton = getSelectedCanton();
+				if(selectedCanton != null) {
+					try {
+						GodModeController.getInstance().removeCantonProblem(selectedCanton.getId());
+					} catch (CantonNotExistException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		});
 		
-		//Boutton d'affichage de la vue de la gares (Boutton "Horaires")
+		//Button "Horaires" to create a new view with the Station's display.
 		Button stationViewButton = (Button) root.lookup("#StationViewButton");
 		stationViewButton.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				new StationView(stationList.getSelectionModel().getSelectedItem());
+				Station selectedStation = stationList.getSelectionModel().getSelectedItem();
+				if(selectedStation != null) {
+					new StationView(selectedStation);
+				}
 			}
 		});
 		
-		//Bouton d'affichage de la vue conducteur (bouton "vue conducteur")
+		//Button "Vue conducteur" to create a new view with the Train Driver's display.
 		Button DriverViewButton = (Button) root.lookup("#DriverViewButton");
 		DriverViewButton.setOnAction(new EventHandler<ActionEvent>() {
 			
