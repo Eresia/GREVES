@@ -7,15 +7,15 @@ import ucp.greves.model.train.Train;
 
 public class TrainController {
 
-	public static ArrayList<Integer> IntegerlistOfTrainsID(){
+	public static ArrayList<Integer> integerListOfRunningTrainsID(){
 		return new ArrayList<Integer>(Line.getTrains().keySet());
 	}
 	
-	public static Train getTrainById(int id){
+	public static Train getRunningTrainById(int id){
 		return Line.getTrains().get(id);
 	}
 	
-	public static ArrayList<Integer> IntegerlistOfArrivedTrainsID(){
+	public static ArrayList<Integer> integerListOfArrivedTrainsID(){
 		return new ArrayList<Integer>(Line.getArrivedTrains().keySet());
 	}
 	

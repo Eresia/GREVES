@@ -26,7 +26,6 @@ public class Schedule extends Thread{
 			Time newTime = ancientTime;
 			while(!SimulationInfo.stopped()){
 				for(LaunchTrainInformation info : informations){
-					System.out.println(info.getRoadMap() + " " + info.getTime().isSuperior(ancientTime) + " " + info.getTime().isInferiorOrEquals(newTime));
 					if(info.getTime().isSuperior(ancientTime) && info.getTime().isInferiorOrEquals(newTime)){
 						GodModeController.getInstance().launchTrain(info.getRoadMap());
 					}

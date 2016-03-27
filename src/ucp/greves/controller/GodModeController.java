@@ -46,8 +46,8 @@ public class GodModeController {
 	
 	public void stopSimulation(){
 		SimulationInfo.stopSimulation();
-		for(Integer i : TrainController.IntegerlistOfTrainsID()){
-			TrainController.getTrainById(i).remove(stockRemoveTrain);
+		for(Integer i : TrainController.integerListOfRunningTrainsID()){
+			TrainController.getRunningTrainById(i).remove(stockRemoveTrain);
 		}
 	}
 
@@ -74,7 +74,9 @@ public class GodModeController {
 	}
 
 	public void removeTrain(int train) {
-		Line.getTrains().get(train).remove(stockRemoveTrain);
+		if(Line.getTrains().containsKey(train)) {
+			Line.getTrains().get(train).remove(stockRemoveTrain);
+		}
 	}
 	
 	public void createSlowDown(int canton) throws CantonNotExistException{

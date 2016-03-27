@@ -1,5 +1,7 @@
 package ucp.greves.view;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
@@ -21,10 +23,12 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import ucp.greves.controller.GodModeController;
 import ucp.greves.controller.StationController;
+import ucp.greves.controller.TrainController;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
@@ -42,6 +46,7 @@ public class GlobalView extends Application{
 	
 	private TableView<GlobalStation> stationList;
 	private static Canton selectedCanton = null;
+	private ComboBox<Integer> trainIDListComboBox;
 	
 	public static void main(String[] args){
 		launch(args);
@@ -72,7 +77,7 @@ public class GlobalView extends Application{
 		ScrollPane lineDraw = (ScrollPane) root.lookup("#LineDraw"); //Get the borderPane from the root
 		LineView lineView = new LineView();
 		lineDraw.setContent(lineView);
-		//addStation(root);
+		setTrainIDsList(root);
 		setStationList(root);
 		
 		//make all the window close and stop the program when this window is closed
@@ -88,6 +93,8 @@ public class GlobalView extends Application{
 	}
 	
 	public void setButton(Parent root){
+		
+		/****************** Trains Management (Gestion des Trains) *******************/
 		Button buttonAdd = (Button) root.lookup("#AddTrainViewButton");
 		buttonAdd.setOnAction(new EventHandler<ActionEvent>() {
 			
@@ -96,7 +103,21 @@ public class GlobalView extends Application{
 				
 				new addTrainView();
 			}
-		});		
+		});
+		
+		Button buttonDelete = (Button) root.lookup("#DeleteTrain");
+		buttonDelete.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				
+				Integer selectedTrain = trainIDListComboBox.getValue();
+				
+				if(selectedTrain != null) {
+					GodModeController.getInstance().removeTrain(selectedTrain);
+				}
+			}
+		});
 		
 		/****************** Cantons Management (Gestion Cantons) *******************/
 		//Button "Arrêt"
@@ -153,6 +174,7 @@ public class GlobalView extends Application{
 			}
 		});
 		
+		/****************** Secondary Views Management *******************/
 		//Button "Horaires" to create a new view with the Station's display.
 		Button stationViewButton = (Button) root.lookup("#StationViewButton");
 		stationViewButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -207,7 +229,22 @@ public class GlobalView extends Application{
 	 * 		 (Parent) The root of the scene where the list is placed
 	 */
 	public void setTrainIDsList(Parent root){
-		ComboBox<Train> trainList = (ComboBox<Train>) root.lookup("#TrainList"); //Pas sur du type que contient la combobox 
+		trainIDListComboBox = (ComboBox<Integer>) root.lookup("#TrainList");
+		
+		trainIDListComboBox.setOnMousePressed(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				trainIDListComboBox.getItems().clear();
+				
+				ArrayList<Integer> trainIDList = TrainController.integerListOfRunningTrainsID();
+				
+				for(int i = 0; i < trainIDList.size(); i++) {
+					trainIDListComboBox.getItems().add(trainIDList.get(i));
+				}
+				
+			}
+		});
 	}
 	
 	
