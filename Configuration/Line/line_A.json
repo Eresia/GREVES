@@ -7,7 +7,7 @@
 			"cantons": [
 			{
 				"size": 1000,
-				"station": { "name": "Cergy Le haut" }
+				"station": { "name": "Cergy Le Haut" }
 			},
 			{ "size": 1000 },
 			{ "size": 1000 },
@@ -76,7 +76,7 @@
 			{ "size": 1000 },
 			{
 				"size": 1000,
-				"station": { "name": "Cergy St Christophe" }
+				"station": { "name": "Cergy St-Christophe" }
 			},
 			{ "size": 1000 },
 			{ "size": 1000 },
@@ -283,7 +283,7 @@
 			{ "size": 1000 },
 			{
 				"size": 1000,
-				"station": { "name": "Charles de Gaulle Etoile" }
+				"station": { "name": "Charles De Gaulle Etoile" }
 			},
 			{ "size": 1000 },
 			{ "size": 1000 },
@@ -486,7 +486,7 @@
 			{ "size": 1000 },
 			{
 				"size": 1000,
-				"station": { "name": "Noisy le Grand" }
+				"station": { "name": "Noisy Le Grand" }
 			},
 			{ "size": 1000 },
 			{ "size": 1000 },

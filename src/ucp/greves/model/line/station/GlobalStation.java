@@ -25,5 +25,9 @@ public class GlobalStation {
 	public ArrayList<Integer> getStations(){
 		return stations;
 	}
+	
+	public String getName(){
+		return name;
+	}
 
 }
