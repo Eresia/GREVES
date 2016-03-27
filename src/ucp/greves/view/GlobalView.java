@@ -37,7 +37,7 @@ public class GlobalView extends Application{
 	IntegerProperty paneWidth, paneHeight;
 	
 	private TableView<Station> stationList;
-	private static Canton selectedCanton;
+	private static Canton selectedCanton = null;
 	
 	public static void main(String[] args){
 		launch(args);
@@ -65,7 +65,7 @@ public class GlobalView extends Application{
 		//Launch Time witch this method
 		GodModeController.getInstance().startStimulation();
   
-		ScrollPane lineDraw = (ScrollPane) root.lookup("#lineDraw"); //Get the borderPane from the root
+		ScrollPane lineDraw = (ScrollPane) root.lookup("#LineDraw"); //Get the borderPane from the root
 		LineView lineView = new LineView();
 		lineDraw.setContent(lineView);
 		//addStation(root);
@@ -73,14 +73,12 @@ public class GlobalView extends Application{
 	}
 	
 	public void setButton(Parent root){
-		Button buttonAdd = (Button) root.lookup("#addTrain");
+		Button buttonAdd = (Button) root.lookup("#AddTrainViewButton");
 		buttonAdd.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				
-				new addTrainView();
-				
+								
 				/*TODO : fenêtre popup demandant à l'utilisateur le parcours et vitesse qu'il veut pour le train.
 				 * 	(=> besoin de la liste des roadmap pour les proposer).
 				 */
@@ -109,7 +107,7 @@ public class GlobalView extends Application{
 			}
 		});		
 		
-		Slider changeSpeed = (Slider) root.lookup("#changeSpeed");
+		Slider changeSpeed = (Slider) root.lookup("#ChangeSpeed");
 		changeSpeed.valueProperty().addListener(new ChangeListener<Object>() {
 
 			@Override
@@ -141,7 +139,7 @@ public class GlobalView extends Application{
 	}
 	
 	public void setTime(Parent root){
-		Label label  = (Label) root.lookup("#timeLabel");
+		Label label  = (Label) root.lookup("#TimeLabel");
 		//TODO : Print hour ( TimeController.getClockString() )
 		//label.textProperty().bind(r);
 	}

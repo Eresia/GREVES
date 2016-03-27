@@ -55,12 +55,10 @@ public class StationView extends Application {
 	 * 		 (Parent) The root of the scene where the TableView are placed
 	 */
 	public void setTableView(Parent root){
-		TableView<Station> fisrtNextStation = (TableView<Station>) root.lookup("#nextStationFirstTable");
+		TableView<Station> fisrtNextStation = (TableView<Station>) root.lookup("#NextStationFirstTable");
 		TableColumn<Station, String> fisrtNextStationColumn = (TableColumn<Station, String>) fisrtNextStation.getColumns().get(0);
 		fisrtNextStationColumn.setCellValueFactory(new PropertyValueFactory<Station,String>("name"));
 		ObservableList<Station> stationListOne = FXCollections.observableArrayList();
-		//Station testS = StationController.getStationById(StationController.IntegerlistOfStationsID().get(0));
-		//stationListOne.add(testS);
 		fisrtNextStation.setItems(stationListOne);
 	}
 }
