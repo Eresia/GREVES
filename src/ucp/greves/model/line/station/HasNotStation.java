@@ -4,6 +4,12 @@ import ucp.greves.data.line.station.Station;
 import ucp.greves.data.train.Train;
 import ucp.greves.model.exceptions.station.StationNotFoundException;
 
+/**
+ * HasNotStation (following {@link StationDecorator}) if there isn't any station
+ * If there is, see {@link HasStation}
+ * 
+ * @see Station
+ */
 public class HasNotStation implements StationDecorator{
 	
 	public HasNotStation() {}
