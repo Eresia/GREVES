@@ -9,7 +9,7 @@ import ucp.greves.model.exceptions.railway.RailWayNotDefinedException;
 import ucp.greves.model.line.Line;
 
 /**
- * The Terminus is used to "declare" the end of a {@link RailWay}
+ * The Terminus is a {@link Canton} used to "declare" the end of a {@link RailWay}
  *
  * @see Canton
  * @see RailWay
