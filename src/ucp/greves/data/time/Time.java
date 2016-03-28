@@ -230,10 +230,11 @@ public class Time extends Observable implements TimeDecorator{
 	 * Calls {@link Time#isInferiorOrEquals(Time, boolean)} with (other, false)
 	 * 
 	 * @param other
-	 * 		(Time) The Time to compare
+	 * 		(TimeDecorator) The Time to compare
 	 * @return (boolean) Returns if the current Time is inferior or equal to other
 	 */
-	public boolean isInferiorOrEquals(Time other){
+	@Override
+	public boolean isInferiorOrEquals(TimeDecorator other){
 		return isInferiorOrEquals(other, false);
 	}
 	
@@ -241,38 +242,44 @@ public class Time extends Observable implements TimeDecorator{
 	 * Checks if the current Time is inferior or equal to the one passed as parameter
 	 * 
 	 * @param other
-	 * 		(Time) The Time to compare
+	 * 		(TimeDecorator) The Time to compare
 	 * @param countDay
 	 * 		(boolean) If the number of days is also checked
 	 * @return (boolean) Returns if the current Time is inferior or equal to other
 	 */
-	public boolean isInferiorOrEquals(Time other, boolean countDay){
+	@Override
+	public boolean isInferiorOrEquals(TimeDecorator other, boolean countDay){
+		if(other.getClass().equals(UndefinedTime.class)){
+			return false;
+		}
+		Time otherT = (Time) other;
 		if(countDay){
-			if (nbDays > other.nbDays){
+			if (nbDays > otherT.nbDays){
 				return false;
 			}
 			
-			if(nbDays < other.nbDays){
+			if(nbDays < otherT.nbDays){
 				return true;
 			}
 		}
-		if(hours == other.hours){
-			if(minutes == other.minutes){
-				return seconds <= other.seconds;
+		if(hours == otherT.hours){
+			if(minutes == otherT.minutes){
+				return seconds <= otherT.seconds;
 			}
-			return minutes < other.minutes;
+			return minutes < otherT.minutes;
 		}
-		return hours < other.hours;
+		return hours < otherT.hours;
 	}
 
 	/**
 	 * Calls {@link Time#isSuperiorOrEquals(Time, boolean)} with (other, false)
 	 * 
 	 * @param other
-	 * 		(Time) The Time to compare
+	 * 		(TimeDecorator) The Time to compare
 	 * @return (boolean) Returns if the current Time is superior or equal to other
 	 */
-	public boolean isSuperiorOrEquals(Time other){
+	@Override
+	public boolean isSuperiorOrEquals(TimeDecorator other){
 		return isSuperiorOrEquals(other, false);
 	}
 	
@@ -280,38 +287,44 @@ public class Time extends Observable implements TimeDecorator{
 	 * Checks if the current Time is superior or equal to the one passed as parameter
 	 * 
 	 * @param other
-	 * 		(Time) The Time to compare
+	 * 		(TimeDecorator) The Time to compare
 	 * @param countDay
 	 * 		(boolean) If the number of days is also checked
 	 * @return (boolean) Returns if the current Time is superior or equal to other
 	 */
-	public boolean isSuperiorOrEquals(Time other, boolean countDay){
+	@Override
+	public boolean isSuperiorOrEquals(TimeDecorator other, boolean countDay){
+		if(other.getClass().equals(UndefinedTime.class)){
+			return true;
+		}
+		Time otherT = (Time) other;
 		if(countDay){
-			if (nbDays > other.nbDays){
+			if (nbDays > otherT.nbDays){
 				return true;
 			}
 			
-			if(nbDays < other.nbDays){
+			if(nbDays < otherT.nbDays){
 				return false;
 			}
 		}
-		if(hours == other.hours){
-			if(minutes == other.minutes){
-				return seconds >= other.seconds;
+		if(hours == otherT.hours){
+			if(minutes == otherT.minutes){
+				return seconds >= otherT.seconds;
 			}
-			return minutes > other.minutes;
+			return minutes > otherT.minutes;
 		}
-		return hours > other.hours;
+		return hours > otherT.hours;
 	}
 	
 	/**
 	 * Calls {@link Time#isInferior(Time, boolean)} with (other, false)
 	 * 
 	 * @param other
-	 * 		(Time) The Time to compare
+	 * 		(TimeDecorator) The Time to compare
 	 * @return (boolean) Returns if the current Time is inferior to other
 	 */
-	public boolean isInferior(Time other){
+	@Override
+	public boolean isInferior(TimeDecorator other){
 		return isInferior(other, false);
 	}
 	
@@ -319,38 +332,44 @@ public class Time extends Observable implements TimeDecorator{
 	 * Checks if the current Time is inferior to the one passed as parameter
 	 * 
 	 * @param other
-	 * 		(Time) The Time to compare
+	 * 		(TimeDecorator) The Time to compare
 	 * @param countDay
 	 * 		(boolean) If the number of days is also checked
 	 * @return (boolean) Returns if the current Time is inferior to other
 	 */
-	public boolean isInferior(Time other, boolean countDay){
+	@Override
+	public boolean isInferior(TimeDecorator other, boolean countDay){
+		if(other.getClass().equals(UndefinedTime.class)){
+			return false;
+		}
+		Time otherT = (Time) other;
 		if(countDay){
-			if (nbDays > other.nbDays){
+			if (nbDays > otherT.nbDays){
 				return false;
 			}
 			
-			if(nbDays < other.nbDays){
+			if(nbDays < otherT.nbDays){
 				return true;
 			}
 		}
-		if(hours == other.hours){
-			if(minutes == other.minutes){
-				return seconds < other.seconds;
+		if(hours == otherT.hours){
+			if(minutes == otherT.minutes){
+				return seconds < otherT.seconds;
 			}
-			return minutes < other.minutes;
+			return minutes < otherT.minutes;
 		}
-		return hours < other.hours;
+		return hours < otherT.hours;
 	}
 
 	/**
 	 * Calls {@link Time#isSuperior(Time, boolean)} with (other, false)
 	 * 
 	 * @param other
-	 * 		(Time) The Time to compare
+	 * 		(TimeDecorator) The Time to compare
 	 * @return (boolean) Returns if the current Time is superior to other
 	 */
-	public boolean isSuperior(Time other){
+	@Override
+	public boolean isSuperior(TimeDecorator other){
 		return isSuperior(other, false);
 	}
 	
@@ -358,28 +377,33 @@ public class Time extends Observable implements TimeDecorator{
 	 * Checks if the current Time is superior to the one passed as parameter
 	 * 
 	 * @param other
-	 * 		(Time) The Time to compare
+	 * 		(TimeDecorator) The Time to compare
 	 * @param countDay
 	 * 		(boolean) If the number of days is also checked
 	 * @return (boolean) Returns if the current Time is superior to other
 	 */
-	public boolean isSuperior(Time other, boolean countDay){
+	@Override
+	public boolean isSuperior(TimeDecorator other, boolean countDay){
+		if(other.getClass().equals(UndefinedTime.class)){
+			return true;
+		}
+		Time otherT = (Time) other;
 		if(countDay){
-			if (nbDays > other.nbDays){
+			if (nbDays > otherT.nbDays){
 				return true;
 			}
 			
-			if(nbDays < other.nbDays){
+			if(nbDays < otherT.nbDays){
 				return false;
 			}
 		}
-		if(hours == other.hours){
-			if(minutes == other.minutes){
-				return seconds > other.seconds;
+		if(hours == otherT.hours){
+			if(minutes == otherT.minutes){
+				return seconds > otherT.seconds;
 			}
-			return minutes > other.minutes;
+			return minutes > otherT.minutes;
 		}
-		return hours > other.hours;
+		return hours > otherT.hours;
 	}
 	
 	/**

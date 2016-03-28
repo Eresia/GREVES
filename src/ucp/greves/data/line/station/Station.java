@@ -1,5 +1,6 @@
 package ucp.greves.data.line.station;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import ucp.greves.data.line.canton.Canton;
@@ -204,8 +205,29 @@ public class Station {
 	/**
 	 * @return (HashMap<Integer, TimeDecorator>) Returns the next trains to arrive at the station
 	 */
-	public HashMap<Integer, TimeDecorator> getNextTrains(){
-		return nextTrains;
+	public ArrayList<NextTrainInformations> getNextTrains(){
+		return getNextTrains(nextTrains.size());
+	}
+	
+	public ArrayList<NextTrainInformations> getNextTrains(int nb){
+		ArrayList<NextTrainInformations> result = new ArrayList<NextTrainInformations>();
+		ArrayList<Integer> keys = (ArrayList<Integer>) nextTrains.keySet();
+		for(int i = 0; i < nextTrains.size(); i++){
+			boolean isPlaced = false;
+			TimeDecorator actualTime = nextTrains.get(keys.get(i));
+			for(int j = 0; j < result.size(); j++){
+				NextTrainInformations info = result.get(j);
+				if(actualTime.isInferior(info.getTime())){
+					result.add(j, new NextTrainInformations(keys.get(i), nextTrains.get(keys.get(i))));
+					isPlaced = true;
+					break;
+				}
+			}
+			if(!isPlaced){
+				result.add(new NextTrainInformations(keys.get(i), nextTrains.get(keys.get(i))));
+			}
+		}
+		return result;
 	}
 	
 	/**
