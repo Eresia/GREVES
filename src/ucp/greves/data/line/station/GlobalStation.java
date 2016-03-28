@@ -10,8 +10,8 @@ import java.util.ArrayList;
  */
 public class GlobalStation {
 	
-	public String name;
-	public ArrayList<Integer> stations;
+	private String name;
+	private ArrayList<Integer> stations;
 	
 	public GlobalStation(String name){
 		this.name = name;

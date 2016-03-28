@@ -7,7 +7,7 @@ import ucp.greves.model.line.Line;
 
 public class RailWayController {
 	
-	public static ArrayList<Integer> IntegerlistOfRailWaysID(){
+	public static ArrayList<Integer> integerlistOfRailWaysID(){
 		return new ArrayList<Integer>(Line.getRailWays().keySet());
 	}
 	
