@@ -21,7 +21,8 @@ import ucp.greves.model.exceptions.PropertyNotFoundException;
 public class ConfigurationEnvironment {
 	private HashMap<String, ConfigurationEnvironmentElement> configurationAttribute;
 	
-	private final static String CONFIG_DEFAULT = "config_default.xml";
+	private final static String CONFIG_DEFAULT_XML = "config_default.xml";
+	private final static String CONFIG_DEFAULT_JSON = "config_default.json";
 	private final static boolean DEBUG_DEFAULT = true;
 
 	private static ConfigurationEnvironment instance = new ConfigurationEnvironment();
@@ -37,8 +38,27 @@ public class ConfigurationEnvironment {
 	 *  - DEBUG mode = false
 	 */
 	private ConfigurationEnvironment() {
-		this.configurationAttribute = new HashMap<String, ConfigurationEnvironmentElement>();
-		ConfigurationEnvironmentBuilderXML.BuildEnvironment(CONFIG_DEFAULT, this);
+		build("xml");
+	}
+	
+	/**
+	 * Build the environment with the xml or json file
+	 * @param type
+	 * 			(String) the file type to use (json or xml)
+	 */
+	public void build(String type) {
+		switch(type.toLowerCase()) {
+		case "xml":
+			this.configurationAttribute = new HashMap<String, ConfigurationEnvironmentElement>();
+			ConfigurationEnvironmentBuilderXML.BuildEnvironment(CONFIG_DEFAULT_XML, this);
+			setProperty("BUILD_CONFIGURATION", "XML");
+			break;
+		case "json":
+			this.configurationAttribute = new HashMap<String, ConfigurationEnvironmentElement>();
+			ConfigurationEnvironmentBuilderJSON.BuildEnvironment(CONFIG_DEFAULT_JSON, this);
+			setProperty("BUILD_CONFIGURATION", "JSON");
+			break;
+		}
 	}
 
 	/**

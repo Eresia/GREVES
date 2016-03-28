@@ -24,7 +24,6 @@ import org.xml.sax.SAXException;
 
 import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import jdk.nashorn.internal.runtime.JSONListAdapter;
-import ucp.greves.controller.GodModeController;
 import ucp.greves.controller.ScheduleController;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.canton.Terminus;
