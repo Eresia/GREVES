@@ -4,6 +4,13 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
+import ucp.greves.data.line.canton.Canton;
+import ucp.greves.data.line.railWay.RailWay;
+import ucp.greves.data.line.roadMap.RoadMap;
+import ucp.greves.data.line.station.GlobalStation;
+import ucp.greves.data.line.station.Station;
+import ucp.greves.data.time.Time;
+import ucp.greves.data.train.Train;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
@@ -11,13 +18,8 @@ import ucp.greves.model.exceptions.line.InvalidXMLException;
 import ucp.greves.model.exceptions.railway.DoubledRailwayException;
 import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
 import ucp.greves.model.line.builder.LineBuilder;
-import ucp.greves.model.line.canton.Canton;
-import ucp.greves.model.line.station.GlobalStation;
-import ucp.greves.model.line.station.Station;
 import ucp.greves.model.schedule.LaunchTrainInformation;
 import ucp.greves.model.schedule.Schedule;
-import ucp.greves.model.schedule.Time;
-import ucp.greves.model.train.Train;
 
 public class Line extends Observable implements Observer {
 	private static Line instance;

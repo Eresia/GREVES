@@ -1,14 +1,14 @@
-package ucp.greves.model.line.canton;
+package ucp.greves.data.line.canton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import ucp.greves.data.line.railWay.RailWay;
+import ucp.greves.data.line.roadMap.RoadMap;
 import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.railway.RailWayNotDefinedException;
 import ucp.greves.model.line.Line;
-import ucp.greves.model.line.RailWay;
-import ucp.greves.model.line.RoadMap;
 
 public class Terminus extends Canton {
 	private ArrayList<Integer> railWayAvailable;

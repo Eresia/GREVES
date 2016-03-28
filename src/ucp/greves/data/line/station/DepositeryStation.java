@@ -1,10 +1,10 @@
-package ucp.greves.model.line.station;
+package ucp.greves.data.line.station;
 
 import java.util.ArrayList;
 
+import ucp.greves.data.train.Train;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
-import ucp.greves.model.train.Train;
 
 public class DepositeryStation extends Station{
 

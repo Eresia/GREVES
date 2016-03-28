@@ -13,9 +13,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import ucp.greves.model.line.station.GlobalStation;
-import ucp.greves.model.line.station.Station;
-import ucp.greves.model.train.Train;
+import ucp.greves.data.line.station.GlobalStation;
+import ucp.greves.data.line.station.Station;
+import ucp.greves.data.train.Train;
 
 public class StationView extends Application {
 	

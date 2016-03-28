@@ -1,4 +1,4 @@
-package ucp.greves.model.schedule;
+package ucp.greves.data.time;
 
 import ucp.greves.model.exceptions.time.UndefinedTimeException;
 

@@ -25,6 +25,12 @@ import org.xml.sax.SAXException;
 import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import jdk.nashorn.internal.runtime.JSONListAdapter;
 import ucp.greves.controller.GodModeController;
+import ucp.greves.data.line.canton.Canton;
+import ucp.greves.data.line.canton.Terminus;
+import ucp.greves.data.line.railWay.RailWay;
+import ucp.greves.data.line.roadMap.RoadMap;
+import ucp.greves.data.line.station.Station;
+import ucp.greves.data.time.Time;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
@@ -35,12 +41,6 @@ import ucp.greves.model.exceptions.railway.DoubledRailwayException;
 import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
 import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
-import ucp.greves.model.line.RailWay;
-import ucp.greves.model.line.RoadMap;
-import ucp.greves.model.line.canton.Canton;
-import ucp.greves.model.line.canton.Terminus;
-import ucp.greves.model.line.station.Station;
-import ucp.greves.model.schedule.Time;
 
 /**
  * This class has for aim to construct the line and different road maps from files configuration.

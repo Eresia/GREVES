@@ -3,6 +3,7 @@ package ucp.greves.model.schedule;
 import java.util.ArrayList;
 
 import ucp.greves.controller.GodModeController;
+import ucp.greves.data.time.Time;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;

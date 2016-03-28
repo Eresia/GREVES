@@ -1,7 +1,13 @@
-package ucp.greves.model.line.station;
+package ucp.greves.data.line.station;
 
 import java.util.HashMap;
 
+import ucp.greves.data.line.canton.Canton;
+import ucp.greves.data.line.roadMap.RoadMap;
+import ucp.greves.data.time.Time;
+import ucp.greves.data.time.TimeDecorator;
+import ucp.greves.data.time.UndefinedTime;
+import ucp.greves.data.train.Train;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
@@ -10,15 +16,9 @@ import ucp.greves.model.exceptions.canton.CantonIsBlockedException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.line.Line;
-import ucp.greves.model.line.RoadMap;
-import ucp.greves.model.line.canton.Canton;
 import ucp.greves.model.schedule.Clock;
-import ucp.greves.model.schedule.Time;
-import ucp.greves.model.schedule.TimeDecorator;
-import ucp.greves.model.schedule.UndefinedTime;
 import ucp.greves.model.simulation.SimulationInfo;
 import ucp.greves.model.train.ModifiedTrainInformation;
-import ucp.greves.model.train.Train;
 
 public class Station {
 	

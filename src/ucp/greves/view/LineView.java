@@ -6,7 +6,7 @@ package ucp.greves.view;
 import java.util.ArrayList;
 
 import ucp.greves.controller.RailWayController;
-import ucp.greves.model.line.canton.Canton;
+import ucp.greves.data.line.canton.Canton;
 import javafx.beans.property.IntegerProperty;
 import javafx.scene.Parent;
 

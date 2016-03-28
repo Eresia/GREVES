@@ -3,10 +3,10 @@ package ucp.greves.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import ucp.greves.data.line.station.GlobalStation;
+import ucp.greves.data.line.station.Station;
+import ucp.greves.data.time.TimeDecorator;
 import ucp.greves.model.line.Line;
-import ucp.greves.model.line.station.GlobalStation;
-import ucp.greves.model.line.station.Station;
-import ucp.greves.model.schedule.TimeDecorator;
 
 public class StationController {
 

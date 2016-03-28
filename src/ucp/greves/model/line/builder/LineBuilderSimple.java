@@ -3,6 +3,10 @@ package ucp.greves.model.line.builder;
 import java.util.Random;
 
 import ucp.greves.controller.GodModeController;
+import ucp.greves.data.line.canton.Canton;
+import ucp.greves.data.line.railWay.RailWay;
+import ucp.greves.data.line.roadMap.RoadMap;
+import ucp.greves.data.line.station.Station;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
@@ -13,10 +17,6 @@ import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
 import ucp.greves.model.line.Line;
-import ucp.greves.model.line.RailWay;
-import ucp.greves.model.line.RoadMap;
-import ucp.greves.model.line.canton.Canton;
-import ucp.greves.model.line.station.Station;
 
 /**
  * This class has for aim to construct a line if it is not exist a configuration file

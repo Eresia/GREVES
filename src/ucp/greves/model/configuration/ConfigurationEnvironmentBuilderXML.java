@@ -11,7 +11,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import ucp.greves.model.schedule.Time;
+import ucp.greves.data.time.Time;
 
 /**
  * This class is used to build the ConfigurationEnvironment from a .xml configuration file.

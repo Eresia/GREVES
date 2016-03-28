@@ -6,11 +6,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import ucp.greves.data.line.canton.Canton;
+import ucp.greves.data.line.roadMap.RoadMap;
+import ucp.greves.data.train.Train;
 import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
-import ucp.greves.model.line.RoadMap;
-import ucp.greves.model.line.canton.Canton;
-import ucp.greves.model.train.Train;
 
 /// TODO : Tests à implémenter
 public class CantonTest {

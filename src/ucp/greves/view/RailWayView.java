@@ -10,8 +10,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Parent;
 import ucp.greves.controller.CantonController;
 import ucp.greves.controller.RailWayController;
-import ucp.greves.model.line.RailWay;
-import ucp.greves.model.line.canton.Canton;
+import ucp.greves.data.line.canton.Canton;
+import ucp.greves.data.line.railWay.RailWay;
 
 public class RailWayView extends Parent  {
 	

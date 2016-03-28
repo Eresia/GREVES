@@ -1,4 +1,4 @@
-package ucp.greves.model.line.station;
+package ucp.greves.data.line.station;
 
 import java.util.ArrayList;
 

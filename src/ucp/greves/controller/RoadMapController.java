@@ -2,8 +2,8 @@ package ucp.greves.controller;
 
 import java.util.ArrayList;
 
+import ucp.greves.data.line.roadMap.RoadMap;
 import ucp.greves.model.line.Line;
-import ucp.greves.model.line.RoadMap;
 
 public class RoadMapController {
 

@@ -10,11 +10,11 @@ import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 
 import test.model.line.canton.CantonTest;
 import ucp.greves.controller.CantonController;
+import ucp.greves.data.line.canton.Canton;
+import ucp.greves.data.line.station.Station;
+import ucp.greves.data.train.Train;
 import ucp.greves.model.exceptions.canton.CantonIsEmptyException;
 import ucp.greves.model.exceptions.station.StationNotFoundException;
-import ucp.greves.model.line.canton.Canton;
-import ucp.greves.model.line.station.Station;
-import ucp.greves.model.train.Train;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

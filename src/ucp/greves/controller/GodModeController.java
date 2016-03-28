@@ -3,6 +3,12 @@ package ucp.greves.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import ucp.greves.data.line.canton.Canton;
+import ucp.greves.data.line.roadMap.RoadMap;
+import ucp.greves.data.line.station.DepositeryStation;
+import ucp.greves.data.line.station.Station;
+import ucp.greves.data.time.Time;
+import ucp.greves.data.train.Train;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.canton.TerminusException;
@@ -12,15 +18,9 @@ import ucp.greves.model.exceptions.roadmap.EmptyRoadMapException;
 import ucp.greves.model.exceptions.roadmap.RoadMapNameNotExistException;
 import ucp.greves.model.exceptions.train.TrainNotExistException;
 import ucp.greves.model.line.Line;
-import ucp.greves.model.line.RoadMap;
-import ucp.greves.model.line.canton.Canton;
-import ucp.greves.model.line.station.DepositeryStation;
-import ucp.greves.model.line.station.Station;
 import ucp.greves.model.schedule.Clock;
 import ucp.greves.model.schedule.LaunchTrainInformation;
-import ucp.greves.model.schedule.Time;
 import ucp.greves.model.simulation.SimulationInfo;
-import ucp.greves.model.train.Train;
 
 public class GodModeController {
 

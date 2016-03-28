@@ -22,14 +22,14 @@ import javafx.stage.Stage;
 import ucp.greves.controller.GodModeController;
 import ucp.greves.controller.RoadMapController;
 import ucp.greves.controller.StationController;
+import ucp.greves.data.line.canton.Canton;
+import ucp.greves.data.line.roadMap.RoadMap;
+import ucp.greves.data.line.station.Station;
+import ucp.greves.data.train.Train;
 import ucp.greves.model.exceptions.BadControlInformationException;
 import ucp.greves.model.exceptions.canton.CantonNotExistException;
 import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
-import ucp.greves.model.line.canton.Canton;
-import ucp.greves.model.line.station.Station;
-import ucp.greves.model.train.Train;
-import ucp.greves.model.line.RoadMap;
 
 public class addTrainView extends Application{
 	

@@ -1,7 +1,10 @@
-package ucp.greves.model.line.canton;
+package ucp.greves.data.line.canton;
 
 import java.util.Observable;
 
+import ucp.greves.data.line.roadMap.RoadMap;
+import ucp.greves.data.line.station.Station;
+import ucp.greves.data.train.Train;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.exceptions.PropertyNotFoundException;
@@ -11,14 +14,11 @@ import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.railway.RailWayNotDefinedException;
 import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
-import ucp.greves.model.line.RoadMap;
 import ucp.greves.model.line.station.HasNotStation;
 import ucp.greves.model.line.station.HasStation;
-import ucp.greves.model.line.station.Station;
 import ucp.greves.model.line.station.StationDecorator;
 import ucp.greves.model.simulation.SimulationInfo;
 import ucp.greves.model.train.ModifiedTrainInformation;
-import ucp.greves.model.train.Train;
 
 public class Canton extends Observable {
 

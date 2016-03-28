@@ -4,7 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import ucp.greves.controller.TrainController;
-import ucp.greves.model.train.Train;
+import ucp.greves.data.train.Train;
 import javafx.beans.property.IntegerProperty;
 import javafx.scene.Parent;
 import javafx.scene.shape.Rectangle;

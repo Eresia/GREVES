@@ -1,9 +1,9 @@
 package ucp.greves.controller;
 
+import ucp.greves.data.time.Time;
 import ucp.greves.model.schedule.Clock;
-import ucp.greves.model.schedule.Time;
 
-public class TimeController {
+public class ScheduleController {
 	
 	public static Time getCurrentTime(){
 		return Clock.getTime();

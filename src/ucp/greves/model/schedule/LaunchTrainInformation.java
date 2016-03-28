@@ -1,5 +1,7 @@
 package ucp.greves.model.schedule;
 
+import ucp.greves.data.time.Time;
+
 public class LaunchTrainInformation {
 	
 	private Time time;

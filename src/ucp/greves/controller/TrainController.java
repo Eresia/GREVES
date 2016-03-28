@@ -2,8 +2,8 @@ package ucp.greves.controller;
 
 import java.util.ArrayList;
 
+import ucp.greves.data.train.Train;
 import ucp.greves.model.line.Line;
-import ucp.greves.model.train.Train;
 
 public class TrainController {
 

@@ -1,15 +1,16 @@
-package ucp.greves.model.train;
+package ucp.greves.data.train;
 
 import java.util.ArrayList;
 import java.util.Observable;
 
+import ucp.greves.data.line.canton.Canton;
+import ucp.greves.data.line.roadMap.RoadMap;
+import ucp.greves.data.line.station.DepositeryStation;
 import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
-import ucp.greves.model.line.RoadMap;
-import ucp.greves.model.line.canton.Canton;
-import ucp.greves.model.line.station.DepositeryStation;
 import ucp.greves.model.simulation.SimulationInfo;
+import ucp.greves.model.train.ModifiedTrainInformation;
 
 public class Train extends Observable implements Runnable {
 	private int trainID;
