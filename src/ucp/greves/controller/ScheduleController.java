@@ -4,7 +4,6 @@ import ucp.greves.data.time.Time;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.schedule.Clock;
 import ucp.greves.model.schedule.LaunchTrainInformation;
-import ucp.greves.model.simulation.SimulationInfo;
 
 public class ScheduleController {
 	
@@ -12,8 +11,8 @@ public class ScheduleController {
 		return Clock.getTime();
 	}
 	
-	public static String getClockString(){
-		return Clock.getInstance().getText();
+	public static Time getClockTime(){
+		return Clock.getInstance().getTime();
 	}
 	
 	public static void addLaunchTrainSchedule(String roadMap, Time time){

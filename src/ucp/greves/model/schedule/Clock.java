@@ -9,7 +9,6 @@ import ucp.greves.model.simulation.SimulationInfo;
 public class Clock extends Thread{
 
 	public volatile Time time;
-	private volatile String text;
 	
 	private final static Time BASE_SIMULATION_TIME_DEFAULT = new Time(8);
 	private final static int NB_SECOND_BY_FRAME_DEFAULT = 1;
@@ -21,7 +20,6 @@ public class Clock extends Thread{
 	
 	private Clock(){
 		time = BASE_SIMULATION_TIME.clone();
-		text = "bbb";
 	}
 	
 	@Override
@@ -32,7 +30,7 @@ public class Clock extends Thread{
 				for(int i = 0; i < NB_SECOND_BY_FRAME; i++){
 					time.incrementSecond();
 				}
-				updateText();
+				updateClock();
 //				System.out.println(time.toString());
 			}
 		} catch (InterruptedException e) {
@@ -40,12 +38,8 @@ public class Clock extends Thread{
 		}
 	}
 	
-	private void updateText(){
-		text = time.toString();
-	}
-	
-	public String getText(){
-		return text;
+	private void updateClock(){
+		time.updateTime();
 	}
 	
 	public static final int nbSecondByFrame(){
@@ -97,7 +91,7 @@ public class Clock extends Thread{
 	}
 	
 	public String toString(){
-		return new String(text);
+		return time.toString();
 	}
 	
 }

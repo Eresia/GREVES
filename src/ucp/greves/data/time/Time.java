@@ -1,5 +1,7 @@
 package ucp.greves.data.time;
 
+import java.util.Observable;
+
 import ucp.greves.model.exceptions.time.UndefinedTimeException;
 
 /**
@@ -8,7 +10,7 @@ import ucp.greves.model.exceptions.time.UndefinedTimeException;
  * {@link TimeDecorator}
  * @see UndefinedTime
  */
-public class Time implements TimeDecorator{
+public class Time extends Observable implements TimeDecorator{
 	
 	private int hours;
 	private int minutes;
@@ -433,6 +435,10 @@ public class Time implements TimeDecorator{
 	 */
 	public void setSeconds(int seconds) {
 		this.seconds = seconds%60;
+	}
+	
+	public void updateTime(){
+		this.notifyObservers();
 	}
 
 	@Override
