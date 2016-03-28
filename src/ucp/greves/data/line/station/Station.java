@@ -227,7 +227,7 @@ public class Station {
 				result.add(new NextTrainInformations(keys.get(i), nextTrains.get(keys.get(i))));
 			}
 		}
-		return result;
+		return (ArrayList<NextTrainInformations>) result.subList(0, nb);
 	}
 	
 	/**
