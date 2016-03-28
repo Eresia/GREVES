@@ -212,6 +212,13 @@ public class Station {
 	public ArrayList<NextTrainInformations> getNextTrains(int nb){
 		ArrayList<NextTrainInformations> result = new ArrayList<NextTrainInformations>();
 		ArrayList<Integer> keys = new ArrayList<Integer>(nextTrains.keySet());
+		int nbMax;
+		if(nb > nextTrains.size()){
+			nbMax = nextTrains.size();
+		}
+		else{
+			nbMax = nb;
+		}
 		for(int i = 0; i < nextTrains.size(); i++){
 			boolean isPlaced = false;
 			TimeDecorator actualTime = nextTrains.get(keys.get(i));
@@ -227,7 +234,7 @@ public class Station {
 				result.add(new NextTrainInformations(keys.get(i), nextTrains.get(keys.get(i))));
 			}
 		}
-		return (ArrayList<NextTrainInformations>) result.subList(0, nb);
+		return new ArrayList<NextTrainInformations>(result.subList(0, nbMax));
 	}
 	
 	/**
