@@ -26,6 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import ucp.greves.controller.CantonController;
 import ucp.greves.controller.GodModeController;
 import ucp.greves.controller.StationController;
 import ucp.greves.controller.TrainController;
@@ -73,7 +74,7 @@ public class GlobalView extends Application{
 		Line.getInstance();
 		
 		//Launch Time witch this method
-		GodModeController.getInstance().startStimulation();
+		GodModeController.startStimulation();
   
 		ScrollPane lineDraw = (ScrollPane) root.lookup("#LineDraw"); //Get the borderPane from the root
 		LineView lineView = new LineView();
@@ -88,7 +89,7 @@ public class GlobalView extends Application{
 			@Override
 			public void handle(WindowEvent event) {
 				Platform.exit();
-				GodModeController.getInstance().stopSimulation();			
+				GodModeController.stopSimulation();			
 			}
 		});
 	}
@@ -115,7 +116,7 @@ public class GlobalView extends Application{
 				Integer selectedTrain = trainIDListComboBox.getValue();
 				
 				if(selectedTrain != null) {
-					GodModeController.getInstance().removeTrain(selectedTrain);
+					TrainController.removeTrain(selectedTrain);
 				}
 			}
 		});
@@ -130,7 +131,7 @@ public class GlobalView extends Application{
 				
 				if(selectedTrain != null) {
 					try {
-						GodModeController.getInstance().unblockTrain(selectedTrain);
+						TrainController.unblockTrain(selectedTrain);
 					} catch (TrainNotExistException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -149,7 +150,7 @@ public class GlobalView extends Application{
 				
 				if(selectedTrain != null) {
 					try {
-						GodModeController.getInstance().blockTrain(selectedTrain);
+						TrainController.blockTrain(selectedTrain);
 					} catch (TrainNotExistException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -168,7 +169,7 @@ public class GlobalView extends Application{
 				Canton selectedCanton = getSelectedCanton();
 				if(selectedCanton != null) {
 					try {
-						GodModeController.getInstance().blockCanton(selectedCanton.getId());
+						CantonController.blockCanton(selectedCanton.getId());
 					} catch (CantonNotExistException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -186,7 +187,7 @@ public class GlobalView extends Application{
 				Canton selectedCanton = getSelectedCanton();
 				if(selectedCanton != null) {
 					try {
-						GodModeController.getInstance().createSlowDown(selectedCanton.getId());
+						CantonController.createSlowDown(selectedCanton.getId());
 					} catch (CantonNotExistException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -204,7 +205,7 @@ public class GlobalView extends Application{
 				Canton selectedCanton = getSelectedCanton();
 				if(selectedCanton != null) {
 					try {
-						GodModeController.getInstance().removeCantonProblem(selectedCanton.getId());
+						CantonController.removeCantonProblem(selectedCanton.getId());
 					} catch (CantonNotExistException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -243,7 +244,7 @@ public class GlobalView extends Application{
 
 			@Override
 			public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-				GodModeController.getInstance().changeSimulationSpeed((int) changeSpeed.getValue());
+				GodModeController.changeSimulationSpeed((int) changeSpeed.getValue());
 			}
 		});
 		changeSpeed.setValue(0);

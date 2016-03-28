@@ -7,6 +7,7 @@ import java.util.Observer;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.railWay.RailWay;
 import ucp.greves.data.line.roadMap.RoadMap;
+import ucp.greves.data.line.station.DepositeryStation;
 import ucp.greves.data.line.station.GlobalStation;
 import ucp.greves.data.line.station.Station;
 import ucp.greves.data.time.Time;
@@ -34,6 +35,7 @@ public class Line extends Observable implements Observer {
 	private  HashMap<String, RoadMap> roadmap_registry;
 	
 	private Schedule schedule;
+	private DepositeryStation stockRemoveTrain;
 	
 	private Line(){
 		canton_id_register = 0 ;
@@ -46,6 +48,7 @@ public class Line extends Observable implements Observer {
 		global_station_registry = new HashMap<String, GlobalStation>();
 		roadmap_registry = new HashMap<String, RoadMap>();
 		schedule = new Schedule();
+		stockRemoveTrain = new DepositeryStation("Removed Train Stockage");
 	}
 	public static Line getInstance(){
 		if(instance == null){
@@ -159,6 +162,12 @@ public class Line extends Observable implements Observer {
 	
 	public static HashMap<String, RoadMap> getRoadMaps(){
 		return instance.roadmap_registry;
+	}
+	
+	public static void removeTrain(int train) {
+		if(instance.train_registry.containsKey(train)) {
+			instance.train_registry.get(train).remove(instance.stockRemoveTrain);
+		}
 	}
 	
 	@Override

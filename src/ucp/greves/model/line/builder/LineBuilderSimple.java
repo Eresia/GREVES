@@ -47,20 +47,13 @@ public class LineBuilderSimple {
 			Line.register_railway(railWay);
 			Line.register_railway(railWay2);
 	
-			GodModeController control = GodModeController.getInstance();
-	
 			RoadMap rm = null;
 			rm = new RoadMap("test");
 			
 			rm.addRailWay(0);
 			rm.addRailWay(1);
 
-			control.launchTrain(rm.getName());
-			control.launchTrain(rm.getName());
-			control.launchTrain(rm.getName());
-			control.launchTrain(rm.getName());
-
-		} catch (BadControlInformationException | BadRoadMapException | RailWayNotExistException | DoubledRailwayException | RoadMapAlreadyExistException | CantonHasAlreadyStationException | CantonNotExistException e) {
+		} catch (DoubledRailwayException | RoadMapAlreadyExistException | CantonHasAlreadyStationException | CantonNotExistException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import ucp.greves.controller.GodModeController;
 import ucp.greves.controller.RoadMapController;
 import ucp.greves.controller.StationController;
+import ucp.greves.controller.TrainController;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.roadMap.RoadMap;
 import ucp.greves.data.line.station.Station;
@@ -69,7 +70,7 @@ public class addTrainView extends Application{
 				
 				if(roadmapName != null) {
 					try {
-						GodModeController.getInstance().launchTrain(roadmapName);
+						TrainController.launchTrain(roadmapName);
 					} catch (BadControlInformationException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

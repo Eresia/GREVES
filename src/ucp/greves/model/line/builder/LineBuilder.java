@@ -25,6 +25,7 @@ import org.xml.sax.SAXException;
 import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import jdk.nashorn.internal.runtime.JSONListAdapter;
 import ucp.greves.controller.GodModeController;
+import ucp.greves.controller.ScheduleController;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.canton.Terminus;
 import ucp.greves.data.line.railWay.RailWay;
@@ -332,7 +333,7 @@ public class LineBuilder {
 							throw new InvalidXMLException("Bad Time");
 						}
 						time = new Time(Integer.valueOf(sTime[0]), Integer.valueOf(sTime[1]), Integer.valueOf(sTime[2]));
-						GodModeController.getInstance().addLaunch(rmName, time);
+						ScheduleController.addLaunchTrainSchedule(rmName, time);
 					}
 					catch(NumberFormatException nfe) {
 						rmName = "";
@@ -709,7 +710,7 @@ public class LineBuilder {
 					}
 					
 					if(rmName != null && sTime != null && time != null) {
-						GodModeController.getInstance().addLaunch(rmName, time);
+						ScheduleController.addLaunchTrainSchedule(rmName, time);
 					}
 					
 					if (ConfigurationEnvironment.inDebug()) {
