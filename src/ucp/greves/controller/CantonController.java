@@ -8,7 +8,7 @@ import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.line.Line;
 public class CantonController {
 	
-	public static ArrayList<Integer> IntegerlistOfCantonID(){
+	public static ArrayList<Integer> integerlistOfCantonID(){
 		return new ArrayList<Integer>(Line.getCantons().keySet());
 	}
 

@@ -10,11 +10,11 @@ import ucp.greves.model.line.Line;
 
 public class StationController {
 
-	public static ArrayList<Integer> IntegerlistOfStationsID(){
+	public static ArrayList<Integer> integerlistOfCantonStationsID(){
 		return new ArrayList<Integer>(Line.getStations().keySet());
 	}
 	
-	public static Station getStationById(int id){
+	public static Station getStationByCantonId(int id){
 		return Line.getStations().get(id);
 	}
 	
