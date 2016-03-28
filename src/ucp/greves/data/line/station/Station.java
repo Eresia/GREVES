@@ -211,7 +211,7 @@ public class Station {
 	
 	public ArrayList<NextTrainInformations> getNextTrains(int nb){
 		ArrayList<NextTrainInformations> result = new ArrayList<NextTrainInformations>();
-		ArrayList<Integer> keys = (ArrayList<Integer>) nextTrains.keySet();
+		ArrayList<Integer> keys = new ArrayList<Integer>(nextTrains.keySet());
 		for(int i = 0; i < nextTrains.size(); i++){
 			boolean isPlaced = false;
 			TimeDecorator actualTime = nextTrains.get(keys.get(i));
