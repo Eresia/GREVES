@@ -12,6 +12,11 @@ import ucp.greves.model.line.Line;
 import ucp.greves.model.simulation.SimulationInfo;
 import ucp.greves.model.train.ModifiedTrainInformation;
 
+/**
+ * Train is a thread.
+ * It follows a roadmap and knows its current canton
+ *
+ */
 public class Train extends Observable implements Runnable {
 	private int trainID;
 	private RoadMap roadMap;
@@ -24,6 +29,16 @@ public class Train extends Observable implements Runnable {
 	private volatile boolean isRemoved;
 	private volatile DepositeryStation removeStation;
 
+	/**
+	 * Creates a Train and registers it
+	 * 
+	 * @param startCanton
+	 * 		(Canton) The canton where the trains starts
+	 * @param map
+	 * 		(RoadMap) The roadmap the train follows
+	 * 
+	 * @see Line#register_train(Train)
+	 */
 	public Train(Canton startCanton, RoadMap map) {
 
 		this.trainID = Line.register_train(this);
@@ -36,34 +51,66 @@ public class Train extends Observable implements Runnable {
 		nextStation = map.getStations().get(0);
 	}
 
+	/**
+	 * @return (Integer) Returns the id of the train
+	 */
 	public int getTrainID() {
 		return this.trainID;
 	}
 
+	/**
+	 * Sets the train ID
+	 * @param value
+	 * 		(Integer) The new ID value of the train
+	 */
 	public void setTrainID(int value) {
 		this.trainID = value;
 	}
 
+	/**
+	 * @return (RoadMap) Returns the roadmap the train follows
+	 */
 	public RoadMap getRoadMap() {
 		return this.roadMap;
 	}
 
+	/**
+	 * Set the roadmap the train follows
+	 * @param value
+	 * 		(RoadMap) The new roadmap
+	 */
 	public void setRoadMap(RoadMap value) {
 		this.roadMap = value;
 	}
 
+	/**
+	 * @return (Integer) Returns the position of the train on the current railway
+	 */
 	public int getPosition() {
 		return position;
 	}
 
+	/**
+	 * Sets the train at a specific position on the railway
+	 * @param position
+	 * 		(Integer) The new position
+	 */
 	public void setPosition(int position) {
 		this.position = position;
 	}
 
+	/**
+	 * @return (Canton) Returns the canton where the train is
+	 */
 	public Canton getCurrentCanton() {
 		return currentCanton;
 	}
 
+	/**
+	 * Sets the train at a specific canton
+	 * @param currentCanton
+	 * 		(Canton) The new canton where the train will be
+	 */
 	public void setCurrentCanton(Canton currentCanton) {
 		this.currentCanton = currentCanton;
 	}
@@ -98,6 +145,11 @@ public class Train extends Observable implements Runnable {
 		}
 	}
 
+	/**
+	 * Stocks the train at the station
+	 * @param station
+	 * 		(DepositeryStation) The station where the train will be stocked
+	 */
 	public void remove(DepositeryStation station) {
 		removeStation = station;
 		station.stockTrain(this);
@@ -106,6 +158,10 @@ public class Train extends Observable implements Runnable {
 		Line.register_arrived_train(trainID);
 	}
 	
+	/**
+	 * @return (Integer) Returns the ID of the next {@link ucp.greves.data.line.station.Station} the train needs to stop
+	 * @throws StationNotFoundException if there isn't any next station
+	 */
 	public int nextStation() throws StationNotFoundException{
 		if(nextStation == -1){
 			throw new StationNotFoundException();
@@ -114,6 +170,12 @@ public class Train extends Observable implements Runnable {
 		return nextStation;
 	}
 	
+	/**
+	 * @return (ArrayList<Integer>) Returns the list of IDs of the next stations the train needs to stop
+	 * @throws StationNotFoundException if there isn't any station
+	 * 
+	 * @see ucp.greves.data.line.station.Station
+	 */
 	public ArrayList<Integer> nextStations() throws StationNotFoundException{
 		if(nextStation == -1){
 			throw new StationNotFoundException();
@@ -129,22 +191,37 @@ public class Train extends Observable implements Runnable {
 		return next;
 	}
 
+	/**
+	 * Blocks the canton where the train is
+	 */
 	public void blockTrain() {
 		currentCanton.blockCanton();
 	}
 
+	/**
+	 * Unlocks the canton where the train is
+	 */
 	public void unblockTrain() {
 		currentCanton.removeProblem();
 	}
 
+	/**
+	 * @return (boolean) Returns if the train has arrived or not
+	 */
 	public boolean hasArrived() {
 		return hasArrived;
 	}
 
+	/**
+	 * @return (boolean) Returns if the train is removed or not
+	 */
 	public boolean isRemoved() {
 		return isRemoved;
 	}
 
+	/**
+	 * Updates the position of the train
+	 */
 	public void updatePosition() {
 		ModifiedTrainInformation informations;
 		if(currentCanton.hasStation()){
@@ -170,10 +247,16 @@ public class Train extends Observable implements Runnable {
 		this.setChanged();
 	}
 
+	/**
+	 * @return (Integer) Returns the position of the train in the canton
+	 */
 	public int positionInCanton() {
 		return currentCanton.getStartPoint() - position;
 	}
 	
+	/**
+	 * @return (Integer) Returns the speed of the train
+	 */
 	public int getSpeed(){
 		return currentCanton.getTrainSpeed(position);
 	}

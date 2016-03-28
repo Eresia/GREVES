@@ -20,6 +20,13 @@ import ucp.greves.model.line.station.StationDecorator;
 import ucp.greves.model.simulation.SimulationInfo;
 import ucp.greves.model.train.ModifiedTrainInformation;
 
+/**
+ * This class represents a part of a railway. Only 1 train per canton is authorized
+ * 
+ * @see ucp.greves.data.line.canton.Terminus
+ * {@link ucp.greves.data.line.canton.CantonState}
+ * @see ucp.greves.data.line.railWay.RailWay
+ */
 public class Canton extends Observable {
 
 	protected int id;
@@ -46,20 +53,52 @@ public class Canton extends Observable {
 	private final static int SPEED_SLOWDOWN = setSpeedSlowDown();
 	private final static int DISTANCE_TO_STATION = setDistanceToStation();
 	
+	/**
+	 * Creates a Canton
+	 * 
+	 * @param nextCanton
+	 * 		(Canton) The next canton he is attached to
+	 * @param railWay
+	 * 		(Integer) The id of the railway he is on
+	 * @param length
+	 * 		(Integer) the size of this canton
+	 */
 	public Canton(Canton nextCanton, int railWay, int length) {
 		this(railWay, length);
 		this.nextCanton = nextCanton;
 	}
 
+	/**
+	 * Creates a Canton
+	 * 
+	 * @param nextCanton
+	 * 		(Canton) The next canton he is attached to
+	 * @param length
+	 * 		(Integer) The size of this canton
+	 */
 	public Canton(Canton nextCanton, int length) {
 		this(nextCanton, -1, length);
 	}
 	
+	/**
+	 * Creates a Canton
+	 * 
+	 * @param railWay
+	 * 		(Integer) The id of the railway he is on
+	 * @param length
+	 * 		(Integer) The size of the canton
+	 */
 	protected Canton(int railWay, int length) {
 		this(length);
 		this.railWay = railWay;
 	}
 
+	/**
+	 * Creates a Canton and registers it
+	 * 
+	 * @param length
+	 * 		(Integer) The size of the canton
+	 */
 	protected Canton(int length) {
 		this.id = Line.register_canton(this);
 		buildCanton(length);
@@ -67,28 +106,69 @@ public class Canton extends Observable {
 		trainSpeed = SPEED_MAX;
 	}
 	
+	/**
+	 * Rebuilds a Canton
+	 * 
+	 * @param length
+	 * 		(Integer) The new length of the canton
+	 */
 	private void buildCanton(int length){
 		this.length = length;
 		station = new HasNotStation();
 		positionStation = -1;
 	}
 	
+	/**
+	 * Gets the canton where the train should go after arriving at the end of this one
+	 * 
+	 * @param rw
+	 * 		(Integer) The id of the railway
+	 * @return 
+	 * 		(Canton) The canton following this one on the railway
+	 * @throws TerminusException
+	 */
 	public Canton getNextCanton(int rw) throws TerminusException {
 		return nextCanton;
 	}
 
+	/**
+	 * Gets the canton where the train should go after arriving at the end of this one
+	 * 
+	 * @param road
+	 * 		(RoadMap) The roadmap the train follows
+	 * @return
+	 * 		(Canton) The canton following this one on the roadmap
+	 * @throws TerminusException
+	 */
 	public Canton getNextCanton(RoadMap road) throws TerminusException {
 		return nextCanton;
 	}
 
+	/**
+	 * 
+	 * @return 
+	 * 		(Integer) Returns the total length from the start of this canton to the end of the railway
+	 */
 	public int getStartPoint() {
 		return nextCanton.getStartPoint() + length;
 	}
 
+	/**
+	 * 
+	 * @return 
+	 * 		(Integer) Returns the length of the canton
+	 */
 	public int getLength() {
 		return length;
 	}
 
+	/**
+	 * Let a train enter this canton and make it move
+	 * If the canton is occupied, it blocks the train
+	 * 
+	 * @param train
+	 * 		(Train) The train to enter this canton
+	 */
 	public synchronized void enter(Train train) {
 		if (occupyingTrain != null) {
 			if (ConfigurationEnvironment.inDebug()) {
@@ -130,6 +210,15 @@ public class Canton extends Observable {
 
 	}
 	
+	/**
+	 * Tests if a train can enter a canton
+	 * 
+	 * @param position
+	 * 		(Integer) The position on the railway of the simulated train
+	 * @return
+	 * 		(Integer) Returns the new position on the railway of the simulated train
+	 * @throws CantonIsBlockedException
+	 */
 	public int simulateEnter(int position) throws CantonIsBlockedException{
 		int newPosition = position;
 		if (occupyingTrain != null || (this.getState() == CantonState.BLOCKED)) {
@@ -147,6 +236,14 @@ public class Canton extends Observable {
 		return newPosition;
 	}
 	
+	/**
+	 * 
+	 * @param position
+	 * @param crossStation
+	 * @return
+	 * 
+	 * @see ucp.greves.model.train.ModifiedTrainInformation
+	 */
 	public ModifiedTrainInformation updatedTrainPosition(int position, boolean crossStation){
 		int startPoint = getStartPoint();
 		int positionOnCanton = startPoint - position;
@@ -164,24 +261,47 @@ public class Canton extends Observable {
 		return informations;
 	}
 	
+	/**
+	 * Slows down the speed of the canton
+	 */
 	public void createSlowDown(){
 		state = CantonState.SLOWSDOWN;
 		slowDownSpeed = SPEED_SLOWDOWN;
 	}
 	
+	/**
+	 * Slows down the speed of the canton
+	 * 
+	 * @param newSpeed
+	 * 		(Integer) The new speed during the slow down
+	 */
 	public void createSlowDown(int newSpeed){
 		state = CantonState.SLOWSDOWN;
 		slowDownSpeed = newSpeed;
 	}
 	
+	/**
+	 * Blocks the canton
+	 */
 	public void blockCanton(){
 		state = CantonState.BLOCKED;
 	}
 	
+	/**
+	 * Puts the canton to its normal state
+	 */
 	public void removeProblem(){
 		state = CantonState.NO_PROBLEM;
 	}
 	
+	/**
+	 * Gets the speed of the train on this canton
+	 * 
+	 * @param position
+	 * 		(Integer) The position of the train
+	 * @return
+	 * 		(Integer) Returns the speed the train should have on this position
+	 */
 	public int getTrainSpeed(int position){
 		if(state == CantonState.BLOCKED){
 			return 0;
@@ -211,10 +331,18 @@ public class Canton extends Observable {
 		return speed;
 	}
 	
+	/**
+	 * Gets the state of the canton
+	 * @return
+	 * 		(CantonState) Returns the state of the canton
+	 */
 	public CantonState getState(){
 		return state;
 	}
 
+	/**
+	 * Makes a train exit the canton
+	 */
 	public synchronized void exit() {
 		occupyingTrain = null;
 		notify();
@@ -225,6 +353,11 @@ public class Canton extends Observable {
 		this.notifyObservers();
 	}
 
+	/**
+	 * Checks if the canton is free
+	 * @return
+	 * 		(boolean) Returns if there is a train on the canton or not
+	 */
 	public boolean isFree() {
 		return occupyingTrain == null;
 	}
@@ -243,41 +376,93 @@ public class Canton extends Observable {
 		}
 	}
 	
-
 	@Override
 	public String toString() {
 		return "Canton [id=" + id + "]";
 	}
 
+	/**
+	 * 
+	 * @return
+	 * 		(Integer) Returns the id of the canton when it was created
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * 		(Integer) Returns the distance from the beginning of the next canton to the end of the railway
+	 */
 	public int getEndPoint() {
 		return nextCanton.getStartPoint() + 1;
 	}
 	
+	/**
+	 * Makes a train enter the station
+	 * 
+	 * @param train
+	 * 		(Train) The train to enter the station
+	 */
 	public void enterInStation(Train train){
 		station.enter(train);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 * 		(Integer) Returns the position of the Station in the canton
+	 */
 	public int getStationPosition(){
 		return positionStation;
 	}
 
+	/**
+	 * Creates a station in the canton
+	 * @param station
+	 * 		(Station) The station to create
+	 * @param position
+	 * 		(Integer) The position on the canton where the station is
+	 * 
+	 * @see ucp.greves.data.line.station.Station
+	 */
 	public void setStation(Station station, int position) {
 		this.station = new HasStation(station);
 		this.positionStation = position;
 	}
 
+	/**
+	 * Checks if the canton has a station
+	 * @return
+	 * 		(boolean) Returns if the canton has a station or not
+	 */
 	public boolean hasStation() {
 		return station.hasStation();
 	}
 	
+	/**
+	 * Gets the station on the canton
+	 * 
+	 * @return
+	 * 		(Station) The station of the canton
+	 * @throws StationNotFoundException if there is no station on this canton
+	 * 
+	 * @see ucp.greves.data.line.station.Station
+	 */
 	public Station getStation() throws StationNotFoundException{
 		return station.getStation();
 	}
 	
+	/**
+	 * Gets the railway the canton is on
+	 * 
+	 * @return
+	 * 		(Integer) The id of the railway
+	 * @throws RailWayNotDefinedException if the canton is not attached to the railway
+	 * 
+	 * @see ucp.greves.data.line.railWay.RailWay
+	 */
 	public int getRailWay() throws RailWayNotDefinedException{
 		if(railWay == -1){
 			throw new RailWayNotDefinedException("RailWay is not define for canton " + getId());
@@ -285,10 +470,24 @@ public class Canton extends Observable {
 		return railWay;
 	}
 	
+	/**
+	 * Sets the railway for this canton
+	 * 
+	 * @param railWay
+	 * 		(Integer) The id of the railway to attach this canton to
+	 */
 	public void setRailWay(int railWay){
 		this.railWay = railWay;
 	}
 	
+	/**
+	 * Sets the maximum speed for this canton, following the environment configuration
+	 * 
+	 * @return
+	 * 		(Integer) The maximum speed for this canton
+	 * 
+	 * @see ucp.greves.model.configuration.ConfigurationEnvironment
+	 */
 	private static int setSpeedMax() {
 		int s = SPEED_MAX_DEFAULT;
 		try {
@@ -306,6 +505,14 @@ public class Canton extends Observable {
 		return s;
 	}
 
+	/**
+	 * Sets the current speed for this canton, following the environment configuration
+	 * 
+	 * @return
+	 * 		(Integer) The current speed for this canton
+	 * 
+	 * @see ucp.greves.model.configuration.ConfigurationEnvironment
+	 */
 	private static int setSpeedStation() {
 		int s = SPEED_STATION_DEFAULT;
 		try {
@@ -322,7 +529,15 @@ public class Canton extends Observable {
 		}
 		return s;
 	}
-	
+
+	/**
+	 * Sets the speed for this canton when he is on slow down, following the environment configuration
+	 * 
+	 * @return
+	 * 		(Integer) The slow down speed for this canton
+	 * 
+	 * @see ucp.greves.model.configuration.ConfigurationEnvironment
+	 */
 	private static int setSpeedSlowDown() {
 		int s = SPEED_SLOWDOWN_DEFAULT;
 		try {
@@ -340,6 +555,14 @@ public class Canton extends Observable {
 		return s;
 	}
 
+	/**
+	 * Sets the speed of the train when arriving to the station, following the environment configuration
+	 * 
+	 * @return
+	 * 		(Integer) The speed of the train when arriving to the station
+	 * 
+	 * @see ucp.greves.model.configuration.ConfigurationEnvironment
+	 */
 	private static int setDistanceToStation() {
 		int d = DISTANCE_TO_STATION_DEFAULT;
 		try {

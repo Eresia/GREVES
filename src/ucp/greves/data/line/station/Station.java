@@ -20,6 +20,10 @@ import ucp.greves.model.schedule.Clock;
 import ucp.greves.model.simulation.SimulationInfo;
 import ucp.greves.model.train.ModifiedTrainInformation;
 
+/**
+ * The station is defined by its name & the id of its canton
+ *
+ */
 public class Station {
 	
 	private final static int WAIT_TIME_DEFAULT = 20;
@@ -31,6 +35,21 @@ public class Station {
 	private HashMap<Integer, Integer> nextStation;
 	private HashMap<Integer, TimeDecorator> nextTrains;
 	
+	/**
+	 * Creates a station and registers it
+	 * 
+	 * @param canton
+	 * 		(Integer) The ID of the {@link Canton} where the station is
+	 * @param name
+	 * 		(String) The name of the station
+	 * @param waitTime
+	 * 		(Integer) The time for the train to wait in the station
+	 * 
+	 * @throws CantonHasAlreadyStationException is there is already a station in this canton
+	 * @throws CantonNotExistException if the canton doesn't exist
+	 * 
+	 * @see Line#register_station
+	 */
 	public Station(int canton, String name, int waitTime) throws CantonHasAlreadyStationException, CantonNotExistException{
 		this.name = name;
 		Line.register_station(canton, this);
@@ -40,20 +59,53 @@ public class Station {
 		nextTrains = new HashMap<Integer, TimeDecorator>();
 	}
 	
+	/**
+	 * Creates a station
+	 * 
+	 * @param canton
+	 * 		(Integer) The ID of the {@link Canton}
+	 * @param name
+	 * 		(String) The name of the station
+	 * 
+	 * @throws CantonHasAlreadyStationException is there is already a station in this canton
+	 * @throws CantonNotExistException if the canton doesn't exist
+	 */
 	protected Station(int canton, String name) throws CantonHasAlreadyStationException, CantonNotExistException{
 		this(canton, name, -1);
 	}
 	
+	/**
+	 * Creates a station
+	 * 
+	 * @param name
+	 * 		(String) The name of the station
+	 */
 	protected Station(String name){
 		this.name = name;
 		this.waitTime = -1;
 		canton = -1;
 	}
 	
+	/**
+	 * Adds the next station for the train to stop to
+	 * 
+	 * @param railWay
+	 * 		(Integer) The id of the {@link ucp.greves.data.line.railWay.RailWay} where the next station is 
+	 * @param station
+	 * 		(Integer) The id of the {@link Canton} where the next station is
+	 */
 	public void addNextStation(int railWay, int station){
 		nextStation.put(railWay, station);
 	}
 	
+	/**
+	 * Changes the time when the next train arrives
+	 * 
+	 * @param train
+	 * 		(Train) The next train to arrive
+	 * @param time
+	 * 		(Time) The time of the next train to arrive
+	 */
 	private void changeTimeOfNextTrain(Train train, Time time){
 		RoadMap map = train.getRoadMap();
 		nextTrains.put(train.getTrainID(), time);
@@ -77,6 +129,12 @@ public class Station {
 		}
 	}
 	
+	/**
+	 * Sets the time of arrival of the next trains to undefined
+	 * 
+	 * @param train
+	 * 		(Train) The first train to change its ETA to undefined
+	 */
 	private void undefinedTimeOfNextTrain(Train train){
 		RoadMap map = train.getRoadMap();
 		nextTrains.put(train.getTrainID(), new UndefinedTime());
@@ -88,6 +146,15 @@ public class Station {
 		}
 	}
 	
+	/**
+	 * Gets the time to arrive to the next station
+	 * 
+	 * @param rw
+	 * 		(Integer) The current railway
+	 * @return 
+	 * 		(Time) The time to arrive to the next station
+	 * @throws CantonIsBlockedException if the canton is blocked
+	 */
 	private Time timeToNextStation(int rw) throws CantonIsBlockedException{
 		Time time;
 		int nbFrame = 0;
@@ -118,6 +185,12 @@ public class Station {
 		return time;
 	}
 	
+	/**
+	 * Makes a train enter the station
+	 * 
+	 * @param train
+	 * 		(Train) The train which enters the station
+	 */
 	public void enter(Train train){
 		try {
 			changeTimeOfNextTrain(train, new Time());
@@ -128,28 +201,52 @@ public class Station {
 		}
 	}
 	
+	/**
+	 * @return (HashMap<Integer, TimeDecorator>) Returns the next trains to arrive at the station
+	 */
 	public HashMap<Integer, TimeDecorator> getNextTrains(){
 		return nextTrains;
 	}
 	
+	/**
+	 * @return (String) Returns the name of the station
+	 */
 	public String getName(){
 		return name;
 	}
 	
+	/**
+	 * @return (Integer) Returns the time for the train to wait at the station
+	 */
 	public int getWaitTime(){
 		return waitTime;
 	}
 	
+	/**
+	 * Calls {@link Station#waitInStation(int)} with (waitTime)
+	 * @throws InterruptedException if the wait is interrupted
+	 */
 	public void waitInStation() throws InterruptedException{
 		waitInStation(waitTime);
 	}
 	
+	/**
+	 * Makes the train wait in the station
+	 * 
+	 * @param specialTime
+	 * 		(Integer) The time to wait
+	 * @throws InterruptedException if the wait is interrupted
+	 */
 	public void waitInStation(int specialTime) throws InterruptedException{
 		for(int i = 0; i < specialTime; i++){
 			SimulationInfo.waitFrameTime();
 		}
 	}
 	
+	/**
+	 * Sets the default wait time
+	 * @return (Integer) The default wait time
+	 */
 	private static int set_wait_time_default() {
 		int w = WAIT_TIME_DEFAULT;
 		try {
@@ -167,6 +264,9 @@ public class Station {
 		return w;
 	}
 	
+	/**
+	 * @return (Integer) The wait time defined if {@link ucp.greves.model.configuration.ConfigurationEnvironment}
+	 */
 	public static int getWaitTimeConfig(){
 		return WAIT_TIME_CONFIG;
 	}

@@ -92,6 +92,9 @@ public class RoadMap {
 		return stations.get(stations.size()-1);
 	}
 	
+	/**
+	 * @return (String) Returns the name of the roadmap
+	 */
 	public String getName(){
 		return name;
 	}
