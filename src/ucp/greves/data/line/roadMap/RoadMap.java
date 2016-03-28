@@ -88,6 +88,10 @@ public class RoadMap {
 		return railwaysIDs.get(railwaysIDs.size() - 1);
 	}
 	
+	public Integer getLastStation(){
+		return stations.get(stations.size()-1);
+	}
+	
 	public String getName(){
 		return name;
 	}

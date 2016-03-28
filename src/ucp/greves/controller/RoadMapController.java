@@ -16,8 +16,7 @@ public class RoadMapController {
 		return Line.getRoadMaps().get(name);
 	}
 	
-	public static int getLastStation(String roadmap){
-		ArrayList<Integer> stations = Line.getRoadMaps().get(roadmap).getStations();
-		return stations.get(stations.size()-1);
+	public static int getLastStation(String roadMap){
+		return Line.getRoadMaps().get(roadMap).getLastStation();
 	}
 }
