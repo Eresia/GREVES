@@ -52,13 +52,13 @@ public class addTrainView extends Application{
 		Scene scene = new Scene(root,300,50);
 		primaryStage.setTitle("G.R.E.V.E.S. - Ajouter un train");
 		
-		setComponents(root);
+		setComponents(root, primaryStage);
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 	
-	public void setComponents(Parent root){
+	public void setComponents(Parent root, Stage primaryStage){
 		
 		Button buttonAdd = (Button) root.lookup("#AddTrain");
 		buttonAdd.setOnAction(new EventHandler<ActionEvent>() {
@@ -82,6 +82,7 @@ public class addTrainView extends Application{
 						e.printStackTrace();
 					}
 				}
+				primaryStage.hide();
 			}
 		});
 		
