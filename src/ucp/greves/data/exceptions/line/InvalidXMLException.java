@@ -1,4 +1,4 @@
-package ucp.greves.model.exceptions.line;
+package ucp.greves.data.exceptions.line;
 
 public class InvalidXMLException extends Exception {
 	public InvalidXMLException(){

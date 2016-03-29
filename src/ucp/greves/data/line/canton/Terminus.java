@@ -2,10 +2,10 @@ package ucp.greves.data.line.canton;
 
 import java.util.ArrayList;
 
+import ucp.greves.data.exceptions.canton.TerminusException;
+import ucp.greves.data.exceptions.railway.RailWayNotDefinedException;
 import ucp.greves.data.line.railWay.RailWay;
 import ucp.greves.data.line.roadMap.RoadMap;
-import ucp.greves.model.exceptions.canton.TerminusException;
-import ucp.greves.model.exceptions.railway.RailWayNotDefinedException;
 import ucp.greves.model.line.Line;
 
 /**

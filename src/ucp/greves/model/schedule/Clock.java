@@ -1,9 +1,9 @@
 package ucp.greves.model.schedule;
 
+import ucp.greves.data.exceptions.PropertyNotFoundException;
 import ucp.greves.data.time.Time;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
-import ucp.greves.model.exceptions.PropertyNotFoundException;
 import ucp.greves.model.simulation.SimulationInfo;
 
 public class Clock extends Thread{

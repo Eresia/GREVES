@@ -1,10 +1,10 @@
 package test;
+import ucp.greves.data.exceptions.canton.CantonHasAlreadyStationException;
+import ucp.greves.data.exceptions.canton.CantonNotExistException;
+import ucp.greves.data.exceptions.line.InvalidXMLException;
+import ucp.greves.data.exceptions.railway.DoubledRailwayException;
 import ucp.greves.model.*;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
-import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
-import ucp.greves.model.exceptions.canton.CantonNotExistException;
-import ucp.greves.model.exceptions.line.InvalidXMLException;
-import ucp.greves.model.exceptions.railway.DoubledRailwayException;
 
 import static org.junit.Assert.*;
 

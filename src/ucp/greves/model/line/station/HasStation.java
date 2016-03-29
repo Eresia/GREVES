@@ -1,8 +1,8 @@
 package ucp.greves.model.line.station;
 
+import ucp.greves.data.exceptions.station.StationNotFoundException;
 import ucp.greves.data.line.station.Station;
 import ucp.greves.data.train.Train;
-import ucp.greves.model.exceptions.station.StationNotFoundException;
 
 /**
  * HasStation (following {@link StationDecorator}) if there is a station

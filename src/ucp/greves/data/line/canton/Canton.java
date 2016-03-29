@@ -2,17 +2,17 @@ package ucp.greves.data.line.canton;
 
 import java.util.Observable;
 
+import ucp.greves.data.exceptions.PropertyNotFoundException;
+import ucp.greves.data.exceptions.canton.CantonIsBlockedException;
+import ucp.greves.data.exceptions.canton.CantonIsEmptyException;
+import ucp.greves.data.exceptions.canton.TerminusException;
+import ucp.greves.data.exceptions.railway.RailWayNotDefinedException;
+import ucp.greves.data.exceptions.station.StationNotFoundException;
 import ucp.greves.data.line.roadMap.RoadMap;
 import ucp.greves.data.line.station.Station;
 import ucp.greves.data.train.Train;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
-import ucp.greves.model.exceptions.PropertyNotFoundException;
-import ucp.greves.model.exceptions.canton.CantonIsBlockedException;
-import ucp.greves.model.exceptions.canton.CantonIsEmptyException;
-import ucp.greves.model.exceptions.canton.TerminusException;
-import ucp.greves.model.exceptions.railway.RailWayNotDefinedException;
-import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.line.station.HasNotStation;
 import ucp.greves.model.line.station.HasStation;

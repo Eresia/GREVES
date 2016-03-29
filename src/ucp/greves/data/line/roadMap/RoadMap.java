@@ -2,12 +2,12 @@ package ucp.greves.data.line.roadMap;
 
 import java.util.ArrayList;
 
+import ucp.greves.data.exceptions.canton.TerminusException;
+import ucp.greves.data.exceptions.railway.DoubledRailwayException;
+import ucp.greves.data.exceptions.roadmap.RoadMapAlreadyExistException;
+import ucp.greves.data.exceptions.station.StationNotFoundException;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.station.Station;
-import ucp.greves.model.exceptions.canton.TerminusException;
-import ucp.greves.model.exceptions.railway.DoubledRailwayException;
-import ucp.greves.model.exceptions.roadmap.RoadMapAlreadyExistException;
-import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
 
 public class RoadMap {

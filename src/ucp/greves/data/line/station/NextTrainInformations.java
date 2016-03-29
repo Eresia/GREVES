@@ -2,9 +2,9 @@ package ucp.greves.data.line.station;
 
 import ucp.greves.controller.StationController;
 import ucp.greves.controller.TrainController;
+import ucp.greves.data.exceptions.station.StationNotFoundException;
 import ucp.greves.data.time.TimeDecorator;
 import ucp.greves.data.train.Train;
-import ucp.greves.model.exceptions.station.StationNotFoundException;
 
 public class NextTrainInformations {
 	

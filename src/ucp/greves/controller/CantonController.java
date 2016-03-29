@@ -1,10 +1,10 @@
 package ucp.greves.controller;
 import java.util.ArrayList;
 
+import ucp.greves.data.exceptions.canton.CantonNotExistException;
+import ucp.greves.data.exceptions.canton.TerminusException;
+import ucp.greves.data.exceptions.railway.RailWayNotExistException;
 import ucp.greves.data.line.canton.Canton;
-import ucp.greves.model.exceptions.canton.CantonNotExistException;
-import ucp.greves.model.exceptions.canton.TerminusException;
-import ucp.greves.model.exceptions.railway.RailWayNotExistException;
 import ucp.greves.model.line.Line;
 public class CantonController {
 	

@@ -10,11 +10,12 @@ import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 
 import test.model.line.canton.CantonTest;
 import ucp.greves.controller.CantonController;
+import ucp.greves.data.exceptions.canton.CantonIsEmptyException;
+import ucp.greves.data.exceptions.station.StationNotFoundException;
+import ucp.greves.data.exceptions.train.TrainIsNotInThisCanton;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.station.Station;
 import ucp.greves.data.train.Train;
-import ucp.greves.model.exceptions.canton.CantonIsEmptyException;
-import ucp.greves.model.exceptions.station.StationNotFoundException;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -121,7 +122,7 @@ public class CantonView extends Parent implements Observer {
 			} else {
 				try {
 					this.innerTrain = c.getOccupyingTrain();
-					int trainPositionOnCanton = this.innerTrain.positionInCanton();
+					int trainPositionOnCanton = this.innerTrain.positionInCanton(c);
 					this.innerTrain.addObserver(this);
 					trainPosition.getPoints().setAll(
 							(double) posXA.get(),
@@ -152,6 +153,8 @@ public class CantonView extends Parent implements Observer {
 
 					throw new RuntimeErrorException(new Error(
 							"Appel a un train inexistant"));
+				} catch (TrainIsNotInThisCanton e) {
+					//e.printStackTrace();
 				}
 
 				lineofCanton.setStroke(Color.RED);

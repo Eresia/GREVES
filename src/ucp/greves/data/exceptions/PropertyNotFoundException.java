@@ -1,4 +1,4 @@
-package ucp.greves.model.exceptions;
+package ucp.greves.data.exceptions;
 
 public class PropertyNotFoundException extends Exception{
 

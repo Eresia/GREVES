@@ -1,4 +1,4 @@
-package ucp.greves.model.exceptions.canton;
+package ucp.greves.data.exceptions.canton;
 /**
  * Exception throwed when we try to get the train on an empty Canton
  * 

@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/serverIp"
-        android:text="192.168.1.1"
+        android:text="78.118.178.24"
         android:layout_above="@+id/connect"
         android:layout_alignLeft="@+id/connect"
         android:layout_alignStart="@+id/connect"

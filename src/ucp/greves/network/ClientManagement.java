@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 import ucp.greves.controller.StationController;
 import ucp.greves.controller.TrainController;
+import ucp.greves.data.exceptions.time.UndefinedTimeException;
 import ucp.greves.data.line.station.GlobalStation;
 import ucp.greves.data.line.station.NextTrainInformations;
 import ucp.greves.data.line.station.Station;
 import ucp.greves.data.train.Train;
-import ucp.greves.model.exceptions.time.UndefinedTimeException;
 import ucp.greves.model.simulation.SimulationInfo;
 import ucp.greves.network.exception.BadNetworkInformationException;
 

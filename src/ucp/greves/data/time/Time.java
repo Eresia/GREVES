@@ -2,7 +2,7 @@ package ucp.greves.data.time;
 
 import java.util.Observable;
 
-import ucp.greves.model.exceptions.time.UndefinedTimeException;
+import ucp.greves.data.exceptions.time.UndefinedTimeException;
 
 /**
  * Time class used for the schedule of arrivals of trains in stations

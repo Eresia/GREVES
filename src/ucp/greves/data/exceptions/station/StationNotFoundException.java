@@ -1,4 +1,4 @@
-package ucp.greves.model.exceptions.station;
+package ucp.greves.data.exceptions.station;
 
 public class StationNotFoundException extends Exception{
 	

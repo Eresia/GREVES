@@ -30,16 +30,16 @@ import ucp.greves.controller.CantonController;
 import ucp.greves.controller.GodModeController;
 import ucp.greves.controller.StationController;
 import ucp.greves.controller.TrainController;
+import ucp.greves.data.exceptions.BadControlInformationException;
+import ucp.greves.data.exceptions.canton.CantonNotExistException;
+import ucp.greves.data.exceptions.railway.RailWayNotExistException;
+import ucp.greves.data.exceptions.roadmap.BadRoadMapException;
+import ucp.greves.data.exceptions.train.TrainNotExistException;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.station.GlobalStation;
 import ucp.greves.data.line.station.Station;
 import ucp.greves.data.train.Train;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
-import ucp.greves.model.exceptions.BadControlInformationException;
-import ucp.greves.model.exceptions.canton.CantonNotExistException;
-import ucp.greves.model.exceptions.railway.RailWayNotExistException;
-import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
-import ucp.greves.model.exceptions.train.TrainNotExistException;
 import ucp.greves.model.line.Line;
 
 public class GlobalView extends Application{

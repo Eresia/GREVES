@@ -1,4 +1,4 @@
-package ucp.greves.model.exceptions.roadmap;
+package ucp.greves.data.exceptions.roadmap;
 
 public class BadRoadMapException extends Exception {
 

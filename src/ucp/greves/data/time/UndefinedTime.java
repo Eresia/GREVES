@@ -1,6 +1,6 @@
 package ucp.greves.data.time;
 
-import ucp.greves.model.exceptions.time.UndefinedTimeException;
+import ucp.greves.data.exceptions.time.UndefinedTimeException;
 
 /**
  * When the Time is undefined

@@ -1,8 +1,8 @@
 package ucp.greves.model.simulation;
 
+import ucp.greves.data.exceptions.PropertyNotFoundException;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
-import ucp.greves.model.exceptions.PropertyNotFoundException;
 
 public class SimulationInfo {
 

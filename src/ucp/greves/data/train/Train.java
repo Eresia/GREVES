@@ -3,11 +3,12 @@ package ucp.greves.data.train;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import ucp.greves.data.exceptions.canton.TerminusException;
+import ucp.greves.data.exceptions.station.StationNotFoundException;
+import ucp.greves.data.exceptions.train.TrainIsNotInThisCanton;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.roadMap.RoadMap;
 import ucp.greves.data.line.station.DepositeryStation;
-import ucp.greves.model.exceptions.canton.TerminusException;
-import ucp.greves.model.exceptions.station.StationNotFoundException;
 import ucp.greves.model.line.Line;
 import ucp.greves.model.simulation.SimulationInfo;
 import ucp.greves.model.train.ModifiedTrainInformation;
@@ -251,6 +252,19 @@ public class Train extends Observable implements Runnable {
 	 * @return (Integer) Returns the position of the train in the canton
 	 */
 	public int positionInCanton() {
+		return currentCanton.getStartPoint() - position;
+	}
+	
+	/**
+	 * @param canton 
+	 * 				(Canton) Verify if the train is in this canton
+	 * @return (Integer) Returns the position of the train in the canton
+	 */
+	public int positionInCanton(Canton canton) throws TrainIsNotInThisCanton{
+		int result = canton.getStartPoint() - position;
+		if((result < 0) || (result > canton.getLength())){
+			throw new TrainIsNotInThisCanton() ;
+		}
 		return currentCanton.getStartPoint() - position;
 	}
 	

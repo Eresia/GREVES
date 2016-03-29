@@ -2,12 +2,12 @@ package ucp.greves.temp;
 
 import java.util.HashMap;
 
+import ucp.greves.data.exceptions.canton.ManyTrainInSameCantonException;
+import ucp.greves.data.exceptions.canton.TerminusException;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.canton.Terminus;
 import ucp.greves.data.line.railWay.RailWay;
 import ucp.greves.data.train.Train;
-import ucp.greves.model.exceptions.canton.ManyTrainInSameCantonException;
-import ucp.greves.model.exceptions.canton.TerminusException;
 import ucp.greves.model.line.Line;
 
 public class PrintConsole extends Thread{

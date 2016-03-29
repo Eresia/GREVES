@@ -1,4 +1,4 @@
-package ucp.greves.model.exceptions.time;
+package ucp.greves.data.exceptions.time;
 
 public class UndefinedTimeException extends Exception{
 	

@@ -1,4 +1,4 @@
-package ucp.greves.model.exceptions.canton;
+package ucp.greves.data.exceptions.canton;
 
 public class CantonHasAlreadyStationException extends Exception{
 

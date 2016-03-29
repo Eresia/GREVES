@@ -2,9 +2,9 @@ package ucp.greves.data.line.station;
 
 import java.util.ArrayList;
 
+import ucp.greves.data.exceptions.canton.CantonHasAlreadyStationException;
+import ucp.greves.data.exceptions.canton.CantonNotExistException;
 import ucp.greves.data.train.Train;
-import ucp.greves.model.exceptions.canton.CantonHasAlreadyStationException;
-import ucp.greves.model.exceptions.canton.CantonNotExistException;
 
 /**
  * DepositeryStation is a special station where trains are stocked

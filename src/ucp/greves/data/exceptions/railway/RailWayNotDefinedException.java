@@ -1,4 +1,4 @@
-package ucp.greves.model.exceptions.railway;
+package ucp.greves.data.exceptions.railway;
 
 public class RailWayNotDefinedException extends Exception{
 

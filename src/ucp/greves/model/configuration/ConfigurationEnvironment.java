@@ -2,7 +2,7 @@ package ucp.greves.model.configuration;
 
 import java.util.HashMap;
 
-import ucp.greves.model.exceptions.PropertyNotFoundException;
+import ucp.greves.data.exceptions.PropertyNotFoundException;
 /**
  * This class has for aim to
  * set the configuration of the environment.

@@ -1,4 +1,4 @@
-package ucp.greves.model.exceptions.train;
+package ucp.greves.data.exceptions.train;
 
 public class TrainNotExistException extends Exception{
 	

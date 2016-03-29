@@ -22,12 +22,12 @@ import javafx.stage.Stage;
 import ucp.greves.controller.ScheduleController;
 import ucp.greves.controller.StationController;
 import ucp.greves.controller.TrainController;
+import ucp.greves.data.exceptions.station.StationNotFoundException;
 import ucp.greves.data.line.station.GlobalStation;
 import ucp.greves.data.line.station.NextTrainInformations;
 import ucp.greves.data.line.station.Station;
 import ucp.greves.data.time.Time;
 import ucp.greves.data.train.Train;
-import ucp.greves.model.exceptions.station.StationNotFoundException;
 
 public class StationView extends Application implements Observer{
 	

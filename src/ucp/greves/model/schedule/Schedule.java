@@ -3,10 +3,10 @@ package ucp.greves.model.schedule;
 import java.util.ArrayList;
 
 import ucp.greves.controller.TrainController;
+import ucp.greves.data.exceptions.BadControlInformationException;
+import ucp.greves.data.exceptions.railway.RailWayNotExistException;
+import ucp.greves.data.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.data.time.Time;
-import ucp.greves.model.exceptions.BadControlInformationException;
-import ucp.greves.model.exceptions.railway.RailWayNotExistException;
-import ucp.greves.model.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.model.simulation.SimulationInfo;
 
 /**
