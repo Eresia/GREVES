@@ -1,11 +1,16 @@
 package ucp.greves.data.line.station;
 
+import ucp.greves.controller.StationController;
+import ucp.greves.controller.TrainController;
 import ucp.greves.data.time.TimeDecorator;
+import ucp.greves.data.train.Train;
+import ucp.greves.model.exceptions.station.StationNotFoundException;
 
 public class NextTrainInformations {
 	
 	private final int id;
 	private final TimeDecorator time;
+	private String destination;
 	
 	public NextTrainInformations(int id, TimeDecorator time){
 		this.id = id;
@@ -18,6 +23,18 @@ public class NextTrainInformations {
 	
 	public TimeDecorator getTime(){
 		return time;
+	}
+	
+	public String getDestination(){
+		try {
+			int lastIndex =TrainController.getRunningTrainById(id).nextStations().size() -1;
+			int idStation = TrainController.getRunningTrainById(id).nextStations().get(lastIndex);
+			destination = StationController.getStationByCantonId(idStation).getName();
+		} catch (StationNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return  destination;
 	}
 
 }

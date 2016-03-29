@@ -462,6 +462,7 @@ public class Time extends Observable implements TimeDecorator{
 	}
 	
 	public void updateTime(){
+		this.setChanged();
 		this.notifyObservers();
 	}
 
