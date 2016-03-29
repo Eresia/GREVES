@@ -100,7 +100,7 @@ public class StationView extends Application implements Observer{
 			nextTrainListOne.add(currentTrain);
 		}
 		nextTrainFirstTable.setItems(nextTrainListOne);
-		nextTrainFirstTable.getItems().get(0);
+		//nextTrainFirstTable.getItems().get(0);
 		
 		//first TableView of next stations
 		fisrtNextStation = (TableView<Station>) root.lookup("#NextStationFirstTable");
