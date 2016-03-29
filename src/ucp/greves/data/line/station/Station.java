@@ -169,7 +169,7 @@ public class Station {
 			int position = canton.getStartPoint() - canton.getStationPosition();
 		
 			return GodModeController.timeToNextStation(this.canton, position, nextStation, rw);
-		} catch (CantonIsBlockedException | StationNotFoundException | CantonNotExistException e) {
+		} catch (StationNotFoundException | CantonNotExistException e) {
 			e.printStackTrace();
 			return new Time();
 		}
