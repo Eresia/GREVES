@@ -119,7 +119,7 @@ public class Station {
 				Time nextTime = time.clone();
 				if(map.cross(canton)){
 					Time wait = new Time();
-					wait.addSeconds(waitTime*Clock.nbSecondByFrame());
+					wait.addSeconds(waitTime);
 					nextTime.addTime(wait);
 				}
 				try{
