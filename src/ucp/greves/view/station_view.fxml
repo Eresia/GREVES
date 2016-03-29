@@ -23,7 +23,6 @@
          <children>
             <TableView fx:id="NextTrainFirstTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
               <columns>
-                <TableColumn prefWidth="40.0" text="Ligne" />
                 <TableColumn prefWidth="43.0" text="Nom" />
                   <TableColumn prefWidth="132.0" text="Destination" />
                   <TableColumn prefWidth="123.0" text="Horaire" />
@@ -50,7 +49,6 @@
             </BorderPane>
             <TableView fx:id="NextTrainSecondTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
                <columns>
-                  <TableColumn prefWidth="40.0" text="Ligne" />
                   <TableColumn prefWidth="43.0" text="Nom" />
                   <TableColumn prefWidth="132.0" text="Destination" />
                   <TableColumn prefWidth="123.0" text="Horaire" />
@@ -113,7 +111,7 @@
             </GridPane>
          </children>
       </GridPane>
-      <MenuBar>
+      <MenuBar fx:id="menuStation">
         <menus>
           <Menu mnemonicParsing="false" text="Menu">
             <items>

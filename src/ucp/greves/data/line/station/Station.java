@@ -298,6 +298,10 @@ public class Station {
 	 */
 	public static int getWaitTimeConfig(){
 		return WAIT_TIME_CONFIG;
+	}	
+	
+	public int getCanton(){
+		return canton;
 	}
 
 }
