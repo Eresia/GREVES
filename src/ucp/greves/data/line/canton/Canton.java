@@ -223,7 +223,7 @@ public class Canton extends Observable {
 	 */
 	public int simulateEnter(int position) throws CantonIsBlockedException{
 		int newPosition = position;
-		if (occupyingTrain != null || (this.getState() == CantonState.BLOCKED)) {
+		if (this.getState() == CantonState.BLOCKED) {
 			throw new CantonIsBlockedException();
 		}
 
