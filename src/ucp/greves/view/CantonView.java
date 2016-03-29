@@ -110,10 +110,11 @@ public class CantonView extends Parent implements Observer {
 		if (o instanceof Canton) {
 
 			Canton c = (Canton) o;
+			boolean isFree = c.isFree();
 			
 			actionOnFree();
 			
-			if (!c.isFree()) {
+			if (!isFree) {
 				try {
 					this.innerTrain = c.getOccupyingTrain();
 					String trainId = String.valueOf(innerTrain.getTrainID());

@@ -345,12 +345,12 @@ public class Canton extends Observable {
 	 */
 	public synchronized void exit() {
 		occupyingTrain = null;
-		notify();
 		if (ConfigurationEnvironment.inDebug()) {
 			System.err.println("Canton freed !");
 		}
 		this.setChanged();
 		this.notifyObservers();
+		notify();
 	}
 
 	/**
