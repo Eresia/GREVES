@@ -20,6 +20,7 @@ import ucp.greves.controller.ClockController;
 import ucp.greves.controller.StationController;
 import ucp.greves.controller.TrainController;
 import ucp.greves.data.exceptions.station.StationNotFoundException;
+import ucp.greves.data.exceptions.train.TrainNotExistException;
 import ucp.greves.data.line.station.GlobalStation;
 import ucp.greves.data.line.station.NextTrainInformations;
 import ucp.greves.data.line.station.Station;
@@ -147,7 +148,7 @@ public class StationView extends Application implements Observer{
 					for(Integer currentStaion : TrainController.getRunningTrainById(train.getId()).nextStations()){
 						stationListOne.add(StationController.getStationByCantonId(currentStaion));
 					}
-				} catch (StationNotFoundException e) {
+				} catch (StationNotFoundException | TrainNotExistException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -173,6 +174,9 @@ public class StationView extends Application implements Observer{
 						stationListTwo.add(StationController.getStationByCantonId(currentStaion));
 					}
 				} catch (StationNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (TrainNotExistException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import ucp.greves.controller.StationController;
 import ucp.greves.controller.TrainController;
 import ucp.greves.data.exceptions.time.UndefinedTimeException;
+import ucp.greves.data.exceptions.train.TrainNotExistException;
 import ucp.greves.data.line.station.GlobalStation;
 import ucp.greves.data.line.station.NextTrainInformations;
 import ucp.greves.data.line.station.Station;
@@ -45,7 +46,7 @@ public class ClientManagement extends Thread{
 						throw new BadNetworkInformationException("No message");
 					}
 					String data[] = message.split(":");
-					//System.out.println("Message envoyé : " + message);
+					//System.out.println("Message envoyï¿½ : " + message);
 					
 					switch(data[0]){
 						case "list":
@@ -88,6 +89,9 @@ public class ClientManagement extends Thread{
 				e.printStackTrace();
 			} catch(AsynchronousCloseException e){
 				
+			} catch (TrainNotExistException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 			
 		} catch (IOException | ClassNotFoundException e) {

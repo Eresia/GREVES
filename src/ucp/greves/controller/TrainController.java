@@ -19,16 +19,25 @@ public class TrainController {
 		return new ArrayList<Integer>(Line.getTrains().keySet());
 	}
 	
-	public static Train getRunningTrainById(int id){
-		return Line.getTrains().get(id);
+	public static Train getRunningTrainById(int id) throws TrainNotExistException{
+		Train  t;
+		if(( t  = Line.getTrains().get(id)) == null){
+			throw new TrainNotExistException();
+		}
+		return t;
 	}
 	
 	public static ArrayList<Integer> integerListOfArrivedTrainsID(){
 		return new ArrayList<Integer>(Line.getArrivedTrains().keySet());
 	}
 	
-	public static Train getArrivedTrainById(int id){
-		return Line.getArrivedTrains().get(id);
+	public static Train getArrivedTrainById(int id) throws TrainNotExistException{
+		Train  t;
+		if(( t  = Line.getArrivedTrains().get(id)) == null){
+			throw new TrainNotExistException();
+		}
+		return t;
+
 	}
 	
 	public static void launchTrain(String road)	throws BadControlInformationException, BadRoadMapException, RailWayNotExistException {

@@ -232,7 +232,13 @@ public class GlobalView extends Application{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				new DriverView();
+				int trainId ;
+				
+				trainId = trainIDListComboBox.getSelectionModel().getSelectedItem();
+			 if(trainId != 0){
+				 new DriverView(trainId); 
+			 }
+				
 			}
 		});
 		
