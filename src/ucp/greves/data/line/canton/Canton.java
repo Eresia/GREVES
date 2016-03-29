@@ -184,6 +184,10 @@ public class Canton extends Observable {
 			}
 		}
 		
+		if(state == CantonState.BLOCKED){
+			train.setPosition(getStartPoint() - 1);
+		}
+		
 		while(state == CantonState.BLOCKED && !train.hasArrived()){
 			try {
 				SimulationInfo.waitFrameTime();
@@ -192,17 +196,14 @@ public class Canton extends Observable {
 			}
 		}
 		
-		int trainPosition = train.getPosition();
-		if (trainPosition < 0) {
-			train.setPosition(trainPosition + getStartPoint());
-		}
+		int diffPosition = getStartPoint() - train.getPosition();
+		train.setPosition(getStartPoint(), false);
 
 		if (ConfigurationEnvironment.inDebug()) {
 			System.err.println("Canton changed successfully");
 		}
 		Canton oldCanton = train.getCurrentCanton();
 		train.setCurrentCanton(this);
-		train.updatePosition();
 
 		oldCanton.exit();
 		occupyingTrain = train;
@@ -246,14 +247,26 @@ public class Canton extends Observable {
 	 * @see ucp.greves.model.train.ModifiedTrainInformation
 	 */
 	public ModifiedTrainInformation updatedTrainPosition(int position, boolean crossStation){
+		return updatedTrainPosition(position, crossStation, getTrainSpeed(position));
+	}
+	
+	/**
+	 * 
+	 * @param position
+	 * @param crossStation
+	 * @param int distance
+	 * @return
+	 * 
+	 * @see ucp.greves.model.train.ModifiedTrainInformation
+	 */
+	public ModifiedTrainInformation updatedTrainPosition(int position, boolean crossStation, int distance){
 		int startPoint = getStartPoint();
 		int positionOnCanton = startPoint - position;
-		int speed = getTrainSpeed(position);
-		ModifiedTrainInformation informations = new ModifiedTrainInformation(speed);
+		ModifiedTrainInformation informations = new ModifiedTrainInformation(distance);
 		informations.setStationCrossed(false);
 		
 		if (crossStation && hasStation()) {
-			if (positionOnCanton > positionStation && (positionOnCanton - speed) <= positionStation) {
+			if (positionOnCanton > positionStation && (positionOnCanton - distance) <= positionStation) {
 				informations.setUpdatedPosition(positionOnCanton - positionStation);
 				informations.setStationCrossed(true);
 			}

@@ -96,14 +96,29 @@ public class Train extends Observable implements Runnable {
 	public int getPosition() {
 		return position;
 	}
-
+	
 	/**
 	 * Sets the train at a specific position on the railway
 	 * @param position
 	 * 		(Integer) The new position
 	 */
 	public void setPosition(int position) {
+		setPosition(position, true);
+	}
+
+	/**
+	 * Sets the train at a specific position on the railway
+	 * @param position
+	 * 		(Integer) The new position
+	 * @param notify
+	 * 		(Boolean) if train has to notify observers
+	 */
+	public void setPosition(int position, boolean notify) {
 		this.position = position;
+		if(notify){
+			this.setChanged();
+			this.notifyObservers();
+		}
 	}
 
 	/**
@@ -239,6 +254,32 @@ public class Train extends Observable implements Runnable {
 		else{
 			informations = currentCanton.updatedTrainPosition(position,	false);
 		}
+
+		updatePositionProcess(informations);
+	}
+	
+	/**
+	 * Updates the position of the train with a specific distance
+	 * @param distance
+	 * 				(Integer) The distance traveled
+	 */
+	public void updatePosition(int distance) {
+		ModifiedTrainInformation informations;
+		if(currentCanton.hasStation()){
+			informations = currentCanton.updatedTrainPosition(position,	roadMap.cross(currentCanton.getId()), distance);
+		}
+		else{
+			informations = currentCanton.updatedTrainPosition(position,	false, distance);
+		}
+		updatePositionProcess(informations);
+	}
+	
+	/**
+	 * Process of updatePosition function
+	 * @param informations
+	 * 					(ModifiedTrainInformation) informations of process
+	 */
+	private void updatePositionProcess(ModifiedTrainInformation informations){
 		position -= informations.getUpdatedPosition();
 		
 		if(informations.getStationCrossed()){
