@@ -251,7 +251,7 @@ public class Canton extends Observable {
 		ModifiedTrainInformation informations = new ModifiedTrainInformation(speed);
 		informations.setStationCrossed(false);
 		
-		if (crossStation) {
+		if (crossStation && hasStation()) {
 			if (positionOnCanton > positionStation && (positionOnCanton - speed) <= positionStation) {
 				informations.setUpdatedPosition(positionOnCanton - positionStation);
 				informations.setStationCrossed(true);
@@ -414,7 +414,7 @@ public class Canton extends Observable {
 	 * @return
 	 * 		(Integer) Returns the position of the Station in the canton
 	 */
-	public int getStationPosition(){
+	public int getStationPosition() throws StationNotFoundException{
 		return positionStation;
 	}
 

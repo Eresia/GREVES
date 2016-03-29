@@ -8,6 +8,7 @@ import ucp.greves.data.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.data.exceptions.canton.CantonIsBlockedException;
 import ucp.greves.data.exceptions.canton.CantonNotExistException;
 import ucp.greves.data.exceptions.canton.TerminusException;
+import ucp.greves.data.exceptions.station.StationNotFoundException;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.roadMap.RoadMap;
 import ucp.greves.data.time.Time;
@@ -161,9 +162,10 @@ public class Station {
 		int nbFrame = 0;
 		
 		Canton canton = Line.getCantons().get(this.canton);
-		int position = canton.getStartPoint() - canton.getStationPosition();
 		
 		try {
+			int position = canton.getStartPoint() - canton.getStationPosition();
+		
 			while(true){
 				if (position - canton.getTrainSpeed(position) <= canton.getEndPoint()) {
 					canton = canton.getNextCanton(rw);
@@ -177,7 +179,7 @@ public class Station {
 				}
 				position -= info.getUpdatedPosition();
 			}
-		} catch (TerminusException e) {
+		} catch (TerminusException | StationNotFoundException e) {
 			return new Time();
 		}
 		
