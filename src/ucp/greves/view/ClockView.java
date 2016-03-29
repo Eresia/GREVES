@@ -5,7 +5,7 @@ import java.util.Observer;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
-import ucp.greves.controller.ScheduleController;
+import ucp.greves.controller.ClockController;
 import ucp.greves.data.time.Time;
 
 public class ClockView implements Observer{
@@ -14,7 +14,7 @@ public class ClockView implements Observer{
 	
 	public ClockView(Label label) {
 		this.label = label;
-		ScheduleController.getCurrentTime().addObserver(this);
+		ClockController.getCurrentTime().addObserver(this);
 	}
 
 	@Override

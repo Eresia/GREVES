@@ -3,6 +3,7 @@ package ucp.greves.data.line.station;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import ucp.greves.controller.ClockController;
 import ucp.greves.data.exceptions.PropertyNotFoundException;
 import ucp.greves.data.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.data.exceptions.canton.CantonIsBlockedException;
@@ -269,7 +270,8 @@ public class Station {
 	 * @throws InterruptedException if the wait is interrupted
 	 */
 	public void waitInStation(int specialTime) throws InterruptedException{
-		for(int i = 0; i < specialTime; i++){
+		int nbFrame = ClockController.getNbFrame(specialTime);
+		for(int i = 0; i < nbFrame; i++){
 			SimulationInfo.waitFrameTime();
 		}
 	}

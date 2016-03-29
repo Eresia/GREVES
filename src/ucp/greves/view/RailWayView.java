@@ -41,7 +41,7 @@ public class RailWayView extends Parent  {
 		xpos.bind(startXpos);
 		ypos.bind(startYpos);
 		for(int c : railway.getIdsCantonsStart2End()){
-			CantonView cv = new CantonView(xpos, ypos,0.02, cantonController.getCantonById(c), cantonController);
+			CantonView cv = new CantonView(xpos, ypos,0.003, cantonController.getCantonById(c), cantonController);
 			this.Cantons.put(c, cv);
 			this.getChildren().add(cv);
 			 xpos = cv.getEndX();

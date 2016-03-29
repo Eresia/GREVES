@@ -3,23 +3,20 @@
  */
 package ucp.greves.view;
 
-import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.ResourceBundle;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import ucp.greves.controller.ScheduleController;
+import ucp.greves.controller.ClockController;
 import ucp.greves.controller.StationController;
 import ucp.greves.controller.TrainController;
 import ucp.greves.data.exceptions.station.StationNotFoundException;
@@ -27,7 +24,6 @@ import ucp.greves.data.line.station.GlobalStation;
 import ucp.greves.data.line.station.NextTrainInformations;
 import ucp.greves.data.line.station.Station;
 import ucp.greves.data.time.Time;
-import ucp.greves.data.train.Train;
 
 public class StationView extends Application implements Observer{
 	
@@ -53,7 +49,7 @@ public class StationView extends Application implements Observer{
 		firstStation = StationController.getStationByCantonId(station.getStations().get(0));
 		secondStation = StationController.getStationByCantonId(station.getStations().get(1));
 		Stage stage = new Stage();
-		ScheduleController.getCurrentTime().addObserver(this);
+		ClockController.getCurrentTime().addObserver(this);
 		try {
 			start(stage);
 		} catch (Exception e) {
