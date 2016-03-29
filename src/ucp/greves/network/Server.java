@@ -1,8 +1,8 @@
 package ucp.greves.network;
 
 import java.io.IOException;
+import java.net.BindException;
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
@@ -46,6 +46,9 @@ public class Server extends Thread{
 		    	cm.close();
 		    }
 			server.close();
+		} catch(BindException e){
+			System.err.println("Another server is already launch");
+			System.err.println("The serveur is stopping now");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
