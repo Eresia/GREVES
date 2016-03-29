@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import ucp.greves.controller.ClockController;
+import ucp.greves.controller.GodModeController;
 import ucp.greves.data.exceptions.PropertyNotFoundException;
 import ucp.greves.data.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.data.exceptions.canton.CantonIsBlockedException;
@@ -123,7 +124,7 @@ public class Station {
 					nextTime.addTime(wait);
 				}
 				try{
-					nextTime.addTime(timeToNextStation(rw));
+					nextTime.addTime(timeToNextStation(rw, nextStation.get(rw)));
 					next.changeTimeOfNextTrain(train, nextTime);
 				} catch(CantonIsBlockedException e){
 					next.undefinedTimeOfNextTrain(train);
@@ -158,7 +159,7 @@ public class Station {
 	 * 		(Time) The time to arrive to the next station
 	 * @throws CantonIsBlockedException if the canton is blocked
 	 */
-	private Time timeToNextStation(int rw) throws CantonIsBlockedException{
+	private Time timeToNextStation(int rw, int nextStation) throws CantonIsBlockedException{
 		Time time;
 		int nbFrame = 0;
 		
@@ -167,26 +168,11 @@ public class Station {
 		try {
 			int position = canton.getStartPoint() - canton.getStationPosition();
 		
-			while(true){
-				if (position - canton.getTrainSpeed(position) <= canton.getEndPoint()) {
-					canton = canton.getNextCanton(rw);
-					position = canton.simulateEnter(position);
-				} 
-				ModifiedTrainInformation info = canton.updatedTrainPosition(position, true);
-				nbFrame++;
-				
-				if(info.getStationCrossed()){
-					break;
-				}
-				position -= info.getUpdatedPosition();
-			}
-		} catch (TerminusException | StationNotFoundException e) {
+			return GodModeController.timeToNextStation(this.canton, position, nextStation, rw);
+		} catch (CantonIsBlockedException | StationNotFoundException | CantonNotExistException e) {
+			e.printStackTrace();
 			return new Time();
 		}
-		
-		time = new Time(0, 0, Clock.nbSecondByFrame());
-		time.multTime(nbFrame);
-		return time;
 	}
 	
 	/**
