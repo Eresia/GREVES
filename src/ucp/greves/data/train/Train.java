@@ -299,12 +299,10 @@ public class Train extends Observable implements Runnable {
 
 	/**
 	 * @return (Integer) Returns the position of the train in the canton
+	 * @throws TrainIsNotInThisCanton 
 	 */
-	public int positionInCanton() throws TrainIsNotInACanton{
-		if(currentCanton == null){
-			throw new TrainIsNotInACanton();
-		}
-		return currentCanton.getStartPoint() - position;
+	public int positionInCanton() throws TrainIsNotInThisCanton{
+		return positionInCanton(currentCanton);
 	}
 	
 	/**

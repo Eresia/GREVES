@@ -151,8 +151,8 @@ public class CantonView extends Parent implements Observer {
 				int trainPositionInCanton = t.positionInCanton();
 				Platform.runLater(() -> this.trainPosition.setLayoutY(scaleFactor * trainPositionInCanton));
 				Platform.runLater(() -> this.trainText.setLayoutY(scaleFactor * trainPositionInCanton ));
-			} catch (TrainIsNotInACanton e) {
-				e.printStackTrace();
+			} catch (TrainIsNotInThisCanton e) {
+				//e.printStackTrace();
 			}
 			
 

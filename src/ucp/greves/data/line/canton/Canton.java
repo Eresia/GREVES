@@ -196,7 +196,6 @@ public class Canton extends Observable {
 			}
 		}
 		
-		int diffPosition = getStartPoint() - train.getPosition();
 		train.setPosition(getStartPoint(), false);
 
 		if (ConfigurationEnvironment.inDebug()) {
