@@ -36,8 +36,8 @@ public class Station {
 	private String name;
 	private int canton;
 	private int waitTime;
-	private HashMap<Integer, Integer> nextStation;
-	private HashMap<Integer, TimeDecorator> nextTrains;
+	private volatile HashMap<Integer, Integer> nextStation;
+	private volatile HashMap<Integer, TimeDecorator> nextTrains;
 	
 	/**
 	 * Creates a station and registers it
@@ -198,7 +198,7 @@ public class Station {
 		return getNextTrains(nextTrains.size());
 	}
 	
-	public ArrayList<NextTrainInformations> getNextTrains(int nb){
+	public synchronized ArrayList<NextTrainInformations> getNextTrains(int nb){
 		ArrayList<NextTrainInformations> result = new ArrayList<NextTrainInformations>();
 		ArrayList<Integer> keys = new ArrayList<Integer>(nextTrains.keySet());
 		int nbMax;
