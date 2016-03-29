@@ -122,7 +122,7 @@ public class CantonView extends Parent implements Observer {
 					String trainId = String.valueOf(innerTrain.getTrainID());
 					this.innerTrain.addObserver(this);
 					int trainPositionOnCanton = this.innerTrain.positionInCanton(c);
-					trainPosition.getPoints().setAll(
+					Platform.runLater(()-> trainPosition.getPoints().setAll(
 							(double) posXA.get(),
 							(double) posYA.get(),
 							(double) posXA.get() - 5,
@@ -130,14 +130,15 @@ public class CantonView extends Parent implements Observer {
 							(double) posXA.get() + 5,
 							(double) posYA.get() - 5
 
-					);
-					this.trainText.yProperty().set(posYA.get() + 2);
-					this.trainText.xProperty().set((double) posXA.get() + 6);
-					this.trainText.textProperty().set(trainId);
-					this.innerTrain.addObserver(this);
+					));
+					Platform.runLater(() -> this.trainText.yProperty().set(posYA.get() + 2));
+					Platform.runLater(() -> this.trainText.xProperty().set((double) posXA.get() + 6));
+					Platform.runLater(() -> this.trainText.textProperty().set(trainId));
+					 
 					Platform.runLater(() -> this.getChildren().add(trainPosition));
 					Platform.runLater(() -> this.getChildren().add(trainText));
-					setColor(Color.RED);
+					this.innerTrain.addObserver(this);
+					Platform.runLater(() ->setColor(Color.RED));
 				} catch (CantonIsEmptyException e) {
 					actionOnFree();
 				} catch (TrainIsNotInThisCanton e) {
@@ -170,7 +171,7 @@ public class CantonView extends Parent implements Observer {
 			Platform.runLater(() -> this.getChildren()
 					.remove(trainText));
 		}
-		setColor(Color.GREEN);
+		Platform.runLater(() ->setColor(Color.GREEN));
 	}
 	
 	private void setColor(Paint color){
