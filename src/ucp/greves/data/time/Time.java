@@ -462,8 +462,10 @@ public class Time extends Observable implements TimeDecorator{
 	}
 	
 	public void updateTime(){
-		this.setChanged();
-		this.notifyObservers();
+		if(countObservers() > 0){
+			this.setChanged();
+			this.notifyObservers();
+		}
 	}
 
 	@Override
