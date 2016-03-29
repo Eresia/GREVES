@@ -11,10 +11,6 @@ public class ScheduleController {
 		return Clock.getTime();
 	}
 	
-	public static Time getClockTime(){
-		return Clock.getInstance().getTime();
-	}
-	
 	public static void addLaunchTrainSchedule(String roadMap, Time time){
 		Line.getInstance().getSchedule().addInformation(new LaunchTrainInformation(time, roadMap));
 	}
