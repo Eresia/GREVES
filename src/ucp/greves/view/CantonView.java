@@ -3,12 +3,20 @@ package ucp.greves.view;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.management.RuntimeErrorException;
-
 import com.sun.javafx.runtime.SystemProperties;
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 
-import test.model.line.canton.CantonTest;
+import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.event.EventHandler;
+import javafx.scene.Parent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
+import javafx.scene.text.Text;
 import ucp.greves.controller.CantonController;
 import ucp.greves.data.exceptions.canton.CantonIsEmptyException;
 import ucp.greves.data.exceptions.station.StationNotFoundException;
@@ -17,30 +25,23 @@ import ucp.greves.data.exceptions.train.TrainIsNotInThisCanton;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.station.Station;
 import ucp.greves.data.train.Train;
-import javafx.application.Platform;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.event.EventHandler;
-import javafx.scene.Parent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Polygon;
-import javafx.scene.text.Text;
-import jdk.nashorn.internal.runtime.regexp.JoniRegExp.Factory;
 
 public class CantonView extends Parent implements Observer {
 	private Train innerTrain;
 	private double scaleFactor;
 	private Polygon trainPosition;
 	private Text trainText;
-	IntegerProperty posXA, posYA, posXB, posYB;
-	Line lineofCanton;
-	CantonController controller;
+	private IntegerProperty posXA, posYA, posXB, posYB;
+	private Line lineofCanton;
+	private Canton canton;
+	private volatile boolean isSelected;
+	
+	private final static Paint colorSelected = Color.YELLOW;
 
 	public CantonView(IntegerProperty posXA, IntegerProperty posYA,
 			double factor, Canton canton, CantonController controller) {
+		this.canton = canton;
+		this.isSelected = false;
 		SystemProperties.setFXProperty("javafx.debug", "true");
 		this.posXA = new SimpleIntegerProperty();
 		this.posXB = new SimpleIntegerProperty();
@@ -51,7 +52,6 @@ public class CantonView extends Parent implements Observer {
 		this.scaleFactor = factor;
 		posXB.set((int) (posXA.get()));
 		posYB.set((int) (posYA.get() + (factor * canton.getLength())));
-		this.controller = controller;
 		this.lineofCanton = new Line(this.posXA.get(), this.posYA.get(),
 				this.posXB.get(), this.posYB.get());
 		this.lineofCanton.setFill(Color.GREEN);
@@ -99,7 +99,7 @@ public class CantonView extends Parent implements Observer {
 
 			@Override
 			public void handle(MouseEvent event) {
-				GlobalView.setSelectedCanton(canton);				
+				GlobalView.setSelectedCanton(CantonView.this);				
 			}
 			
 		});
@@ -133,10 +133,9 @@ public class CantonView extends Parent implements Observer {
 					this.trainText.xProperty().set((double) posXA.get() + 6);
 					this.trainText.textProperty().set(trainId);
 					this.innerTrain.addObserver(this);
-					Platform.runLater(() -> this.getChildren().add(
-							trainPosition));
+					Platform.runLater(() -> this.getChildren().add(trainPosition));
 					Platform.runLater(() -> this.getChildren().add(trainText));
-					lineofCanton.setStroke(Color.RED);
+					setColor(Color.RED);
 				} catch (CantonIsEmptyException e) {
 					actionOnFree();
 				} catch (TrainIsNotInThisCanton e) {
@@ -169,7 +168,16 @@ public class CantonView extends Parent implements Observer {
 			Platform.runLater(() -> this.getChildren()
 					.remove(trainText));
 		}
-		lineofCanton.setStroke(Color.GREEN);
+		setColor(Color.GREEN);
+	}
+	
+	private void setColor(Paint color){
+		if(isSelected){
+			lineofCanton.setStroke(colorSelected);
+		}
+		else{
+			lineofCanton.setStroke(color);
+		}
 	}
 
 	public IntegerProperty getEndX() {
@@ -179,5 +187,25 @@ public class CantonView extends Parent implements Observer {
 	public IntegerProperty getEndY() {
 		return this.posYB;
 	}
+	
+	public Canton getCanton(){
+		return canton;
+	}
+	
+	public void select(){
+		isSelected = true;
+		setColor(colorSelected);
+	}
+	
+	public void unSelect(){
+		isSelected = false;
+		if(canton.isFree()){
+			setColor(Color.GREEN);
+		}
+		else{
+			setColor(Color.RED);
+		}
+	}
+
 
 }

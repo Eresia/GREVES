@@ -82,7 +82,7 @@ public class addTrainView extends Application{
 						e.printStackTrace();
 					}
 				}
-				primaryStage.hide();
+				//primaryStage.hide();
 			}
 		});
 		

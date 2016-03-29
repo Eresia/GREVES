@@ -42,7 +42,7 @@ public class GlobalView extends Application{
 	IntegerProperty paneWidth, paneHeight;
 	
 	private TableView<GlobalStation> stationList;
-	private static Canton selectedCanton = null;
+	private volatile static CantonView selectedCanton = null;
 	private ComboBox<Integer> trainIDListComboBox;
 	
 	public static void main(String[] args){
@@ -300,12 +300,21 @@ public class GlobalView extends Application{
 		stationList.setItems(stationListObs);
 	}
 	
-	public static void setSelectedCanton(Canton canton){
-		selectedCanton = canton;
+	public static void setSelectedCanton(CantonView canton){
+		if(selectedCanton != null){
+			selectedCanton.unSelect();
+		}
+		if(canton != selectedCanton){
+			selectedCanton = canton;
+			selectedCanton.select();
+		}
+		else{
+			selectedCanton = null;
+		}
 	}
 	
 	public static Canton getSelectedCanton(){
-		return selectedCanton;
+		return selectedCanton.getCanton();
 	}
 
 }
