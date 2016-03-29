@@ -50,7 +50,12 @@ public class Train extends Observable implements Runnable {
 		isRemoved = false;
 		removeStation = null;
 		position = Line.getRailWays().get(map.getRailwaysIDs().get(0)).getLength();
-		nextStation = map.getStations().get(0);
+		if(map.getStations().size() != 0){
+			nextStation = map.getStations().get(0);
+		}
+		else{
+			nextStation = -1;
+		}
 	}
 
 	/**

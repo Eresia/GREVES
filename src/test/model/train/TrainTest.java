@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import ucp.greves.data.exceptions.railway.DoubledRailwayException;
 import ucp.greves.data.exceptions.roadmap.RoadMapAlreadyExistException;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.roadMap.RoadMap;
@@ -26,11 +27,17 @@ public class TrainTest {
 
 	@Test
 	public void testTrain() {
-		Train train = null;
+		Train train = null;		
+		RoadMap map = null;
 		try {
-			train = new Train(new Canton(null,100), new RoadMap("test"));
-		} catch (RoadMapAlreadyExistException e) {
+			 map = new RoadMap("testTrain");
+			 map.addRailWay(0);
+		} catch (RoadMapAlreadyExistException | DoubledRailwayException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		train = new Train(new Canton(null,100), map);
 		
 		assertNotNull(train);
 	}
@@ -38,13 +45,17 @@ public class TrainTest {
 	@Test
 	public void testGetSetTrainID() {
 		int id = 5;
-		Train train = null;
+		Train train = null;		
+		RoadMap map = null;
 		try {
-			train = new Train(Line.getCantons().get(0), new RoadMap("test"));
-		} catch (RoadMapAlreadyExistException e) {
+			 map = new RoadMap("testGetSetTrainID");
+			 map.addRailWay(0);
+		} catch (RoadMapAlreadyExistException | DoubledRailwayException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		train = new Train(Line.getCantons().get(0), map);
 		
 		train.setTrainID(id);
 		int idGet = train.getTrainID();
@@ -66,13 +77,16 @@ public class TrainTest {
 	public void testGetSetPosition() {
 		int pos = 27;
 		Train train = null;
+		RoadMap map = null;
 		try {
-			train = new Train(Line.getCantons().get(0), new RoadMap("test"));
-		} catch (RoadMapAlreadyExistException e) {
+			 map = new RoadMap("testGetSetPosition");
+			 map.addRailWay(0);
+		} catch (RoadMapAlreadyExistException | DoubledRailwayException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		train = new Train(Line.getCantons().get(0), map);
 		train.setPosition(pos);
 		int posGet = train.getPosition();
 		
