@@ -5,6 +5,7 @@ import java.util.Observable;
 
 import ucp.greves.data.exceptions.canton.TerminusException;
 import ucp.greves.data.exceptions.station.StationNotFoundException;
+import ucp.greves.data.exceptions.train.TrainIsNotInACanton;
 import ucp.greves.data.exceptions.train.TrainIsNotInThisCanton;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.roadMap.RoadMap;
@@ -136,11 +137,13 @@ public class Train extends Observable implements Runnable {
 				}
 			} else {
 				updatePosition();
+				this.setChanged();
+				this.notifyObservers();
 			}
-			this.setChanged();
-			this.notifyObservers();
+			
 		}
 		currentCanton.exit();
+		currentCanton = null;
 		if (isRemoved()) {
 			removeStation.stockTrain(this);
 		}
@@ -251,7 +254,10 @@ public class Train extends Observable implements Runnable {
 	/**
 	 * @return (Integer) Returns the position of the train in the canton
 	 */
-	public int positionInCanton() {
+	public int positionInCanton() throws TrainIsNotInACanton{
+		if(currentCanton == null){
+			throw new TrainIsNotInACanton();
+		}
 		return currentCanton.getStartPoint() - position;
 	}
 	
@@ -262,10 +268,10 @@ public class Train extends Observable implements Runnable {
 	 */
 	public int positionInCanton(Canton canton) throws TrainIsNotInThisCanton{
 		int result = canton.getStartPoint() - position;
-		if((result < 0) || (result > canton.getLength())){
+		if(!canton.equals(currentCanton) || (result < 0) || (result > canton.getLength())){
 			throw new TrainIsNotInThisCanton() ;
 		}
-		return currentCanton.getStartPoint() - position;
+		return result;
 	}
 	
 	/**
@@ -279,5 +285,21 @@ public class Train extends Observable implements Runnable {
 	public String toString() {
 		return "Train [speed=" + currentCanton.getTrainSpeed(position) + "]";
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Train other = (Train) obj;
+		if (trainID != other.trainID)
+			return false;
+		return true;
+	}
+	
+	
 
 }

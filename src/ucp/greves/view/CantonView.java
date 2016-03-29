@@ -12,6 +12,7 @@ import test.model.line.canton.CantonTest;
 import ucp.greves.controller.CantonController;
 import ucp.greves.data.exceptions.canton.CantonIsEmptyException;
 import ucp.greves.data.exceptions.station.StationNotFoundException;
+import ucp.greves.data.exceptions.train.TrainIsNotInACanton;
 import ucp.greves.data.exceptions.train.TrainIsNotInThisCanton;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.station.Station;
@@ -109,21 +110,17 @@ public class CantonView extends Parent implements Observer {
 		if (o instanceof Canton) {
 
 			Canton c = (Canton) o;
+			
+			actionOnFree();
+			
 			if (c.isFree()) {
-				lineofCanton.setStroke(Color.GREEN);
-				if (this.innerTrain != null) {
-					this.innerTrain.deleteObserver(this);
-					this.innerTrain = null;
-					Platform.runLater(() -> this.getChildren().remove(
-							trainPosition));
-					Platform.runLater(() -> this.getChildren()
-							.remove(trainText));
-				}
+				//lineofCanton.setStroke(Color.GREEN);
 			} else {
 				try {
 					this.innerTrain = c.getOccupyingTrain();
-					int trainPositionOnCanton = this.innerTrain.positionInCanton(c);
+					String trainId = String.valueOf(innerTrain.getTrainID());
 					this.innerTrain.addObserver(this);
+					int trainPositionOnCanton = this.innerTrain.positionInCanton(c);
 					trainPosition.getPoints().setAll(
 							(double) posXA.get(),
 							posYA.get()
@@ -140,24 +137,17 @@ public class CantonView extends Parent implements Observer {
 							posYA.get()
 									+ (this.scaleFactor * trainPositionOnCanton));
 					this.trainText.xProperty().set((double) posXA.get() + 6);
-					this.trainText.textProperty().set(
-							innerTrain.getTrainID() + "");
+					this.trainText.textProperty().set(trainId);
 					this.innerTrain.addObserver(this);
-
 					Platform.runLater(() -> this.getChildren().add(
 							trainPosition));
 					Platform.runLater(() -> this.getChildren().add(trainText));
-
-
+					lineofCanton.setStroke(Color.RED);
 				} catch (CantonIsEmptyException e) {
-
-					throw new RuntimeErrorException(new Error(
-							"Appel a un train inexistant"));
+					actionOnFree();
 				} catch (TrainIsNotInThisCanton e) {
-					//e.printStackTrace();
+					actionOnFree();
 				}
-
-				lineofCanton.setStroke(Color.RED);
 			}
 		} else if (o instanceof Train) {
 			Train t = (Train) o;
@@ -178,13 +168,30 @@ public class CantonView extends Parent implements Observer {
 //					);
 			
 			
-			int trainPositionInCanton = t.positionInCanton();
-			Platform.runLater(() -> this.trainPosition.setLayoutY(scaleFactor * trainPositionInCanton));
-			Platform.runLater(() -> this.trainText.setLayoutY(scaleFactor * trainPositionInCanton ));
+			try {
+				int trainPositionInCanton = t.positionInCanton();
+				Platform.runLater(() -> this.trainPosition.setLayoutY(scaleFactor * trainPositionInCanton));
+				Platform.runLater(() -> this.trainText.setLayoutY(scaleFactor * trainPositionInCanton ));
+			} catch (TrainIsNotInACanton e) {
+				e.printStackTrace();
+			}
+			
 
 
 		}
 	
+	}
+	
+	private void actionOnFree(){
+		if (this.innerTrain != null) {
+			this.innerTrain.deleteObserver(this);
+			this.innerTrain = null;
+			Platform.runLater(() -> this.getChildren().remove(
+					trainPosition));
+			Platform.runLater(() -> this.getChildren()
+					.remove(trainText));
+		}
+		lineofCanton.setStroke(Color.GREEN);
 	}
 
 	public IntegerProperty getEndX() {
