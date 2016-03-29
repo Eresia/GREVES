@@ -137,9 +137,9 @@ public class Train extends Observable implements Runnable {
 				}
 			} else {
 				updatePosition();
-				this.setChanged();
-				this.notifyObservers();
 			}
+			this.setChanged();
+			this.notifyObservers();
 			
 		}
 		currentCanton.exit();

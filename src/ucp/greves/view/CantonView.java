@@ -113,9 +113,7 @@ public class CantonView extends Parent implements Observer {
 			
 			actionOnFree();
 			
-			if (c.isFree()) {
-				//lineofCanton.setStroke(Color.GREEN);
-			} else {
+			if (!c.isFree()) {
 				try {
 					this.innerTrain = c.getOccupyingTrain();
 					String trainId = String.valueOf(innerTrain.getTrainID());
@@ -123,19 +121,14 @@ public class CantonView extends Parent implements Observer {
 					int trainPositionOnCanton = this.innerTrain.positionInCanton(c);
 					trainPosition.getPoints().setAll(
 							(double) posXA.get(),
-							posYA.get()
-									+ (this.scaleFactor * trainPositionOnCanton),
+							(double) posYA.get(),
 							(double) posXA.get() - 5,
-							posYA.get()
-									+ (this.scaleFactor * trainPositionOnCanton) - 5,
+							(double) posYA.get() - 5,
 							(double) posXA.get() + 5,
-							posYA.get()
-									+ (this.scaleFactor * trainPositionOnCanton) - 5
+							(double) posYA.get() - 5
 
 					);
-					this.trainText.yProperty().set(
-							posYA.get()
-									+ (this.scaleFactor * trainPositionOnCanton));
+					this.trainText.yProperty().set(posYA.get() + 2);
 					this.trainText.xProperty().set((double) posXA.get() + 6);
 					this.trainText.textProperty().set(trainId);
 					this.innerTrain.addObserver(this);
@@ -150,23 +143,7 @@ public class CantonView extends Parent implements Observer {
 				}
 			}
 		} else if (o instanceof Train) {
-			Train t = (Train) o;
-//			this.trainPosition
-//					.getPoints()
-//					.setAll((double) posXA.get(),
-//							posYA.get()
-//									+ (this.scaleFactor * t.positionInCanton()),
-//							(double) posXA.get() - 5,
-//							posYA.get()
-//									+ (this.scaleFactor * t.positionInCanton())
-//									- 5,
-//							(double) posXA.get() + 5,
-//							posYA.get()
-//									+ (this.scaleFactor * t.positionInCanton())
-//									- 5
-//
-//					);
-			
+			Train t = (Train) o;			
 			
 			try {
 				int trainPositionInCanton = t.positionInCanton();
