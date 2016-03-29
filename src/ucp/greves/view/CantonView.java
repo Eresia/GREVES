@@ -36,7 +36,9 @@ public class CantonView extends Parent implements Observer {
 	private Canton canton;
 	private volatile boolean isSelected;
 	
-	private final static Paint colorSelected = Color.YELLOW;
+	private final static Paint colorSelected = Color.BLUE;
+	private final static Paint colorBlocked = Color.RED;
+	private final static Paint colorSlow = Color.YELLOW;
 
 	public CantonView(IntegerProperty posXA, IntegerProperty posYA,
 			double factor, Canton canton, CantonController controller) {
@@ -176,7 +178,17 @@ public class CantonView extends Parent implements Observer {
 			lineofCanton.setStroke(colorSelected);
 		}
 		else{
-			lineofCanton.setStroke(color);
+			switch(canton.getState()){
+				case BLOCKED:
+					lineofCanton.setStroke(colorBlocked);
+					break;
+				case SLOWSDOWN:
+					lineofCanton.setStroke(colorSlow);
+					break;
+				case NO_PROBLEM:
+					lineofCanton.setStroke(color);
+					break;
+			}
 		}
 	}
 
@@ -199,6 +211,15 @@ public class CantonView extends Parent implements Observer {
 	
 	public void unSelect(){
 		isSelected = false;
+		if(canton.isFree()){
+			setColor(Color.GREEN);
+		}
+		else{
+			setColor(Color.RED);
+		}
+	}
+	
+	public void changeState(){
 		if(canton.isFree()){
 			setColor(Color.GREEN);
 		}

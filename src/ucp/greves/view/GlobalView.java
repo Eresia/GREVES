@@ -161,10 +161,11 @@ public class GlobalView extends Application{
 		
 			@Override
 			public void handle(ActionEvent event) {
-				Canton selectedCanton = getSelectedCanton();
+				CantonView selectedCanton = getSelectedCanton();
 				if(selectedCanton != null) {
 					try {
-						CantonController.blockCanton(selectedCanton.getId());
+						CantonController.blockCanton(selectedCanton.getCanton().getId());
+						selectedCanton.changeState();
 					} catch (CantonNotExistException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -179,10 +180,11 @@ public class GlobalView extends Application{
 		
 			@Override
 			public void handle(ActionEvent event) {
-				Canton selectedCanton = getSelectedCanton();
+				CantonView selectedCanton = getSelectedCanton();
 				if(selectedCanton != null) {
 					try {
-						CantonController.createSlowDown(selectedCanton.getId());
+						CantonController.createSlowDown(selectedCanton.getCanton().getId());
+						selectedCanton.changeState();
 					} catch (CantonNotExistException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -197,10 +199,11 @@ public class GlobalView extends Application{
 		
 			@Override
 			public void handle(ActionEvent event) {
-				Canton selectedCanton = getSelectedCanton();
+				CantonView selectedCanton = getSelectedCanton();
 				if(selectedCanton != null) {
 					try {
-						CantonController.removeCantonProblem(selectedCanton.getId());
+						CantonController.removeCantonProblem(selectedCanton.getCanton().getId());
+						selectedCanton.changeState();
 					} catch (CantonNotExistException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -313,8 +316,8 @@ public class GlobalView extends Application{
 		}
 	}
 	
-	public static Canton getSelectedCanton(){
-		return selectedCanton.getCanton();
+	public static CantonView getSelectedCanton(){
+		return selectedCanton;
 	}
 
 }

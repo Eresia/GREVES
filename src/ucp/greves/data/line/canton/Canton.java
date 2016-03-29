@@ -101,6 +101,7 @@ public class Canton extends Observable {
 	 */
 	protected Canton(int length) {
 		this.id = Line.register_canton(this);
+		this.state = CantonState.NO_PROBLEM;
 		buildCanton(length);
 		
 		trainSpeed = SPEED_MAX;
