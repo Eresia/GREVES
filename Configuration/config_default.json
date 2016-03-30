@@ -8,7 +8,7 @@
 		"slower_distance_to_station" : 500,
 		"slow_down_speed" : 14,
 		"station_wait_time" : 60,
-		"base_simulation_time" : "9:50:0",
+		"base_simulation_time" : "04:30:0",
 		"nb_second_by_frame" : 15,
 		"debug" : false
 	}
