@@ -254,15 +254,14 @@ public class Time extends Observable implements TimeDecorator{
 	@Override
 	public boolean isInferiorOrEquals(TimeDecorator other, boolean countDay){
 		if(other.getClass().equals(UndefinedTime.class)){
-			return false;
+			return true;
 		}
 		Time otherT = (Time) other;
 		if(countDay){
 			if (nbDays > otherT.nbDays){
 				return false;
 			}
-			
-			if(nbDays < otherT.nbDays){
+			else if(nbDays < otherT.nbDays){
 				return true;
 			}
 		}
@@ -299,7 +298,7 @@ public class Time extends Observable implements TimeDecorator{
 	@Override
 	public boolean isSuperiorOrEquals(TimeDecorator other, boolean countDay){
 		if(other.getClass().equals(UndefinedTime.class)){
-			return true;
+			return false;
 		}
 		Time otherT = (Time) other;
 		if(countDay){
@@ -344,15 +343,14 @@ public class Time extends Observable implements TimeDecorator{
 	@Override
 	public boolean isInferior(TimeDecorator other, boolean countDay){
 		if(other.getClass().equals(UndefinedTime.class)){
-			return false;
+			return true;
 		}
 		Time otherT = (Time) other;
 		if(countDay){
 			if (nbDays > otherT.nbDays){
 				return false;
-			}
-			
-			if(nbDays < otherT.nbDays){
+			}	
+			else if(nbDays < otherT.nbDays){
 				return true;
 			}
 		}
@@ -389,15 +387,14 @@ public class Time extends Observable implements TimeDecorator{
 	@Override
 	public boolean isSuperior(TimeDecorator other, boolean countDay){
 		if(other.getClass().equals(UndefinedTime.class)){
-			return true;
+			return false;
 		}
 		Time otherT = (Time) other;
 		if(countDay){
 			if (nbDays > otherT.nbDays){
 				return true;
-			}
-			
-			if(nbDays < otherT.nbDays){
+			}	
+			else if(nbDays < otherT.nbDays){
 				return false;
 			}
 		}

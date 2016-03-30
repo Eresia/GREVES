@@ -5,7 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.sun.javafx.geom.transform.GeneralTransform3D;
+
+import jdk.nashorn.internal.runtime.Undefined;
 import ucp.greves.data.time.Time;
+import ucp.greves.data.time.UndefinedTime;
 
 public class TimeTest {
 
@@ -107,16 +111,20 @@ public class TimeTest {
 		assertEquals(10, time.getSeconds());
 		
 		time.setHours(25);
-		assertEquals(1, time.getDays());
+		assertEquals(0,time.getDays());
 	}
 	
 	@Test
 	public void isSuperiorTest(){
 		Time superiorTime = new Time(24,0,59);
-		Time inferiorTime = new Time(23,58,1);
+		Time inferiorTime = new Time(22,58,1);
+		Time equalTime = new Time(24,0,59);
+		UndefinedTime uTime = new UndefinedTime();
 		
 		assertTrue(superiorTime.isSuperior(inferiorTime, true));
 		assertFalse(inferiorTime.isSuperior(superiorTime, true));
+		assertFalse(superiorTime.isSuperior(equalTime, true));
+		assertFalse(superiorTime.isSuperior(uTime));
 		
 		/*
 		 * Check without days
@@ -128,31 +136,144 @@ public class TimeTest {
 		 */
 		inferiorTime.setHours(24);
 		inferiorTime.setMinutes(0);
-		assertTrue(superiorTime.isSuperior(inferiorTime, true));
-		assertFalse(inferiorTime.isSuperior(superiorTime, true));
+		superiorTime.setMinutes(1);
+		assertTrue(superiorTime.isSuperior(inferiorTime));
+		assertFalse(inferiorTime.isSuperior(superiorTime));
 		
 		/*
 		 * Chack if minute are equals
 		 */
-		superiorTime.setMinutes(58);
+		superiorTime.setMinutes(0);
 		superiorTime.setSeconds(2);
-		assertTrue(superiorTime.isSuperior(inferiorTime, true));
-		assertFalse(inferiorTime.isSuperior(superiorTime, true));
+		assertTrue(superiorTime.isSuperior(inferiorTime));
+		assertFalse(inferiorTime.isSuperior(superiorTime));
 		
-		inferiorTime.setHours(24);
-		assertFalse(superiorTime.isSuperior(inferiorTime, true));
-		assertTrue(inferiorTime.isSuperior(superiorTime, true));
 	}
 	
 	@Test
 	public void isInferiorTest(){
-		Time superiorTime = new Time(24,0,0);
-		Time inferiorTime = new Time(23,59,59);
-		assertTrue(inferiorTime.isInferior(superiorTime, true));
-		assertFalse(superiorTime.isInferior(inferiorTime, true));
+		Time superiorTime = new Time(24,0,59);
+		Time inferiorTime = new Time(22,58,1);
+		Time equalTime = new Time(24,0,59);
+		UndefinedTime uTime = new UndefinedTime();
 		
-		assertFalse(inferiorTime.isInferior(superiorTime));
+		assertFalse(superiorTime.isInferior(inferiorTime, true));
+		assertTrue(inferiorTime.isInferior(superiorTime, true));
+		assertFalse(superiorTime.isInferior(equalTime, true));
+		assertTrue(superiorTime.isInferior(uTime));
+		
+		/*
+		 * Check without days
+		 */
 		assertTrue(superiorTime.isInferior(inferiorTime));
+		assertFalse(inferiorTime.isInferior(superiorTime));
+		/*
+		 * Check if hours are equals
+		 */
+		inferiorTime.setHours(24);
+		inferiorTime.setMinutes(0);
+		superiorTime.setMinutes(1);
+		assertFalse(superiorTime.isInferior(inferiorTime));
+		assertTrue(inferiorTime.isInferior(superiorTime));
+		
+		/*
+		 * Chack if minute are equals
+		 */
+		superiorTime.setMinutes(0);
+		superiorTime.setSeconds(2);
+		assertFalse(superiorTime.isInferior(inferiorTime));
+		assertTrue(inferiorTime.isInferior(superiorTime));
+	}
+	
+	@Test
+	public void isInferiorOrEqualTest(){
+		Time superiorTime = new Time(24,1,59);
+		Time inferiorTime = new Time(22,58,1);
+		Time equalTime = new Time(24,1,59);
+		UndefinedTime uTime = new UndefinedTime();
+		
+		assertFalse(superiorTime.isInferiorOrEquals(inferiorTime, true));
+		assertTrue(inferiorTime.isInferiorOrEquals(superiorTime, true));
+		assertTrue(superiorTime.isInferiorOrEquals(equalTime, true));
+		assertTrue(superiorTime.isInferiorOrEquals(uTime));
+		
+		/*
+		 * Check without days
+		 */
+		assertTrue(superiorTime.isInferiorOrEquals(inferiorTime));
+		assertFalse(inferiorTime.isInferiorOrEquals(superiorTime));
+		/*
+		 * Check if hours are equals
+		 */
+		inferiorTime.setHours(24);
+		inferiorTime.setMinutes(0);
+		superiorTime.setMinutes(1);
+		assertFalse(superiorTime.isInferiorOrEquals(inferiorTime));
+		assertTrue(inferiorTime.isInferiorOrEquals(superiorTime));
+		
+		/*
+		 * Chack if minute are equals
+		 */
+		superiorTime.setMinutes(0);
+		superiorTime.setSeconds(2);
+		assertFalse(superiorTime.isInferiorOrEquals(inferiorTime));
+		assertTrue(inferiorTime.isInferiorOrEquals(superiorTime));
+	}
+	
+	@Test
+	public void isSuperiorOrEqualTest(){
+		Time superiorTime = new Time(24,1,59);
+		Time inferiorTime = new Time(22,58,1);
+		Time equalTime = new Time(24,1,59);
+		UndefinedTime uTime = new UndefinedTime();
+		
+		assertTrue(superiorTime.isSuperiorOrEquals(inferiorTime, true));
+		assertFalse(inferiorTime.isSuperiorOrEquals(superiorTime, true));
+		assertTrue(superiorTime.isSuperiorOrEquals(equalTime, true));
+		assertFalse(superiorTime.isSuperiorOrEquals(uTime));
+		
+		/*
+		 * Check without days
+		 */
+		assertFalse(superiorTime.isSuperiorOrEquals(inferiorTime));
+		assertTrue(inferiorTime.isSuperiorOrEquals(superiorTime));
+		/*
+		 * Check if hours are equals
+		 */
+		inferiorTime.setHours(24);
+		inferiorTime.setMinutes(0);
+		superiorTime.setMinutes(1);
+		assertTrue(superiorTime.isSuperiorOrEquals(inferiorTime));
+		assertFalse(inferiorTime.isSuperiorOrEquals(superiorTime));
+		
+		/*
+		 * Chack if minute are equals
+		 */
+		superiorTime.setMinutes(0);
+		superiorTime.setSeconds(2);
+		assertTrue(superiorTime.isSuperiorOrEquals(inferiorTime));
+		assertFalse(inferiorTime.isSuperiorOrEquals(superiorTime));
+	}
+	@Test
+	public void multTest(){
+		Time time = new Time(1,2,3);
+		time.multTime(2);
+		assertEquals(0, time.getDays());
+		assertEquals(2,time.getHours());
+		assertEquals(4,time.getMinutes());
+		assertEquals(6, time.getSeconds());
+		
+		time.multTime(12);
+		assertEquals(1, time.getDays());
+		assertEquals(0,time.getHours());
+		assertEquals(49,time.getMinutes());
+		assertEquals(12, time.getSeconds());
+		
+		time.multTime(2);
+		assertEquals(2, time.getDays());
+		assertEquals(1,time.getHours());
+		assertEquals(38,time.getMinutes());
+		assertEquals(24, time.getSeconds());
 	}
 
 }
