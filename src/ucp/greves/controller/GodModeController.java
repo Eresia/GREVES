@@ -29,6 +29,10 @@ public class GodModeController {
 		}
 	}
 	
+	public static boolean simulationStopped(){
+		return SimulationInfo.stopped();
+	}
+	
 	public static void waitFrameTime() throws InterruptedException{
 		SimulationInfo.waitFrameTime();
 	}

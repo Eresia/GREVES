@@ -7,7 +7,7 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 
-import ucp.greves.model.simulation.SimulationInfo;
+import ucp.greves.controller.GodModeController;
 
 public class Server extends Thread{
 	
@@ -27,7 +27,7 @@ public class Server extends Thread{
 		    server.socket().bind(new InetSocketAddress(port));
 		    server.configureBlocking(false);
 		    try {
-				while(!SimulationInfo.stopped()){
+				while(!GodModeController.simulationStopped()){
 					SocketChannel client = server.accept();
 					if(client != null){
 						ClientManagement cm = new ClientManagement(client.socket());
