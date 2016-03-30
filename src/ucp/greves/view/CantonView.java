@@ -38,9 +38,12 @@ public class CantonView extends Parent implements Observer {
 	private Boolean global;
 	private Boolean direction;
 	
-	private final static Paint colorBlocked = Color.RED;
-	private final static Paint colorSlow = Color.YELLOW;
-	private final static Paint colorNormal = new Color(0.45, 0.7, 0, 1);
+	private final static Paint colorTrain = Color.DARKGRAY;
+	private final static Paint colorStation = Color.BLUE;
+	private final static Paint colorCantonOccuped = Color.RED;
+	private final static Paint colorCantonBlocked = Color.RED;
+	private final static Paint colorCantonSlow = Color.YELLOW;
+	private final static Paint colorCantonNormal = new Color(0.45, 0.7, 0, 1);
 
 	public CantonView(IntegerProperty posXA, IntegerProperty posYA,
 			double factor, Canton canton, CantonController controller, Boolean global, Boolean direction) {
@@ -67,12 +70,12 @@ public class CantonView extends Parent implements Observer {
 		}
 		this.lineofCanton = new Line(this.posXA.get(), this.posYA.get(),
 				this.posXB.get(), this.posYB.get());
-		this.lineofCanton.setFill(colorNormal);
+		this.lineofCanton.setFill(colorCantonNormal);
 		this.lineofCanton.setStrokeWidth(3);
 		if (canton.isFree()) {
-			lineofCanton.setStroke(colorNormal);
+			lineofCanton.setStroke(colorCantonNormal);
 		} else {
-			lineofCanton.setStroke(Color.RED);
+			lineofCanton.setStroke(colorCantonOccuped);
 		}
 		Circle stationPosition;
 		Text stationText;
@@ -81,7 +84,7 @@ public class CantonView extends Parent implements Observer {
 			int stationPos = canton.getStationPosition();
 			stationPosition = new Circle();
 			stationPosition.setRadius(4);
-			stationPosition.setStroke(Color.BLUE);
+			stationPosition.setStroke(colorStation);
 			stationText = new Text();
 			if(global){
 				stationPosition.setCenterX(this.posXA.get() + (this.scaleFactor * stationPos));
@@ -110,7 +113,7 @@ public class CantonView extends Parent implements Observer {
 			this.getChildren().add(stationText);
 
 		} catch (StationNotFoundException e) {
-			// TODO: handle exception
+			
 		}
 
 		/*
@@ -118,7 +121,7 @@ public class CantonView extends Parent implements Observer {
 		 */
 
 		this.trainPosition = new Polygon();
-		this.trainPosition.setStroke(Color.DARKGRAY);
+		this.trainPosition.setStroke(colorTrain);
 		this.trainText = new Text();
 
 		canton.addObserver(this);
@@ -148,7 +151,7 @@ public class CantonView extends Parent implements Observer {
 					this.innerTrain = c.getOccupyingTrain();
 					String trainId = String.valueOf(innerTrain.getTrainID());
 					this.innerTrain.addObserver(this);
-					int trainPositionOnCanton = this.innerTrain.positionInCanton(c);
+					//int trainPositionOnCanton = this.innerTrain.positionInCanton(c);
 					if(global){
 						if(direction){
 							Platform.runLater(()-> trainPosition.getPoints().setAll(
@@ -191,12 +194,12 @@ public class CantonView extends Parent implements Observer {
 					Platform.runLater(() -> this.getChildren().add(trainPosition));
 					Platform.runLater(() -> this.getChildren().add(trainText));
 					this.innerTrain.addObserver(this);
-					Platform.runLater(() ->setColor(Color.RED));
+					Platform.runLater(() ->setColor(colorCantonOccuped));
 				} catch (CantonIsEmptyException e) {
 					actionOnFree();
-				} catch (TrainIsNotInThisCanton e) {
+				}/* catch (TrainIsNotInThisCanton e) {
 					actionOnFree();
-				}
+				}*/
 			}
 		} else if (o instanceof Train) {
 			Train t = (Train) o;			
@@ -236,29 +239,59 @@ public class CantonView extends Parent implements Observer {
 			Platform.runLater(() -> this.getChildren()
 					.remove(trainText));
 		}
-		Platform.runLater(() ->setColor(colorNormal));
+		Platform.runLater(() ->setColor(colorCantonNormal));
 	}
 	
 	private void setColor(Paint color){
 		if(isSelected){
-			//lineofCanton.setStroke(colorSelected);
-			lineofCanton.setScaleX(2);
+			if(global){
+				lineofCanton.setScaleY(2);
+			}
+			else{
+				lineofCanton.setScaleX(2);
+			}
+			
 		}
 		else{
 			lineofCanton.setScaleX(1);
 		}
-			switch(canton.getState()){
-				case BLOCKED:
-					lineofCanton.setStroke(colorBlocked);
-					break;
-				case SLOWSDOWN:
-					lineofCanton.setStroke(colorSlow);
-					break;
-				case NO_PROBLEM:
-					lineofCanton.setStroke(color);
-					break;
-		//	}
+		lineofCanton.setStroke(getStateColor(color));
+	}
+	
+	public Paint getStateColor(){
+		return getStateColor(colorCantonNormal);
+	}
+	
+	private Paint getStateColor(Paint defaultColor){
+		Paint color = null;
+		switch(canton.getState()){
+			case BLOCKED:
+				color = colorCantonBlocked;
+				break;
+			case SLOWSDOWN:
+				color = colorCantonSlow;
+				break;
+			case NO_PROBLEM:
+				color = defaultColor;
+				break;
 		}
+		return color;
+	}
+	
+	public String getStateText(){
+		String text = null;
+		switch(canton.getState()){
+			case BLOCKED:
+				text = "Bloqué";
+				break;
+			case SLOWSDOWN:
+				text = "Ralentit";
+				break;
+			case NO_PROBLEM:
+				text = "Normal";
+				break;
+		}
+		return text;
 	}
 
 	public IntegerProperty getEndX() {
@@ -275,25 +308,25 @@ public class CantonView extends Parent implements Observer {
 	
 	public void select(){
 		isSelected = true;
-		setColor(colorNormal);
+		setColor(colorCantonNormal);
 	}
 	
 	public void unSelect(){
 		isSelected = false;
 		if(canton.isFree()){
-			setColor(colorNormal);
+			setColor(colorCantonNormal);
 		}
 		else{
-			setColor(Color.RED);
+			setColor(colorCantonOccuped);
 		}
 	}
 	
 	public void changeState(){
 		if(canton.isFree()){
-			setColor(colorNormal);
+			setColor(colorCantonNormal);
 		}
 		else{
-			setColor(Color.RED);
+			setColor(colorCantonOccuped);
 		}
 	}
 
