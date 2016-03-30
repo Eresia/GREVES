@@ -23,9 +23,9 @@
          <children>
             <TableView fx:id="NextTrainFirstTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
               <columns>
-                <TableColumn prefWidth="43.0" text="Nom" />
-                  <TableColumn prefWidth="132.0" text="Destination" />
-                  <TableColumn prefWidth="123.0" text="Horaire" />
+                <TableColumn editable="false" prefWidth="43.0" sortable="false" text="Nom" />
+                  <TableColumn editable="false" prefWidth="132.0" sortable="false" text="Destination" />
+                  <TableColumn editable="false" prefWidth="123.0" sortable="false" text="Horaire" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -49,9 +49,9 @@
             </BorderPane>
             <TableView fx:id="NextTrainSecondTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
                <columns>
-                  <TableColumn prefWidth="43.0" text="Nom" />
-                  <TableColumn prefWidth="132.0" text="Destination" />
-                  <TableColumn prefWidth="123.0" text="Horaire" />
+                  <TableColumn editable="false" prefWidth="43.0" sortable="false" text="Nom" />
+                  <TableColumn editable="false" prefWidth="132.0" sortable="false" text="Destination" />
+                  <TableColumn prefWidth="123.0" sortable="false" text="Horaire" />
                </columns>
                 <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -83,7 +83,7 @@
                <children>
                   <TableView fx:id="NextStationFirstTable" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn fx:id="nextStationFirstList" prefWidth="338.0" text="Gares desservies" />
+                      <TableColumn fx:id="nextStationFirstList" editable="false" prefWidth="338.0" sortable="false" text="Gares desservies" />
                     </columns>
                      <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -101,7 +101,7 @@
                <children>
                   <TableView fx:id="NextStationSecondTable" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="338.0" text="Gares desservies" />
+                      <TableColumn editable="false" prefWidth="338.0" sortable="false" text="Gares desservies" />
                     </columns>
                      <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

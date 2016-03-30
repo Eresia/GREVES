@@ -72,7 +72,7 @@ public class GlobalView extends Application{
 		GodModeController.startStimulation();
   
 		ScrollPane lineDraw = (ScrollPane) root.lookup("#LineDraw"); //Get the borderPane from the root
-		LineView lineView = new LineView();
+		LineView lineView = new LineView(false);
 		lineDraw.setContent(lineView);
 		setTrainIDsList(root);
 		setStationList(root);
@@ -87,6 +87,8 @@ public class GlobalView extends Application{
 				GodModeController.stopSimulation();			
 			}
 		});
+		
+		new GlobalMap();
 	}
 	
 	public void setButton(Parent root){

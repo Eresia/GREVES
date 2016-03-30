@@ -16,6 +16,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import ucp.greves.controller.CantonController;
 import ucp.greves.data.exceptions.canton.CantonIsEmptyException;
@@ -35,15 +36,19 @@ public class CantonView extends Parent implements Observer {
 	private Line lineofCanton;
 	private Canton canton;
 	private volatile boolean isSelected;
+	private Boolean global;
+	private Boolean direction;
 	
 	private final static Paint colorSelected = Color.BLUE;
 	private final static Paint colorBlocked = Color.RED;
 	private final static Paint colorSlow = Color.YELLOW;
 
 	public CantonView(IntegerProperty posXA, IntegerProperty posYA,
-			double factor, Canton canton, CantonController controller) {
+			double factor, Canton canton, CantonController controller, Boolean global, Boolean direction) {
 		this.canton = canton;
 		this.isSelected = false;
+		this.global = global;
+		this.direction = direction;
 		SystemProperties.setFXProperty("javafx.debug", "true");
 		this.posXA = new SimpleIntegerProperty();
 		this.posXB = new SimpleIntegerProperty();
@@ -52,8 +57,15 @@ public class CantonView extends Parent implements Observer {
 		this.posXA.bindBidirectional(posXA);
 		this.posYA.bindBidirectional(posYA);
 		this.scaleFactor = factor;
-		posXB.set((int) (posXA.get()));
-		posYB.set((int) (posYA.get() + (factor * canton.getLength())));
+		if(global){
+			scaleFactor = scaleFactor * 1.5;
+			posXB.set((int) (posXA.get() + (scaleFactor * canton.getLength())));
+			posYB.set((int) (posYA.get()));
+		}
+		else{
+			posXB.set((int) (posXA.get()));
+			posYB.set((int) (posYA.get() + (scaleFactor * canton.getLength())));
+		}
 		this.lineofCanton = new Line(this.posXA.get(), this.posYA.get(),
 				this.posXB.get(), this.posYB.get());
 		this.lineofCanton.setFill(Color.GREEN);
@@ -71,14 +83,30 @@ public class CantonView extends Parent implements Observer {
 			stationPosition = new Circle();
 			stationPosition.setRadius(4);
 			stationPosition.setStroke(Color.BLUE);
-			stationPosition.setCenterX(this.posXA.get());
-			stationPosition.setCenterY(posYA.get()
-					+ (this.scaleFactor * stationPos));
 			stationText = new Text();
-			stationText.xProperty().set(this.posXA.get() + 4);
-			stationText.yProperty().set(
-					posYA.get() + (this.scaleFactor * stationPos));
+			if(global){
+				stationPosition.setCenterX(this.posXA.get() + (this.scaleFactor * stationPos));
+				stationPosition.setCenterY(this.posYA.get());
+				if((this.canton.getId() %2) == 0){
+					stationText.yProperty().set(posYA.get() - 5);
+				}
+				else{
+					stationText.yProperty().set(posYA.get() + 10);
+				}
+				stationText.xProperty().set(this.posXA.get());
+				
+				stationText.setFont(new Font(8));
+			}
+			else{
+				stationPosition.setCenterX(this.posXA.get());
+				stationPosition.setCenterY(this.posYA.get()
+						+ (this.scaleFactor * stationPos));
+				stationText.xProperty().set(this.posXA.get() + 4);
+				stationText.yProperty().set(
+						posYA.get() + (this.scaleFactor * stationPos));
+			}
 			stationText.textProperty().set(station.getName());
+			
 			this.getChildren().add(stationPosition);
 			this.getChildren().add(stationText);
 
@@ -122,17 +150,43 @@ public class CantonView extends Parent implements Observer {
 					String trainId = String.valueOf(innerTrain.getTrainID());
 					this.innerTrain.addObserver(this);
 					int trainPositionOnCanton = this.innerTrain.positionInCanton(c);
-					Platform.runLater(()-> trainPosition.getPoints().setAll(
+					if(global){
+						if(direction){
+							Platform.runLater(()-> trainPosition.getPoints().setAll(
+								(double) posXA.get(),
+								(double) posYA.get(),
+								(double) posXA.get() - 5,
+								(double) posYA.get() - 5,
+								(double) posXA.get() - 5,
+								(double) posYA.get() + 5
+									));
+						}
+						else{
+							Platform.runLater(()-> trainPosition.getPoints().setAll(
+									(double) posXA.get(),
+									(double) posYA.get(),
+									(double) posXA.get() + 5,
+									(double) posYA.get() - 5,
+									(double) posXA.get() + 5,
+									(double) posYA.get() + 5
+										));
+						}
+						Platform.runLater(() -> this.trainText.yProperty().set((double) posYA.get() + 15));
+						Platform.runLater(() -> this.trainText.xProperty().set((double) posXA.get() + 2));
+					}
+					else{
+						Platform.runLater(()-> trainPosition.getPoints().setAll(
 							(double) posXA.get(),
 							(double) posYA.get(),
 							(double) posXA.get() - 5,
 							(double) posYA.get() - 5,
 							(double) posXA.get() + 5,
 							(double) posYA.get() - 5
-
-					));
-					Platform.runLater(() -> this.trainText.yProperty().set(posYA.get() + 2));
-					Platform.runLater(() -> this.trainText.xProperty().set((double) posXA.get() + 6));
+								));
+						Platform.runLater(() -> this.trainText.yProperty().set(posYA.get() + 2));
+						Platform.runLater(() -> this.trainText.xProperty().set((double) posXA.get() + 6));
+					}
+					
 					Platform.runLater(() -> this.trainText.textProperty().set(trainId));
 					 
 					Platform.runLater(() -> this.getChildren().add(trainPosition));
@@ -150,8 +204,20 @@ public class CantonView extends Parent implements Observer {
 			
 			try {
 				int trainPositionInCanton = t.positionInCanton();
-				Platform.runLater(() -> this.trainPosition.setLayoutY(scaleFactor * trainPositionInCanton));
-				Platform.runLater(() -> this.trainText.setLayoutY(scaleFactor * trainPositionInCanton ));
+				if(global){
+					if(direction){
+						Platform.runLater(() -> this.trainPosition.setLayoutX(scaleFactor * trainPositionInCanton));
+						Platform.runLater(() -> this.trainText.setLayoutX(scaleFactor * trainPositionInCanton ));
+					}
+					else{
+						Platform.runLater(() -> this.trainPosition.setLayoutX((scaleFactor * trainPositionInCanton * -1) + (this.posXB.get() - this.posXA.get())));
+						Platform.runLater(() -> this.trainText.setLayoutX((scaleFactor * trainPositionInCanton * -1) + (this.posXB.get() - this.posXA.get())));
+					}
+				}
+				else{
+					Platform.runLater(() -> this.trainPosition.setLayoutY(scaleFactor * trainPositionInCanton));
+					Platform.runLater(() -> this.trainText.setLayoutY(scaleFactor * trainPositionInCanton ));
+				}
 			} catch (TrainIsNotInThisCanton e) {
 				//e.printStackTrace();
 			}
