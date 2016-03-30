@@ -2,7 +2,6 @@ package ucp.greves.data.line.canton;
 
 import java.util.Observable;
 
-import ucp.greves.controller.ClockController;
 import ucp.greves.data.exceptions.PropertyNotFoundException;
 import ucp.greves.data.exceptions.canton.CantonIsBlockedException;
 import ucp.greves.data.exceptions.canton.CantonIsEmptyException;
@@ -18,6 +17,7 @@ import ucp.greves.model.line.Line;
 import ucp.greves.model.line.station.HasNotStation;
 import ucp.greves.model.line.station.HasStation;
 import ucp.greves.model.line.station.StationDecorator;
+import ucp.greves.model.schedule.Clock;
 import ucp.greves.model.simulation.SimulationInfo;
 import ucp.greves.model.train.ModifiedTrainInformation;
 
@@ -320,7 +320,7 @@ public class Canton extends Observable {
 		int positionOnCanton = startPoint - position;
 		int speed = 0;
 		int defaultSpeed;
-		int nbSecondByFrame = ClockController.getNbSecondByFrame();
+		int nbSecondByFrame = Clock.nbSecondByFrame();
 		
 		if(state == CantonState.SLOWSDOWN){
 			defaultSpeed = slowDownSpeed;

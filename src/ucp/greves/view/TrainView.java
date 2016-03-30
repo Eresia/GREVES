@@ -3,11 +3,10 @@ package ucp.greves.view;
 import java.util.Observable;
 import java.util.Observer;
 
-import ucp.greves.controller.TrainController;
-import ucp.greves.data.train.Train;
-import javafx.beans.property.IntegerProperty;
 import javafx.scene.Parent;
 import javafx.scene.shape.Rectangle;
+import ucp.greves.controller.TrainController;
+import ucp.greves.data.train.Train;
 
 public class TrainView extends Parent implements Observer{
 	

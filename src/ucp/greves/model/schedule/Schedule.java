@@ -2,11 +2,12 @@ package ucp.greves.model.schedule;
 
 import java.util.ArrayList;
 
-import ucp.greves.controller.TrainController;
 import ucp.greves.data.exceptions.BadControlInformationException;
 import ucp.greves.data.exceptions.railway.RailWayNotExistException;
 import ucp.greves.data.exceptions.roadmap.BadRoadMapException;
 import ucp.greves.data.time.Time;
+import ucp.greves.data.train.Train;
+import ucp.greves.model.line.Line;
 import ucp.greves.model.simulation.SimulationInfo;
 
 /**
@@ -42,7 +43,7 @@ public class Schedule extends Thread{
 			while(!SimulationInfo.stopped()){
 				for(LaunchTrainInformation info : informations){
 					if(info.getTime().isSuperior(ancientTime) && info.getTime().isInferiorOrEquals(newTime)){
-						TrainController.launchTrain(info.getRoadMap());
+						Train.launchTrain(info.getRoadMap());
 					}
 				}
 				ancientTime = newTime.clone();
@@ -52,6 +53,10 @@ public class Schedule extends Thread{
 		} catch (InterruptedException | BadControlInformationException | BadRoadMapException | RailWayNotExistException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void addLaunchTrainSchedule(String roadMap, Time time){
+		Line.getInstance().getSchedule().addInformation(new LaunchTrainInformation(time, roadMap));
 	}
 	
 	/**

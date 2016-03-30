@@ -21,7 +21,6 @@ import javafx.scene.text.Text;
 import ucp.greves.controller.CantonController;
 import ucp.greves.data.exceptions.canton.CantonIsEmptyException;
 import ucp.greves.data.exceptions.station.StationNotFoundException;
-import ucp.greves.data.exceptions.train.TrainIsNotInACanton;
 import ucp.greves.data.exceptions.train.TrainIsNotInThisCanton;
 import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.station.Station;

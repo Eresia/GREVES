@@ -3,23 +3,17 @@ package ucp.greves.view;
 import java.util.Observable;
 import java.util.Observer;
 
-import ucp.greves.controller.StationController;
-import ucp.greves.controller.TrainController;
-import ucp.greves.data.exceptions.station.StationNotFoundException;
-import ucp.greves.data.exceptions.train.TrainNotExistException;
-import ucp.greves.data.train.Train;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import ucp.greves.controller.StationController;
+import ucp.greves.controller.TrainController;
+import ucp.greves.data.exceptions.station.StationNotFoundException;
+import ucp.greves.data.train.Train;
 
 public class DriverView extends Application implements Observer{
 

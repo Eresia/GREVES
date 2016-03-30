@@ -5,11 +5,9 @@ package ucp.greves.view;
 
 import java.util.ArrayList;
 
-import ucp.greves.controller.RailWayController;
-import ucp.greves.data.line.canton.Canton;
-import javafx.beans.property.IntegerProperty;
 import javafx.scene.Parent;
 import javafx.scene.shape.Circle;
+import ucp.greves.controller.RailWayController;
 
 public class LineView extends Parent{
 	

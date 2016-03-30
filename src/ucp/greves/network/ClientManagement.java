@@ -7,14 +7,12 @@ import java.net.Socket;
 import java.nio.channels.AsynchronousCloseException;
 import java.util.ArrayList;
 
-import ucp.greves.controller.StationController;
-import ucp.greves.controller.TrainController;
 import ucp.greves.data.exceptions.time.UndefinedTimeException;
-import ucp.greves.data.exceptions.train.TrainNotExistException;
 import ucp.greves.data.line.station.GlobalStation;
 import ucp.greves.data.line.station.NextTrainInformations;
 import ucp.greves.data.line.station.Station;
 import ucp.greves.data.train.Train;
+import ucp.greves.model.line.Line;
 import ucp.greves.model.simulation.SimulationInfo;
 import ucp.greves.network.exception.BadNetworkInformationException;
 
@@ -50,7 +48,7 @@ public class ClientManagement extends Thread{
 					
 					switch(data[0]){
 						case "list":
-							ArrayList<String> stationNames = StationController.StringlistOfGlobalStationsName();
+							ArrayList<String> stationNames = new ArrayList<String>(Line.getGlobalStations().keySet());
 							out.writeObject(stationNames);
 							break;
 						case "station":
@@ -58,18 +56,18 @@ public class ClientManagement extends Thread{
 								throw new BadNetworkInformationException("Bad number of information exception : " + data.length);
 							}
 							ArrayList<DataInformations> result = new ArrayList<DataInformations>();
-							GlobalStation station = StationController.getGlobalStationByName(data[1]);
+							GlobalStation station = Line.getGlobalStations().get(data[1]);
 							if(station == null){
 								throw new BadNetworkInformationException("Station " + data[1] + " don't exist");
 							}
 							for(Integer i : station.getStations()){
-								Station s = StationController.getStationByCantonId(i);
+								Station s = Line.getStations().get(i);
 								ArrayList<Integer> trains = new ArrayList<Integer>();
 								ArrayList<String> times = new ArrayList<String>();
 								ArrayList<String> lastStations = new ArrayList<String>();
 								ArrayList<NextTrainInformations> nextTrains = s.getNextTrains(3);
 								for(NextTrainInformations info : nextTrains){
-									Train train = TrainController.getRunningTrainById(info.getId());
+									Train train = Line.getTrains().get(info.getId());
 									trains.add(info.getId());
 									try {
 										times.add(info.getTime().getString());
@@ -77,7 +75,7 @@ public class ClientManagement extends Thread{
 										times.add("Unkwow time");
 									}
 									Integer last = train.getRoadMap().getLastStation();
-									lastStations.add(StationController.getStationByCantonId(last).getName());
+									lastStations.add(Line.getStations().get(last).getName());
 								}
 								result.add(new DataInformations(trains, times, lastStations));
 							}
@@ -89,9 +87,6 @@ public class ClientManagement extends Thread{
 				e.printStackTrace();
 			} catch(AsynchronousCloseException e){
 				
-			} catch (TrainNotExistException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 			}
 			
 		} catch (IOException | ClassNotFoundException e) {

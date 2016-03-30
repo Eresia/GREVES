@@ -3,8 +3,6 @@ package ucp.greves.data.line.station;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import ucp.greves.controller.ClockController;
-import ucp.greves.controller.GodModeController;
 import ucp.greves.data.exceptions.PropertyNotFoundException;
 import ucp.greves.data.exceptions.canton.CantonHasAlreadyStationException;
 import ucp.greves.data.exceptions.canton.CantonIsBlockedException;
@@ -152,7 +150,7 @@ public class Station {
 	 * Gets the time to arrive to the next station
 	 * 
 	 * @param rw
-	 * 		(Integer) The current railway
+	 * 		(Integer) The railway of the nextStation
 	 * @return 
 	 * 		(Time) The time to arrive to the next station
 	 * @throws CantonIsBlockedException if the canton is blocked
@@ -163,11 +161,73 @@ public class Station {
 		try {
 			int position = canton.getStartPoint() - canton.getStationPosition();
 		
-			return GodModeController.timeToNextStation(this.canton, position, nextStation, rw);
+			return timeToNextStation(this.canton, position, nextStation, rw);
 		} catch (StationNotFoundException | CantonNotExistException e) {
 			e.printStackTrace();
 			return new Time();
 		}
+	}
+	
+	/**
+	 * Gets the time to arrive to the next station
+	 * 
+	 * @param canton
+	 * 		(Integer) Id of actual canton
+	 * @param positionOnRailWay
+	 * 		(Integer) Start position
+	 * @param nextStation
+	 * 		(Integer) Canton id of the next station
+	 * @param nextStationRailWay
+	 * 		(Integer) The current railway
+	 * @return 
+	 * 		(Time) The time to arrive to the next station
+	 * @throws CantonIsBlockedException if the canton is blocked
+	 */
+	public static Time timeToNextStation(int canton, int positionOnRailWay, int nextStation, int nextStationRailWay) throws CantonNotExistException, StationNotFoundException, CantonIsBlockedException{
+		Time result = null;
+		Canton c = Line.getCantons().get(canton);
+		if(c == null){
+			throw new CantonNotExistException();
+		}
+		
+		Station s = Line.getStations().get(nextStation);
+		if(s == null){
+			throw new StationNotFoundException();
+		}
+		
+		int nbFrame = 0;
+		int position = positionOnRailWay;
+		
+		try {
+			while(true){
+				if (position - c.getTrainSpeed(position) <= c.getEndPoint()) {
+					c = c.getNextCanton(nextStationRailWay);
+					position = c.simulateEnter();
+					nbFrame++;
+				} 
+				
+				
+				ModifiedTrainInformation info = c.updatedTrainPosition(position, true);
+				nbFrame++;
+				
+				if(info.getStationCrossed()){
+					if(c.getStation().getCanton() == nextStation){
+						break;
+					}
+					else{
+						nbFrame += Clock.getNbFrame(c.getStation().getWaitTime());
+					}
+				}
+				position -= info.getUpdatedPosition();
+			}
+		} catch (TerminusException e) {
+			return new Time();
+		}
+		
+		int nbSecondsByFrame =  Clock.nbSecondByFrame();
+		int seconds = nbSecondsByFrame * nbFrame;
+		result = new Time(0, 0, seconds);
+		return result;
 	}
 	
 	/**
@@ -251,7 +311,7 @@ public class Station {
 	 * @throws InterruptedException if the wait is interrupted
 	 */
 	public void waitInStation(int specialTime) throws InterruptedException{
-		int nbFrame = ClockController.getNbFrame(specialTime);
+		int nbFrame = Clock.getNbFrame(specialTime);
 		for(int i = 0; i < nbFrame; i++){
 			SimulationInfo.waitFrameTime();
 		}

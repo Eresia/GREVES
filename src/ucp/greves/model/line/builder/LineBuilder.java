@@ -41,6 +41,7 @@ import ucp.greves.data.line.station.Station;
 import ucp.greves.data.time.Time;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.line.Line;
+import ucp.greves.model.schedule.Schedule;
 
 /**
  * This class has for aim to construct the line and different road maps from files configuration.
@@ -332,7 +333,7 @@ public class LineBuilder {
 							throw new InvalidXMLException("Bad Time");
 						}
 						time = new Time(Integer.valueOf(sTime[0]), Integer.valueOf(sTime[1]), Integer.valueOf(sTime[2]));
-						ScheduleController.addLaunchTrainSchedule(rmName, time);
+						Schedule.addLaunchTrainSchedule(rmName, time);
 					}
 					catch(NumberFormatException nfe) {
 						rmName = "";

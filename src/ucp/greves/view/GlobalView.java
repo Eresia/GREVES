@@ -27,15 +27,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import ucp.greves.controller.CantonController;
+import ucp.greves.controller.ConfigurationController;
 import ucp.greves.controller.GodModeController;
 import ucp.greves.controller.StationController;
 import ucp.greves.controller.TrainController;
 import ucp.greves.data.exceptions.canton.CantonNotExistException;
 import ucp.greves.data.exceptions.train.TrainNotExistException;
-import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.station.GlobalStation;
-import ucp.greves.model.configuration.ConfigurationEnvironment;
-import ucp.greves.model.line.Line;
 
 public class GlobalView extends Application{
 	
@@ -64,9 +62,7 @@ public class GlobalView extends Application{
 		primaryStage.setScene(scene);
 		primaryStage.show();  
 
-		//ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "JSON");
-		ConfigurationEnvironment.getInstance().setProperty("BUILD_CONFIGURATION", "XML");
-		Line.getInstance();
+		ConfigurationController.buildConfiguration();
 		
 		//Launch Time witch this method
 		GodModeController.startStimulation();

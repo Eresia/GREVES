@@ -3,10 +3,6 @@ package ucp.greves.view;
 import java.util.ArrayList;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -14,23 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import ucp.greves.controller.GodModeController;
 import ucp.greves.controller.RoadMapController;
-import ucp.greves.controller.StationController;
 import ucp.greves.controller.TrainController;
 import ucp.greves.data.exceptions.BadControlInformationException;
-import ucp.greves.data.exceptions.canton.CantonNotExistException;
 import ucp.greves.data.exceptions.railway.RailWayNotExistException;
 import ucp.greves.data.exceptions.roadmap.BadRoadMapException;
-import ucp.greves.data.line.canton.Canton;
-import ucp.greves.data.line.roadMap.RoadMap;
-import ucp.greves.data.line.station.Station;
-import ucp.greves.data.train.Train;
 
 public class addTrainView extends Application{
 	
