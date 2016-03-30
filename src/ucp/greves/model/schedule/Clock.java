@@ -6,6 +6,12 @@ import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 import ucp.greves.model.simulation.SimulationInfo;
 
+/**
+ * This class handles the simulation time
+ * This is a singleton class
+ * 
+ * @see Time
+ */
 public class Clock extends Thread{
 
 	public volatile Time time;
@@ -39,26 +45,54 @@ public class Clock extends Thread{
 		}
 	}
 	
+	/**
+	 * Updates the clock
+	 */
 	private void updateClock(){
 		time.updateTime();
 	}
 	
+	/**
+	 * @return (Integer) Returns the number of seconds in a frame
+	 */
 	public static final int nbSecondByFrame(){
 		return NB_SECOND_BY_FRAME;
 	}
 	
+	/**
+	 * Gets the number of frames for a number of seconds
+	 * 
+	 * @param nbSeconds
+	 * 		(Integer) The number of seconds to check
+	 * @return
+	 * 		(Integer) The total number of frames for the duration of the parameter
+	 */
 	public static int getNbFrame(int nbSeconds){
 		return nbSeconds/Clock.nbSecondByFrame();
 	}
 	
+	/**
+	 * @return
+	 * 		(Time) Returns the current time of the clock
+	 */
 	public static Time getTime(){
 		return instance.time;
 	}
 	
+	/**
+	 * Gets the instance of the class
+	 * @return
+	 * 		(Clock) Returns the instance
+	 */
 	public static Clock getInstance(){
 		return instance;
 	}
 	
+	/**
+	 * Sets the initial time of the clock
+	 * @return
+	 * 		(Time) Returns the basis time
+	 */
 	private static Time setBaseTime() {
 		Time t = BASE_SIMULATION_TIME_DEFAULT;
 		try {
@@ -77,6 +111,11 @@ public class Clock extends Thread{
 		return t;
 	}
 	
+	/**
+	 * Sets the number of seconds in a frame
+	 * @return
+	 * 		(Integer) Returns the number of seconds in a frame
+	 */
 	private static int setNbSecondByFrame() {
 		int n = NB_SECOND_BY_FRAME_DEFAULT;
 		try {

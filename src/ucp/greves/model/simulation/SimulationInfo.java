@@ -4,6 +4,9 @@ import ucp.greves.data.exceptions.PropertyNotFoundException;
 import ucp.greves.model.configuration.ConfigurationEnvironment;
 import ucp.greves.model.configuration.ConfigurationEnvironmentElement;
 
+/**
+ * This class is used to store the informations about the simulation
+ */
 public class SimulationInfo {
 
 	private final static int FRAME_DURATION_DEFAULT = 50;
@@ -12,10 +15,19 @@ public class SimulationInfo {
 	private volatile static int simulationSpeed = 0;
 	public volatile static boolean simulationStopped = false;
 	
+	/**
+	 * Creates the informations about the simulation
+	 * @param duration
+	 * 		(Integer) The duration speed
+	 */
 	public static void changeSimulationSpeed(int duration){
 		simulationSpeed = duration;
 	}
 	
+	/**
+	 * Waits for the time of a frame 
+	 * @throws InterruptedException
+	 */
 	public static void waitFrameTime() throws InterruptedException{
 		/*int waitVar = 0;
 		while(waitVar < FRAME_DURATION){
@@ -34,14 +46,24 @@ public class SimulationInfo {
 		}
 	}
 	
+	/**
+	 * Stops the simulation
+	 */
 	public static void stopSimulation(){
 		simulationStopped = true;
 	}
 	
+	/**
+	 * @return (Boolean) Returns if the simulation is stopped
+	 */
 	public static boolean stopped(){
 		return simulationStopped;
 	}
 	
+	/**
+	 * Sets the duration of a frame
+	 * @return (Integer) Returns the duration of a frame
+	 */
 	private static int setFrameDuration() {
 		int fD = FRAME_DURATION_DEFAULT;
 		try {
