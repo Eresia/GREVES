@@ -24,8 +24,7 @@ public class StationViewInformation {
 			int idStation =TrainController.getRunningTrainById(informations.getId()).getRoadMap().getLastStation();
 			destination = StationController.getStationByCantonId(idStation).getName();
 		} catch (TrainNotExistException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 		return  destination;
 	}

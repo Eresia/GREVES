@@ -57,11 +57,15 @@ public class Time extends Observable implements TimeDecorator{
 	 * 		(Integer) The seconds to specify
 	 */
 	public Time(int hours, int minutes, int seconds){
-		this.hours = hours;
-		this.minutes = minutes;
-		this.seconds = seconds;
+		this.hours = 0;
+		this.minutes = 0;
+		this.seconds = 0;
+		this.nbDays = 0;
 		
-		nbDays = 0;
+		addHours(hours);
+		addMinutes(minutes);
+		addSeconds(seconds);
+		
 	}
 	
 	/**
@@ -130,8 +134,8 @@ public class Time extends Observable implements TimeDecorator{
 	 * 		(Integer) The number of seconds to add
 	 */
 	public void addSeconds(int seconds){
-		this.seconds = (this.seconds + seconds) % 60;
 		addMinutes((this.seconds + seconds) / 60);
+		this.seconds = (this.seconds + seconds) % 60;
 	}
 	
 	/**
@@ -140,8 +144,8 @@ public class Time extends Observable implements TimeDecorator{
 	 * 		(Integer) The number of minutes to add
 	 */
 	public void addMinutes(int minutes){
-		this.minutes = (this.minutes + minutes) % 60;
 		addHours((this.minutes + minutes) / 60);
+		this.minutes = (this.minutes + minutes) % 60;
 	}
 	
 	/**
@@ -150,8 +154,8 @@ public class Time extends Observable implements TimeDecorator{
 	 * 		(Integer) The number of hours to add
 	 */
 	public void addHours(int hours){
-		this.hours = (this.hours + hours) % 24;
 		addDays((this.hours + hours) / 24);
+		this.hours = (this.hours + hours) % 24;
 	}
 	
 	/**
@@ -181,8 +185,8 @@ public class Time extends Observable implements TimeDecorator{
 	 * 		(Integer) The factor to multiply the seconds
 	 */
 	private void multSeconds(int mult){
-		seconds = (seconds * mult) % 60;
 		addMinutes((seconds * mult) / 60);
+		seconds = (seconds * mult) % 60;
 	}
 	
 	/**
@@ -191,8 +195,8 @@ public class Time extends Observable implements TimeDecorator{
 	 * 		(Integer) The factor to multiply the minutes
 	 */
 	private void multMinutes(int mult){
-		minutes = (minutes * mult) % 60;
 		addHours((minutes * mult) / 60);
+		minutes = (minutes * mult) % 60;
 	}
 	
 	/**
@@ -201,8 +205,8 @@ public class Time extends Observable implements TimeDecorator{
 	 * 		(Integer) The factor to multiply the hours
 	 */
 	private void multHours(int mult){
-		hours = (hours * mult) % 24;
 		addDays((hours * mult) / 24);
+		hours = (hours * mult) % 24;
 	}
 	
 	/**
@@ -220,10 +224,10 @@ public class Time extends Observable implements TimeDecorator{
 	 * 		(Integer) The factor to multiply the Time
 	 */
 	public void multTime(int mult){
-		multSeconds(mult);
-		multMinutes(mult);
-		multHours(mult);
 		multDays(mult);
+		multHours(mult);
+		multMinutes(mult);
+		multSeconds(mult);
 	}
 	
 	/**

@@ -19,511 +19,511 @@
 <lineConfiguration>
 	<line>
 		<railway id="0">
-			<canton size="7000">
+			<canton size="6000">
 				<station name="Cergy Le Haut" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Cergy St-Christophe" wait_time="40" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Cergy Préfecture" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Neuville Université" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Conflans fin d'Oise" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Achères-Ville" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
+			<canton size="6000" />
+			<canton size="6000" />
 		</railway>
 
 
 		<railway id="1">
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Achères-Ville" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Conflans fin d'Oise" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Neuville Université" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Cergy Préfecture" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Cergy St-Christophe" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Cergy Le Haut" />
 			</canton>
 		</railway>
 
 
 		<railway id="2">
-			<canton size="7000">
+			<canton size="6000">
 				<station name="Poissy" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Achères Grand Cormier" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
+			<canton size="6000" />
+			<canton size="6000" />
 		</railway>
 
 
 		<railway id="3">
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Achères Grand Cormier" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Poissy" />
 			</canton>
 		</railway>
 
 
 		<railway id="4">
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Maison Laffite" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Sartrouville" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Houilles Carrières sur Seine" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
+			<canton size="6000" />
+			<canton size="6000" />
 		</railway>
 
 
 		<railway id="5">
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Houilles Carrières sur Seine" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Sartrouville" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Maison Laffite" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
+			<canton size="6000" />
+			<canton size="6000" />
 		</railway>
 
 
 		<railway id="6">
-			<canton size="7000">
+			<canton size="6000">
 				<station name="St-Germain en Laye" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Le Vésinet - Le Pecq" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Le Vésinet - Centre" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Chatou - Croissy" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Rueil-Malmaison" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Nanterre-Ville" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Nanterre Université" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
+			<canton size="6000" />
+			<canton size="6000" />
 		</railway>
 
 
 		<railway id="7">
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Nanterre Université" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Nanterre-Ville" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Rueil-Malmaison" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Chatou - Croissy" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Le Vésinet - Centre" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Le Vésinet - Le Pecq" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="St-Germain en Laye" />
 			</canton>
 		</railway>
 
 
 		<railway id="8">
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Nanterre-Préfecture" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="La Défense" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Charles De Gaulle Etoile" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Auber" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Châtelet-Les-Halles" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Gare de Lyon" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Nation" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Vincennes" />
 			</canton>
-			<canton size="7000" />
+			<canton size="6000" />
 		</railway>
 
 
 		<railway id="9">
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Vincennes" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Nation" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Gare de Lyon" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Châtelet-Les-Halles" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Auber" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Charles De Gaulle Etoile" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="La Défense" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Nanterre-Préfecture" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
+			<canton size="6000" />
+			<canton size="6000" />
 		</railway>
 
 
 		<railway id="10">
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Val de Fontenay" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Neuilly Plaisance" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Bry sur Marne" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Noisy Le Grand" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Noisy Champs" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Noisiel" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Lognes" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Torcy" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Bussy Saint-Georges" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Val d'Europe" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Marne la Vallée" />
 			</canton>
 		</railway>
 
 
 		<railway id="11">
-			<canton size="7000">
+			<canton size="6000">
 				<station name="Marne la Vallée" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Val d'Europe" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Bussy Saint-Georges" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Torcy" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Lognes" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Noisiel" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Noisy Champs" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Noisy Le Grand" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Bry sur Marne" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Neuilly Plaisance" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Val de Fontenay" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
+			<canton size="6000" />
+			<canton size="6000" />
 		</railway>
 
 
 		<railway id="12">
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Fontenay sous Bois" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Nogent sur Marne" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Joinville le Pont" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="St-Maur - Créteil" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Le Parc de St-Maur" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Champigny" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="La Varenne Chennevières" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Sucy - Bonneuil" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Boissy-St-Léger" />
 			</canton>
 		</railway>
 
 
 		<railway id="13">
-			<canton size="7000">
+			<canton size="6000">
 				<station name="Boissy-St-Léger" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Sucy - Bonneuil" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="La Varenne Chennevières" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Champigny" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Le Parc de St-Maur" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="St-Maur - Créteil" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Joinville le Pont" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Nogent sur Marne" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000">
+			<canton size="6000" />
+			<canton size="6000">
 				<station name="Fontenay sous Bois" />
 			</canton>
-			<canton size="7000" />
-			<canton size="7000" />
+			<canton size="6000" />
+			<canton size="6000" />
 		</railway>
 	</line>
 

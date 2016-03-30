@@ -179,8 +179,7 @@ public class StationView extends Application implements Observer{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (TrainNotExistException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
 				}
 			}
 			if(stationListTwo != null && secondNextStation != null){

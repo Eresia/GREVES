@@ -3,13 +3,13 @@
 		"simulation_duration" : -1,
 		"frame_simulation_duration" : 100,
 		"project_title" : "G.R.E.V.E.S.",
-		"train_speed_max" : 20,
-		"train_speed_station" : 8,
+		"train_speed_max" : 40,
+		"train_speed_station" : 20,
 		"slower_distance_to_station" : 500,
-		"slow_down_speed" : 3,
+		"slow_down_speed" : 14,
 		"station_wait_time" : 60,
-		"base_simulation_time" : "9:0:0",
-		"nb_second_by_frame" : 20,
+		"base_simulation_time" : "9:50:0",
+		"nb_second_by_frame" : 15,
 		"debug" : false
 	}
 }

@@ -25,6 +25,7 @@ public class Clock extends Thread{
 	@Override
 	public void run(){
 		try{
+			updateClock();
 			while(!SimulationInfo.stopped()){
 				SimulationInfo.waitFrameTime();
 				for(int i = 0; i < NB_SECOND_BY_FRAME; i++){
@@ -44,6 +45,10 @@ public class Clock extends Thread{
 	
 	public static final int nbSecondByFrame(){
 		return NB_SECOND_BY_FRAME;
+	}
+	
+	public static int getNbFrame(int nbSeconds){
+		return nbSeconds/Clock.nbSecondByFrame();
 	}
 	
 	public static Time getTime(){

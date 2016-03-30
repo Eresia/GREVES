@@ -52,24 +52,24 @@ public class GodModeController {
 		int position = positionOnRailWay;
 		
 		try {
-		
 			while(true){
 				if (position - c.getTrainSpeed(position) <= c.getEndPoint()) {
 					c = c.getNextCanton(nextStationRailWay);
-					position = c.simulateEnter(position);
+					position = c.simulateEnter();
+					nbFrame++;
 				} 
 				
-				boolean crossStation = false;
-				if(c.hasStation()){
-					if(c.getStation().getCanton() == nextStation){
-						crossStation = true;
-					}
-				}
-				ModifiedTrainInformation info = c.updatedTrainPosition(position, crossStation);
+				
+				ModifiedTrainInformation info = c.updatedTrainPosition(position, true);
 				nbFrame++;
 				
 				if(info.getStationCrossed()){
-					break;
+					if(c.getStation().getCanton() == nextStation){
+						break;
+					}
+					else{
+						nbFrame += ClockController.getNbFrame(c.getStation().getWaitTime());
+					}
 				}
 				position -= info.getUpdatedPosition();
 			}
@@ -77,8 +77,9 @@ public class GodModeController {
 			return new Time();
 		}
 		
-		result = new Time(0, 0, Clock.nbSecondByFrame());
-		result.multTime(nbFrame);
+		int nbSecondsByFrame =  Clock.nbSecondByFrame();
+		int seconds = nbSecondsByFrame * nbFrame;
+		result = new Time(0, 0, seconds);
 		return result;
 	}
 }

@@ -221,14 +221,10 @@ public class Canton extends Observable {
 	 * 		(Integer) Returns the new position on the railway of the simulated train
 	 * @throws CantonIsBlockedException
 	 */
-	public int simulateEnter(int position) throws CantonIsBlockedException{
-		int newPosition = position;
+	public int simulateEnter() throws CantonIsBlockedException{
+		int newPosition = getStartPoint();
 		if (this.getState() == CantonState.BLOCKED) {
 			throw new CantonIsBlockedException();
-		}
-
-		if (position < 0) {
-			newPosition = position + getStartPoint();
 		}
 
 		if (ConfigurationEnvironment.inDebug()) {
@@ -266,8 +262,8 @@ public class Canton extends Observable {
 		informations.setStationCrossed(false);
 		
 		if (crossStation && hasStation()) {
-			if (positionOnCanton > positionStation && (positionOnCanton - distance) <= positionStation) {
-				informations.setUpdatedPosition(positionOnCanton - positionStation);
+			if (positionOnCanton < positionStation && (positionOnCanton + distance) >= positionStation) {
+				informations.setUpdatedPosition(positionStation - positionOnCanton);
 				informations.setStationCrossed(true);
 			}
 		}

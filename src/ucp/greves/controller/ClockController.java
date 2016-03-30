@@ -13,8 +13,8 @@ public class ClockController {
 		return Clock.nbSecondByFrame();
 	}
 	
-	public static int getNbFrame(int nbSecond){
-		return nbSecond/Clock.nbSecondByFrame();
+	public static int getNbFrame(int nbSeconds){
+		return Clock.getNbFrame(nbSeconds);
 	}
 
 }

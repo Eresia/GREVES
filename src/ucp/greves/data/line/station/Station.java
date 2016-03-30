@@ -110,7 +110,7 @@ public class Station {
 	 * @param time
 	 * 		(Time) The time of the next train to arrive
 	 */
-	private void changeTimeOfNextTrain(Train train, Time time){
+	private synchronized void changeTimeOfNextTrain(Train train, Time time){
 		RoadMap map = train.getRoadMap();
 		nextTrains.put(train.getTrainID(), time);
 		for(Integer rw : nextStation.keySet()){
@@ -119,9 +119,7 @@ public class Station {
 				Station next = Line.getStations().get(nextStation.get(rw));
 				Time nextTime = time.clone();
 				if(map.cross(canton)){
-					Time wait = new Time();
-					wait.addSeconds(waitTime);
-					nextTime.addTime(wait);
+					nextTime.addSeconds(Clock.getNbFrame(waitTime));
 				}
 				try{
 					nextTime.addTime(timeToNextStation(rw, nextStation.get(rw)));
@@ -139,7 +137,7 @@ public class Station {
 	 * @param train
 	 * 		(Train) The first train to change its ETA to undefined
 	 */
-	private void undefinedTimeOfNextTrain(Train train){
+	private synchronized void undefinedTimeOfNextTrain(Train train){
 		RoadMap map = train.getRoadMap();
 		nextTrains.put(train.getTrainID(), new UndefinedTime());
 		for(Integer rw : nextStation.keySet()){
@@ -159,12 +157,9 @@ public class Station {
 	 * 		(Time) The time to arrive to the next station
 	 * @throws CantonIsBlockedException if the canton is blocked
 	 */
-	private Time timeToNextStation(int rw, int nextStation) throws CantonIsBlockedException{
-		Time time;
-		int nbFrame = 0;
+	private synchronized Time timeToNextStation(int rw, int nextStation) throws CantonIsBlockedException{
 		
 		Canton canton = Line.getCantons().get(this.canton);
-		
 		try {
 			int position = canton.getStartPoint() - canton.getStationPosition();
 		
