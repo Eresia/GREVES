@@ -83,8 +83,6 @@ public class GlobalView extends Application{
 				GodModeController.stopSimulation();			
 			}
 		});
-		
-		new GlobalMap();
 	}
 	
 	public void setButton(Parent root){
@@ -237,6 +235,15 @@ public class GlobalView extends Application{
 				 new DriverView(trainId); 
 			 }
 				
+			}
+		});
+		
+		Button globalMap = (Button) root.lookup("#GlobalMap");
+		globalMap.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				new GlobalMap();				
 			}
 		});
 		

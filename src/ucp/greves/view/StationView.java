@@ -3,6 +3,8 @@
  */
 package ucp.greves.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -92,19 +94,11 @@ public class StationView extends Application implements Observer{
 		firstNextTrainColumnTwo.setCellValueFactory(new PropertyValueFactory<>("destination"));
 		TableColumn<StationViewInformation, Integer> firstNextTrainColumnThree = (TableColumn<StationViewInformation, Integer>) nextTrainFirstTable.getColumns().get(2);
 		firstNextTrainColumnThree.setCellValueFactory(new PropertyValueFactory<>("time"));
-		nextTrainListOne = FXCollections.observableArrayList();
-		for(NextTrainInformations currentTrain : StationController.getNextTrainsInStation(firstStation.getCanton())){
-			nextTrainListOne.add(new StationViewInformation(currentTrain));
-		}
-		nextTrainFirstTable.setItems(nextTrainListOne);
-		//nextTrainFirstTable.getItems().get(0);
 		
 		//first TableView of next stations
 		fisrtNextStation = (TableView<Station>) root.lookup("#NextStationFirstTable");
 		TableColumn<Station, String> fisrtNextStationColumnOne = (TableColumn<Station, String>) fisrtNextStation.getColumns().get(0);
 		fisrtNextStationColumnOne.setCellValueFactory(new PropertyValueFactory<Station,String>("name"));
-		stationListOne = FXCollections.observableArrayList();
-		fisrtNextStation.setItems(stationListOne);
 		
 		//Second TableView of next trains
 		nextTrainSecondTable = (TableView<StationViewInformation>) root.lookup("#NextTrainSecondTable");
@@ -114,18 +108,11 @@ public class StationView extends Application implements Observer{
 		secondNextTrainColumnTwo.setCellValueFactory(new PropertyValueFactory<>("destination"));
 		TableColumn<StationViewInformation, Integer> secondNextTrainColumnThree = (TableColumn<StationViewInformation, Integer>) nextTrainSecondTable.getColumns().get(2);
 		secondNextTrainColumnThree.setCellValueFactory(new PropertyValueFactory<>("time"));
-		nextTrainListTwo = FXCollections.observableArrayList();
-		for(NextTrainInformations currentTrain : StationController.getNextTrainsInStation(secondStation.getCanton())){
-			nextTrainListTwo.add(new StationViewInformation(currentTrain));
-		}
-		nextTrainSecondTable.setItems(nextTrainListTwo);
 		
 		//second TableView of next stations
 		secondNextStation = (TableView<Station>) root.lookup("#NextStationSecondTable");
 		TableColumn<Station, String> secondNextStationColumnOne = (TableColumn<Station, String>) secondNextStation.getColumns().get(0);
 		secondNextStationColumnOne.setCellValueFactory(new PropertyValueFactory<Station,String>("name"));
-		stationListTwo = FXCollections.observableArrayList();
-		secondNextStation.setItems(stationListTwo);
 		
 	}
 
@@ -145,8 +132,17 @@ public class StationView extends Application implements Observer{
 			if(!nextTrainListOne.isEmpty()){
 				NextTrainInformations train = nextTrainListOne.get(0).getTrainInformations();
 				try {
-					for(Integer currentStaion : TrainController.getRunningTrainById(train.getId()).nextStations()){
-						stationListOne.add(StationController.getStationByCantonId(currentStaion));
+					ArrayList<Integer> allStations = TrainController.getRunningTrainById(train.getId()).nextStations();
+					int index = 0;
+					for(Integer currentStation : allStations){
+						if(StationController.getStationByCantonId(currentStation).getName().equals(station.getName())){
+							index = currentStation;
+						}
+						
+					}
+					List<Integer> nextStations = allStations.subList(index+1, allStations.size()-1);
+					for(Integer currentStation : nextStations){
+						stationListOne.add(StationController.getStationByCantonId(currentStation));
 					}
 				} catch (StationNotFoundException e) {
 					// TODO Auto-generated catch block

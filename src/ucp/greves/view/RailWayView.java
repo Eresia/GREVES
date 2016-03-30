@@ -53,7 +53,7 @@ public class RailWayView extends Parent  {
 				inverseList.add(c);
 			}
 			else{
-				CantonView cv = new CantonView(xpos, ypos,0.003, cantonController.getCantonById(c), cantonController, global, true);
+				CantonView cv = new CantonView(xpos, ypos,0.0037, cantonController.getCantonById(c), cantonController, global, true);
 				this.Cantons.put(c, cv);
 				this.getChildren().add(cv);
 				xpos = cv.getEndX();
@@ -77,7 +77,7 @@ public class RailWayView extends Parent  {
 		switch (railway.getId()) {
 		case 0:
 			startYpos.setValue(50);
-			startXpos.setValue(100);
+			startXpos.setValue(25);
 			break;
 			
 		case 1:
@@ -92,57 +92,57 @@ public class RailWayView extends Parent  {
 			
 		case 3:
 			startYpos.setValue(250);
-			startXpos.setValue(390);
+			startXpos.setValue(425);
 			break;
 			
 		case 4:
 			startYpos.setValue(125);
-			startXpos.setValue(640);
+			startXpos.setValue(625);
 			break;
 			
 		case 5:
 			startYpos.setValue(175);
-			startXpos.setValue(600);
+			startXpos.setValue(625);
 			break;
 			
 		case 6:
 			startYpos.setValue(350);
-			startXpos.setValue(400);
+			startXpos.setValue(300);
 			break;
 			
 		case 7:
 			startYpos.setValue(400);
-			startXpos.setValue(275);
+			startXpos.setValue(300);
 			break;
 			
 		case 8:
 			startYpos.setValue(225);
-			startXpos.setValue(1050);
+			startXpos.setValue(1000);
 			break;
 			
 		case 9:
 			startYpos.setValue(275);
-			startXpos.setValue(975);
+			startXpos.setValue(1000);
 			break;
 			
 		case 10:
 			startYpos.setValue(150);
-			startXpos.setValue(1800);
+			startXpos.setValue(1825);
 			break;
 			
 		case 11:
 			startYpos.setValue(200);
-			startXpos.setValue(1800);
+			startXpos.setValue(1825);
 			break;
 			
 		case 12:
 			startYpos.setValue(300);
-			startXpos.setValue(1800);
+			startXpos.setValue(1825);
 			break;
 			
 		case 13:
 			startYpos.setValue(350);
-			startXpos.setValue(1800);
+			startXpos.setValue(1825);
 			break;
 
 		default:

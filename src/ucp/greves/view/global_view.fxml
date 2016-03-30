@@ -166,28 +166,12 @@
                   <Label fx:id="TimeLabel" text="00:00:00" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <Button fx:id="GlobalMap" mnemonicParsing="false" text="Carte globale" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
          </children>
       </GridPane>
-      <MenuBar maxWidth="1.7976931348623157E308">
-        <menus>
-          <Menu mnemonicParsing="false" text="Menu">
-            <items>
-                  <MenuItem mnemonicParsing="false" text="Chager simulation" />
-                  <MenuItem mnemonicParsing="false" text="Reset simulation" />
-              <MenuItem mnemonicParsing="false" text="Quitter" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Affichage">
-               <items>
-                  <CheckMenuItem mnemonicParsing="false" text="Carte globale" />
-               </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="?">
-            <items>
-              <MenuItem mnemonicParsing="false" text="A propos" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
    </children>
 </AnchorPane>
