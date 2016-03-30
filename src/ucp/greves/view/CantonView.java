@@ -38,9 +38,9 @@ public class CantonView extends Parent implements Observer {
 	private Boolean global;
 	private Boolean direction;
 	
-	private final static Paint colorSelected = Color.BLUE;
 	private final static Paint colorBlocked = Color.RED;
 	private final static Paint colorSlow = Color.YELLOW;
+	private final static Paint colorNormal = new Color(0.45, 0.7, 0, 1);
 
 	public CantonView(IntegerProperty posXA, IntegerProperty posYA,
 			double factor, Canton canton, CantonController controller, Boolean global, Boolean direction) {
@@ -67,10 +67,10 @@ public class CantonView extends Parent implements Observer {
 		}
 		this.lineofCanton = new Line(this.posXA.get(), this.posYA.get(),
 				this.posXB.get(), this.posYB.get());
-		this.lineofCanton.setFill(Color.GREEN);
+		this.lineofCanton.setFill(colorNormal);
 		this.lineofCanton.setStrokeWidth(3);
 		if (canton.isFree()) {
-			lineofCanton.setStroke(Color.GREEN);
+			lineofCanton.setStroke(colorNormal);
 		} else {
 			lineofCanton.setStroke(Color.RED);
 		}
@@ -236,14 +236,17 @@ public class CantonView extends Parent implements Observer {
 			Platform.runLater(() -> this.getChildren()
 					.remove(trainText));
 		}
-		Platform.runLater(() ->setColor(Color.GREEN));
+		Platform.runLater(() ->setColor(colorNormal));
 	}
 	
 	private void setColor(Paint color){
 		if(isSelected){
-			lineofCanton.setStroke(colorSelected);
+			//lineofCanton.setStroke(colorSelected);
+			lineofCanton.setScaleX(2);
 		}
 		else{
+			lineofCanton.setScaleX(1);
+		}
 			switch(canton.getState()){
 				case BLOCKED:
 					lineofCanton.setStroke(colorBlocked);
@@ -254,7 +257,7 @@ public class CantonView extends Parent implements Observer {
 				case NO_PROBLEM:
 					lineofCanton.setStroke(color);
 					break;
-			}
+		//	}
 		}
 	}
 
@@ -272,13 +275,13 @@ public class CantonView extends Parent implements Observer {
 	
 	public void select(){
 		isSelected = true;
-		setColor(colorSelected);
+		setColor(colorNormal);
 	}
 	
 	public void unSelect(){
 		isSelected = false;
 		if(canton.isFree()){
-			setColor(Color.GREEN);
+			setColor(colorNormal);
 		}
 		else{
 			setColor(Color.RED);
@@ -287,7 +290,7 @@ public class CantonView extends Parent implements Observer {
 	
 	public void changeState(){
 		if(canton.isFree()){
-			setColor(Color.GREEN);
+			setColor(colorNormal);
 		}
 		else{
 			setColor(Color.RED);

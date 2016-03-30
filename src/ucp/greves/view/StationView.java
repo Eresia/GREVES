@@ -3,8 +3,6 @@
  */
 package ucp.greves.view;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -132,17 +130,8 @@ public class StationView extends Application implements Observer{
 			if(!nextTrainListOne.isEmpty()){
 				NextTrainInformations train = nextTrainListOne.get(0).getTrainInformations();
 				try {
-					ArrayList<Integer> allStations = TrainController.getRunningTrainById(train.getId()).nextStations();
-					int index = 0;
-					for(Integer currentStation : allStations){
-						if(StationController.getStationByCantonId(currentStation).getName().equals(station.getName())){
-							index = currentStation;
-						}
-						
-					}
-					List<Integer> nextStations = allStations.subList(index+1, allStations.size()-1);
-					for(Integer currentStation : nextStations){
-						stationListOne.add(StationController.getStationByCantonId(currentStation));
+					for(Integer currentStaion : TrainController.getRunningTrainById(train.getId()).nextStations()){
+						stationListOne.add(StationController.getStationByCantonId(currentStaion));
 					}
 				} catch (StationNotFoundException e) {
 					// TODO Auto-generated catch block

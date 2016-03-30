@@ -40,7 +40,7 @@ public class RailWayView extends Parent  {
 			this.globalOrder();
 		}
 		else{
-			startXpos.setValue(((railway.getId()+1)*150));
+			startXpos.setValue(((railway.getId())*150) + 50);
 			startYpos.set(10);
 		}
 		IntegerProperty xpos =new SimpleIntegerProperty();
