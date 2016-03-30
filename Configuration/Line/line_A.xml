@@ -18,6 +18,75 @@
 
 <lineConfiguration>
 	<line>
+	<!-- Pour des vrais tailles 
+		<railway id="0">
+			<canton size="300">
+				<station name="Cergy Le Haut" />
+			</canton>
+			<canton size="500" />
+			<canton size="700" />
+			<canton size="200">
+				<station name="Cergy St-Christophe" wait_time="40" />
+			</canton>
+			<canton size="1300" />
+			<canton size="1200" />
+			<canton size="1500">
+				<station name="Cergy Préfecture" />
+			</canton>
+			<canton size="1000" />
+			<canton size="1000" />
+			<canton size="1000">
+				<station name="Neuville Université" />
+			</canton>
+			<canton size="1000" />
+			<canton size="1000" />
+			<canton size="700">
+				<station name="Conflans fin d'Oise" />
+			</canton>
+			<canton size="700" />
+			<canton size="900" />
+			<canton size="700">
+				<station name="Achères-Ville" />
+			</canton>
+			<canton size="800" />
+			<canton size="1000" />
+			<canton size="1200" />
+			<canton size="1000" />
+			<canton size="1000" />
+		</railway>
+
+		<railway id="1">
+			<canton size="2000" />
+			<canton size="3000">
+				<station name="Achères-Ville" />
+			</canton>
+			<canton size="500" />
+			<canton size="900" />
+			<canton size="900">
+				<station name="Conflans fin d'Oise" />
+			</canton>
+			<canton size="1400" />
+			<canton size="1300">
+				<station name="Neuville Université" />
+			</canton>
+			<canton size="1000" />
+			<canton size="1000" />
+			<canton size="1000">
+				<station name="Cergy Préfecture" />
+			</canton>
+			<canton size="800" />
+			<canton size="1200" />
+			<canton size="1000" />
+			<canton size="1000">
+				<station name="Cergy St-Christophe" />
+			</canton>
+			<canton size="700" />
+			<canton size="500" />
+			<canton size="500">
+				<station name="Cergy Le Haut" />
+			</canton>
+		</railway>
+	-->
 		<railway id="0">
 			<canton size="6000">
 				<station name="Cergy Le Haut" />
@@ -50,8 +119,7 @@
 			<canton size="6000" />
 			<canton size="6000" />
 		</railway>
-
-
+	
 		<railway id="1">
 			<canton size="6000" />
 			<canton size="6000">
@@ -83,7 +151,7 @@
 				<station name="Cergy Le Haut" />
 			</canton>
 		</railway>
-
+	
 
 		<railway id="2">
 			<canton size="6000">
