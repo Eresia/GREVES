@@ -12,7 +12,7 @@
 
 	<property type="integer" name="station_wait_time" value="60" />
 
-  <property type="time" name="base_simulation_time" value="09:50:00" />
+  <property type="time" name="base_simulation_time" value="04:30:00" />
   <property type="integer" name="nb_second_by_frame" value="15" />
 
 	<property type="boolean" name="debug" value="false" />
