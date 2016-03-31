@@ -20,7 +20,7 @@
           <RowConstraints minHeight="10.0" percentHeight="55.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <left>
                   <Label text="Destination :" underline="true" BorderPane.alignment="CENTER">
                      <font>
@@ -32,7 +32,7 @@
                   <Label fx:id="FinalStation" text="Lune" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
                <left>
                   <Label text="Prochaine gare :" underline="true" BorderPane.alignment="CENTER">
                      <font>
@@ -44,41 +44,8 @@
                   <Label fx:id="NextStationName" text="Cergy le haut" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <left>
-                  <Label text="Prochaine gare dans :" underline="true" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </left>
-               <center>
-                  <Label fx:id="NextStationTime" text="02:35" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <left>
-                  <Label text="Avance/Retard :" underline="true" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </left>
-               <center>
-                  <Label fx:id="TimeState" text="- 00:25" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
             <Pane fx:id="DriverLineDraw" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <MenuBar>
-        <menus>
-          <Menu mnemonicParsing="false" text="Menu">
-            <items>
-              <MenuItem fx:id="closeButton" mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
    </children>
 </AnchorPane>

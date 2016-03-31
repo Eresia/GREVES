@@ -42,7 +42,7 @@ public class CantonView extends Parent implements Observer {
 	private final static Paint colorTrain = Color.DARKGRAY;
 	private final static Paint colorStation = Color.BLUE;
 	private final static Paint colorCantonOccuped = Color.RED;
-	private final static Paint colorCantonBlocked = Color.RED;
+	private final static Paint colorCantonBlocked = Color.BLACK;
 	private final static Paint colorCantonSlow = Color.YELLOW;
 	private final static Paint colorCantonNormal = new Color(0.45, 0.7, 0, 1);
 
