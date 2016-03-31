@@ -2,6 +2,9 @@ package ucp.greves.data.line.station;
 
 import ucp.greves.data.time.TimeDecorator;
 
+/**
+ * This class represents the informations of the next trains for a station
+ */
 public class NextTrainInformations {
 	
 	private final int id;

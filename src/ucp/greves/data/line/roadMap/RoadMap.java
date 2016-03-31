@@ -10,6 +10,9 @@ import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.station.Station;
 import ucp.greves.model.line.Line;
 
+/**
+ * This class is used to define a roadmap for the trains : the train will roll through the stations registered
+ */
 public class RoadMap {
 	private ArrayList<Integer> railwaysIDs;
 	private String name;
