@@ -145,8 +145,7 @@ public class GlobalView extends Application{
 					try {
 						TrainController.blockTrain(selectedTrain);
 					} catch (TrainNotExistException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						
 					}
 				}
 			}

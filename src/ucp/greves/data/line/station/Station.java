@@ -255,30 +255,36 @@ public class Station {
 	
 	public synchronized ArrayList<NextTrainInformations> getNextTrains(int nb){
 		ArrayList<NextTrainInformations> result = new ArrayList<NextTrainInformations>();
+		HashMap<Integer, TimeDecorator> nextTrains = (HashMap<Integer, TimeDecorator>) this.nextTrains.clone();
 		ArrayList<Integer> keys = new ArrayList<Integer>(nextTrains.keySet());
 		int nbMax;
-		if(nb > nextTrains.size()){
-			nbMax = nextTrains.size();
-		}
-		else{
-			nbMax = nb;
-		}
-		for(int i = 0; i < nextTrains.size(); i++){
-			boolean isPlaced = false;
-			TimeDecorator actualTime = nextTrains.get(keys.get(i));
-			for(int j = 0; j < result.size(); j++){
-				NextTrainInformations info = result.get(j);
-				if(actualTime.isInferior(info.getTime())){
-					result.add(j, new NextTrainInformations(keys.get(i), nextTrains.get(keys.get(i))));
-					isPlaced = true;
-					break;
+		if(nextTrains.size() != 0){
+			if(nb > nextTrains.size()-1){
+				nbMax = nextTrains.size()-1;
+			}
+			else{
+				nbMax = nb;
+			}
+			for(int i = 0; i < nextTrains.size(); i++){
+				boolean isPlaced = false;
+				TimeDecorator actualTime = nextTrains.get(keys.get(i));
+				for(int j = 0; j < result.size(); j++){
+					NextTrainInformations info = result.get(j);
+					if(actualTime.isInferior(info.getTime())){
+						result.add(j, new NextTrainInformations(keys.get(i), nextTrains.get(keys.get(i))));
+						isPlaced = true;
+						break;
+					}
+				}
+				if(!isPlaced){
+					result.add(new NextTrainInformations(keys.get(i), nextTrains.get(keys.get(i))));
 				}
 			}
-			if(!isPlaced){
-				result.add(new NextTrainInformations(keys.get(i), nextTrains.get(keys.get(i))));
-			}
+			return new ArrayList<NextTrainInformations>(result.subList(0, nbMax));
 		}
-		return new ArrayList<NextTrainInformations>(result.subList(0, nbMax));
+		else{
+			return new ArrayList<NextTrainInformations>();
+		}
 	}
 	
 	/**

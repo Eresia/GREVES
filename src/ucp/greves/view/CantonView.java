@@ -253,7 +253,12 @@ public class CantonView extends Parent implements Observer {
 			
 		}
 		else{
-			lineofCanton.setScaleX(1);
+			if(global){
+				lineofCanton.setScaleY(1);
+			}
+			else{
+				lineofCanton.setScaleX(1);
+			}
 		}
 		lineofCanton.setStroke(getStateColor(color));
 	}
