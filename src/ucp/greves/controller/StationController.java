@@ -1,12 +1,11 @@
 package ucp.greves.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 
 import ucp.greves.data.line.station.GlobalStation;
 import ucp.greves.data.line.station.NextTrainInformations;
 import ucp.greves.data.line.station.Station;
-import ucp.greves.data.time.TimeDecorator;
 import ucp.greves.model.line.Line;
 
 public class StationController {
@@ -28,7 +27,9 @@ public class StationController {
 	}
 	
 	public static ArrayList<String> StringlistOfGlobalStationsName(){
-		return new ArrayList<String>(Line.getGlobalStations().keySet());
+		ArrayList<String> stations = new ArrayList<String>(Line.getGlobalStations().keySet());
+		Collections.sort(stations);
+		return stations;
 	}
 	
 	public static GlobalStation getGlobalStationByName(String name){
