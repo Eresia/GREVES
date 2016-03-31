@@ -346,9 +346,9 @@ public class GlobalView extends Application{
 	public static void setSelectedCanton(CantonView cv){
 		Canton canton = cv.getCanton();
 		if(selectedCanton != null){
-			unSelectCanton(canton.getId());
+			unSelectCanton(selectedCanton.getCanton().getId());
 		}
-		if(cv != selectedCanton){
+		if((selectedCanton == null) || (cv.getCanton() != selectedCanton.getCanton())){
 			selectedCanton = cv;
 			selectCanton(canton.getId());
 			selectedCantonState.setTextFill(cv.getStateColor());
