@@ -34,8 +34,11 @@ public class Station {
 	private String name;
 	private int canton;
 	private int waitTime;
-	private volatile HashMap<Integer, Integer> nextStation;
+	private HashMap<Integer, Integer> nextStation;
 	private volatile HashMap<Integer, TimeDecorator> nextTrains;
+	
+	private final static Object keyNextTrains = new Object();
+	private final static Object keyNextStations = new Object();
 	
 	/**
 	 * Creates a station and registers it
@@ -110,7 +113,17 @@ public class Station {
 	 */
 	private synchronized void changeTimeOfNextTrain(Train train, Time time){
 		RoadMap map = train.getRoadMap();
-		nextTrains.put(train.getTrainID(), time);
+		
+		HashMap<Integer, Integer> nextStation;
+		
+		synchronized (keyNextTrains) {
+			this.nextTrains.put(train.getTrainID(), time);
+		}
+		
+		synchronized (keyNextStations) {
+			nextStation = (HashMap<Integer, Integer>) this.nextStation.clone();
+		}
+		
 		for(Integer rw : nextStation.keySet()){
 			
 			if(map.getRailwaysIDs().contains(rw)){
@@ -137,7 +150,17 @@ public class Station {
 	 */
 	private synchronized void undefinedTimeOfNextTrain(Train train){
 		RoadMap map = train.getRoadMap();
-		nextTrains.put(train.getTrainID(), new UndefinedTime());
+		
+		HashMap<Integer, Integer> nextStation;
+		
+		synchronized (keyNextTrains) {
+			this.nextTrains.put(train.getTrainID(), new UndefinedTime());
+		}
+		
+		synchronized (keyNextStations) {
+			nextStation = (HashMap<Integer, Integer>) this.nextStation.clone();
+		}
+		
 		for(Integer rw : nextStation.keySet()){
 			if(map.getRailwaysIDs().contains(rw)){
 				Station next = Line.getStations().get(nextStation.get(rw));
@@ -255,7 +278,13 @@ public class Station {
 	
 	public synchronized ArrayList<NextTrainInformations> getNextTrains(int nb){
 		ArrayList<NextTrainInformations> result = new ArrayList<NextTrainInformations>();
-		HashMap<Integer, TimeDecorator> nextTrains = (HashMap<Integer, TimeDecorator>) this.nextTrains.clone();
+		
+		HashMap<Integer, TimeDecorator> nextTrains;
+		
+		synchronized (keyNextTrains) {
+			nextTrains = (HashMap<Integer, TimeDecorator>) this.nextTrains.clone();
+		}
+		
 		ArrayList<Integer> keys = new ArrayList<Integer>(nextTrains.keySet());
 		int nbMax;
 		if(nextTrains.size() != 0){
