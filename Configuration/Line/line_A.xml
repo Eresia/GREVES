@@ -4,8 +4,8 @@
 	1 : Acheres Ville => Cergy Le Haut
 	2 : Poissy => Achères Grand Cormier
 	3 : Achères Grand Cormier => Poissy
-	4 : Maison Laffitte => Houilles Carrières sur Seine
-	5 : Houilles Carrières sur Seine => Maison Laffitte
+	4 : Maisons-Laffitte => Houilles Carrières sur Seine
+	5 : Houilles Carrières sur Seine => Maisons-Laffitte
 	6 : St-Germain en Laye => Nanterre Université
 	7 : Nanterre Université => St-Germain en Laye
 	8 : Nanterre Préfecture => Vincennes
@@ -186,7 +186,7 @@
 			<canton size="6000" />
 			<canton size="6000" />
 			<canton size="6000">
-				<station name="Maison Laffite" />
+				<station name="Maisons-Laffitte" />
 			</canton>
 			<canton size="6000" />
 			<canton size="6000" />
@@ -217,7 +217,7 @@
 			<canton size="6000" />
 			<canton size="6000" />
 			<canton size="6000">
-				<station name="Maison Laffite" />
+				<station name="Maisons-Laffitte" />
 			</canton>
 			<canton size="6000" />
 			<canton size="6000" />
@@ -601,8 +601,8 @@
 		1 : Acheres Ville => Cergy Le Haut
 		2 : Poissy => Achères Grand Cormier
 		3 : Achères Grand Cormier => Poissy
-		4 : Maison Laffitte => Houilles Carrières sur Seine
-		5 : Houilles Carrières sur Seine => Maison Laffitte
+		4 : Maisons-Laffitte => Houilles Carrières sur Seine
+		5 : Houilles Carrières sur Seine => Maisons-Laffitte
 		6 : St-Germain en Laye => Nanterre Université
 		7 : Nanterre Université => St-Germain en Laye
 		8 : Nanterre Préfecture => Vincennes
