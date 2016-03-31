@@ -1,5 +1,6 @@
 package ucp.greves.view;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -43,6 +44,7 @@ public class GlobalView extends Application{
 	private volatile static CantonView selectedCanton = null;
 	private static Label selectedCantonState = null;
 	private ComboBox<Integer> trainIDListComboBox;
+	private volatile static ArrayList<LineView> lines;
 	
 	public static void main(String[] args){
 		launch(args);
@@ -51,8 +53,21 @@ public class GlobalView extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("global_view.fxml"));
-		Scene scene = new Scene(root,1024,768);
+		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		int width;
+		int height;
+		if(dimension.getWidth() < 1024 || dimension.getHeight() < 768){
+			width = (int) dimension.getWidth() - 20;
+			height = (int) dimension.getHeight() - 20;
+		}
+		else{
+			width = 1024;
+			height = 768;
+		}
+		Scene scene = new Scene(root,width,height);
 		primaryStage.setTitle("G.R.E.V.E.S. - Vue globale");
+		
+		lines = new ArrayList<LineView>();
 
 		this.paneHeight = new SimpleIntegerProperty();
 		this.paneWidth = new SimpleIntegerProperty();

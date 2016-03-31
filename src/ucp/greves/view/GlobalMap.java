@@ -1,5 +1,7 @@
 package ucp.greves.view;
 
+import java.awt.Dimension;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,7 +27,15 @@ public class GlobalMap extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("globalMap_view.fxml"));
-		Scene scene = new Scene(root,800,600);
+		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		int height;
+		if(dimension.getHeight() < 600){
+			height = (int) dimension.getHeight();
+		}
+		else{
+			height = 600;
+		}
+		Scene scene = new Scene(root, dimension.getWidth()-20, height);
 		primaryStage.setTitle("G.R.E.V.E.S. - Map globale ligne A");
 
 		ScrollPane globalPane = (ScrollPane) root.lookup("#GlobalMap");	
