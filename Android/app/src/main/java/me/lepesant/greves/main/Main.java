@@ -27,10 +27,9 @@ public class Main extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        if(getIntent() == null){
+        if (getIntent() == null) {
             msg.setText("Prêt à se connecter");
-        }
-        else{
+        } else {
             msg.setText(getIntent().getStringExtra("Message"));
         }
 
@@ -46,10 +45,18 @@ public class Main extends AppCompatActivity {
                     client.beginConnexion(ip.getText().toString(), 8888);
                     Intent listIntent = new Intent(Main.this, StationList.class);
                     startActivity(listIntent);
-                } catch(IOException e){
+                } catch (IOException e) {
                     msg.setText("Erreur de connexion au serveur : " + e.getMessage());
                 }
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        TextView msg = (TextView) findViewById(R.id.errorPrint);
+        msg.setText("Prêt à se connecter");
     }
 }

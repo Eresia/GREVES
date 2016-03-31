@@ -58,10 +58,6 @@ public class RefreshStation implements Runnable{
                 }
                 Thread.sleep(1000);
             }
-            client.close();
-            Intent intentMain = new Intent(activity, Main.class);
-            intentMain.putExtra("Message", "Connexion ended");
-            activity.startActivity(intentMain);
 
         } catch (IOException | ClassNotFoundException | InterruptedException e) {
             Intent intentMain = new Intent(activity, Main.class);

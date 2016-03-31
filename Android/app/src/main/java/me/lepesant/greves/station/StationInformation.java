@@ -19,6 +19,8 @@ import me.lepesant.greves.network.exception.ClientNotConnectedException;
 
 public class StationInformation extends AppCompatActivity {
 
+    private RefreshStation refreshThread;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +30,8 @@ public class StationInformation extends AppCompatActivity {
         TextView stationNameText = (TextView) findViewById(R.id.stationName);
         stationNameText.setText("Gare de " + station);
         try {
-            RefreshStation refresh = new RefreshStation(station, this);
-            new Thread(refresh).start();
+            refreshThread = new RefreshStation(station, this);
+            new Thread(refreshThread).start();
         } catch (NoSuchFieldException e) {
             Intent intentMain = new Intent(StationInformation.this, Main.class);
             intentMain.putExtra("Message", "Problem with server connexion");
@@ -43,6 +45,10 @@ public class StationInformation extends AppCompatActivity {
         }
     }
 
-
+    @Override
+    protected  void onDestroy(){
+        super.onDestroy();
+        refreshThread.stopNetwork();
+    }
 
 }
