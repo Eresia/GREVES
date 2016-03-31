@@ -72,10 +72,14 @@ public class CantonView extends Parent implements Observer {
 				this.posXB.get(), this.posYB.get());
 		this.lineofCanton.setFill(colorCantonNormal);
 		this.lineofCanton.setStrokeWidth(3);
+		CantonView selectedCanton = GlobalView.getSelectedCanton();
+		if(selectedCanton != null && selectedCanton.getCanton() == canton){
+			isSelected = true;
+		}
 		if (canton.isFree()) {
-			lineofCanton.setStroke(colorCantonNormal);
+			setColor(colorCantonNormal);
 		} else {
-			lineofCanton.setStroke(colorCantonOccuped);
+			setColor(colorCantonOccuped);
 		}
 		Circle stationPosition;
 		Text stationText;

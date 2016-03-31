@@ -11,7 +11,7 @@ import ucp.greves.controller.RailWayController;
 
 public class LineView extends Parent{
 	
-	public ArrayList<RailWayView> RailWays;
+	public ArrayList<RailWayView> railWays;
 	/**
 	 * Construct the view line with width and height
 	 * 
@@ -24,15 +24,33 @@ public class LineView extends Parent{
 		circle.setCenterY(0);
 		this.getChildren().add(circle);
 
-		RailWays = new ArrayList<RailWayView>();
+		railWays = new ArrayList<RailWayView>();
 		RailWayController Rcontroller = new RailWayController();
 		 ArrayList<Integer> RailsWayIds = Rcontroller.integerlistOfRailWaysID();
 		 int numberOfRailWays = Rcontroller.integerlistOfRailWaysID().size();
 		 for(int rid : RailsWayIds){
 			 RailWayView RWV = new RailWayView(Rcontroller.getRailWayById(rid), numberOfRailWays, global);
-			 this.RailWays.add(RWV);
+			 this.railWays.add(RWV);
 			 this.getChildren().add(RWV);
 		 } 
+	}
+	
+	public void selectCanton(Integer canton){
+		for(RailWayView rw : railWays){
+			rw.selectCanton(canton);
+		}
+	}
+	
+	public void unSelectCanton(Integer canton){
+		for(RailWayView rw : railWays){
+			rw.unSelectCanton(canton);
+		}
+	}
+	
+	public void changeStateCanton(Integer canton){
+		for(RailWayView rw : railWays){
+			rw.changeStateCanton(canton);
+		}
 	}
 
 	

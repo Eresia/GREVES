@@ -34,6 +34,7 @@ import ucp.greves.controller.StationController;
 import ucp.greves.controller.TrainController;
 import ucp.greves.data.exceptions.canton.CantonNotExistException;
 import ucp.greves.data.exceptions.train.TrainNotExistException;
+import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.station.GlobalStation;
 
 public class GlobalView extends Application{
@@ -86,6 +87,7 @@ public class GlobalView extends Application{
   
 		ScrollPane lineDraw = (ScrollPane) root.lookup("#LineDraw"); //Get the borderPane from the root
 		LineView lineView = new LineView(false);
+		lines.add(lineView);
 		lineDraw.setContent(lineView);
 		setTrainIDsList(root);
 		setStationList(root);
@@ -177,7 +179,7 @@ public class GlobalView extends Application{
 				if(selectedCanton != null) {
 					try {
 						CantonController.blockCanton(selectedCanton.getCanton().getId());
-						selectedCanton.changeState();
+						changeStateCanton(selectedCanton.getCanton().getId());
 						selectedCantonState.setTextFill(selectedCanton.getStateColor());
 						selectedCantonState.setText(selectedCanton.getStateText());
 					} catch (CantonNotExistException e) {
@@ -265,7 +267,7 @@ public class GlobalView extends Application{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				new GlobalMap();				
+				new GlobalMap(lines);				
 			}
 		});
 		
@@ -341,15 +343,16 @@ public class GlobalView extends Application{
 		stationList.setItems(stationListObs);
 	}
 	
-	public static void setSelectedCanton(CantonView canton){
+	public static void setSelectedCanton(CantonView cv){
+		Canton canton = cv.getCanton();
 		if(selectedCanton != null){
-			selectedCanton.unSelect();
+			unSelectCanton(canton.getId());
 		}
-		if(canton != selectedCanton){
-			selectedCanton = canton;
-			selectedCanton.select();
-			selectedCantonState.setTextFill(canton.getStateColor());
-			selectedCantonState.setText(canton.getStateText());
+		if(cv != selectedCanton){
+			selectedCanton = cv;
+			selectCanton(canton.getId());
+			selectedCantonState.setTextFill(cv.getStateColor());
+			selectedCantonState.setText(cv.getStateText());
 		}
 		else{
 			selectedCantonState.setText("");
@@ -359,6 +362,27 @@ public class GlobalView extends Application{
 	
 	public static CantonView getSelectedCanton(){
 		return selectedCanton;
+	}
+	
+	public static void selectCanton(Integer canton){
+		ArrayList<LineView> line = (ArrayList<LineView>) lines.clone();
+		for(LineView l : line){
+			l.selectCanton(canton);
+		}
+	}
+	
+	public static void unSelectCanton(Integer canton){
+		ArrayList<LineView> line = (ArrayList<LineView>) lines.clone();
+		for(LineView l : line){
+			l.unSelectCanton(canton);
+		}
+	}
+	
+	public static void changeStateCanton(Integer canton){
+		ArrayList<LineView> line = (ArrayList<LineView>) lines.clone();
+		for(LineView l : line){
+			l.changeStateCanton(canton);
+		}
 	}
 
 }

@@ -12,11 +12,12 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Parent;
 import ucp.greves.controller.CantonController;
 import ucp.greves.controller.RailWayController;
+import ucp.greves.data.line.canton.Canton;
 import ucp.greves.data.line.railWay.RailWay;
 
 public class RailWayView extends Parent  {
 	
-	private HashMap<Integer, CantonView> Cantons;
+	private HashMap<Integer, CantonView> cantons;
 	IntegerProperty startXpos, startYpos;
 	private RailWay railway;
 	
@@ -30,7 +31,7 @@ public class RailWayView extends Parent  {
 	 * @see Railway
 	 */
 	public RailWayView(RailWay railway, int numberOfRailWays, Boolean global){
-		this.Cantons = new HashMap<Integer, CantonView>();
+		this.cantons = new HashMap<Integer, CantonView>();
 		this.railway = railway;
 		startXpos = new SimpleIntegerProperty();
 		startYpos = new SimpleIntegerProperty();
@@ -54,7 +55,7 @@ public class RailWayView extends Parent  {
 			}
 			else{
 				CantonView cv = new CantonView(xpos, ypos,0.0037, cantonController.getCantonById(c), cantonController, global, true);
-				this.Cantons.put(c, cv);
+				this.cantons.put(c, cv);
 				this.getChildren().add(cv);
 				xpos = cv.getEndX();
 				ypos = cv.getEndY();
@@ -64,7 +65,7 @@ public class RailWayView extends Parent  {
 			Collections.reverse(inverseList);
 			for(int c : inverseList){
 				CantonView cv = new CantonView(xpos, ypos,0.0037, cantonController.getCantonById(c), cantonController, global, false);
-				this.Cantons.put(c, cv);
+				this.cantons.put(c, cv);
 				this.getChildren().add(cv);
 				xpos = cv.getEndX();
 				ypos = cv.getEndY();
@@ -149,6 +150,24 @@ public class RailWayView extends Parent  {
 			startYpos.setValue(((this.railway.getId()+1)*150));
 			startXpos.setValue(0);
 			break;
+		}
+	}
+	
+	public void selectCanton(Integer canton){
+		if(cantons.containsKey(canton)){
+			cantons.get(canton).select();
+		}
+	}
+	
+	public void unSelectCanton(Integer canton){
+		if(cantons.containsKey(canton)){
+			cantons.get(canton).unSelect();
+		}
+	}
+	
+	public void changeStateCanton(Integer canton){
+		if(cantons.containsKey(canton)){
+			cantons.get(canton).changeState();
 		}
 	}
 

@@ -1,20 +1,28 @@
 package ucp.greves.view;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import ucp.greves.controller.GodModeController;
 
 public class GlobalMap extends Application{
 	
 	private LineView line;
+	private ArrayList<LineView> list;
 	
-	public GlobalMap(){
+	public GlobalMap(ArrayList<LineView> list){
 		this.line = new LineView(true);
+		this.list = list;
+		this.list.add(line);
 		Stage stage = new Stage();
 		try {
 			start(stage);
@@ -40,6 +48,14 @@ public class GlobalMap extends Application{
 
 		ScrollPane globalPane = (ScrollPane) root.lookup("#GlobalMap");	
 		globalPane.setContent(line);
+		
+		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				list.remove(line);		
+			}
+		});
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
