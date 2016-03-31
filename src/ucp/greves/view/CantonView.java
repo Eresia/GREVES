@@ -37,6 +37,7 @@ public class CantonView extends Parent implements Observer {
 	private volatile boolean isSelected;
 	private Boolean global;
 	private Boolean direction;
+	private Boolean horizontal;
 	
 	private final static Paint colorTrain = Color.DARKGRAY;
 	private final static Paint colorStation = Color.BLUE;
@@ -46,11 +47,12 @@ public class CantonView extends Parent implements Observer {
 	private final static Paint colorCantonNormal = new Color(0.45, 0.7, 0, 1);
 
 	public CantonView(IntegerProperty posXA, IntegerProperty posYA,
-			double factor, Canton canton, CantonController controller, Boolean global, Boolean direction) {
+			double factor, Canton canton, CantonController controller, Boolean global, Boolean direction, Boolean horizontal) {
 		this.canton = canton;
 		this.isSelected = false;
 		this.global = global;
 		this.direction = direction;
+		this.horizontal = horizontal;
 		SystemProperties.setFXProperty("javafx.debug", "true");
 		this.posXA = new SimpleIntegerProperty();
 		this.posXB = new SimpleIntegerProperty();
@@ -65,9 +67,16 @@ public class CantonView extends Parent implements Observer {
 			posYB.set((int) (posYA.get()));
 		}
 		else{
-			posXB.set((int) (posXA.get()));
-			posYB.set((int) (posYA.get() + (scaleFactor * canton.getLength())));
-		}
+			if(horizontal){
+				
+				posXB.set((int) (posXA.get() + (scaleFactor * canton.getLength())));
+				posYB.set((int) (posYA.get()));
+			
+			}else{
+				posXB.set((int) (posXA.get()));
+				posYB.set((int) (posYA.get() + (scaleFactor * canton.getLength())));
+			}
+			}
 		this.lineofCanton = new Line(this.posXA.get(), this.posYA.get(),
 				this.posXB.get(), this.posYB.get());
 		this.lineofCanton.setFill(colorCantonNormal);
@@ -104,6 +113,7 @@ public class CantonView extends Parent implements Observer {
 				stationText.setFont(new Font(8));
 			}
 			else{
+				
 				stationPosition.setCenterX(this.posXA.get());
 				stationPosition.setCenterY(this.posYA.get()
 						+ (this.scaleFactor * stationPos));
@@ -181,6 +191,7 @@ public class CantonView extends Parent implements Observer {
 						Platform.runLater(() -> this.trainText.xProperty().set((double) posXA.get() + 2));
 					}
 					else{
+						if(! horizontal){
 						Platform.runLater(()-> trainPosition.getPoints().setAll(
 							(double) posXA.get(),
 							(double) posYA.get(),
@@ -191,7 +202,19 @@ public class CantonView extends Parent implements Observer {
 								));
 						Platform.runLater(() -> this.trainText.yProperty().set(posYA.get() + 2));
 						Platform.runLater(() -> this.trainText.xProperty().set((double) posXA.get() + 6));
-					}
+						}else{
+							Platform.runLater(()-> trainPosition.getPoints().setAll(
+									(double) posXA.get() + 5 ,
+									(double) posYA.get() + 5,
+									(double) posXA.get() ,
+									(double) posYA.get() ,
+									(double) posXA.get() - 5,
+									(double) posYA.get() + 5
+										));
+								Platform.runLater(() -> this.trainText.yProperty().set(posYA.get() + 2));
+								Platform.runLater(() -> this.trainText.xProperty().set((double) posXA.get() + 6));
+						}
+						}
 					
 					Platform.runLater(() -> this.trainText.textProperty().set(trainId));
 					 
@@ -221,8 +244,14 @@ public class CantonView extends Parent implements Observer {
 					}
 				}
 				else{
-					Platform.runLater(() -> this.trainPosition.setLayoutY(scaleFactor * trainPositionInCanton));
-					Platform.runLater(() -> this.trainText.setLayoutY(scaleFactor * trainPositionInCanton ));
+					if (horizontal) {
+						Platform.runLater(() -> this.trainPosition.setLayoutX(scaleFactor * trainPositionInCanton));
+						Platform.runLater(() -> this.trainText.setLayoutX(scaleFactor * trainPositionInCanton ));
+					}else{
+						Platform.runLater(() -> this.trainPosition.setLayoutY(scaleFactor * trainPositionInCanton));
+						Platform.runLater(() -> this.trainText.setLayoutY(scaleFactor * trainPositionInCanton ));
+					}
+
 				}
 			} catch (TrainIsNotInThisCanton e) {
 				//e.printStackTrace();
@@ -291,7 +320,7 @@ public class CantonView extends Parent implements Observer {
 		String text = null;
 		switch(canton.getState()){
 			case BLOCKED:
-				text = "Bloqué";
+				text = "Bloquï¿½";
 				break;
 			case SLOWSDOWN:
 				text = "Ralentit";

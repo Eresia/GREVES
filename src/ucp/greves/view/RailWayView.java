@@ -54,7 +54,7 @@ public class RailWayView extends Parent  {
 				inverseList.add(c);
 			}
 			else{
-				CantonView cv = new CantonView(xpos, ypos,0.0037, cantonController.getCantonById(c), cantonController, global, true);
+				CantonView cv = new CantonView(xpos, ypos,0.0037, cantonController.getCantonById(c), cantonController, global, true, false);
 				this.cantons.put(c, cv);
 				this.getChildren().add(cv);
 				xpos = cv.getEndX();
@@ -64,7 +64,7 @@ public class RailWayView extends Parent  {
 		if(global && ((railway.getId() % 2) == 1)){
 			Collections.reverse(inverseList);
 			for(int c : inverseList){
-				CantonView cv = new CantonView(xpos, ypos,0.0037, cantonController.getCantonById(c), cantonController, global, false);
+				CantonView cv = new CantonView(xpos, ypos,0.0037, cantonController.getCantonById(c), cantonController, global, false, false);
 				this.cantons.put(c, cv);
 				this.getChildren().add(cv);
 				xpos = cv.getEndX();
