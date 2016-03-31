@@ -41,6 +41,7 @@ public class GlobalView extends Application{
 	
 	private TableView<GlobalStation> stationList;
 	private volatile static CantonView selectedCanton = null;
+	private static Label selectedCantonState = null;
 	private ComboBox<Integer> trainIDListComboBox;
 	
 	public static void main(String[] args){
@@ -58,6 +59,7 @@ public class GlobalView extends Application{
 
 		setButton(root);
 		setTime(root);
+		setSelectedCantonState(root);
 	      
 		primaryStage.setScene(scene);
 		primaryStage.show();  
@@ -162,6 +164,8 @@ public class GlobalView extends Application{
 					try {
 						CantonController.blockCanton(selectedCanton.getCanton().getId());
 						selectedCanton.changeState();
+						selectedCantonState.setTextFill(selectedCanton.getStateColor());
+						selectedCantonState.setText(selectedCanton.getStateText());
 					} catch (CantonNotExistException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -181,6 +185,8 @@ public class GlobalView extends Application{
 					try {
 						CantonController.createSlowDown(selectedCanton.getCanton().getId());
 						selectedCanton.changeState();
+						selectedCantonState.setTextFill(selectedCanton.getStateColor());
+						selectedCantonState.setText(selectedCanton.getStateText());
 					} catch (CantonNotExistException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -200,6 +206,8 @@ public class GlobalView extends Application{
 					try {
 						CantonController.removeCantonProblem(selectedCanton.getCanton().getId());
 						selectedCanton.changeState();
+						selectedCantonState.setTextFill(selectedCanton.getStateColor());
+						selectedCantonState.setText(selectedCanton.getStateText());
 					} catch (CantonNotExistException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -263,6 +271,11 @@ public class GlobalView extends Application{
 		new ClockView((Label) root.lookup("#TimeLabel"));
 	}
 	
+	public void setSelectedCantonState(Parent root){
+		selectedCantonState = (Label) root.lookup("#CantonState");
+		selectedCantonState.setText("");
+	}
+	
 	/*public void addStation(Parent root){
 		TableView<String> table  = (TableView<String>) root.lookup("#table");
 		table.getColumns().get(0);
@@ -321,8 +334,11 @@ public class GlobalView extends Application{
 		if(canton != selectedCanton){
 			selectedCanton = canton;
 			selectedCanton.select();
+			selectedCantonState.setTextFill(canton.getStateColor());
+			selectedCantonState.setText(canton.getStateText());
 		}
 		else{
+			selectedCantonState.setText("");
 			selectedCanton = null;
 		}
 	}
