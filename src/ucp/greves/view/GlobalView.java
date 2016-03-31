@@ -325,6 +325,7 @@ public class GlobalView extends Application{
 		else{
 			selectedCanton = null;
 		}
+		
 	}
 	
 	public static CantonView getSelectedCanton(){

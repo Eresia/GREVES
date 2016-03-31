@@ -10,6 +10,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -240,9 +241,23 @@ public class CantonView extends Parent implements Observer {
 	}
 	
 	private void setColor(Paint color){
+		Label stateLabel = (Label) lineofCanton.getScene().lookup("#CantonState");
 		if(isSelected){
-			//lineofCanton.setStroke(colorSelected);
 			lineofCanton.setScaleX(2);
+			switch(canton.getState()){
+			case BLOCKED:
+				stateLabel.setText("Bloqué");
+				stateLabel.setTextFill(colorBlocked);
+				break;
+			case SLOWSDOWN:
+				stateLabel.setText("Ralenti");
+				stateLabel.setTextFill(colorSlow);
+				break;
+			case NO_PROBLEM:
+				stateLabel.setText("Normal");
+				stateLabel.setTextFill(color);
+				break;
+			}
 		}
 		else{
 			lineofCanton.setScaleX(1);
@@ -257,7 +272,6 @@ public class CantonView extends Parent implements Observer {
 				case NO_PROBLEM:
 					lineofCanton.setStroke(color);
 					break;
-		//	}
 		}
 	}
 
