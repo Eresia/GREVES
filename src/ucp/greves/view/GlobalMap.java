@@ -44,7 +44,7 @@ public class GlobalMap extends Application{
 			height = 600;
 		}
 		Scene scene = new Scene(root, dimension.getWidth()-20, height);
-		primaryStage.setTitle("G.R.E.V.E.S. - Map globale ligne A");
+		primaryStage.setTitle("G.R.E.V.E.S. - Carte globale ligne A");
 
 		ScrollPane globalPane = (ScrollPane) root.lookup("#GlobalMap");	
 		globalPane.setContent(line);
