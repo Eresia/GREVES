@@ -55,6 +55,13 @@ public class Schedule extends Thread{
 		}
 	}
 	
+	/**
+	 * Creates a new train launch
+	 * @param roadMap
+	 * 		(String) The name of the roadmap for the train to follow
+	 * @param time
+	 * 		(Time) The time the train starts to progress on the line
+	 */
 	public static void addLaunchTrainSchedule(String roadMap, Time time){
 		Line.getInstance().getSchedule().addInformation(new LaunchTrainInformation(time, roadMap));
 	}

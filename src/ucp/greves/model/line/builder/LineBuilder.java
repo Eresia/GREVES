@@ -724,6 +724,9 @@ public class LineBuilder {
 		}
 	}
 	
+	/**
+	 * This method gets the information (the next trains, among other things) when creating a station
+	 */
 	private static void buildStationInformation(){
 		for(Integer rwI : Line.getRailWays().keySet()){
 			Canton canton = Line.getRailWays().get(rwI).getFirstCanton();
