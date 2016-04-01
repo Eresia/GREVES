@@ -220,7 +220,7 @@ public class GlobalView extends Application{
 				CantonView selectedCanton = getSelectedCanton();
 				if(selectedCanton != null) {
 					try {
-						CantonController.removeCantonProblem(selectedCanton.getCanton().getId());
+						CantonController.normalizeCanton(selectedCanton.getCanton().getId());
 						selectedCanton.changeState();
 						selectedCantonState.setTextFill(selectedCanton.getStateColor());
 						selectedCantonState.setText(selectedCanton.getStateText());

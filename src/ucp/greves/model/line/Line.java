@@ -218,6 +218,7 @@ public class Line extends Observable implements Observer {
 	}
 	
 	/**
+	 * Return the list of cantons
 	 * @return (HashMap<Integer, Canton>) Returns the list of cantons
 	 */
 	public static HashMap<Integer, Canton> getCantons(){
