@@ -122,8 +122,8 @@ public class DriverView extends Application implements Observer {
 				Platform.runLater(() -> this.driverLineDraw.getChildren().clear());
 				Canton tempc = this.train.getCurrentCanton();
 
-				for (int i = 0; i < 5; i++) {
-					CantonView cv = new CantonView(xpos, ypos, 0.018, tempc, false, true, true, true);
+				for (int i = 0; i < 10; i++) {
+					CantonView cv = new CantonView(xpos, ypos, 0.009, tempc, false, true, true, true);
 					cantonlist.add(cv);
 					xpos = cv.getEndX();
 					ypos = cv.getEndY();
