@@ -122,7 +122,7 @@ public class Train extends Observable implements Runnable {
 		this.position = position;
 		if(notify){
 			this.setChanged();
-			this.notifyObservers();
+			this.notifyObservers(false);
 		}
 	}
 
@@ -164,7 +164,7 @@ public class Train extends Observable implements Runnable {
 				updatePosition();
 			}
 			this.setChanged();
-			this.notifyObservers();
+			this.notifyObservers(false);
 			
 		}
 		currentCanton.exit();
@@ -172,6 +172,11 @@ public class Train extends Observable implements Runnable {
 		if (isRemoved()) {
 			removeStation.stockTrain(this);
 		}
+	}
+	
+	public void notifyOnExit(){
+		this.setChanged();
+		this.notifyObservers(true);
 	}
 
 	/**

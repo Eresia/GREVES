@@ -355,7 +355,10 @@ public class Canton extends Observable {
 	 * Makes a train exit the canton
 	 */
 	public synchronized void exit() {
-		occupyingTrain = null;
+		if(occupyingTrain != null){
+			occupyingTrain.notifyOnExit();
+			occupyingTrain = null;
+		}
 		if (ConfigurationEnvironment.inDebug()) {
 			System.err.println("Canton freed !");
 		}

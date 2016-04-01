@@ -33,12 +33,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class DriverView extends Application implements Observer{
+public class DriverView extends Application implements Observer {
 
 	private Train train;
-	
-	
-	
+
 	private Label finalStation;
 	private Label nextStationName;
 	private Label nextStationTime;
@@ -47,51 +45,52 @@ public class DriverView extends Application implements Observer{
 
 	private Stage stage;
 
-	private SimpleIntegerProperty startXpos , startYpos ;
-	
-	
+	private SimpleIntegerProperty startXpos, startYpos;
+
 	public DriverView(int trainId) {
 		stage = new Stage();
 		try {
 			this.train = TrainController.getRunningTrainById(trainId);
-			
+
 			start(stage);
 		} catch (TrainNotExistException e) {
 			stage.close();
 		}
 	}
-	
+
 	@Override
-	public void start(Stage primaryStage)   {
+	public void start(Stage primaryStage) {
 		Parent root;
-		
+
 		try {
 			root = FXMLLoader.load(getClass().getResource("driver_view.fxml"));
 
-		Scene scene = new Scene(root,600,400);
-		primaryStage.setTitle("G.R.E.V.E.S. - Vue conducteur");
-		
-		this.startXpos = new SimpleIntegerProperty();
-		this.startYpos = new SimpleIntegerProperty();
+			Scene scene = new Scene(root, 600, 400);
+			primaryStage.setTitle("G.R.E.V.E.S. - Vue conducteur");
 
-		 driverLineDraw = (Pane) root.lookup("#DriverLineDraw");
-		 startYpos.set((int)driverLineDraw.heightProperty().divide(2).get());
-		 startXpos.setValue(10);
-		 finalStation =  (Label) root.lookup("#FinalStation");
-		 nextStationName = (Label) root.lookup("#NextStationName");
-		 nextStationTime = (Label) root.lookup("#NextStationTime");
-		 timeState = (Label) root.lookup("#TimeState");
-		 
-		 this.finalStation.textProperty().set(StationController.getStationByCantonId(train.getRoadMap().getLastStation()).getName());
-		 try {
-			this.nextStationName.textProperty().set(StationController.getStationByCantonId(train.nextStations().get(0)).getName());
-		} catch (StationNotFoundException e) {
-			this.nextStationName.textProperty().set(" ");
-		}
-		 this.train.addObserver(this);
-		 primaryStage.setScene(scene);
-		 
-		primaryStage.show();
+			this.startXpos = new SimpleIntegerProperty();
+			this.startYpos = new SimpleIntegerProperty();
+
+			driverLineDraw = (Pane) root.lookup("#DriverLineDraw");
+			startYpos.set((int) driverLineDraw.heightProperty().divide(2).get());
+			startXpos.setValue(10);
+			finalStation = (Label) root.lookup("#FinalStation");
+			nextStationName = (Label) root.lookup("#NextStationName");
+			nextStationTime = (Label) root.lookup("#NextStationTime");
+			timeState = (Label) root.lookup("#TimeState");
+
+			this.finalStation.textProperty()
+					.set(StationController.getStationByCantonId(train.getRoadMap().getLastStation()).getName());
+			try {
+				this.nextStationName.textProperty()
+						.set(StationController.getStationByCantonId(train.nextStations().get(0)).getName());
+			} catch (StationNotFoundException e) {
+				this.nextStationName.textProperty().set(" ");
+			}
+			this.train.addObserver(this);
+			primaryStage.setScene(scene);
+
+			primaryStage.show();
 		} catch (IOException e1) {
 
 			e1.printStackTrace();
@@ -100,43 +99,43 @@ public class DriverView extends Application implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if(train.hasArrived()){
-			this.train.deleteObserver(this);
-			Platform.runLater(() ->stage.close());
-		}
-		else{
-			Platform.runLater(() -> this.finalStation.textProperty().set(StationController.getStationByCantonId(train.getRoadMap().getLastStation()).getName()));
-			try {
-				
-				String StationName = StationController.getStationByCantonId(train.nextStations().get(0)).getName();
-				Platform.runLater(() -> this.nextStationName.textProperty().set(StationName));
-			} catch (StationNotFoundException e) {
-				Platform.runLater(() -> this.nextStationName.textProperty().set(" "));
-			}
-			
-			ArrayList<CantonView> cantonlist = new ArrayList<CantonView>();
-			IntegerProperty xpos = new SimpleIntegerProperty();
-			IntegerProperty ypos = new SimpleIntegerProperty();
-			xpos.bind(startXpos);
-			ypos.bind(startYpos);
-			Platform.runLater(() -> this.driverLineDraw.getChildren().clear());
-			Canton tempc = this.train.getCurrentCanton();
-			
-			for(int i = 0 ; i < 5 ; i++ ){
-				CantonView cv = new CantonView(xpos, ypos, 0.018, tempc, true , false , true);
-				cantonlist.add(cv);
-				 xpos = cv.getEndX();
-				 ypos = cv.getEndY();
-				 try {
-					tempc = tempc.getNextCanton(0);
-				} catch (TerminusException e) {
-					continue;
+		if((Boolean) arg){
+			if (train.hasArrived()) {
+				this.train.deleteObserver(this);
+				Platform.runLater(() -> stage.close());
+			} else {
+				Platform.runLater(() -> this.finalStation.textProperty()
+						.set(StationController.getStationByCantonId(train.getRoadMap().getLastStation()).getName()));
+				try {
+
+					String StationName = StationController.getStationByCantonId(train.nextStations().get(0)).getName();
+					Platform.runLater(() -> this.nextStationName.textProperty().set(StationName));
+				} catch (StationNotFoundException e) {
+					Platform.runLater(() -> this.nextStationName.textProperty().set(" "));
 				}
-				
+
+				ArrayList<CantonView> cantonlist = new ArrayList<CantonView>();
+				IntegerProperty xpos = new SimpleIntegerProperty();
+				IntegerProperty ypos = new SimpleIntegerProperty();
+				xpos.bind(startXpos);
+				ypos.bind(startYpos);
+				Platform.runLater(() -> this.driverLineDraw.getChildren().clear());
+				Canton tempc = this.train.getCurrentCanton();
+
+				for (int i = 0; i < 5; i++) {
+					CantonView cv = new CantonView(xpos, ypos, 0.018, tempc, false, true, true, true);
+					cantonlist.add(cv);
+					xpos = cv.getEndX();
+					ypos = cv.getEndY();
+					try {
+						tempc = tempc.getNextCanton(0);
+					} catch (TerminusException e) {
+						break;
+					}
+
+				}
+				Platform.runLater(() -> this.driverLineDraw.getChildren().addAll(cantonlist));
 			}
-			Platform.runLater(() -> this.driverLineDraw.getChildren().addAll(cantonlist));
 		}
-		
-		
 	}
 }
