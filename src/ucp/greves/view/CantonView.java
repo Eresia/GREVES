@@ -181,21 +181,21 @@ public class CantonView extends Parent implements Observer {
 						if(direction){
 							if(!drivers){
 								Platform.runLater(()-> trainPosition.getPoints().setAll(
-										(double) posXA.get() + 6,
+										(double) posXA.get() + 3,
 										(double) posYA.get(),
-										(double) posXA.get() - 5 + 6,
+										(double) posXA.get() - 5 + 3,
 										(double) posYA.get() - 5,
-										(double) posXA.get() - 5 + 6,
+										(double) posXA.get() - 5 + 3,
 										(double) posYA.get() + 5
 											));
 							}
 							else{
 								Platform.runLater(()-> trainPosition.getPoints().setAll(
-										(double) posXA.get() + 11,
+										(double) posXA.get() + 5,
 										(double) posYA.get(),
-										(double) posXA.get() - 5 + 11,
+										(double) posXA.get() - 5 + 4,
 										(double) posYA.get() - 5,
-										(double) posXA.get() - 5 + 11,
+										(double) posXA.get() - 5 + 4,
 										(double) posYA.get() + 5
 											));
 							}
@@ -203,11 +203,11 @@ public class CantonView extends Parent implements Observer {
 						}
 						else{
 							Platform.runLater(()-> trainPosition.getPoints().setAll(
-									(double) posXA.get() - 6,
+									(double) posXA.get() - 3,
 									(double) posYA.get(),
-									(double) posXA.get() + 5 - 6,
+									(double) posXA.get() + 5 - 3,
 									(double) posYA.get() - 5,
-									(double) posXA.get() + 5 - 6,
+									(double) posXA.get() + 5 - 3,
 									(double) posYA.get() + 5
 										));
 						}
@@ -218,11 +218,11 @@ public class CantonView extends Parent implements Observer {
 						if(! horizontal){
 						Platform.runLater(()-> trainPosition.getPoints().setAll(
 							(double) posXA.get(),
-							(double) posYA.get() + 5,
+							(double) posYA.get() + 3,
 							(double) posXA.get() - 5,
-							(double) posYA.get() - 5 + 5,
+							(double) posYA.get() - 5 + 3,
 							(double) posXA.get() + 5,
-							(double) posYA.get() - 5 + 5
+							(double) posYA.get() - 5 + 3
 								));
 						Platform.runLater(() -> this.trainText.yProperty().set(posYA.get() + 2));
 						Platform.runLater(() -> this.trainText.xProperty().set((double) posXA.get() + 6));

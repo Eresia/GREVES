@@ -291,6 +291,8 @@ public class Train extends Observable implements Runnable {
 	 */
 	private void updatePositionProcess(ModifiedTrainInformation informations){
 		position -= informations.getUpdatedPosition();
+		this.setChanged();
+		this.notifyObservers(false);
 		
 		if(informations.getStationCrossed()){
 			currentCanton.enterInStation(this);
@@ -303,8 +305,6 @@ public class Train extends Observable implements Runnable {
 				nextStation = stationList.get(actualStationPos + 1);
 			}
 		}
-		
-		this.setChanged();
 	}
 
 	/**

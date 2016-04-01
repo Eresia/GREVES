@@ -5,33 +5,29 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import ucp.greves.controller.CantonController;
-import ucp.greves.controller.StationController;
-import ucp.greves.controller.TrainController;
-import ucp.greves.data.exceptions.canton.TerminusException;
-import ucp.greves.data.exceptions.station.StationNotFoundException;
-import ucp.greves.data.exceptions.train.TrainNotExistException;
-import ucp.greves.data.line.canton.Canton;
-import ucp.greves.data.train.Train;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.beans.binding.Binding;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ucp.greves.controller.CantonController;
+import ucp.greves.controller.GodModeController;
+import ucp.greves.controller.StationController;
+import ucp.greves.controller.TrainController;
+import ucp.greves.data.exceptions.canton.CantonIsBlockedException;
+import ucp.greves.data.exceptions.canton.CantonNotExistException;
+import ucp.greves.data.exceptions.canton.TerminusException;
+import ucp.greves.data.exceptions.railway.RailWayNotDefinedException;
+import ucp.greves.data.exceptions.station.StationNotFoundException;
+import ucp.greves.data.exceptions.train.TrainNotExistException;
+import ucp.greves.data.line.canton.Canton;
+import ucp.greves.data.time.Time;
+import ucp.greves.data.train.Train;
 
 public class DriverView extends Application implements Observer {
 
@@ -40,10 +36,10 @@ public class DriverView extends Application implements Observer {
 	private Label finalStation;
 	private Label nextStationName;
 	private Label nextStationTime;
-	private Label timeState;
 	private Pane driverLineDraw;
 
 	private Stage stage;
+	private String time;
 
 	private SimpleIntegerProperty startXpos, startYpos;
 
@@ -76,8 +72,6 @@ public class DriverView extends Application implements Observer {
 			startXpos.setValue(10);
 			finalStation = (Label) root.lookup("#FinalStation");
 			nextStationName = (Label) root.lookup("#NextStationName");
-			nextStationTime = (Label) root.lookup("#NextStationTime");
-			timeState = (Label) root.lookup("#TimeState");
 
 			this.finalStation.textProperty()
 					.set(StationController.getStationByCantonId(train.getRoadMap().getLastStation()).getName());
@@ -99,11 +93,8 @@ public class DriverView extends Application implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if((Boolean) arg){
-			if (train.hasArrived()) {
-				this.train.deleteObserver(this);
-				Platform.runLater(() -> stage.close());
-			} else {
+		if(!train.hasArrived()){
+			if  ((Boolean) arg){
 				Platform.runLater(() -> this.finalStation.textProperty()
 						.set(StationController.getStationByCantonId(train.getRoadMap().getLastStation()).getName()));
 				try {
@@ -136,6 +127,28 @@ public class DriverView extends Application implements Observer {
 				}
 				Platform.runLater(() -> this.driverLineDraw.getChildren().addAll(cantonlist));
 			}
+			
+			time = "";
+			
+			try {
+				int nextStation = this.train.nextStation();
+				int nextStationRailWay = CantonController.getCantonById(nextStation).getRailWay();
+				int canton = this.train.getCurrentCanton().getId();
+				int position = this.train.getPosition();
+				time = GodModeController.timeToNextStation(canton, position, nextStation, nextStationRailWay).toString();
+				
+			} catch (StationNotFoundException | RailWayNotDefinedException e) {
+				
+			} catch (CantonNotExistException e) {
+				e.printStackTrace();
+			} catch (CantonIsBlockedException e) {
+				time = "Undefined Time";
+			}
+			Platform.runLater(() -> nextStationName.setText(time));
+		}
+		else{
+			this.train.deleteObserver(this);
+			Platform.runLater(() -> stage.close());
 		}
 	}
 }
