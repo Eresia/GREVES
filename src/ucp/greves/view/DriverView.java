@@ -40,6 +40,8 @@ public class DriverView extends Application implements Observer {
 
 	private Stage stage;
 	private String time;
+	
+	ArrayList<CantonView> cantonList;
 
 	private SimpleIntegerProperty startXpos, startYpos;
 
@@ -47,7 +49,7 @@ public class DriverView extends Application implements Observer {
 		stage = new Stage();
 		try {
 			this.train = TrainController.getRunningTrainById(trainId);
-
+			cantonList = new ArrayList<CantonView>();
 			start(stage);
 		} catch (TrainNotExistException e) {
 			stage.close();
@@ -105,17 +107,21 @@ public class DriverView extends Application implements Observer {
 					Platform.runLater(() -> this.nextStationName.textProperty().set(" "));
 				}
 
-				ArrayList<CantonView> cantonlist = new ArrayList<CantonView>();
 				IntegerProperty xpos = new SimpleIntegerProperty();
 				IntegerProperty ypos = new SimpleIntegerProperty();
 				xpos.bind(startXpos);
 				ypos.bind(startYpos);
 				Platform.runLater(() -> this.driverLineDraw.getChildren().clear());
+				for(CantonView cv : cantonList){
+					cv.free();
+				}
+				cantonList.clear();
+				
 				Canton tempc = this.train.getCurrentCanton();
 
 				for (int i = 0; i < 10; i++) {
 					CantonView cv = new CantonView(xpos, ypos, 0.009, tempc, false, true, true, true);
-					cantonlist.add(cv);
+					cantonList.add(cv);
 					xpos = cv.getEndX();
 					ypos = cv.getEndY();
 					try {
@@ -125,7 +131,7 @@ public class DriverView extends Application implements Observer {
 					}
 
 				}
-				Platform.runLater(() -> this.driverLineDraw.getChildren().addAll(cantonlist));
+				Platform.runLater(() -> this.driverLineDraw.getChildren().addAll(cantonList));
 			}
 			
 			time = "";

@@ -169,7 +169,7 @@ public class CantonView extends Parent implements Observer {
 			Canton c = (Canton) o;
 			boolean isFree = c.isFree();
 			
-			actionOnFree();
+			resetView();
 			
 			if (!isFree) {
 				try {
@@ -247,10 +247,8 @@ public class CantonView extends Parent implements Observer {
 					this.innerTrain.addObserver(this);
 					Platform.runLater(() ->setColor(colorCantonOccuped));
 				} catch (CantonIsEmptyException e) {
-					actionOnFree();
-				}/* catch (TrainIsNotInThisCanton e) {
-					actionOnFree();
-				}*/
+					resetView();
+				}
 			}
 		} else if (o instanceof Train) {
 			if(!((Boolean) arg)){
@@ -287,7 +285,7 @@ public class CantonView extends Parent implements Observer {
 	
 	}
 	
-	private void actionOnFree(){
+	private void resetView(){
 		if (this.innerTrain != null) {
 			this.innerTrain.deleteObserver(this);
 			this.innerTrain = null;
@@ -297,6 +295,14 @@ public class CantonView extends Parent implements Observer {
 					.remove(trainText));
 		}
 		Platform.runLater(() ->setColor(colorCantonNormal));
+	}
+	
+	public void free(){
+		if (this.innerTrain != null) {
+			this.innerTrain.deleteObserver(this);
+			this.innerTrain = null;
+		}
+		Platform.runLater(() -> this.getChildren().clear());
 	}
 	
 	private void setColor(Paint color){
