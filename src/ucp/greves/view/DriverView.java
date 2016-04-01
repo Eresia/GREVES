@@ -74,6 +74,7 @@ public class DriverView extends Application implements Observer {
 			startXpos.setValue(10);
 			finalStation = (Label) root.lookup("#FinalStation");
 			nextStationName = (Label) root.lookup("#NextStationName");
+			nextStationTime = (Label) root.lookup("#NextStationTime");
 
 			this.finalStation.textProperty()
 					.set(StationController.getStationByCantonId(train.getRoadMap().getLastStation()).getName());
@@ -150,7 +151,7 @@ public class DriverView extends Application implements Observer {
 			} catch (CantonIsBlockedException e) {
 				time = "Undefined Time";
 			}
-			Platform.runLater(() -> nextStationName.setText(time));
+			Platform.runLater(() -> nextStationTime.setText(time));
 		}
 		else{
 			this.train.deleteObserver(this);
