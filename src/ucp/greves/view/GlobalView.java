@@ -254,10 +254,10 @@ public class GlobalView extends Application{
 			public void handle(ActionEvent event) {
 				int trainId ;
 				
-				trainId = trainIDListComboBox.getSelectionModel().getSelectedItem();
-			 if(trainId != 0){
-				 new DriverView(trainId); 
-			 }
+				if(!trainIDListComboBox.getSelectionModel().isEmpty()){
+					trainId = trainIDListComboBox.getSelectionModel().getSelectedItem();
+					new DriverView(trainId);
+				}
 				
 			}
 		});

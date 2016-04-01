@@ -47,7 +47,7 @@ public class CantonView extends Parent implements Observer {
 	private final static Paint colorCantonNormal = new Color(0.45, 0.7, 0, 1);
 
 	public CantonView(IntegerProperty posXA, IntegerProperty posYA,
-			double factor, Canton canton, CantonController controller, Boolean global, Boolean direction, Boolean horizontal) {
+			double factor, Canton canton,  Boolean global, Boolean direction, Boolean horizontal) {
 		this.canton = canton;
 		this.isSelected = false;
 		this.global = global;
