@@ -350,7 +350,7 @@ public class CantonView extends Parent implements Observer {
 		String text = null;
 		switch(canton.getState()){
 			case BLOCKED:
-				text = "Bloqué";
+				text = "Bloque";
 				break;
 			case SLOWSDOWN:
 				text = "Ralenti";
