@@ -18,6 +18,7 @@
   Ce projet est réalisé au cours de la 3ème année de Licence Informatique à l'université de Cergy-Pontoise, au sein du module "Gestion de Projet Informatique" donné par Tianxiao LIU (https://depinfo.u-cergy.fr/~tliu/index.php).
   Le but initial de ce module est l'introduction aux méthodes agiles et à l'apprentissage du travail en équipe au niveau professionel.
   Afin d'apprendre la gestion d'un projet, il faut d'abord avoir un projet. Le projet que nous devons réalisé est une simulation logicielle en Java de la ligne A du RER, qui traverse la région parisienne.
+  Nous avons choisi pour nom de groupe l'acronyme "G.R.E.V.E.S.", correspondant à "Gestion Répartie entre Etudiants des Viaferrata Enterrées et en Surface"
 
 #2. Membres du groupe
 
@@ -28,8 +29,6 @@
  - Paul VALENTIN	: QA	(https://github.com/Sephage)
  - Bruno TESSIER	: MOA	(https://github.com/BrunoBob)
  - Filipe GAMA		: DOC	(https://github.com/Baalon)
-
- Nous avons choisi pour nom de groupe l'acronyme "G.R.E.V.E.S.", correspondant à "Gestion Répartie entre Etudiants des Viaferrata Enterrées et en Surface"
 
 #3. Glossaire
 
