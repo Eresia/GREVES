@@ -21,7 +21,7 @@
   
   Afin d'apprendre la gestion d'un projet, il faut d'abord avoir un projet. Le projet que nous devons réalisé est une simulation logicielle en Java de la ligne A du RER, qui traverse la région parisienne.
   
-  Nous avons choisi pour nom de groupe l'acronyme "G.R.E.V.E.S.", correspondant à "Gestion Répartie entre Etudiants des Viaferrata Enterrées et en Surface"
+  Nous avons choisi pour nom de projet l'acronyme "G.R.E.V.E.S.", correspondant à "Gestion Répartie entre Etudiants des Viaferrata Enterrées et en Surface"
 
 #2. Membres du groupe
 
